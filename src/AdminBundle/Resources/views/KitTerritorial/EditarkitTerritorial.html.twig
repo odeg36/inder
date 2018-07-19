@@ -1,0 +1,139 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+        .breadcrumb {
+            padding: 8px 15px !important;
+            margin-bottom: 20px !important;
+            list-style: none !important;
+            background-color: #f5f5f5 !important;
+            border-radius: 4px !important;
+            float: inherit !important;
+        }
+    </style>
+{% endblock %}
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+{% block sonata_page_content %}
+    
+    {% block sonata_admin_content %}
+
+           <div class="content-wrapper content-wrapper-ajuste" style="padding-top: 208px;">
+                <section class="content container">
+
+                <!-- Migas de pan -->
+                <section class="container-fluid">
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                        <li><a href="#">Kit Territorial</a></li>
+                        <li class="active">Editar</li>
+                    </ol>
+                </section>  
+
+                <div class="row">
+                    <div class="col-md-12 fondoAzul2">
+                        {{ form_start(form, {'attr': {'id': 'formulario_kit_territorial', novalidate: 'true'} } ) }}
+                            <div class="infoBox row">
+                            {{comuna}}
+                            {% for temaComunas in temaComuna %} 
+                                <li>
+                                    {{ temaComunas.temaModelo.nombre|e }}   -  Nivel: {{ temaComunas.nivel|e }}
+                                </li>
+                            {% endfor %}
+                            <div class="col-md-12">
+                                        {{form_label(form.comuna)}}
+                                        {{form_widget(form.comuna)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.comuna.vars.errors }%}
+                            </div>
+                            <div class="col-md-12 temaModelo" >
+                                        <section class="col-xs-12 error-mesajes">
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.temaModelo.vars.errors }%}
+                                        </section>
+                                        {%
+                                            form_theme form
+                                                'AdminBundle:KitTerritorial:TemasNivel.html.twig'
+                                                'jquery.collection.html.twig'
+                                        %}
+                                        {{ form_row(form.temaModelo) }}
+                                    </div>
+                                </div>
+                                        <div class="col-md-6">
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                        </div>
+                                <div style="display: none;">
+                                            {{ form_rest(form) }}
+                                </div>
+                                </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>                    
+                                                               
+    {% endblock sonata_admin_content %}
+ 
+    <script type="text/javascript">
+        
+            $('.temaModelo-collection').collection({
+            name_prefix: '{{ form.temaModelo.vars.full_name }}',
+            drag_drop: '',
+            allow_up: '',
+            add:'<a href="#" class="btn btnVerde btnSize add_division_link"><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar Tema</a>',
+            remove:'<a href="#" class="btn btnRojo btnSize add_division_link"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar Tema</a>',
+            up: '',
+            down: '',
+            duplicate: '',
+            add_at_the_end: true,
+            after_add: function(collection, element) {
+                //inder.escenarioDeportivo.setSelect2(element.attr('data-id'));
+            }
+        });
+    </script>
+    
+    <style>
+
+        #btnguardar
+        {
+            position: relative;
+            bottom: 45px;
+            left: 350px;    
+        }
+    
+        .fileinput-cancel {
+            display: none !important;
+        }
+        .fileinput-remove {
+            display: inline !important;
+        }
+        .btn-default {
+            background-color: #c7daef !important;
+            color: #007385 !important;
+            border-color: #bbb !important;
+            -webkit-transition: background-color 0.3s ease-in-out !important;
+            transition: background-color 0.3s ease-in-out !important;
+        }
+        .btn-default:hover {
+            background-color: #007385 !important;
+            color: #c7daef !important;
+            border-color: #007385 !important;
+            -webkit-transition: background-color 0.3s ease-in-out !important;
+            transition: background-color 0.3s ease-in-out !important;
+        }
+        .btn-outline-secondary i{
+            margin: auto !important;
+        }
+        strong label{
+            color : #000000 !important;
+            margin: 0px !important;
+        }
+        .collection-actions{
+            display:none !important;
+        }
+        .margen-bottom-10{
+            margin-bottom: 15px !important;
+        }
+    </style>
+{% endblock sonata_page_content %}

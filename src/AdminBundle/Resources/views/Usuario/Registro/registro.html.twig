@@ -1,0 +1,288 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style type="text/css">
+        abbr.select2-search-choice-close {
+            display: none !important;
+        }
+    </style>
+{% endblock %}
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+{% block sonata_page_content %}
+    <section class="content">
+        {% block sonata_admin_content %}
+            {{ form_start(form, {'attr': {'id': 'formulario_registro', novalidate: false } }) }}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_registro.solicitudregistro{% endtrans %}</h4>
+                    </div>
+                    <div class="col-md-12 padding">
+                        {% for label, messages in app.flashes %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ label }}">
+                                    {{ message | trans }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                    <div class="col-md-4 padding">
+                        <div class="alerta">
+                            <i class="fa fa-exclamation-triangle fa-2x" aria-hidden="true"></i>
+                            <section>
+                                <h5>{% trans %}formulario_registro.atencioncamposobligatorios{% endtrans %}</h5>
+                                {% trans %}formulario_registro.camposobligatorios{% endtrans %}
+                            </section>
+                        </div>
+                    </div>
+                    <div class="col-md-8 fondoAzul">
+                        <div class="row infoBox">
+                            {{ form_label(form.tipopersona) }}
+                            {{ form_widget(form.tipopersona, { 'id': 'tipopersona' }) }}
+                        </div>
+                    </div>
+                </div>
+                <!-- Información general -->
+                <div class="row datos_contacto">
+                    <div class="col-md-4 iconoText" id="varAlto">
+                        <div class="iconoInfo">
+                            <div class="circuloIcono">
+                                <i class="fa fa-user"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>1: {{ 'titulo.informacion.general' | trans }}</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-8 fondoAzul" id="formatoAlto">
+                        <div class="infoBox row">
+                            <div class="col-md-12">
+                                <div class="col-lg-6" >
+                                    {{ form_label(form.tipoidentificacion) }}
+                                    {{ form_widget(form.tipoidentificacion, { 'id': 'tipoidentificacion'}) }}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoidentificacion.vars.errors }%}
+                                </div>
+                                <div class="col-lg-6" >
+                                    {{ form_label(form.numeroidentificacion) }}
+                                    {{ form_widget(form.numeroidentificacion, { 'id': 'numeroidentificacion' }) }}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.numeroidentificacion.vars.errors }%}
+                                    <span class="error_campo_mensaje" id="identificacionregistrada">{{'formulario_registro.identificacionregistrada'|trans| raw}} 
+                                        <a href="{{ path('sonata_user_admin_resetting_request') }}">
+                                            {{ 'forgotten_password'|trans({}, 'SonataUserBundle') }}
+                                        </a></span>
+
+                                </div>
+                            </div>
+                            <div id="persona_natural" >
+                                <div class="col-md-12">
+                                    <div class="col-lg-6" >
+                                        {{ form_label(form.firstname) }}
+                                        {{ form_widget(form.firstname, { 'id': 'nombres' }) }}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.firstname.vars.errors }%}
+                                    </div>
+                                    <div class="col-lg-6" >
+                                        {{ form_label(form.lastname) }}
+                                        {{ form_widget(form.lastname, { 'id': 'apellidos' }) }}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.lastname.vars.errors }%}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="col-lg-6" >
+                                        {{ form_label(form.gender) }}
+                                        {{ form_widget(form.gender, { 'id': 'genero' }) }}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.gender.vars.errors }%}
+                                    </div>
+                                    <div class="col-lg-6" >
+                                        {{ form_label(form.dateOfBirth) }}
+                                        <div class="col-lg-12 input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            {{ form_widget(form.dateOfBirth, { 'id': 'fechanacimiento', 'data-inputmask' : "alias': 'dd/mm/yyyy",  'data-mask': ''}) }}
+                                        </div>
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.dateOfBirth.vars.errors }%}
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="persona_juridica" >
+                                <div class="col-md-12">
+                                    <div class="col-lg-12" >
+                                        {{ form_label(form.tipoentidad) }}
+                                        {{ form_widget(form.tipoentidad, { 'id': 'tipoentidad' }) }}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoentidad.vars.errors }%}
+                                    </div>
+                                    <div class="col-lg-12" >
+                                        {{ form_label(form.organizaciondeportiva) }}
+                                        {{ form_widget(form.organizaciondeportiva, { 'id': 'razonsocial' }) }}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.organizaciondeportiva.vars.errors }%}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-lg-6 datos_clave">
+                                    {{ form_label(form.password.first) }}
+                                    {{ form_widget(form.password.first, { 'id': 'clave_uno' }) }}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.password.first.vars.errors }%}
+                                    <div id="pswd_info">
+                                        <h4>{% trans %}parametrosclave.titulo{% endtrans %}</h4>
+                                        <ul>
+                                            <li id="letter" class="invalid">{{'parametrosclave.unaletra'|trans}}</li>
+                                            <li id="number" class="invalid">{{'parametrosclave.unnumero'|trans}}</li>
+                                            <li id="length" class="invalid">{{'parametrosclave.caracteresminimo'|trans}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 datos_clave">
+                                    {{ form_label(form.password.second) }}
+                                    {{ form_widget(form.password.second, { 'id': 'clave_dos' }) }}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.password.second.vars.errors }%}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Datos de contacto -->
+                <div class="row datos_contacto">
+                    <div class="col-md-4 iconoText" id="varAlto2">
+                        <div class="iconoInfo">
+                            <div class="circuloIcono">
+                                <i class="fa fa-map-marker"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>2: {{ 'formulario.registro_usuario.bloque.datos_contacto' | trans  }}</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-8 fondoAzul" id="formatoAlto2">
+                        <div class="infoBox row">
+                            <div class="municipio col-lg-12 col-md-12">
+                                {{ form_label(form.municipio) }}
+                                {{ form_widget(form.municipio, { 'id': 'municipio' }) }}
+                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.municipio.vars.errors }%}
+                            </div>
+                            <div class="col-lg-12 col-md-12 direccionOComuna hidden">
+                                {{ form_label(form.direccionOcomuna) }}
+                                {{ form_widget(form.direccionOcomuna) }}
+                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.direccionOcomuna.vars.errors }%}
+                            </div>
+                            <div class="barrio col-lg-12 col-md-12 hidden">
+                                {{ form_label(form.barrio) }}
+                                {{ form_widget(form.barrio) }}
+                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.barrio.vars.errors }%}
+                            </div>
+                            <div class="comuna hidden">
+                                <div class="col-lg-12 col-md-12" >
+                                    {{ form_label(form.comuna_format) }}
+                                    {{ form_widget(form.comuna_format) }}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.comuna_format.vars.errors }%}
+                                </div>
+                                <div class="col-lg-12 col-md-12 fondoDireccion" >
+                                    {{ form_label(form.direccionComuna) }}
+                                    {{ form_widget(form.direccionComuna, { 'id': 'comuna'} ) }}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.direccionComuna.vars.errors }%}
+                                </div>
+                            </div>
+                            <div class="direccion hidden">
+                                <div class="col-lg-12 col-md-12" >
+                                    {{ form_label(form.direccion_format) }}
+                                    {{ form_widget(form.direccion_format) }}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.direccion_format.vars.errors }%}
+                                </div>
+                                <div class="col-sm-12 col-md-12 fondoDireccion">
+                                    {{ form_label(form.direccionresidencia) }}
+                                    {{ form_widget(form.direccionresidencia, { 'id': 'direccion'} ) }}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.direccionresidencia.vars.errors }%}
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12" >
+                                {{ form_label(form.estrato) }}
+                                {{ form_widget(form.estrato) }}
+                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.estrato.vars.errors }%}
+                            </div>
+                            <div class="col-lg-12 col-md-12" >
+                                {{ form_label(form.email) }}
+                                {{ form_widget(form.email, { 'id': 'correoelectronico' }) }}
+                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.email.vars.errors }%}
+                            </div>
+                            <div class="col-lg-12 col-md-12" >
+                                {{ form_label(form.phone) }}
+                                {{ form_widget(form.phone, { 'id': 'telefonomovil' }) }}
+                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.phone.vars.errors }%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Políticas de protección -->       
+                <div class="row datos_proteccion">
+                    <div class="col-md-4 iconoText" id="varAlto2">
+                        <div class="iconoInfo">
+                            <div class="circuloIcono">
+                                <i class="fa fa-handshake-o"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>3: {{ 'titulo.informacion.proteccion' | trans }}</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-8 fondoAzul" id="formatoAlto2">
+                        <div class="infoBox row">
+                            <div class="col-md-12">
+                                <p>{{ 'titulo.informacion.habeas' | trans | raw }}</p>
+                            </div>
+                            <div class="col-md-12">
+                                <a href="{{ asset("bundles/admin/doc/manual-proteccion-de-datos-personales.pdf") }}" target="_blank">
+                                    <button type="button" class="btn btnBlanco">
+                                        <i class="fa fa-download fa-2x" aria-hidden="true"></i>
+                                        <span>{{ 'titulo.informacion.descargar.politicas' | trans }}</span>
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="col-md-12">
+                                <label>{% trans %}formulario_registro.aceptar_hb{% endtrans %} </label>
+                                {{ form_widget(form.aceptahb, { 'id': 'aceptahb'}) }}
+                            </div>
+                            <div class="col-md-12">
+                                <div class="lineaPunteada"></div>
+                            </div>
+                            <div class="col-md-12">
+                                <p>{{ 'titulo.informacion.terminos' | trans }}</p>
+                            </div>
+                            <div class="col-md-12">
+                                <a href="{{ asset("bundles/admin/doc/politica-de-privacidad-y-condiciones-de-uso-del-portal.pdf") }}" target="_blank">
+                                    <button type="button" class="btn btnBlanco">
+                                        <i class="fa fa-book fa-2x" aria-hidden="true"></i>
+                                        <span>{{ 'titulo.informacion.conoce.terminos' | trans }}</span>
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="col-md-12">
+                                <label>{% trans %}formulario_registro.aceptar_tc{% endtrans %} <span>*</span></label>
+                                {{ form_widget(form.aceptatc, { 'id': 'aceptatc', 'attr': {} }) }}
+                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.aceptatc.vars.errors }%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Botones -->
+                <div class="row datos_contacto">
+                    <div class="col-md-12 botones">
+                        <button type="submit" class="btn btnVerde" id="registro_save" title="{% trans %}formulario_registro.accionnopermitida{% endtrans %}">
+                            <i class="fa fa-floppy-o"></i>
+                            {% trans %}formulario_registro.guardar{% endtrans %}
+                        </button>
+                        <button type="button" class="btn btnNaranja" onclick="inder.formulario.redirecHome();">
+                            <i class="fa fa-chevron-left"></i>
+                            {% trans %}formulario_registro.cancelar{% endtrans %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <span id="alertas" data-tituloalerta="{% trans %}formulario_registro.alertas.tituloalerta {% endtrans %}" data-yaseleccionada="{% trans %}formulario_registro.alertas.disciplinasyaseleccionada {% endtrans %}" data-revisecampos="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-registrado="{% trans %}formulario_registro.alertas.registrado {% endtrans %}" data-mensajeerror="{% trans %}formulario_registro.alertas.mensajeerror {% endtrans %}" data-titulook="{% trans %}formulario_registro.alertas.titulo_ok {% endtrans %}"></span>
+
+            {{ form_end(form) }}
+        {% endblock sonata_admin_content %}
+    </section>
+    <span id="idFormulario" data-idForm="{{form.vars.id}}_"></span>
+{% endblock sonata_page_content %}

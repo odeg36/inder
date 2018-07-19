@@ -1,0 +1,546 @@
+<div class="row" id="boxMargen">
+    <div class="col-md-12">
+        <ul class="nav d-flex tab-btn-interno justify-content-center">
+            
+            <!-- sistema para piramide  tipo 1-->
+    {% if (tabActivo == "1") and (guardado =="1") %}
+
+                    <li class="active">
+                        <a  class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 1  } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img class="selectImage" src="{{ asset('bundles/admin/img/recurso-1_1.png') }}">
+                            <center><strong><p class="selectText">{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Escalera{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 1, 'alerta':1  } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-2.jpg') }}">
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Piramide{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+
+                    <li class="">
+                        <a  class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 1, 'alerta':1  } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-3.jpg') }}">
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Chimenea{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+
+                    <li class="">
+                        <a class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 1, 'alerta':1  } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-4.jpg') }}">
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Modoliga{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+
+                    <li class="">
+                            <a  class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 1, 'alerta':1  } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-5.jpg') }}">
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Eliminatoria{% endtrans %}</p></strong></center>
+                            </a>
+                    </li>
+
+
+                       <li class="">
+                            <a class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 1, 'alerta':1  } ) }}" data-toggle="tab" aria-expanded="false">
+                                <img src="{{ asset('bundles/admin/img/recurso-6.jpg') }}">
+                                <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.GruposyPlayOff{% endtrans %}</p></strong></center>
+                            </a>
+                        </li>
+
+                    <li class="">
+                        <a class="tab-item" href="#" data-toggle="tab" aria-expanded="false">
+                                <img src="{{ asset('bundles/admin/img/recurso-7.jpg') }}">
+                                <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Ninguno{% endtrans %}</p></strong></center>
+                            </a>
+                    </li>
+    {% elseif (tabActivo == "2") and (guardado =="1") %}
+
+
+                    <li class="">
+                        <a  class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 2, 'alerta':1 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-1.jpg') }}" >
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Escalera{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+                    <li class="active">
+                        <a class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 2 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img class="selectImage" src="{{ asset('bundles/admin/img/recurso-2_1.png') }}">
+                            <center><strong><p class="selectText">{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Piramide{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+
+                    <li class="">
+                        <a  class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 2, 'alerta':1 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-3.jpg') }}">
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Chimenea{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+
+                    <li class="">
+                        <a class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 2, 'alerta':1 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-4.jpg') }}">
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Modoliga{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+
+                    <li class="">
+                            <a  class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 2, 'alerta':1 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-5.jpg') }}">
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Eliminatoria{% endtrans %}</p></strong></center>
+                            </a>
+                    </li>
+
+                    <li class="">
+                            <a class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 2, 'alerta':1 } ) }}" data-toggle="tab" aria-expanded="false">
+                                <img src="{{ asset('bundles/admin/img/recurso-6.jpg') }}">
+                                <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.GruposyPlayOff{% endtrans %}</p></strong></center>
+                            </a>
+                    </li>
+
+                    <li class="">
+                        <a class="tab-item" href="#" data-toggle="tab" aria-expanded="false">
+                                <img src="{{ asset('bundles/admin/img/recurso-7.jpg') }}">
+                                <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Ninguno{% endtrans %}</p></strong></center>
+                            </a>
+                    </li>
+
+    {% elseif (tabActivo == "3") and (guardado =="1") %}
+
+                    <li class="">
+                        <a  class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 3, 'alerta':1 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-1.jpg') }}" >
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Escalera{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+                    <li class="">
+                        <a class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 3, 'alerta':1 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-2.jpg') }}" >
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Piramide{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+
+                    <li class="active">
+                        <a  class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 3 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img class="selectImage" src="{{ asset('bundles/admin/img/recurso-3_1.png') }}">
+                            <center><strong><p class="selectText">{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Chimenea{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+
+                    <li class="">
+                        <a class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 3, 'alerta':1 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-4.jpg') }}">
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Modoliga{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+
+                    <li class="">
+                            <a  class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 3, 'alerta':1 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-5.jpg') }}">
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Eliminatoria{% endtrans %}</p></strong></center>
+                            </a>
+                    </li>
+
+
+                    <li class="">
+                            <a class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 3, 'alerta':1 } ) }}" data-toggle="tab" aria-expanded="false">
+                                <img src="{{ asset('bundles/admin/img/recurso-6.jpg') }}">
+                                <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.GruposyPlayOff{% endtrans %}</p></strong></center>
+                            </a>
+                    </li>
+
+                    <li class="">
+                        <a class="tab-item" href="#" data-toggle="tab" aria-expanded="false">
+                                <img src="{{ asset('bundles/admin/img/recurso-7.jpg') }}">
+                                <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Ninguno{% endtrans %}</p></strong></center>
+                            </a>
+                    </li>
+
+    {% elseif (tabActivo == "4") and (guardado =="1") %}
+
+                    <li class="">
+                        <a  class="tab-item" href="{{ path('admin_logic_encuentrosistemados_list',{ 'id': idevento, 'tipo': 4, 'alerta':1 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-1.jpg') }}" >
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Escalera{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+                    <li class="">
+                        <a class="tab-item" href="{{ path('admin_logic_encuentrosistemados_list',{ 'id': idevento, 'tipo': 4, 'alerta':1 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-2.jpg') }}" >
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Piramide{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+
+                    <li class="">
+                        <a  class="tab-item" href="{{ path('admin_logic_encuentrosistemados_list',{ 'id': idevento, 'tipo': 4, 'alerta':1 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-3.jpg') }}" >
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Chimenea{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+
+                    <li class="active">
+                        <a class="tab-item" href="{{ path('admin_logic_encuentrosistemados_list',{ 'id': idevento, 'tipo': 4 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img class="selectImage" src="{{ asset('bundles/admin/img/recurso-4_1.png') }}">
+                            <center><strong><p class="selectText">{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Modoliga{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+
+                    <li class="">
+                            <a  class="tab-item" href="{{ path('admin_logic_encuentrosistemados_list',{ 'id': idevento, 'tipo': 4, 'alerta':1 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-5.jpg') }}">
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Eliminatoria{% endtrans %}</p></strong></center>
+                            </a>
+                    </li>
+
+                    <li class="">
+                            <a class="tab-item" href="{{ path('admin_logic_encuentrosistemados_list',{ 'id': idevento, 'tipo': 4, 'alerta':1 } ) }}" data-toggle="tab" aria-expanded="false">
+                                <img src="{{ asset('bundles/admin/img/recurso-6.jpg') }}">
+                                <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.GruposyPlayOff{% endtrans %}</p></strong></center>
+                            </a>
+                    </li>
+
+                    <li class="">
+                        <a class="tab-item" href="" data-toggle="tab" aria-expanded="false">
+                                <img src="{{ asset('bundles/admin/img/recurso-7.jpg') }}">
+                                <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Ninguno{% endtrans %}</p></strong></center>
+                            </a>
+                    </li>
+
+    {% elseif (tabActivo == "5") and (guardado =="1") %}
+
+                    <li class="">
+                        <a  class="tab-item" href="{{ path('admin_logic_encuentrosistematres_list',{ 'id': idevento, 'tipo': 5, 'alerta':1 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-1.jpg') }}" >
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Escalera{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+                    <li class="">
+                        <a class="tab-item" href="{{ path('admin_logic_encuentrosistematres_list',{ 'id': idevento, 'tipo': 5, 'alerta':1 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-2.jpg') }}" >
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Piramide{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+
+                    <li class="">
+                        <a  class="tab-item" href="{{ path('admin_logic_encuentrosistematres_list',{ 'id': idevento, 'tipo': 5, 'alerta':1 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-3.jpg') }}" >
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Chimenea{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+
+                    <li class="">
+                        <a class="tab-item" href="{{ path('admin_logic_encuentrosistematres_list',{ 'id': idevento, 'tipo': 5, 'alerta':1 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-4.jpg') }}">
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Modoliga{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+
+                    <li class="active">
+                            <a  class="tab-item" href="{{ path('admin_logic_encuentrosistematres_list',{ 'id': idevento, 'tipo': 5  } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img class="selectImage" src="{{ asset('bundles/admin/img/recurso-5_1.png') }} ">
+                            <center><strong><p class="selectText">{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Eliminatoria{% endtrans %}</p></strong></center>
+                            </a>
+                    </li>
+
+                    <li class="">
+                            <a class="tab-item" href="{{ path('admin_logic_encuentrosistematres_list',{ 'id': idevento, 'tipo': 5, 'alerta':1 } ) }}" data-toggle="tab" aria-expanded="false">
+                                <img src="{{ asset('bundles/admin/img/recurso-6.jpg') }}">
+                                <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.GruposyPlayOff{% endtrans %}</p></strong></center>
+                            </a>
+                    </li>
+
+                    <li class="">
+                        <a class="tab-item" href="#" data-toggle="tab" aria-expanded="false">
+                                <img src="{{ asset('bundles/admin/img/recurso-7.jpg') }}">
+                                <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Ninguno{% endtrans %}</p></strong></center>
+                            </a>
+                    </li>
+
+    {% elseif (tabActivo == "6") and (guardado =="1") %}
+
+
+                    <li class="">
+                        <a  class="tab-item" href="{{ path('admin_logic_encuentrosistemacuatro_list',{ 'id': idevento, 'tipo': 6, 'alerta':1 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-1.jpg') }}" >
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Escalera{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+                    <li class="">
+                        <a class="tab-item" href="{{ path('admin_logic_encuentrosistemacuatro_list',{ 'id': idevento, 'tipo': 6, 'alerta':1  } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-2.jpg') }}" >
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Piramide{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+                    <li class="">
+                        <a  class="tab-item" href="{{ path('admin_logic_encuentrosistemacuatro_list',{ 'id': idevento, 'tipo': 6, 'alerta':1  } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-3.jpg') }}" >
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Chimenea{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+
+                    <li class="">
+                        <a class="tab-item" href="{{ path('admin_logic_encuentrosistemacuatro_list',{ 'id': idevento, 'tipo': 6, 'alerta':1  } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-4.jpg') }}">
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Modoliga{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+
+                    <li class="">
+                            <a  class="tab-item" href="{{ path('admin_logic_encuentrosistemacuatro_list',{ 'id': idevento, 'tipo': 6, 'alerta':1  } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-5.jpg') }} ">
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Eliminatoria{% endtrans %}</p></strong></center>
+                            </a>
+                    </li>
+
+                    <li class="active">
+                            <a class="tab-item" href="{{ path('admin_logic_encuentrosistemacuatro_list',{ 'id': idevento, 'tipo': 6  } ) }}" data-toggle="tab" aria-expanded="false">
+                                <img class="selectImage" src="{{ asset('bundles/admin/img/recurso-6_1.png') }}">
+                                <center><strong><p class="selectText">{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.GruposyPlayOff{% endtrans %}</p></strong></center>
+                            </a>
+                    </li>
+
+                    <li class="">
+                        <a class="tab-item" href="#" data-toggle="tab" aria-expanded="false">
+                                <img src="{{ asset('bundles/admin/img/recurso-7.jpg') }}">
+                                <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Ninguno{% endtrans %}</p></strong></center>
+                            </a>
+                    </li>
+    {% elseif (tabActivo == "0")%}
+
+
+                    <li class="">
+                        <a  class="tab-item" href="#" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-1.jpg') }}" >
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Escalera{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+                    <li class="">
+                        <a class="tab-item" href="#" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-2.jpg') }}" >
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Piramide{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+                    <li class="">
+                        <a  class="tab-item" href="#" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-3.jpg') }}" >
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Chimenea{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+
+                    <li class="">
+                        <a class="tab-item" href="#" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-4.jpg') }}">
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Modoliga{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+
+
+                    <li class="">
+                            <a  class="tab-item" href="#" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-5.jpg') }} ">
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Eliminatoria{% endtrans %}</p></strong></center>
+                            </a>
+                    </li>
+
+                    <li class="">
+                            <a class="tab-item" href="#" data-toggle="tab" aria-expanded="false">
+                                <img src="{{ asset('bundles/admin/img/recurso-6.jpg') }}" >
+                                <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.GruposyPlayOff{% endtrans %}</p></strong></center>
+                            </a>
+                    </li>
+
+                    <li class="active">
+                        <a class="tab-item" href="#" data-toggle="tab" aria-expanded="false">
+                                <img class="selectImage" src="{{ asset('bundles/admin/img/recurso-7_1.png') }}">
+                                <center><strong><p class="selectText">{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Ninguno{% endtrans %}</p></strong></center>
+                            </a>
+                    </li>
+
+    {% else %}
+
+                    {% if tabActivo == "1" %}
+                        <li class="active">
+                            <a  class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 1  } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img class="selectImage" src="{{ asset('bundles/admin/img/recurso-1_1.png') }}">
+                            <center><strong><p class="selectText">{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Escalera{% endtrans %}</p></strong></center>
+                            </a>
+                    </li>
+                    {% else %}
+                        <li class="">
+                        <a  class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 1  } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-1.jpg') }}">
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Escalera{% endtrans %}</p></strong></center>
+                            </a>
+                    </li>
+                    {% endif %}
+                        
+
+                    {% if tabActivo == "2" %}
+                    <li class="active">
+                        <!-- sistema para piramide  tipo 2-->
+                        <a class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 2 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img class="selectImage" src="{{ asset('bundles/admin/img/recurso-2_1.png') }}">
+                            <center><strong><p class="selectText">{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Piramide{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="">
+                        <!-- sistema para piramide  tipo 2-->
+                        <a class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 2 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-2.jpg') }}">
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Piramide{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+                    {% endif %}
+                    
+
+
+                    {% if tabActivo == "3" %}
+                        <li class="active">
+                        <!-- sistema para chimenea  tipo 3-->
+                        <a class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 3 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img class="selectImage" src="{{ asset('bundles/admin/img/recurso-3_1.png') }}">
+                            <center><strong><p class="selectText">{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Chimenea{% endtrans %}</p></strong></center>
+                        </a>
+                        </li>
+                    {% else %}
+                        <li class="">
+                        <!-- sistema para chimenea  tipo 3-->
+                        <a  class="tab-item" href="{{ path('admin_logic_encuentrosistemauno_list',{ 'id': idevento, 'tipo': 3 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-3.jpg') }}">
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Chimenea{% endtrans %}</p></strong></center>
+                        </a>
+                        </li>
+                    {% endif %}
+                    
+
+                    {% if tabActivo == "4" %}
+                    <li class="active">
+                        <!-- sistema para liga  tipo 4-->
+                        <a class="tab-item" href="{{ path('admin_logic_encuentrosistemados_list',{ 'id': idevento, 'tipo': 4 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img class="selectImage" src="{{ asset('bundles/admin/img/recurso-4_1.png') }}">
+                            <center><strong><p class="selectText">{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Modoliga{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+                    {% else %}
+                        <li class="">
+                        <!-- sistema para liga  tipo 4-->
+                        <a class="tab-item" href="{{ path('admin_logic_encuentrosistemados_list',{ 'id': idevento, 'tipo': 4 } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-4.jpg') }}">
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Modoliga{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+                    {% endif %}
+
+
+                    {% if tabActivo == "5" %}
+                        <li class="active">
+                            <!-- sistema para eliminatoria  tipo 5-->
+                            <a  class="tab-item" href="{{ path('admin_logic_encuentrosistematres_list',{ 'id': idevento, 'tipo': 5  } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img class="selectImage" src="{{ asset('bundles/admin/img/recurso-5_1.png') }}">
+                            <center><strong><p class="selectText">{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Eliminatoria{% endtrans %}</p></strong></center>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="">
+                            <!-- sistema para eliminatoria  tipo 5-->
+                            <a  class="tab-item" href="{{ path('admin_logic_encuentrosistematres_list',{ 'id': idevento, 'tipo': 5  } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img src="{{ asset('bundles/admin/img/recurso-5.jpg') }}">
+                            <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Eliminatoria{% endtrans %}</p></strong></center>
+                            </a>
+                        </li>
+                    {% endif %}
+                    
+
+
+                    {% if tabActivo == "6" %}
+                    <li class="active">
+                        <!-- sistema para eliminatoria  tipo 6-->
+                        <a class="tab-item" href="{{ path('admin_logic_encuentrosistemacuatro_list',{ 'id': idevento, 'tipo': 6  } ) }}" data-toggle="tab" aria-expanded="false">
+                            <img class="selectImage" src="{{ asset('bundles/admin/img/recurso-6_1.png') }}">
+                            <center><strong><p class="selectText">{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.GruposyPlayOff{% endtrans %}</p></strong></center>
+                        </a>
+                    </li>
+                    {% else %}
+                        <li class="">
+                            <!-- sistema para eliminatoria  tipo 6-->
+                            <a class="tab-item" href="{{ path('admin_logic_encuentrosistemacuatro_list',{ 'id': idevento, 'tipo': 6  } ) }}" data-toggle="tab" aria-expanded="false">
+                                <img src="{{ asset('bundles/admin/img/recurso-6.jpg') }}">
+                                <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.GruposyPlayOff{% endtrans %}</p></strong></center>
+                            </a>
+                        </li>
+                    {% endif %}
+                    
+
+                    {% if tabActivo == "7" %}
+                        <li class="active">
+                            <a class="tab-item" href="#" data-toggle="tab" aria-expanded="false">
+                                <img class="selectImage" src="{{ asset('bundles/admin/img/recurso-7_1.png') }}">
+                                <center><strong><p class="selectText">{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Ninguno{% endtrans %}</p></strong></center>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="">
+                        <a class="tab-item" href="#" data-toggle="tab" aria-expanded="false">
+                                <img src="{{ asset('bundles/admin/img/recurso-7.jpg') }}">
+                                <center><strong><p>{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.Ninguno{% endtrans %}</p></strong></center>
+                            </a>
+                        </li>
+                    {% endif %}
+                
+    {% endif %}
+               
+        </ul>
+    </div>
+</div>
+
+<style>
+.huerotate 
+{ 
+    filter: hue-rotate(200470deg); 
+}
+
+.selectImage{
+       position: relative;
+       bottom: 12px;
+}
+
+
+.selectText{position: relative;
+bottom: 23px;
+}
+
+</style>
+
+<script>
+    $('.tab-item').on('click', function(e){
+        window.location.replace($(this).attr('href'));
+        e.preventDefault();
+    });
+</script>

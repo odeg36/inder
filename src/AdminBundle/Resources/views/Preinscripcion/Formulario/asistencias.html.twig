@@ -1,0 +1,32 @@
+s{% block asistencia_type_row %}
+    {% if form.usuario.vars.data %}
+        <div class="col-xs-12 col-md-4 p-right-left-15 asistencia-hijo-eliminar elemento-hijo-{{ form.vars.name }}">
+            <div class="sombra">
+                <div class="row">
+                    <div class="hidden">
+                        {{ form_widget(form.usuario) }}
+                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.usuario.vars.errors }%}
+                    </div>
+                    <div class="col-xs-8 col-md-8 p-right-left-15">
+                        <div>
+                            {{ form.usuario.vars.data.fullname ~ ' - ' ~ form.usuario.vars.data.numeroIdentificacion }}
+                        </div>
+                        <div>
+                            <b>
+                                {{ form.usuario.vars.data.tipoIdentificacion.abreviatura }}
+                                {{ form.usuario.vars.data.numeroIdentificacion }}
+                            </b>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-md-4">
+                        {{ form_widget(form.asistio, {attr: { class: 'checbox-' ~ form.usuario.vars.data.username } }) }}
+                        {{ form_label(form.asistio) }}
+                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.asistio.vars.errors }%}
+                    </div>
+
+                    {{ form_rest(form) }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

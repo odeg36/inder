@@ -1,0 +1,94 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+    </style>
+{% endblock %}
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_evento_list') }}">{% trans %}Evento List{% endtrans %}</a></li>
+        <li class="active">Inscribirse a evento</li>
+    </ol>
+{% endblock %}
+{% block sonata_page_content %}
+    {% block sonata_admin_content %}
+        <!-- Content Wrapper. Contains page content -->
+        <div class="">
+            <!-- formulario -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario.oferta.title_jugador_evento{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Participante Persona Natural -->
+                <div class="row">
+                    <div class="col-md-12 fondoAzul2">
+                    
+                        {{ form_start(form, {'attr': {'id': 'formulario_participante_persona_natural', novalidate: 'true'} } ) }}
+                            <div class="infoBox row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 contenedorInfoUno">
+                                    {#<div class="col-md-12">
+                                        {{form_label(form.tipoIdentificacion)}}
+                                        {{ form_widget(form.tipoIdentificacion) }}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoIdentificacion.vars.errors }%}
+                                    </div>
+                                    <div class="col-md-12">
+                                        {{form_label(form.usuarioJugadorEvento)}}
+                                        {{ form_widget(form.usuarioJugadorEvento) }}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.usuarioJugadorEvento.vars.errors }%}
+                                    </div>
+                                    <div class="col-md-12">
+                                        {{form_label(form.firstname)}}
+                                        {{ form_widget(form.firstname) }}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.firstname.vars.errors }%}
+                                    </div>#}
+                                    <div class="col-md-12">
+                                        {{form_label(form.observacion)}}
+                                        {{ form_widget(form.observacion) }}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.observacion.vars.errors }%}
+                                    </div>
+                                    {% if form.informacionExtraUsuario.children|length > 0 %}
+                                        <div class="col-md-12">
+                                            {#<div class="col-md-12 sombra">#}
+                                                <div class="col-md-12">
+                                                    <label class="box-title">{{'titulo.preinscripcion.informacion_adicional'|trans}}</label>
+                                                </div>
+                                                <div class="col-md-12 nuevaOferta">
+                                                    {% include 'AdminBundle:Evento/Jugadores:informacion_extra.html.twig' with { form : form.informacionExtraUsuario}%}
+                                                </div>
+                                            {#</div>#}
+                                        </div>
+                                    {% else %}
+                                        {% do form.informacionExtraUsuario.setRendered %}
+                                    {% endif %}
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                    <div class="col-md-12 division"></div>
+                                    <div class="col-md-12">
+                                        <span></span>
+                                        <div class="col-md-12">
+                                            <a type="button" class="btn btnNaranja" href="{{ path('admin_logic_evento_list') }}">
+                                                <i class="fa fa-chevron-left"></i>
+                                                {{'Cancelar'|trans}}
+                                            </a>
+                                            {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                        </div>
+                                        <div style="display: none;">
+                                            {{ form_rest(form) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.content-wrapper -->
+    {% endblock sonata_admin_content %}
+{% endblock sonata_page_content %}

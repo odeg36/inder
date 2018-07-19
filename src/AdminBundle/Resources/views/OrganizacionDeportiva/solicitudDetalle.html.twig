@@ -1,0 +1,234 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+{% block sonata_page_content %}
+    <section class="content">
+        {% block sonata_admin_content %}
+            <div class="content-wrapper alto-contenido p-top">
+                <div class="content-wrapper p-top">
+                    <!-- formulario -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 titulos">
+                                <h4><i class="fa fa-search-plus" aria-hidden="true"></i> {% trans %}admin.detallesolicitud.detalle{% endtrans %}</h4>
+                                <div class="btnTitulos">
+                                    <a href="{{ admin.generateUrl('list') }} ">
+                                        <button type="button" class="btn btnVerde btnSize">
+                                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                            {% trans %}admin.detallesolicitud.volver{% endtrans %}
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Detalles -->
+                        <div class="row" id="boxMargen">
+                            <!-- Información general -->
+                            <div class="col-md-6" id="boxPadding">
+                                <div class="box bordeBox">
+                                    <div class="box-header">
+                                        <h3 class="box-title"><i class="fa fa-list" aria-hidden="true"></i> {% trans %}admin.detallesolicitud.infogeneral{% endtrans %}</h3>
+                                        <!-- /.box-tools -->
+                                    </div>
+                                    <div class="box-body">
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <th>{% trans %}formulario_registro.tipo_persona{% endtrans %}</th>
+                                            <th>{% trans %}formulario_registro.contacto.municipio{% endtrans %}</th>
+                                            <th>{% trans %}formulario_registro.pjuridica_informacion.tipo_entidad{% endtrans %}</th>
+                                            <th>{% trans %}formulario_registro.pjuridica_informacion.razon_social{% endtrans %}</th>
+                                            <th>{% trans %}formulario_registro.pjuridica_informacion.tipo_identificacion{% endtrans %}</th>
+                                            <th>{% trans %}formulario_registro.pjuridica_informacion.numero_nit{% endtrans %}</th>
+                                            </thead>
+                                            <tbody>
+                                                {% for usuario in object.usuarios %}
+                                                <tr>
+                                                    <td>
+                                                        {% if usuario.tipoPersona == "D" %}
+                                                            {{ 'titulo.persona.deprotivo' | trans }}
+                                                        {% else %}
+                                                            {{ 'titulo.persona.natural' | trans }}
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>{{ usuario.barrio ? usuario.barrio.municipio:'' }}</td>
+                                                    {% if object.tipoEntidad %}
+                                                        <td>{{ object.tipoEntidad.nombre }}</td>
+                                                    {%else%}
+                                                        <td>{{'titulo.no.registra' | trans}}</td>
+                                                    {%endif%}
+                                                    <td>{{ object.razonSocial }}</td>
+                                                    <td>{{ usuario.tipoIdentificacion }}</td>
+                                                    <td>{{ object.nit }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                            <div class="col-md-6" id="boxPadding">
+                                <div class="box bordeBox">
+                                    <div class="box-header">
+                                        <h3 class="box-title"><i class="fa fa-map-marker" aria-hidden="true"></i> {% trans %}formulario_registro.contacto.datoscontactoadmin{% endtrans %}</h3>
+                                        <!-- /.box-tools -->
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <th>{% trans %}formulario_registro.contacto.direccion{% endtrans %}</th>
+                                            <th>{% trans %}formulario_registro.contacto.municipio{% endtrans %}</th>
+                                            <th>{% trans %}formulario_registro.contacto.barrio{% endtrans %}</th>
+                                            <th>{% trans %}formulario_registro.contacto.correo_electronico{% endtrans %}</th>
+                                            <th>{% trans %}formulario_registro.contacto.telefono_movil{% endtrans %}</th>
+                                            </thead>
+                                            <tbody>
+                                                {% for usuario in object.usuarios %}
+                                                <tr>
+                                                    <td>{{ usuario.direccionresidencia }}</td>
+                                                    <td>{{ usuario.barrio ? usuario.barrio.municipio:'' }}</td>
+                                                    <td>{{ usuario.barrio }}</td>
+                                                    <td>{{ usuario.email }}</td>
+                                                    <td>{{ usuario.phone }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                        <div class="row">
+                            <!-- Usuarios organigrama -->
+                            <div class="col-md-12">
+                                <div class="bordeBox">
+                                    <div class="box-header">
+                                        <h3 class="box-title">
+                                            <i class="fa fa-sitemap" aria-hidden="true"></i>
+                                            {% trans %}formulario_registro.pasodos.miembrosorganigramaadmin{% endtrans %}
+                                        </h3>
+                                    </div>
+                                    <div class="col-md-12 campoGris">
+                                        {% for organigrama in object.organismosorganizacion %}
+                                            <div class="box infoBox">
+                                                <div class="box-header box-header2">
+                                                    <h3 class="box-title">{{ organigrama.tipoorgano }}</h3>
+                                                    <div class="box-tools pull-right">
+                                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                                        </button>
+                                                    </div>
+                                                    <!-- /.box-tools -->
+                                                </div>
+                                                <!-- /.box-header -->
+                                                <div class="box-body">
+                                                    {% for usuario in organigrama.perfilOrganismos %}
+                                                        <div class="box-body">
+                                                            <div class="table">
+                                                                <div class="filaTr">
+                                                                    <div class="columnaTh">{% trans %}formulario_registro.pasodos.documento{% endtrans %}</div>
+                                                                    <div class="columnaTd">{{ usuario.documento }}</div>
+                                                                </div>
+                                                                <div class="filaTr">
+                                                                    <div class="columnaTh">{% trans %}formulario_registro.pasodos.nombre{% endtrans %}</div>
+                                                                    <div class="columnaTd">{{ usuario.nombre }}</div>
+                                                                </div>
+                                                                <div class="filaTr">
+                                                                    <div class="columnaTh">{% trans %}formulario_registro.pasodos.perfil{% endtrans %}</div>
+                                                                    <div class="columnaTd">{{ usuario.perfil }}</div>
+                                                                </div>
+                                                                <div class="filaTr">
+                                                                    <div class="columnaTh">{% trans %}formulario_registro.pasodos.telefono{% endtrans %}</div>
+                                                                    <div class="columnaTd">{{ usuario.telefono }}</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                        <div class="row" id="boxMargen">
+                            <!-- Deportistas -->
+                            <div class="col-md-6" id="boxPadding">
+                                <div class="box bordeBox">
+                                    <div class="box-header">
+                                        <h3 class="box-title"><i class="fa fa-child" aria-hidden="true"></i> {% trans %}formulario_registro.pasotres.tituloadmin{% endtrans %}</h3>
+                                        <!-- /.box-tools -->
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        <div class="box-body">
+                                            {% for disciplina in object.disciplinaOrganizaciones %}
+                                                {% for deportista in disciplina.deportistas %}
+                                                    <div class="table">
+                                                        <div class="filaTr">
+                                                            <div class="columnaTh">{% trans %}formulario_registro.pasodos.documento{% endtrans %}</div>
+                                                            <div class="columnaTd">{{ deportista.UsuarioDeportista.numeroIdentificacion }}</div>
+                                                        </div>
+                                                        <div class="filaTr">
+                                                            <div class="columnaTh">{% trans %}formulario_registro.pnatural_informacion.nombre{% endtrans %}</div>
+                                                            <div class="columnaTd">{{ deportista.UsuarioDeportista.firstname }}{{ deportista.UsuarioDeportista.lastname }}</div>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                            <!-- Disciplina -->
+                            <div class="col-md-6" id="boxPadding">
+                                <div class="box bordeBox">
+                                    <div class="box-header">
+                                        <h3 class="box-title"><i class="fa fa-futbol-o" aria-hidden="true"></i>  {% trans %}admin.detallesolicitud.infodisciplinas{% endtrans %}</h3>
+                                        <!-- /.box-tools -->
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        {% for disciplina in object.disciplinaOrganizaciones %}
+                                            <div class="table">
+                                                <div class="filaTr">
+                                                    <div class="columnaTh">{% trans %}formulario_registro.pasouno.titulodisciplinaadmin{% endtrans %}</div>
+                                                    <div class="columnaTd">{{ disciplina.disciplina.nombre }}</div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                            <!-- Periodo estatutario -->
+                            <div class="col-md-6" id="boxPadding">
+                                <div class="box bordeBox">
+                                    <div class="box-header">
+                                        <h3 class="box-title"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {% trans %}formulario_registro.pasocinco.tituloadmin{% endtrans %}</h3>
+                                        <!-- /.box-tools -->
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        <div class="table">
+                                            <div class="filaTr">
+                                                <div class="columnaTh">{% trans %}formulario_registro.pasocinco.tituloadmin{% endtrans %}</div>
+                                                <div class="columnaTd">{{ object.periodoestatutario|date("Y-m-d")  }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </div>
+                {% endblock sonata_admin_content %}
+            </div>
+    </section>
+{% endblock sonata_page_content %}

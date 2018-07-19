@@ -1,0 +1,108 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+        .breadcrumb {
+            padding: 8px 15px !important;
+            margin-bottom: 20px !important;
+            list-style: none !important;
+            background-color: #f5f5f5 !important;
+            border-radius: 4px !important;
+            float: inherit !important;
+        }
+    </style>
+{% endblock %}
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+{% block sonata_page_content %}
+    {% block sonata_admin_content %}
+       <div class="content-wrapper alto-contenido p-top">
+
+            <!-- Migas de pan -->
+            <section class="container-fluid">
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                    <li><a href="#">Escenarios deportivos</a></li>
+                    <li class="active">Crear</li>
+                </ol>
+            </section>
+            <!-- formulario -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_escenario_deportivo.title{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Escenarios deportivos -->
+                <div class="row">
+                    <div class="col-md-4 iconoText2">
+                        {% include 'AdminBundle:EscenarioDeportivo/Pasos:iconos.html.twig' with {vistaPaso: 2, idescenario: idescenario} %}
+                    </div>
+                    <div class="col-md-8 fondoAzul2">
+                        {{ form_start(form, {'attr': {'id': 'formulario_escenario_deportivo', novalidate: 'true'} } ) }}
+
+                            <div class="infoBox row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 contenedorInfoUno">
+                                    <div class="col-md-12">
+                                        {{form_label(form.tiene_restricciones)}}
+                                        {{form_widget(form.tiene_restricciones)}}
+                                    </div>
+                                    <div id="restricciones_escenario">
+                                        <div class="col-md-12">
+                                            {{form_label(form.tipo_reserva)}}
+                                            {{form_widget(form.tipo_reserva)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipo_reserva.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{form_label(form.disciplina)}}
+                                            {{form_widget(form.disciplina)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.disciplina.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{form_label(form.tendencia)}}
+                                            {{form_widget(form.tendencia)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tendencia.vars.errors }%}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>Gestores <span>*</span></label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <b>{% trans %}formulario_escenario_deportivo.labels.paso_dos.principal{% endtrans %}<span> *</span></b>
+                                        {{form_widget(form.usuario_principal)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.usuario_principal.vars.errors }%}
+                                    </div>
+                                    <div class="col-md-12">
+                                        <b>{% trans %}formulario_escenario_deportivo.labels.paso_dos.secundarios{% endtrans %}</b>
+                                        {{form_widget(form.usuario_secundario)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.usuario_secundario.vars.errors }%}
+                                    </div>
+                                    <div class="col-md-12">
+                                        {{form_label(form.normaEscenario)}}
+                                        {{form_widget(form.normaEscenario)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.normaEscenario.vars.errors }%}
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                    <div class="col-md-12 division"></div>
+                                    <div class="col-md-12">
+                                        <a href="{{ path('admin_logic_escenariodeportivo_addpaso1', { 'id':idescenario } ) }}" class="btn btnVerde">
+                                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                            Anterior
+                                        </a>
+                                        <span></span>
+                                        {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                        <div style="display: none;">
+                                            {{ form_rest(form) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    {% endblock sonata_admin_content %}
+{% endblock sonata_page_content %}

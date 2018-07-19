@@ -1,0 +1,82 @@
+<?php
+
+namespace AdminBundle\Admin;
+
+use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+
+class TipoEscenarioAdmin extends AbstractAdmin {
+
+    protected $datagridValues = [
+        '_sort_by' => 'nombre',
+    ];
+
+    protected function configureRoutes(\Sonata\AdminBundle\Route\RouteCollection  $collection) {
+        parent::configureRoutes($collection);
+        $collection->remove("delete");
+    }
+
+    /**
+     * @param DatagridMapper $datagridMapper
+     */
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper) {
+        $datagridMapper
+                ->add('codigo', null,array('label' => 'formulario.codigo'))
+                ->add('nombre')
+
+
+        ;
+    }
+
+    public function getExportFormats(){
+        return ['csv', 'xls'];
+    }
+    
+    /**
+     * @param ListMapper $listMapper
+     */
+    protected function configureListFields(ListMapper $listMapper) {
+        $listMapper
+                ->add('codigo', IntegerType::class, array('label' => 'formulario.codigo'))
+                ->add('nombre')
+                ->add('_action', null, array(
+                    'actions' => array(
+                        'show' => array(),
+                        'edit' => array(),
+                        'delete' => array(),
+                    ),
+                ))
+        ;
+    }
+
+    /**
+     * @param FormMapper $formMapper
+     */
+    protected function configureFormFields(FormMapper $formMapper) {
+
+        $formMapper
+                ->add('codigo',null ,array('label' => 'formulario.codigo'))
+                ->add('nombre')
+
+
+        ;
+    }
+
+    /**
+     * @param ShowMapper $showMapper
+     */
+    protected function configureShowFields(ShowMapper $showMapper) {
+        $showMapper
+                ->add('codigo',null,array('label' => 'formulario.codigo'))
+                ->add('nombre')
+
+
+        ;
+    }
+
+}

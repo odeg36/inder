@@ -1,0 +1,159 @@
+<div class="iconoInfo2">
+    {% if 2 <= vistaPaso %}
+        <div class="linea2"></div>
+        <div class="circulo activoCheck">
+            <i class="fa fa-check"></i>
+        </div>
+    {% endif %}
+    {% if 3 <= vistaPaso %}
+        <div class="linea2"></div>
+        <div class="circulo activoCheck">
+            <i class="fa fa-check"></i>
+        </div>
+    {% endif %}
+    {% if 4 <= vistaPaso %}
+        <div class="linea2"></div>
+        <div class="circulo activoCheck">
+            <i class="fa fa-check"></i>
+        </div>
+    {% endif %}
+    {% if 5 <= vistaPaso %}
+        <div class="linea2"></div>
+        <div class="circulo activoCheck">
+            <i class="fa fa-check"></i>
+        </div>
+    {% endif %}
+    {#{% if mostrar4142 == 1 %}
+        {% if 6 <= vistaPaso %}
+            <div class="linea2"></div>
+            <div class="circulo activoCheck">
+                <i class="fa fa-check"></i>
+            </div>
+        {% endif %}
+        
+        {% if 7 <= vistaPaso %}
+            <div class="linea2" id="linea2"></div>
+            <div class="circulo activoCheck">
+                <i class="fa fa-check"></i>
+            </div>
+        {% else %}
+            <div class="linea2" id="linea2"></div>
+            <div class="circulo" id="circulo2"></div>
+        {% endif %}
+    {% endif %}#}
+    
+    {% if 1 == vistaPaso %}
+        <div class="linea2" id="linea1"></div>
+        <div class="circulo" id="circulo2"></div>
+    {% else %}
+        <div class="linea2" id="linea1"></div>
+        <div class="circulo" id="circulo2"></div>
+    {% endif %}
+</div>
+<div class="pasos">
+    <div>
+        <ol>
+            <li class="esconderTabletas">
+                {% if editarEscenario == true %}
+                    <a href="{{ path('admin_logic_escenariodeportivo_addpaso1', { 'id':idescenario, edit:true} ) }}">
+                        {% trans %}formulario_escenario_deportivo.paso_uno{% endtrans %} 
+                    </a>
+                {% else %}
+                    <a href="{{ path('admin_logic_escenariodeportivo_addpaso1', { 'id':idescenario } ) }}">
+                        {% trans %}formulario_escenario_deportivo.paso_uno{% endtrans %} 
+                    </a>
+                {% endif %}
+
+            </li>
+            <li class="esconderTabletas">
+                {% if editarEscenario == true %}
+                    <a href="{{ path('admin_logic_escenariodeportivo_addpaso2', { 'id':idescenario, edit:true} ) }}">
+                        {% trans %}formulario_escenario_deportivo.paso_dos{% endtrans %} 
+                    </a>
+                {% else %}
+                    <a href="{{ path('admin_logic_escenariodeportivo_addpaso2', { 'id':idescenario } ) }}">
+                        {% trans %}formulario_escenario_deportivo.paso_dos{% endtrans %} 
+                    </a>
+                {% endif %}
+            </li>
+            <li class="esconderTabletas">
+                {% if editarEscenario == true %}
+                    <a href="{{ path('admin_logic_escenariodeportivo_addpaso3', { 'id':idescenario, edit:true} ) }}">
+                        {% trans %}formulario_escenario_deportivo.paso_tres{% endtrans %} 
+                    </a>
+                {% else %}
+                    <a href="{{ path('admin_logic_escenariodeportivo_addpaso3', { 'id':idescenario } ) }}">
+                        {% trans %}formulario_escenario_deportivo.paso_tres{% endtrans %} 
+                    </a>
+                {% endif %}
+            </li>
+            {% if editarEscenario == true %}
+                {% if editarEscenarioCompleto == true %}
+                    <li class="esconderTabletas">
+                        {% if editarEscenario == true %}
+                            <a href="{{ path('admin_logic_escenariodeportivo_addpaso4', { 'id':idescenario, edit:true} ) }}">
+                                {% trans %}formulario_escenario_deportivo.paso_cuatro{% endtrans %} 
+                            </a>
+                        {% else %}
+                            <a href="{{ path('admin_logic_escenariodeportivo_addpaso4', { 'id':idescenario } ) }}">
+                                {% trans %}formulario_escenario_deportivo.paso_cuatro{% endtrans %} 
+                            </a>
+                        {% endif %}
+                    </li>
+                {% endif %}
+            {% else %}
+                <li class="esconderTabletas" >
+                    <a href="{{ path('admin_logic_escenariodeportivo_addpaso4', { 'id':idescenario } ) }}">
+                        {% trans %}formulario_escenario_deportivo.paso_cuatro{% endtrans %} 
+                    </a>
+                </li>
+            {% endif %}
+
+            {#{% if mostrar4142 == 1 %}
+                {% if editarEscenario == true %}
+                    {% if editarEscenarioCompleto == true %}
+                        <li class="esconderTabletas" >
+                            {% if editarEscenario == true %}
+                                <a href="{{ path('admin_logic_escenariodeportivo_addpaso41', { 'id':idescenario, edit:true} ) }}">
+                                    {% trans %}formulario_escenario_deportivo.paso_cuatro_uno{% endtrans %} 
+                                </a>
+                            {% else %}
+                                <a href="{{ path('admin_logic_escenariodeportivo_addpaso41', { 'id':idescenario } ) }}">
+                                    {% trans %}formulario_escenario_deportivo.paso_cuatro_uno{% endtrans %} 
+                                </a>
+                            {% endif %}
+                        </li>
+                    {% endif %}
+                {% else %}
+                    <li class="esconderTabletas" >
+                        <a href="{{ path('admin_logic_escenariodeportivo_addpaso41', { 'id':idescenario } ) }}">
+                            {% trans %}formulario_escenario_deportivo.paso_cuatro_uno{% endtrans %} 
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% if editarEscenario == true %}
+                    {% if editarEscenarioCompleto == true %}
+                        <li class="esconderTabletas" >
+                            {% if editarEscenario == true %}
+                                <a href="{{ path('admin_logic_escenariodeportivo_addpaso42', { 'id':idescenario, edit:true} ) }}">
+                                    {% trans %}formulario_escenario_deportivo.paso_cuatro_dos{% endtrans %} 
+                                </a>
+                            {% else %}
+                                <a href="{{ path('admin_logic_escenariodeportivo_addpaso42', { 'id':idescenario } ) }}">
+                                    {% trans %}formulario_escenario_deportivo.paso_cuatro_dos{% endtrans %} 
+                                </a>
+                            {% endif %}
+                        </li>
+                    {% endif %}
+                {% else %}
+                    <li class="esconderTabletas" >
+                        <a href="{{ path('admin_logic_escenariodeportivo_addpaso42', { 'id':idescenario } ) }}">
+                            {% trans %}formulario_escenario_deportivo.paso_cuatro_dos{% endtrans %} 
+                        </a>
+                    </li>
+                {% endif %}
+            {% endif %}#}
+        </ol>
+    </div>
+</div>

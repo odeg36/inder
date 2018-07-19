@@ -1,0 +1,21 @@
+{% block opcion_type_row %}
+    <div class="campoGris row  margenPasos division-hijo-eliminar margen-bottom-10 " id="form_division_{{ form.vars.name }}" data-id="{{ form.vars.name }}">
+        <div class="col-md-1">
+            <strong>
+                {{form_label(form.opcion)}}
+            </strong>
+        </div>
+        <div class="col-md-9">
+            {{ form_widget(form.opcion) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.opcion.vars.errors }%}
+        </div>
+        {{ form_rest(form) }}   
+        <div class="col-md-2">
+            <div class="collection-actions">
+                <a href="#" class="btn btnRojo btnSize add_division_link collection-remove collection-action">
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar Campo
+                </a>
+            </div>   
+        </div>   
+    </div>
+{% endblock %}

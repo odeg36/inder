@@ -1,0 +1,91 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends base_template %}
+
+{% block title %}
+    {{ "title_create"|trans({}, 'SonataAdminBundle') }}
+{% endblock %}
+
+{% block navbar_title %}
+    {{ block('title') }}
+{% endblock %}
+
+{% block form %}
+    <div class="content-wrapper alto-contenido p-top">
+        <!-- formulario -->
+        <div class="container">
+            <!-- Escenarios deportivos -->
+            <div class="row">
+                <div class="col-md12 fondoAzul2">
+                    {{ form_start(form, {'attr': {'id': 'formulario_campo', novalidate: 'true'} } ) }}
+                        <div class="infoBox row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 contenedorInfoUno">
+                                <div class="col-md-12">
+                                    {{form_label(form.nombre)}}
+                                    {{form_widget(form.nombre)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nombre.vars.errors }%}
+                                </div>
+
+                                <div class="col-md-12">
+                                    {{form_label(form.importanciaRelativa)}}
+                                    {{form_widget(form.importanciaRelativa)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.importanciaRelativa.vars.errors }%}
+                                </div>
+
+                                <div class="col-md-12 subInfraestructuras" >
+                                    <section class="col-xs-12 error-mesajes">
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.subInfraestructuras.vars.errors }%}
+                                    </section>
+                                    {%
+                                        form_theme form
+                                            'AdminBundle:CategoriaInfraestructura:subcategoria.html.twig'
+                                            'jquery.collection.html.twig'
+                                    %}
+                                    {{ form_row(form.subInfraestructuras) }}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                <div class="col-md-12 division"></div>
+                            <div class="col-md-12">
+                                <span></span>
+                                <div class="col-md-12">
+                                    {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                </div>
+                                <div style="display: none;">
+                                    {{ form_rest(form) }}
+                                </div>
+                            </div>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+                    
+    <script type="text/javascript">
+        $('.subInfraestructuras-collection').collection({
+                name_prefix: '{{ form.subInfraestructuras.vars.full_name }}',
+                drag_drop: '',
+                allow_up: '',
+                add:'<a href="#" class="btn btnVerde btnSize add_division_link "><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar subcategoria Infraestructura</a>',
+                remove:'<a href="#" class="btn btnRojo btnSize add_division_link"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar subcategoria Infraestructura</a>',
+                up: '',
+                down: '',
+                duplicate: '',
+                add_at_the_end: true,
+                after_add: function(collection, element) {
+                    inder.infraestructura.setSelect2(element.attr('data-id'));
+                }
+            });
+    </script>
+{% endblock %}

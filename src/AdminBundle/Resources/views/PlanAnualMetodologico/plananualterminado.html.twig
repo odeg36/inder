@@ -1,0 +1,56 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+{% endblock %}
+{% block title %}formulario_plan_anual_metodologico.title{% endblock %}
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_plananualmetodologico_list') }}">{% trans %}Plan Anual Metodologico List{% endtrans %}</a></li>        
+        <li class="active">
+        {% if idplananualmetodologico == 0 %}
+            {% trans %}btn.accion.crear{% endtrans %}
+        {% else %}
+            {{ nombre }}
+        {% endif %}
+        </li>
+    </ol>
+{% endblock %}
+{% block sonata_page_content %}
+    <section class="content">
+        {% block sonata_admin_content %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_plan_anual_metodologico.title{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Solicitud-registro-pasos -->
+                <div class="row">
+                    <div class="col-md-4 iconoText2">
+                        {% include 'AdminBundle:PlanAnualMetodologico/Pasos:iconos.html.twig' with {vistaPaso: 5, 'idplananualmetodologico' : idplananualmetodologico} %}
+                    </div>
+                    <div class="col-md-8 fondoAzul2">
+                        <div class="infoBox felicitaciones">
+                            <div class="circuloIcono">
+                                <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                            </div>
+                            <br>
+                            <label style="font-size: 22px">¡Felicitaciones!</label>
+                            <br>
+                            <p>
+                                {% trans %}formulario_plan_anual_metodologico.registro{% endtrans %}
+                                {% if actividades == null %}
+                                    <br>
+                                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                                    {% trans %}formulario_plan_anual_metodologico.no_actividades{% endtrans %}
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock sonata_admin_content %}
+    </section>
+{% endblock sonata_page_content %}

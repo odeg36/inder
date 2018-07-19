@@ -1,0 +1,78 @@
+<ul class="nav nav-tabs">
+
+    <!--Configuracion -->
+    {% if 'configuracion' == tabActivo %}
+    <li class="active">
+    {% else %}
+    <li class="">
+    {% endif %}
+        <a class="tab-item" href="{{ path('admin_logic_evento_configuracion', { 'id':idevento } ) }}" data-toggle="tab" aria-expanded="true">
+            {% trans %}formulario_evento.tabs.configuracion{% endtrans %}
+        </a>
+    </li>
+    <li class="{%if 'carne' == tabActivo%} active {%endif%}">
+        <a class="tab-item" href ="{{ path('admin_logic_evento_carne', { 'id':idevento } ) }}" data-toggle="tab" aria-expanded="true">
+            {{'label.carne'|trans}}
+        </a>
+    </li>
+    <!--Inscripcion -->
+    {% if 'inscripcion' == tabActivo %}
+    <li class="active">
+    {% else %}
+    <li class="">
+    {% endif %}
+        <a class="tab-item" href="{{ path('admin_logic_evento_inscripcion', { 'id':idevento } ) }}" data-toggle="tab" aria-expanded="false">
+            {% trans %}formulario_evento.tabs.inscripcion{% endtrans %}
+        </a>
+    </li>
+
+    
+    <!--Esquipos Participantes -->
+    {% if 'equiposparticipantes' == tabActivo %}
+    <li class="active">
+    {% else %}
+    <li class="">
+    {% endif %}    
+        <a class="tab-item" href="{{ path('admin_logic_evento_equiposParticipantes', { 'id':idevento } ) }}" data-toggle="tab" aria-expanded="false">
+            {% trans %}formulario_evento.tabs.equiposyparticipantes{% endtrans %}
+        </a>
+    </li>
+    <!--Esquipos Participantes -->
+
+
+     {% if 'clasificacionCalendario' == tabActivo %}
+    <li class="active">
+    {% else %}
+    <li class="">
+    <!-- clasificacion y calendario el tipo uno corresponde a chimenea que en la pantalla por defecto por lo cual es 1 -->
+    {% endif %} 
+        <a class="tab-item" href="{{ path('admin_logic_evento_clasificacionCalendario',{ 'id': idevento} ) }}" data-toggle="tab" aria-expanded="false">
+            {% trans %}formulario_evento.tabs.clasificacioncalendario{% endtrans %}
+        </a>
+    </li>
+
+
+    <!--sanciones -->
+    {% if 'sanciones' == tabActivo %}
+        <li class="active">
+        {% else %}
+        <li class="">
+    {% endif %} 
+        <a class="tab-item" href="{{ path('admin_logic_evento_sanciones',{ 'id': idevento} ) }}" data-toggle="tab" aria-expanded="false">
+            {% trans %}formulario_evento.tabs.sancion{% endtrans %}
+        </a>
+    </li>
+    <!--sanciones -->
+
+   
+    <!--sanciones -->
+    {% if 'carnes' == tabActivo %}
+        <li class="active">
+        {% else %}
+        <li class="">
+    {% endif %}    
+        <a class="tab-item" href="{{ path('admin_logic_evento_carnes',{ 'id': idevento}) }}" data-toggle="tab" aria-expanded="false">
+        {% trans %}formulario_evento.tabs.carnes{% endtrans %}
+        </a>
+    </li>
+</ul>

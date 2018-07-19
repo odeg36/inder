@@ -1,0 +1,91 @@
+{% if form.estatura is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.estatura)}}
+        {{form_widget(form.estatura)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.estatura.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.peso is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.peso)}}
+        {{form_widget(form.peso)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.peso.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.indiceMasaCorporal is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.indiceMasaCorporal)}}
+        {{form_widget(form.indiceMasaCorporal)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.indiceMasaCorporal.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.fuma is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.fuma)}}
+        {{form_widget(form.fuma)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.fuma.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.consumeBebidasAlcoholicas is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.consumeBebidasAlcoholicas)}}
+        {{form_widget(form.consumeBebidasAlcoholicas)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.consumeBebidasAlcoholicas.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.padeceEnfermedadesCronicas is defined %}
+    <div class="col-md-12">
+        {{form_label(form.padeceEnfermedadesCronicas)}}
+        {{form_widget(form.padeceEnfermedadesCronicas)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.padeceEnfermedadesCronicas.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.enfermedades is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.enfermedades)}}
+        {{form_widget(form.enfermedades)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.enfermedades.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.consumeMedicamentos is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.consumeMedicamentos)}}
+        {{form_widget(form.consumeMedicamentos)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.consumeMedicamentos.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.medicamentos is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.medicamentos)}}
+        {{form_widget(form.medicamentos)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.medicamentos.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.tipoSangre is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.tipoSangre)}}
+        {{form_widget(form.tipoSangre)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoSangre.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.tieneContacto is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.tieneContacto)}}
+        {{form_widget(form.tieneContacto)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tieneContacto.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.nombreContacto is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.nombreContacto)}}
+        {{form_widget(form.nombreContacto)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nombreContacto.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.telefonoContacto is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.telefonoContacto)}}
+        {{form_widget(form.telefonoContacto)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.telefonoContacto.vars.errors }%}
+    </div>
+{% endif %}

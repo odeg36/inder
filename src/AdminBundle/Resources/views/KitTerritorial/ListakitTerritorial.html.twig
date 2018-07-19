@@ -1,0 +1,306 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+        .breadcrumb {
+            padding: 8px 15px !important;
+            margin-bottom: 20px !important;
+            list-style: none !important;
+            background-color: #f5f5f5 !important;
+            border-radius: 4px !important;
+            float: inherit !important;
+        }
+    </style>
+{% endblock %}
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+{% block sonata_page_content %}
+    {% block sonata_admin_content %}
+      
+    <div class="content-wrapper content-wrapper-ajuste" style="padding-top: 208px;">
+                <section class="content container-fluid tituloFooter">
+
+            <!-- Migas de pan -->
+            <section class="container-fluid">
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                    <li><a href="#">Kit Territorial</a></li>
+                    <li class="active">Lista</li>
+                </ol>
+            </section>                          
+                                                            
+                        <!-- Trigger the modal with a button -->
+                       
+                        <section class="content-header tituloFooter">
+                                                                                                                                                                                                                                                                                                                <div class="sticky-wrapper"><nav class="navbar navbar-default" role="navigation">
+                                            <div class="container-fluid">
+                                                                                                                                                                                                    <div class="navbar-collapse">
+                                                    
+                                                                                                            
+                                                        <div class="navbar-left">
+                                                            <h4>
+                                                                                                                                                                                                                                                                                                                                                                                                                                            Tema Por Comuna List
+                                                                                                                                                                                                                                                                                                                                                    </h4>
+                                                        </div>
+
+                                                    
+                                                                                                                                                                        <ul class="nav navbar-nav navbar-right">
+                                                                                                                                    <li class="sonata-actions"><a class="sonata-action-element" href="/admin/logic/temaporcomuna/create"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                Agregar nuevo
+            </a></li>
+                                                                                                                            </ul>
+                                                                                                            
+                                                                                                            <ul class="nav navbar-nav navbar-right">
+
+        <li class="dropdown sonata-actions">
+            <a href="#" class="dropdown-toggle sonata-ba-action" data-toggle="dropdown">
+                <i class="fa fa-filter" aria-hidden="true"></i>
+                Filtros <b class="caret"></b>
+            </a>
+
+            <ul class="dropdown-menu" role="menu">
+                                                        <li>
+                        <a href="#" class="sonata-toggle-filter sonata-ba-action" filter-target="filter-s5a060f59e4ef8-nivel" filter-container="filter-container-s5a060f59e4ef8">
+                            <i class="fa fa-square-o"></i>Comuna
+                        </a>
+                    </li>
+                            </ul>
+        </li>
+    </ul>
+                                                    
+                                                </div>
+                                            </div>
+                                        </nav></div>
+                                    
+                                                            
+                            
+                                                                                                                            
+                                
+                                
+                                
+                                
+                                                                    <div class="row">
+                                        <div class="col-xs-12 col-md-12 sonata-filters-box" style="display: none" id="filter-container-s5a060f59e4ef8">
+                        <div class="box box-primary">
+                            <div class="box-body">
+                                <form class="sonata-filter-form form-horizontal " action="/admin/logic/temaporcomuna/list" method="GET" role="form">
+                                    
+
+                                    <div class="row">
+                                        <div class="col-sm-9">
+                                                                                                                                                                                                                                        <div class="form-group " id="filter-s5a060f59e4ef8-nivel" sonata-filter="true" style="display: none">
+                                                                                                            <label for="filter_nivel_value" class="col-sm-3 control-label">Nivel</label>
+                                                                                                        
+                                                    <div class="col-sm-4 advanced-filter" style="display: none;">
+                                                                <div class="select2-container" id="s2id_filter_nivel_type" style="width: 100%;"><a href="javascript:void(0)" class="select2-choice select2-default" tabindex="-1">   <span class="select2-chosen" id="select2-chosen-1"></span><abbr class="select2-search-choice-close"></abbr>   <span class="select2-arrow" role="presentation"><b role="presentation"></b></span></a><label for="s2id_autogen1" class="select2-offscreen"></label><input class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="button" aria-labelledby="select2-chosen-1" id="s2id_autogen1"><div class="select2-drop select2-display-none select2-with-searchbox">   <div class="select2-search">       <label for="s2id_autogen1_search" class="select2-offscreen"></label>       <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input" role="combobox" aria-expanded="true" aria-autocomplete="list" aria-owns="select2-results-1" id="s2id_autogen1_search" placeholder="">   </div>   <ul class="select2-results" role="listbox" id="select2-results-1">   </ul></div></div><select id="filter_nivel_type" name="filter[nivel][type]" class="" tabindex="-1" title="" style="display: none;"><option value=""></option><option value="3">=</option><option value="1">&gt;=</option><option value="2">&gt;</option><option value="4">&lt;=</option><option value="5">&lt;</option></select>
+
+                                                    </div>
+
+                                                    <div class="col-sm-4">
+                                                                <input type="text" id="filter_nivel_value" name="filter[nivel][value]" class=" form-control">
+
+                                                    </div>
+
+                                                    <div class="col-sm-1">
+                                                        <label class="control-label">
+                                                            <a href="#" class="sonata-toggle-filter sonata-ba-action" filter-target="filter-s5a060f59e4ef8-nivel" filter-container="filter-container-s5a060f59e4ef8">
+                                                                <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                                                            </a>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                                                                                                                                                                                                        </div>
+                                        <div class="col-sm-3 text-center">
+                                            <input type="hidden" name="filter[_page]" id="filter__page" value="1">
+
+                                                                                                <input type="hidden" id="filter__sort_by" name="filter[_sort_by]" class=" form-control" value="id">
+                                                <input type="hidden" id="filter__sort_order" name="filter[_sort_order]" class=" form-control" value="ASC">
+                                                <input type="hidden" id="filter__per_page" name="filter[_per_page]" class=" form-control" value="32">
+
+    
+
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fa fa-filter" aria-hidden="true"></i> Filtrar
+                                                </button>
+
+                                                <a class="btn btn-default" href="/admin/logic/temaporcomuna/list?filters=reset">
+                                                    Restablecer
+                                                </a>
+                                            </div>
+
+                                                                                            <div class="form-group">
+                                                    <a href="#" data-toggle="advanced-filter">
+                                                        <i class="fa fa-cogs" aria-hidden="true"></i>
+                                                        Filtros avanzados
+                                                    </a>
+                                                </div>
+                                                                                    </div>
+                                    </div>
+
+                                                                    </form>
+                            </div>
+                        </div>
+                    </div>
+                                    </div>
+                                                                                                    <div class="row">
+                                        <div class="col-xs-12 col-md-12">
+                
+                        <div class="box box-primary" style="margin-bottom: 100px;">
+                <div class="box-body table-responsive no-padding">
+                    
+
+                
+                                    <table class="table table-bordered table-striped sonata-ba-list tablaPreinscrito">
+                                                    <thead>
+                                <tr class="sonata-ba-list-field-header">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                            <th class="sonata-ba-list-field-header-integer  sonata-ba-list-field-header-order-asc "><a href="/admin/logic/temaporcomuna/list?filter%5B_sort_order%5D=ASC&amp;filter%5B_sort_by%5D=nivel&amp;filter%5B_page%5D=1&amp;filter%5B_per_page%5D=32">Comuna
+                                                        </a></th>                                                                                                                                                                                                                    
+                                            <th class="sonata-ba-list-field-header-text ">
+                                                                                                            Acciones
+                                                                                                        </th>                                                                                                            </tr>
+                            </thead>
+                        
+<tbody>
+
+ {% for comuna in comunas %}  
+
+ <tr>
+    <td class="sonata-ba-list-field sonata-ba-list-field-integer" objectid="{{ comuna.comuna.id|e }}">
+        {{ comuna.comuna|e }}            
+    </td>
+    <td class="sonata-ba-list-field sonata-ba-list-field-text" objectid="{{ comuna.comuna.id|e }}">
+        <div class="btn-group">
+                            
+                <a href="/admin/logic/temaporcomuna/{{ comuna.comuna.id|e }}/show" class="btn btn-sm btn-default view_link" title="Mostrar">
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                    Mostrar
+                </a>
+                                
+                <a href="/admin/logic/temaporcomuna/{{ comuna.comuna.id|e }}/edit" class="btn btn-sm btn-default edit_link" title="Editar">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    Editar
+                </a>              
+        </div>
+    </td>
+</tr>
+{% endfor %} 
+   
+  </tbody>
+</table>
+                
+                
+            </div>
+                                                <div class="box-footer">
+                        <div class="form-inline clearfix">
+                                                            <div class="pull-left">
+                                                                    </div>
+
+
+                                                                
+                                <div class="pull-right">
+                                                                            <div class="btn-group">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <i class="fa fa-share-square-o" aria-hidden="true"></i>
+                                                Exportar
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                                                                    <li>
+                                                        <a href="/admin/logic/temaporcomuna/export?filter%5B_sort_order%5D=ASC&amp;filter%5B_sort_by%5D=id&amp;filter%5B_page%5D=0&amp;filter%5B_per_page%5D=32&amp;format=json">
+                                                            <i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i>
+                                                            JSON
+                                                        </a>
+                                                    </li><li>
+                                                                                                        </li><li>
+                                                        <a href="/admin/logic/temaporcomuna/export?filter%5B_sort_order%5D=ASC&amp;filter%5B_sort_by%5D=id&amp;filter%5B_page%5D=0&amp;filter%5B_per_page%5D=32&amp;format=xml">
+                                                            <i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i>
+                                                            XML
+                                                        </a>
+                                                    </li><li>
+                                                                                                        </li><li>
+                                                        <a href="/admin/logic/temaporcomuna/export?filter%5B_sort_order%5D=ASC&amp;filter%5B_sort_by%5D=id&amp;filter%5B_page%5D=0&amp;filter%5B_per_page%5D=32&amp;format=csv">
+                                                            <i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i>
+                                                            CSV
+                                                        </a>
+                                                    </li><li>
+                                                                                                        </li><li>
+                                                        <a href="/admin/logic/temaporcomuna/export?filter%5B_sort_order%5D=ASC&amp;filter%5B_sort_by%5D=id&amp;filter%5B_page%5D=0&amp;filter%5B_per_page%5D=32&amp;format=xls">
+                                                            <i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i>
+                                                            XLS
+                                                        </a>
+                                                    </li><li>
+                                                                                                </li></ul>
+                                        </div>
+
+                                        &nbsp;-&nbsp;
+                                    
+                                                                            
+    1 / 1
+    &nbsp;-&nbsp;
+
+    5 resultados    &nbsp;-&nbsp;
+
+    <label class="control-label" for="s5a060f59e4ef8_per_page">Por página</label>
+    <div class="select2-container per-page small" id="s2id_s5a060f59e4ef8_per_page" style="width: auto"><a href="javascript:void(0)" class="select2-choice" tabindex="-1">   <span class="select2-chosen" id="select2-chosen-2">32</span><abbr class="select2-search-choice-close"></abbr>   <span class="select2-arrow" role="presentation"><b role="presentation"></b></span></a><label for="s2id_autogen2" class="select2-offscreen">Por página</label><input class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="button" aria-labelledby="select2-chosen-2" id="s2id_autogen2"><div class="select2-drop select2-display-none select2-with-searchbox">   <div class="select2-search">       <label for="s2id_autogen2_search" class="select2-offscreen">Por página</label>       <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input" role="combobox" aria-expanded="true" aria-autocomplete="list" aria-owns="select2-results-2" id="s2id_autogen2_search" placeholder="">   </div>   <ul class="select2-results" role="listbox" id="select2-results-2">   </ul></div></div><select class="per-page small" id="s5a060f59e4ef8_per_page" style="width: auto; display: none;" tabindex="-1" title="Por página">
+                    <option value="/admin/logic/temaporcomuna/list?filter%5B_sort_order%5D=ASC&amp;filter%5B_page%5D=1&amp;filter%5B_per_page%5D=16">16</option>
+                    <option selected="selected" value="/admin/logic/temaporcomuna/list?filter%5B_sort_order%5D=ASC&amp;filter%5B_page%5D=1&amp;filter%5B_per_page%5D=32">32</option>
+                    <option value="/admin/logic/temaporcomuna/list?filter%5B_sort_order%5D=ASC&amp;filter%5B_page%5D=1&amp;filter%5B_per_page%5D=64">64</option>
+                    <option value="/admin/logic/temaporcomuna/list?filter%5B_sort_order%5D=ASC&amp;filter%5B_page%5D=1&amp;filter%5B_per_page%5D=128">128</option>
+                    <option value="/admin/logic/temaporcomuna/list?filter%5B_sort_order%5D=ASC&amp;filter%5B_page%5D=1&amp;filter%5B_per_page%5D=192">192</option>
+            </select>
+                                                                    </div>
+                                                    </div>
+
+                                                                                                </div>
+                                    </div>
+        </div>
+                                    </div>
+                                                                                    </section>
+                                    </section>
+            </div>
+
+
+    {% endblock sonata_admin_content %}
+ 
+    <style>
+
+    
+        .fileinput-cancel {
+            display: none !important;
+        }
+        .fileinput-remove {
+            display: inline !important;
+        }
+        .btn-default {
+            background-color: #c7daef !important;
+            color: #007385 !important;
+            border-color: #bbb !important;
+            -webkit-transition: background-color 0.3s ease-in-out !important;
+            transition: background-color 0.3s ease-in-out !important;
+        }
+        .btn-default:hover {
+            background-color: #007385 !important;
+            color: #c7daef !important;
+            border-color: #007385 !important;
+            -webkit-transition: background-color 0.3s ease-in-out !important;
+            transition: background-color 0.3s ease-in-out !important;
+        }
+        .btn-outline-secondary i{
+            margin: auto !important;
+        }
+        strong label{
+            color : #000000 !important;
+            margin: 0px !important;
+        }
+        .collection-actions{
+            display:none !important;
+        }
+        .margen-bottom-10{
+            margin-bottom: 15px !important;
+        }
+    </style>
+{% endblock sonata_page_content %}

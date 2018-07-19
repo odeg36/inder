@@ -1,0 +1,176 @@
+/*
+* CSS Formulario registro.
+*/
+.required:after {
+    content: '*';
+    color: red;
+}
+.formulario_derecha {
+    background-color: #007185;
+    padding: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 3px;
+}
+.formulario_registro label{
+    color:#189597;
+}
+.recuadro {
+    background-color: #FFF;
+    border-radius: 10px;
+    display: flow-root;
+    padding: 20px;
+}
+.recuadro_gris {
+    background-color: #eceff4;
+    border-radius: 10px;
+    display: flow-root;
+    padding: 10px;
+}
+.recuadro_gris_interno {
+    background-color: #f8f9fb;
+    border-radius: 10px;
+    display: flow-root;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.habeas_data{
+    border-radius: 5px;
+    width: 250px;
+    height: 50px;
+    background: none;
+    border-color: #7FCBDB;
+    color: #7FCBDB;
+}
+.btn_regisro_submit{
+    color:#FFF;
+    background-color: #94C124;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100px;
+}
+.btn_anadirorgano{
+    color:#FFF;
+    background-color: #94C124;
+    border: none;
+    border-radius: 5px;
+    width: 160px;
+}
+.btn_borrarorgano{
+    color:#FFF;
+    background-color: #d01534;
+    border: none;
+    border-radius: 5px;
+    width: 160px;
+}
+.btn_registro_reset{
+    color:#FFF;
+    background-color: #f8ba35;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100px; 
+}
+#persona_natural, #persona_juridica, .datos_clave, .datos_contacto, .datos_proteccion {
+    display: none;
+}
+#clavenocoinciden, #correoregistrado, #identificacionregistrada, #solotexton, #solotextoa, #cedulaminimo, #telefonominimo, #telefonominimo, #mensaje_aceptahb, #mensaje_aceptatc, #seleccionemunicipio, #seleccionebarrio, #seleccionetipoidentificacion, #direccionresidencia, #existe_organismo, #correoelectronicorequerido
+{
+    display: none;
+}
+.error_campo_mensaje{
+    font-weight: bold;
+    color: #d01437;
+}
+.error_campo{
+    color: #b71f1f;
+    font-weight: bold;
+    background-color: #b71f1f;
+    color:#FFF;
+}
+.termina_proceso{
+    font-size: 16px;
+    text-align: justify;
+    float:left;
+}
+.advertencia_izquierda{
+    display: block;
+    font-size: 30px;
+}
+.pasos_proceso{
+    list-style: none;
+}
+.numero_paso{
+    margin-top: 15px;
+}
+.texto_paso{
+    color: #0095ad;
+    font-size: 30px;
+}
+.ico-quitardisciplina{
+    color: #d01437;
+    cursor: pointer;
+}
+.ico-anadirdisciplina{
+    color: #96c020;   
+    cursor: pointer;
+}
+.ico-anadirorgano{
+    color: #ffffff;   
+    cursor: pointer;
+}
+#disciplinanodisponible{
+    display: none;
+}
+#pswd_info h4 {
+    margin:0 0 10px 0;
+    padding:0;
+    font-weight:normal;
+}
+#pswd_info {
+    width:441px;
+    padding:15px;
+    background:#fefefe;
+    font-size:.875em;
+    border-radius:5px;
+    box-shadow:3px 2px 2px #ccc;
+    border:1px solid #ddd;
+}
+#pswd_info {
+    display:none;
+}
+#pswd_info::before {
+    content: "\25BC";
+    position: absolute;
+    top: 57px;
+    font-size:14px;
+    line-height:14px;
+    color:#ddd;
+    text-shadow:none;
+    display:block;
+}
+.invalid {
+    background:url(../img/cancel.png) no-repeat 0 50%;
+    padding-left:22px;
+    line-height:24px;
+    color:#ec3f41;
+    list-style: none;
+}
+.valid {
+    background:url(../img/accept.png) no-repeat 0 50%;
+    padding-left:22px;
+    line-height:24px;
+    color:#3a7d34;
+    list-style: none;
+}
+li.listaDisciplina {
+    list-style: none;
+    padding: 4px;
+}
+.deportista{
+    padding: 12px;
+}
+.alertaUsuario, .registroUsuario, .usuarioRegistrado{
+    display: none;
+}

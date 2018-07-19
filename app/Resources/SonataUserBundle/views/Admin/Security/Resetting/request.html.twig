@@ -1,0 +1,85 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends base_template %}
+
+{% block sonata_wrapper %}
+    <div class="content-wrapper p-top">
+        <!-- formulario -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 titulos">
+                    <h4>{{'titulo.recuperar_contrasena'|trans}}</h4>
+                </div>
+            </div>
+            <!-- Información general -->
+            <div class="row" id="boxMargen">
+                <div class="col-md-12 btnCentrar">
+                    <div class="col-md-8">
+                        <div class="col-md-12">
+                            <div class="box-header">
+                                <i class="fa fa-key" aria-hidden="true"></i>
+                                <h3 class="box-title">Recuperación de contraseña</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-12 nuevaOferta padding-total20">
+                            <div class="col-md-12 marginB15">
+                                <div class="alerta2">
+                                    {% if app.request.get('bloqueado') is defined and app.request.get('bloqueado') is not null %}
+                                        <i class="fa fa-exclamation-triangle fa-2x" aria-hidden="true"></i>
+                                        <section>
+                                            <h5>{{'titulo.atencion'|trans}}</h5>
+                                            <p>{{'titulo.mensaje_atencion_bloqueado'|trans}}</p>
+                                        </section>
+                                    {% elseif app.request.get('expirado') is defined and app.request.get('expirado') is not null %}
+                                        <i class="fa fa-exclamation-triangle fa-2x" aria-hidden="true"></i>
+                                        <section>
+                                            <h5>{{'titulo.atencion'|trans}}</h5>
+                                            <p>{{'titulo.mensaje_atencion_expirado'|trans}}</p>
+                                        </section>
+                                    {% else %}
+                                        <i class="fa fa-exclamation-triangle fa-2x" aria-hidden="true"></i>
+                                        <section>
+                                            <h5>{{'titulo.atencion'|trans}}</h5>
+                                            <p>{{'titulo.mensaje_atencion_contrasena'|trans}}</p>
+                                        </section>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                            <form action="{{ path('sonata_user_admin_resetting_send_email') }}" method="post" role="form">
+                                <div class="col-md-4 marginB15">
+                                    {{ form_label(form.tipo_identificacion)}}
+                                    {{ form_widget(form.tipo_identificacion, { 'attr': { class: 'form-control'}}) }}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipo_identificacion.vars.errors }%}
+                                </div>
+                                <div class="col-md-8 marginB15">
+                                    {{ form_label(form.identificacion)}}
+                                    {{ form_widget(form.identificacion, { 'attr': { class: 'form-control'}}) }}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.identificacion.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{ form_widget(form.send, { 'attr': { class: 'btn btnVerde '}}) }}
+                                    <a type="button" class="btn btnNaranja" href="{{path('sonata_admin_dashboard')}}">
+                                        <i class="fa fa-chevron-left"></i>
+                                        Cancelar
+                                    </a>
+                                </div>
+                                {{form_rest(form)}}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock sonata_wrapper %}
+

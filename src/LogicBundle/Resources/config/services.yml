@@ -1,0 +1,28 @@
+services:
+#    logic.example:
+#        class: LogicBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+    logic.form.organismo.deportivo:
+        class: LogicBundle\Form\OrganismoDeportistaType
+        arguments: ['@service_container']
+        tags:
+            - { name: form.type, alias: organismo_deportivo }
+            
+    logic.form.usuario.registro:
+        class: Application\Sonata\UserBundle\Form\UserType
+        arguments: ['@service_container']
+        tags:
+            - { name: form.type, alias: organismo_deportivo }
+            
+    logic.form.usuario.preinscripcion:
+        class: LogicBundle\Form\CargaUsuarioNuevoPreinscripcionType
+        arguments: ['@service_container']
+        tags:
+            - { name: form.type, alias: preinscripcion_usuario }
+            
+    logic.form.oferta.preinscripcion:
+        class: Application\Sonata\UserBundle\Form\InfoComplementariaUserType
+        arguments: ['@service_container']
+        tags:
+            - { name: form.type, alias: organismo_deportivo }

@@ -1,0 +1,2453 @@
+###########  Texto rolesSonata  #################
+ROLE_SONATA_USER_ADMIN_USER_LIST: Listar usuario
+ROLE_SONATA_USER_ADMIN_USER_CREATE: Crear usuario
+ROLE_SONATA_USER_ADMIN_USER_EDIT: Editar usuario
+ROLE_SONATA_USER_ADMIN_USER_VIEW: Ver usuario
+ROLE_SONATA_USER_ADMIN_USER_EXPORT: Exportar usuario
+ROLE_SONATA_USER_ADMIN_GROUP_LIST: Listar rol
+ROLE_SONATA_USER_ADMIN_GROUP_CREATE: Crear rol
+ROLE_SONATA_USER_ADMIN_GROUP_EDIT: Editar rol
+ROLE_SONATA_USER_ADMIN_GROUP_VIEW: Ver rol
+ROLE_SONATA_USER_ADMIN_GROUP_EXPORT: Exportar rol
+ROLE_ADMIN_ADMIN_AREA_LIST: Listar área
+ROLE_ADMIN_ADMIN_AREA_CREATE: Crear área
+ROLE_ADMIN_ADMIN_AREA_EDIT: Editar área
+ROLE_ADMIN_ADMIN_AREA_VIEW: Ver área
+ROLE_ADMIN_ADMIN_AREA_EXPORT: Exportar área
+ROLE_ADMIN_ADMIN_PROYECTO_LIST: Listar proyecto
+ROLE_ADMIN_ADMIN_PROYECTO_CREATE: Crear proyecto
+ROLE_ADMIN_ADMIN_PROYECTO_EDIT: Editar proyecto
+ROLE_ADMIN_ADMIN_PROYECTO_VIEW: Ver proyecto
+ROLE_ADMIN_ADMIN_PROYECTO_EXPORT: Exportar proyecto
+ROLE_ADMIN_ADMIN_ESTRATEGIA_LIST: Listar estrategia
+ROLE_ADMIN_ADMIN_ESTRATEGIA_CREATE: Crear estrategia
+ROLE_ADMIN_ADMIN_ESTRATEGIA_EDIT: Editar estrategia
+ROLE_ADMIN_ADMIN_ESTRATEGIA_VIEW: Ver estrategia
+ROLE_ADMIN_ADMIN_ESTRATEGIA_EXPORT: Exportar estrategia
+ROLE_ADMIN_ADMIN_OFERTA_LIST: Listar oferta
+ROLE_ADMIN_ADMIN_OFERTA_CREATE: Crear oferta
+ROLE_ADMIN_ADMIN_OFERTA_EDIT: Editar oferta
+ROLE_ADMIN_ADMIN_OFERTA_VIEW: Ver oferta
+ROLE_ADMIN_ADMIN_OFERTA_EXPORT: Exportar oferta
+ROLE_ADMIN_ADMIN_MOTIVO_RESEVA_LIST: Listar motivo reserva
+ROLE_ADMIN_ADMIN_MOTIVO_RESEVA_CREATE: Crear motivo reserva
+ROLE_ADMIN_ADMIN_MOTIVO_RESEVA_EDIT: Editar motivo reserva
+ROLE_ADMIN_ADMIN_MOTIVO_RESEVA_VIEW: Ver motivo reserva
+ROLE_ADMIN_ADMIN_MOTIVO_RESEVA_EXPORT: Exportar motivo reserva
+ROLE_ADMIN_ADMIN_PUNTO_ATENCION_LIST: Listar punto de atención
+ROLE_ADMIN_ADMIN_PUNTO_ATENCION_CREATE: Crear punto de atención
+ROLE_ADMIN_ADMIN_PUNTO_ATENCION_EDIT: Editar punto de atención
+ROLE_ADMIN_ADMIN_PUNTO_ATENCION_VIEW: Ver punto de atención
+ROLE_ADMIN_ADMIN_PUNTO_ATENCION_EXPORT: Exportar punto de atención
+ROLE_ADMIN_ADMIN_CATEGORIA_DISCIPLINA_LIST: Listar categoría disciplina
+ROLE_ADMIN_ADMIN_CATEGORIA_DISCIPLINA_CREATE: Crear categoría disciplina
+ROLE_ADMIN_ADMIN_CATEGORIA_DISCIPLINA_EDIT: Editar categoría disciplina
+ROLE_ADMIN_ADMIN_CATEGORIA_DISCIPLINA_VIEW: Ver categoría disciplina
+ROLE_ADMIN_ADMIN_CATEGORIA_DISCIPLINA_EXPORT: Exportar categoría disciplina
+ROLE_ADMIN_ADMIN_TIPO_RECURSO_LIST: Listar tipo recurso
+ROLE_ADMIN_ADMIN_TIPO_RECURSO_CREATE: Crear tipo recurso
+ROLE_ADMIN_ADMIN_TIPO_RECURSO_EDIT: Editar tipo recurso
+ROLE_ADMIN_ADMIN_TIPO_RECURSO_VIEW: Ver tipo recurso
+ROLE_ADMIN_ADMIN_TIPO_RECURSO_EXPORT: Exportar tipo recurso
+ROLE_ADMIN_ADMIN_TERMINOS_Y_CONDICIONES_EVENTO_LIST: Listar términos y condiciones eventos
+ROLE_ADMIN_ADMIN_TERMINOS_Y_CONDICIONES_EVENTO_CREATE: Crear términos y condiciones eventos
+ROLE_ADMIN_ADMIN_TERMINOS_Y_CONDICIONES_EVENTO_EDIT: Editar términos y condiciones eventos
+ROLE_ADMIN_ADMIN_TERMINOS_Y_CONDICIONES_EVENTO_VIEW: Ver términos y condiciones eventos
+ROLE_ADMIN_ADMIN_TERMINOS_Y_CONDICIONES_EVENTO_EXPORT: Exportar términos y condiciones eventos
+ROLE_ADMIN_ADMIN_SISTEMA_PUNTAJE_LIST: Listar sistema de puntajes
+ROLE_ADMIN_ADMIN_SISTEMA_PUNTAJE_CREATE: Crear sistema de puntajes
+ROLE_ADMIN_ADMIN_SISTEMA_PUNTAJE_EDIT: Editar sistema de puntajes
+ROLE_ADMIN_ADMIN_SISTEMA_PUNTAJE_VIEW: Ver sistema de puntajes
+ROLE_ADMIN_ADMIN_SISTEMA_PUNTAJE_EXPORT: Exportar sistema de puntajes
+ROLE_ADMIN_ADMIN_ATRIBUTO_DISCIPLINA_LIST: Listar atributo disciplina
+ROLE_ADMIN_ADMIN_ATRIBUTO_DISCIPLINA_CREATE: Crear atributo disciplina
+ROLE_ADMIN_ADMIN_ATRIBUTO_DISCIPLINA_EDIT: Editar atributo disciplina
+ROLE_ADMIN_ADMIN_ATRIBUTO_DISCIPLINA_VIEW: Ver atributo disciplina
+ROLE_ADMIN_ADMIN_ATRIBUTO_DISCIPLINA_EXPORT: Exportar atributo disciplina
+ROLE_ADMIN_ADMIN_MODALIDAD_EVENTO_LIST: Listar modalidad evento
+ROLE_ADMIN_ADMIN_MODALIDAD_EVENTO_CREATE: Crear modalidad evento
+ROLE_ADMIN_ADMIN_MODALIDAD_EVENTO_EDIT: Editar modalidad evento
+ROLE_ADMIN_ADMIN_MODALIDAD_EVENTO_VIEW: Ver modalidad evento
+ROLE_ADMIN_ADMIN_MODALIDAD_EVENTO_EXPORT: Exportar modalidad evento
+ROLE_ADMIN_ADMIN_ESTADO_CONTRATO_LIST: Listar estado contrato
+ROLE_ADMIN_ADMIN_ESTADO_CONTRATO_CREATE: Crear estado contrato
+ROLE_ADMIN_ADMIN_ESTADO_CONTRATO_EDIT: Editar estado contrato
+ROLE_ADMIN_ADMIN_ESTADO_CONTRATO_VIEW: Ver estado contrato
+ROLE_ADMIN_ADMIN_ESTADO_CONTRATO_EXPORT: Exportar estado contrato
+ROLE_ADMIN_ADMIN_VARIABLE_GLOBAL_LIST: Listar variable global
+ROLE_ADMIN_ADMIN_VARIABLE_GLOBAL_CREATE: Crear variable global
+ROLE_ADMIN_ADMIN_VARIABLE_GLOBAL_EDIT: Editar variable global
+ROLE_ADMIN_ADMIN_VARIABLE_GLOBAL_VIEW: Ver variable global
+ROLE_ADMIN_ADMIN_VARIABLE_GLOBAL_EXPORT: Exportar variable global
+ROLE_ADMIN_ADMIN_RAMA_LIST: Listar rama
+ROLE_ADMIN_ADMIN_RAMA_CREATE: Crear rama
+ROLE_ADMIN_ADMIN_RAMA_EDIT: Editar rama
+ROLE_ADMIN_ADMIN_RAMA_VIEW: Ver rama
+ROLE_ADMIN_ADMIN_RAMA_EXPORT: Exportar rama
+ROLE_ADMIN_ADMIN_TIPO_PUNTAJE_LIST: Listar tipo puntaje
+ROLE_ADMIN_ADMIN_TIPO_PUNTAJE_CREATE: Crear tipo puntaje
+ROLE_ADMIN_ADMIN_TIPO_PUNTAJE_EDIT: Editar tipo puntaje
+ROLE_ADMIN_ADMIN_TIPO_PUNTAJE_VIEW: Ver tipo puntaje
+ROLE_ADMIN_ADMIN_TIPO_PUNTAJE_EXPORT: Exportar tipo puntaje
+ROLE_ADMIN_ADMIN_TORNEO_BASE_LIST: Listar torneo base
+ROLE_ADMIN_ADMIN_TORNEO_BASE_CREATE: Crear torneo base
+ROLE_ADMIN_ADMIN_TORNEO_BASE_EDIT: Editar torneo base
+ROLE_ADMIN_ADMIN_TORNEO_BASE_VIEW: Ver torneo base
+ROLE_ADMIN_ADMIN_TORNEO_BASE_EXPORT: Exportar torneo base
+ROLE_ADMIN_ADMIN_INDICADOR_LIST: Listar indicador
+ROLE_ADMIN_ADMIN_INDICADOR_CREATE: Crear indicador
+ROLE_ADMIN_ADMIN_INDICADOR_EDIT: Editar indicador
+ROLE_ADMIN_ADMIN_INDICADOR_VIEW: Ver indicador
+ROLE_ADMIN_ADMIN_INDICADOR_EXPORT: Exportar indicador
+ROLE_ADMIN_ADMIN_TIPO_RELACION_LIST: Listar tipo relación
+ROLE_ADMIN_ADMIN_TIPO_RELACION_CREATE: Crear tipo relación
+ROLE_ADMIN_ADMIN_TIPO_RELACION_EDIT: Editar tipo relación
+ROLE_ADMIN_ADMIN_TIPO_RELACION_VIEW: Ver tipo relación
+ROLE_ADMIN_ADMIN_TIPO_RELACION_EXPORT: Exportar tipo relación
+ROLE_ADMIN_ADMIN_ITEM_DESEMPATE_LIST: Listar ítem desempate
+ROLE_ADMIN_ADMIN_ITEM_DESEMPATE_CREATE: Crear ítem desempate
+ROLE_ADMIN_ADMIN_ITEM_DESEMPATE_EDIT: Editar ítem desempate
+ROLE_ADMIN_ADMIN_ITEM_DESEMPATE_VIEW: Ver ítem desempate
+ROLE_ADMIN_ADMIN_ITEM_DESEMPATE_EXPORT: Exportar ítem desempate
+ROLE_ADMIN_ADMIN_JUSTIFICACION_PARTIDO_LIST: Listar justificación partido
+ROLE_ADMIN_ADMIN_JUSTIFICACION_PARTIDO_CREATE: Crear justificación partido
+ROLE_ADMIN_ADMIN_JUSTIFICACION_PARTIDO_EDIT: Editar justificación partido
+ROLE_ADMIN_ADMIN_JUSTIFICACION_PARTIDO_VIEW: Ver justificación partido
+ROLE_ADMIN_ADMIN_JUSTIFICACION_PARTIDO_EXPORT: Exportar justificación partido
+ROLE_ADMIN_ADMIN_BANNER_SIM_LIST: Listar banner SIM
+ROLE_ADMIN_ADMIN_BANNER_SIM_CREATE: Crear banner SIM
+ROLE_ADMIN_ADMIN_BANNER_SIM_EDIT: Editar banner SIM
+ROLE_ADMIN_ADMIN_BANNER_SIM_VIEW: Ver banner SIM
+ROLE_ADMIN_ADMIN_BANNER_SIM_EXPORT: Exportar banner SIM
+ROLE_ADMIN_ADMIN_JUSTIFICACION_W_LIST: Listar justificación W
+ROLE_ADMIN_ADMIN_JUSTIFICACION_W_CREATE: Crear justificación W
+ROLE_ADMIN_ADMIN_JUSTIFICACION_W_EDIT: Editar justificación W
+ROLE_ADMIN_ADMIN_JUSTIFICACION_W_VIEW: Ver justificación W
+ROLE_ADMIN_ADMIN_JUSTIFICACION_W_EXPORT: Exportar justificación W
+ROLE_ADMIN_ADMIN_TIPO_ARTICULO_LIST: Listar tipo artículo
+ROLE_ADMIN_ADMIN_TIPO_ARTICULO_CREATE: Crear tipo artículo
+ROLE_ADMIN_ADMIN_TIPO_ARTICULO_EDIT: Editar tipo artículo
+ROLE_ADMIN_ADMIN_TIPO_ARTICULO_VIEW: Ver tipo artículo
+ROLE_ADMIN_ADMIN_TIPO_ARTICULO_EXPORT: Exportar tipo artículo
+ROLE_ADMIN_ADMIN_TERMINOS_Y_CONDICIONES_LIST: Listar términos y condiciones
+ROLE_ADMIN_ADMIN_TERMINOS_Y_CONDICIONES_CREATE: Crear términos y condiciones
+ROLE_ADMIN_ADMIN_TERMINOS_Y_CONDICIONES_EDIT: Editar términos y condiciones
+ROLE_ADMIN_ADMIN_TERMINOS_Y_CONDICIONES_VIEW: Ver términos y condiciones
+ROLE_ADMIN_ADMIN_TERMINOS_Y_CONDICIONES_EXPORT: Exportar términos y condiciones
+ROLE_ADMIN_ADMIN_RESOLUCION_LIST: Listar resolución
+ROLE_ADMIN_ADMIN_RESOLUCION_CREATE: Crear resolución
+ROLE_ADMIN_ADMIN_RESOLUCION_EDIT: Editar resolución
+ROLE_ADMIN_ADMIN_RESOLUCION_VIEW: Ver resolución
+ROLE_ADMIN_ADMIN_RESOLUCION_EXPORT: Exportar resolución
+ROLE_ADMIN_ADMIN_TIPO_JUSTIFICACION_LIST: Listar tipo justificación
+ROLE_ADMIN_ADMIN_TIPO_JUSTIFICACION_CREATE: Crear tipo justificación
+ROLE_ADMIN_ADMIN_TIPO_JUSTIFICACION_EDIT: Editar tipo justificación
+ROLE_ADMIN_ADMIN_TIPO_JUSTIFICACION_VIEW: Ver tipo justificación
+ROLE_ADMIN_ADMIN_TIPO_JUSTIFICACION_EXPORT: Exportar tipo justificación
+ROLE_ADMIN_ADMIN_DISCIPLINA_LIST: Listar disciplina
+ROLE_ADMIN_ADMIN_DISCIPLINA_CREATE: Crear disciplina
+ROLE_ADMIN_ADMIN_DISCIPLINA_EDIT: Editar disciplina
+ROLE_ADMIN_ADMIN_DISCIPLINA_VIEW: Ver disciplina
+ROLE_ADMIN_ADMIN_DISCIPLINA_EXPORT: Exportar disciplina
+ROLE_ADMIN_ADMIN_FUENTE_FINANCIACION_LIST: Listar fuente de financiación
+ROLE_ADMIN_ADMIN_FUENTE_FINANCIACION_CREATE: Crear fuente de financiación
+ROLE_ADMIN_ADMIN_FUENTE_FINANCIACION_EDIT: Editar fuente de financiación
+ROLE_ADMIN_ADMIN_FUENTE_FINANCIACION_VIEW: Ver fuente de financiación
+ROLE_ADMIN_ADMIN_FUENTE_FINANCIACION_EXPORT: Exportar fuente de financiación
+ROLE_ADMIN_ADMIN_TIPO_ESCENARIO_LIST: Listar tipo escenario
+ROLE_ADMIN_ADMIN_TIPO_ESCENARIO_CREATE: Crear tipo escenario
+ROLE_ADMIN_ADMIN_TIPO_ESCENARIO_EDIT: Editar tipo escenario
+ROLE_ADMIN_ADMIN_TIPO_ESCENARIO_VIEW: Ver tipo escenario
+ROLE_ADMIN_ADMIN_TIPO_ESCENARIO_EXPORT: Exportar tipo escenario
+ROLE_ADMIN_ADMIN_TIPO_EVENTO_LIST: Listar tipo de evento
+ROLE_ADMIN_ADMIN_TIPO_EVENTO_CREATE: Crear tipo de evento
+ROLE_ADMIN_ADMIN_TIPO_EVENTO_EDIT: Editar tipo de evento
+ROLE_ADMIN_ADMIN_TIPO_EVENTO_VIEW: Ver tipo de evento
+ROLE_ADMIN_ADMIN_TIPO_EVENTO_EXPORT: Exportar tipo de evento
+ROLE_ADMIN_ADMIN_CARACTERIZACION_USUARIO_LIST: Listar caracterización de usuario
+ROLE_ADMIN_ADMIN_CARACTERIZACION_USUARIO_CREATE: Crear caracterización de usuario
+ROLE_ADMIN_ADMIN_CARACTERIZACION_USUARIO_EDIT: Editar caracterización de usuario
+ROLE_ADMIN_ADMIN_CARACTERIZACION_USUARIO_VIEW: Ver caracterización de usuario
+ROLE_ADMIN_ADMIN_CARACTERIZACION_USUARIO_EXPORT: Exportar caracterización de usuario
+ROLE_ADMIN_ADMIN_BONIFICACION_JUZGAMIENTO_LIST: Listar bonificación juzgamiento
+ROLE_ADMIN_ADMIN_BONIFICACION_JUZGAMIENTO_CREATE: Crear bonificación juzgamiento
+ROLE_ADMIN_ADMIN_BONIFICACION_JUZGAMIENTO_EDIT: Editar bonificación juzgamiento
+ROLE_ADMIN_ADMIN_BONIFICACION_JUZGAMIENTO_VIEW: Ver bonificación juzgamiento
+ROLE_ADMIN_ADMIN_BONIFICACION_JUZGAMIENTO_EXPORT: Exportar bonificación juzgamiento
+ROLE_ADMIN_ADMIN_CATEGORIA_EVENTO_LIST: Listar categoría evento
+ROLE_ADMIN_ADMIN_CATEGORIA_EVENTO_CREATE: Crear categoría evento
+ROLE_ADMIN_ADMIN_CATEGORIA_EVENTO_EDIT: Editar categoría evento
+ROLE_ADMIN_ADMIN_CATEGORIA_EVENTO_VIEW: Ver categoría evento
+ROLE_ADMIN_ADMIN_CATEGORIA_EVENTO_EXPORT: Exportar categoría evento
+ROLE_ADMIN_ADMIN_SUBCATEGORIA_DISCIPLINA_LIST: Listar subcategoría disciplina
+ROLE_ADMIN_ADMIN_SUBCATEGORIA_DISCIPLINA_CREATE: Crear subcategoría disciplina
+ROLE_ADMIN_ADMIN_SUBCATEGORIA_DISCIPLINA_EDIT: Editar subcategoría disciplina
+ROLE_ADMIN_ADMIN_SUBCATEGORIA_DISCIPLINA_VIEW: Ver subcategoría disciplina
+ROLE_ADMIN_ADMIN_SUBCATEGORIA_DISCIPLINA_EXPORT: Exportar subcategoría disciplina
+ROLE_ADMIN_ADMIN_ESCENARIO_DEPORTIVO_LIST: Listar escenario deportivo
+ROLE_ADMIN_ADMIN_ESCENARIO_DEPORTIVO_CREATE: Crear escenario deportivo
+ROLE_ADMIN_ADMIN_ESCENARIO_DEPORTIVO_EDIT: Editar escenario deportivo
+ROLE_ADMIN_ADMIN_ESCENARIO_DEPORTIVO_VIEW: Ver escenario deportivo
+ROLE_ADMIN_ADMIN_ESCENARIO_DEPORTIVO_EXPORT: Exportar escenario deportivo
+ROLE_ADMIN_ADMIN_UNIDAD_MEDIDA_LIST: Listar unidad de medida
+ROLE_ADMIN_ADMIN_UNIDAD_MEDIDA_CREATE: Crear unidad de medida
+ROLE_ADMIN_ADMIN_UNIDAD_MEDIDA_EDIT: Editar unidad de medida
+ROLE_ADMIN_ADMIN_UNIDAD_MEDIDA_VIEW: Ver unidad de medida
+ROLE_ADMIN_ADMIN_UNIDAD_MEDIDA_EXPORT: Exportar unidad de medida
+ROLE_ADMIN_ADMIN_OBSERVACION_ESCENARIO_LIST: Listar observación de escenario
+ROLE_ADMIN_ADMIN_OBSERVACION_ESCENARIO_CREATE: Crear observación de escenario
+ROLE_ADMIN_ADMIN_OBSERVACION_ESCENARIO_EDIT: Editar observación de escenario
+ROLE_ADMIN_ADMIN_OBSERVACION_ESCENARIO_VIEW: Ver observación de escenario
+ROLE_ADMIN_ADMIN_OBSERVACION_ESCENARIO_EXPORT: Exportar observación de escenario
+ROLE_ADMIN_ADMIN_FESTIVO_LIST: Listar festivo
+ROLE_ADMIN_ADMIN_FESTIVO_CREATE: Crear festivo
+ROLE_ADMIN_ADMIN_FESTIVO_EDIT: Editar festivo
+ROLE_ADMIN_ADMIN_FESTIVO_VIEW: Ver festivo
+ROLE_ADMIN_ADMIN_FESTIVO_EXPORT: Exportar festivo
+ROLE_ADMIN_ADMIN_ETNIA_LIST: Listar etnia
+ROLE_ADMIN_ADMIN_ETNIA_CREATE: Crear etnia
+ROLE_ADMIN_ADMIN_ETNIA_EDIT: Editar etnia
+ROLE_ADMIN_ADMIN_ETNIA_VIEW: Ver etnia
+ROLE_ADMIN_ADMIN_ETNIA_EXPORT: Exportar etnia
+ROLE_ADMIN_ADMIN_CATEGORIA_RAMA_LIST: Listar categoría rama
+ROLE_ADMIN_ADMIN_CATEGORIA_RAMA_CREATE: Crear categoría rama
+ROLE_ADMIN_ADMIN_CATEGORIA_RAMA_EDIT: Editar categoría rama
+ROLE_ADMIN_ADMIN_CATEGORIA_RAMA_VIEW: Ver categoría rama
+ROLE_ADMIN_ADMIN_CATEGORIA_RAMA_EXPORT: Exportar categoría rama
+ROLE_ADMIN_ADMIN_MATRIZ_PROGRAMACION_LIST: Listar matriz programación
+ROLE_ADMIN_ADMIN_MATRIZ_PROGRAMACION_CREATE: Crear matriz programación
+ROLE_ADMIN_ADMIN_MATRIZ_PROGRAMACION_EDIT: Editar matriz programación
+ROLE_ADMIN_ADMIN_MATRIZ_PROGRAMACION_VIEW: Ver matriz programación
+ROLE_ADMIN_ADMIN_MATRIZ_PROGRAMACION_EXPORT: Exportar matriz programación
+ROLE_ADMIN_ADMIN_TIPO_COMPONENTE_LIST: Listar tipo componente
+ROLE_ADMIN_ADMIN_TIPO_COMPONENTE_CREATE: Crear tipo componente
+ROLE_ADMIN_ADMIN_TIPO_COMPONENTE_EDIT: Editar tipo componente
+ROLE_ADMIN_ADMIN_TIPO_COMPONENTE_VIEW: Ver tipo componente
+ROLE_ADMIN_ADMIN_TIPO_COMPONENTE_EXPORT: Exportar tipo componente
+ROLE_ADMIN_ADMIN_MUNICIPIOS_LIST: Listar municipio
+ROLE_ADMIN_ADMIN_MUNICIPIOS_CREATE: Crear municipio
+ROLE_ADMIN_ADMIN_MUNICIPIOS_EDIT: Editar municipio
+ROLE_ADMIN_ADMIN_MUNICIPIOS_VIEW: Ver municipio
+ROLE_ADMIN_ADMIN_MUNICIPIOS_EXPORT: Exportar municipio
+ROLE_ADMIN_ADMIN_BARRIOS_LIST: Listar barrios
+ROLE_ADMIN_ADMIN_BARRIOS_CREATE: Crear barrios
+ROLE_ADMIN_ADMIN_BARRIOS_EDIT: Editar barrios
+ROLE_ADMIN_ADMIN_BARRIOS_VIEW: Ver barrios
+ROLE_ADMIN_ADMIN_BARRIOS_EXPORT: Exportar barrios
+ROLE_ADMIN_ADMIN_TIPO_IDENTIFICACION_LIST: Listar tipo de identificación
+ROLE_ADMIN_ADMIN_TIPO_IDENTIFICACION_CREATE: Crear tipo de identificación
+ROLE_ADMIN_ADMIN_TIPO_IDENTIFICACION_EDIT: Editar tipo de identificación
+ROLE_ADMIN_ADMIN_TIPO_IDENTIFICACION_VIEW: Ver tipo de identificación
+ROLE_ADMIN_ADMIN_TIPO_IDENTIFICACION_EXPORT: Exportar tipo de identificación
+ROLE_ADMIN_ADMIN_TIPO_ENTIDAD_LIST: Listar tipo de entidad
+ROLE_ADMIN_ADMIN_TIPO_ENTIDAD_CREATE: Crear tipo de entidad
+ROLE_ADMIN_ADMIN_TIPO_ENTIDAD_EDIT: Editar tipo de entidad
+ROLE_ADMIN_ADMIN_TIPO_ENTIDAD_VIEW: Ver tipo de entidad
+ROLE_ADMIN_ADMIN_TIPO_ENTIDAD_EXPORT: Exportar tipo de entidad
+ROLE_ADMIN_ADMIN_TIPO_ORGANISMO_LIST: Listar tipo de organismo
+ROLE_ADMIN_ADMIN_TIPO_ORGANISMO_CREATE: Crear tipo de organismo
+ROLE_ADMIN_ADMIN_TIPO_ORGANISMO_EDIT: Editar tipo de organismo
+ROLE_ADMIN_ADMIN_TIPO_ORGANISMO_VIEW: Ver tipo de organismo
+ROLE_ADMIN_ADMIN_TIPO_ORGANISMO_EXPORT: Exportar tipo de organismo
+ROLE_ADMIN_ADMIN_ORGANIZACION_DEPORTIVA_LIST: Listar organización deportiva
+ROLE_ADMIN_ADMIN_ORGANIZACION_DEPORTIVA_CREATE: Crear organización deportiva
+ROLE_ADMIN_ADMIN_ORGANIZACION_DEPORTIVA_EDIT: Editar organización deportiva
+ROLE_ADMIN_ADMIN_ORGANIZACION_DEPORTIVA_VIEW: Ver organización deportiva
+ROLE_ADMIN_ADMIN_ORGANIZACION_DEPORTIVA_EXPORT: Exportar organización deportiva
+ROLE_ADMIN_ADMIN_PERFILES_ORGANIGRAMA_LIST: Listar perfiles organigrama
+ROLE_ADMIN_ADMIN_PERFILES_ORGANIGRAMA_CREATE: Crear perfiles organigrama
+ROLE_ADMIN_ADMIN_PERFILES_ORGANIGRAMA_EDIT: Editar perfiles organigrama
+ROLE_ADMIN_ADMIN_PERFILES_ORGANIGRAMA_VIEW: Ver perfiles organigrama
+ROLE_ADMIN_ADMIN_PERFILES_ORGANIGRAMA_EXPORT: Exportar perfiles organigrama
+ROLE_ADMIN_ADMIN_DISCIPLINA_ORGANIZACION_LIST: Listar disciplina organización
+ROLE_ADMIN_ADMIN_DISCIPLINA_ORGANIZACION_CREATE: Crear disciplina organización
+ROLE_ADMIN_ADMIN_DISCIPLINA_ORGANIZACION_EDIT: Editar disciplina organización
+ROLE_ADMIN_ADMIN_DISCIPLINA_ORGANIZACION_VIEW: Ver disciplina organización
+ROLE_ADMIN_ADMIN_DISCIPLINA_ORGANIZACION_EXPORT: Exportar disciplina organización
+ROLE_ADMIN_ADMIN_ORGANISMO_DEPORTISTA_LIST: Listar organismo deportistas
+ROLE_ADMIN_ADMIN_ORGANISMO_DEPORTISTA_CREATE: Crear organismo deportistas
+ROLE_ADMIN_ADMIN_ORGANISMO_DEPORTISTA_EDIT: Editar organismo deportistas
+ROLE_ADMIN_ADMIN_ORGANISMO_DEPORTISTA_VIEW: Ver organismo deportistas
+ROLE_ADMIN_ADMIN_ORGANISMO_DEPORTISTA_EXPORT: Exportar organismo deportistas
+ROLE_ADMIN_ADMIN_DISCIPLINA_ESTRATEGIA_LIST: Listar disciplina estrategia
+ROLE_ADMIN_ADMIN_DISCIPLINA_ESTRATEGIA_CREATE: Crear disciplina estrategia
+ROLE_ADMIN_ADMIN_DISCIPLINA_ESTRATEGIA_EDIT: Editar disciplina estrategia
+ROLE_ADMIN_ADMIN_DISCIPLINA_ESTRATEGIA_VIEW: Ver disciplina estrategia
+ROLE_ADMIN_ADMIN_DISCIPLINA_ESTRATEGIA_EXPORT: Exportar disciplina estrategia
+ROLE_ADMIN_ADMIN_PROGRAMACION_LIST: Listar programación
+ROLE_ADMIN_ADMIN_PROGRAMACION_CREATE: Crear programación
+ROLE_ADMIN_ADMIN_PROGRAMACION_EDIT: Editar programación
+ROLE_ADMIN_ADMIN_PROGRAMACION_VIEW: Ver programación
+ROLE_ADMIN_ADMIN_PROGRAMACION_EXPORT: Exportar programación
+ROLE_ADMIN_ADMIN_DIA_LIST: Listar día
+ROLE_ADMIN_ADMIN_DIA_CREATE: Crear día
+ROLE_ADMIN_ADMIN_DIA_EDIT: Editar día
+ROLE_ADMIN_ADMIN_DIA_VIEW: Ver día
+ROLE_ADMIN_ADMIN_DIA_EXPORT: Exportar día
+ROLE_ADMIN_ADMIN_CLIENT_LIST: Listar cliente
+ROLE_ADMIN_ADMIN_CLIENT_CREATE: Crear cliente
+ROLE_ADMIN_ADMIN_CLIENT_EDIT: Editar cliente
+ROLE_ADMIN_ADMIN_CLIENT_VIEW: Ver cliente
+ROLE_ADMIN_ADMIN_CLIENT_EXPORT: Exportar cliente
+ROLE_ADMIN_ADMIN_PREINSCRIPCION_OFERTA_LIST: Listar preinscripción oferta
+ROLE_ADMIN_ADMIN_PREINSCRIPCION_OFERTA_CREATE: Crear preinscripción oferta
+ROLE_ADMIN_ADMIN_PREINSCRIPCION_OFERTA_EDIT: Editar preinscripción oferta
+ROLE_ADMIN_ADMIN_PREINSCRIPCION_OFERTA_VIEW: Ver preinscripción oferta
+ROLE_ADMIN_ADMIN_PREINSCRIPCION_OFERTA_EXPORT: Exportar preinscripción oferta
+ROLE_ADMIN_ADMIN_CAMPO_USUARIO_LIST: Listar campo usuario
+ROLE_ADMIN_ADMIN_CAMPO_USUARIO_CREATE: Crear campo usuario
+ROLE_ADMIN_ADMIN_CAMPO_USUARIO_EDIT: Editar campo usuario
+ROLE_ADMIN_ADMIN_CAMPO_USUARIO_VIEW: Ver campo usuario
+ROLE_ADMIN_ADMIN_CAMPO_USUARIO_EXPORT: Exportar campo usuario
+ROLE_ADMIN_ADMIN_TENDENCIA_LIST: Listar tendencia
+ROLE_ADMIN_ADMIN_TENDENCIA_CREATE: Crear tendencia
+ROLE_ADMIN_ADMIN_TENDENCIA_EDIT: Editar tendencia
+ROLE_ADMIN_ADMIN_TENDENCIA_VIEW: Ver tendencia
+ROLE_ADMIN_ADMIN_TENDENCIA_EXPORT: Exportar tendencia
+ROLE_ADMIN_ADMIN_TENDENCIA_ESTRATEGIA_LIST: Listar tendencia estrategia
+ROLE_ADMIN_ADMIN_TENDENCIA_ESTRATEGIA_CREATE: Crear tendencia estrategia
+ROLE_ADMIN_ADMIN_TENDENCIA_ESTRATEGIA_EDIT: Editar tendencia estrategia
+ROLE_ADMIN_ADMIN_TENDENCIA_ESTRATEGIA_VIEW: Ver tendencia estrategia
+ROLE_ADMIN_ADMIN_TENDENCIA_ESTRATEGIA_EXPORT: Exportar tendencia estrategia
+ROLE_ADMIN_ADMIN_DISCAPACIDAD_LIST: Listar discapacidad
+ROLE_ADMIN_ADMIN_DISCAPACIDAD_CREATE: Crear discapacidad
+ROLE_ADMIN_ADMIN_DISCAPACIDAD_EDIT: Editar discapacidad
+ROLE_ADMIN_ADMIN_DISCAPACIDAD_VIEW: Ver discapacidad
+ROLE_ADMIN_ADMIN_DISCAPACIDAD_EXPORT: Exportar discapacidad
+ROLE_ADMIN_ADMIN_SUB_DISCAPACIDAD_LIST: Listar sub discapacidad
+ROLE_ADMIN_ADMIN_SUB_DISCAPACIDAD_CREATE: Crear sub discapacidad
+ROLE_ADMIN_ADMIN_SUB_DISCAPACIDAD_EDIT: Editar sub discapacidad
+ROLE_ADMIN_ADMIN_SUB_DISCAPACIDAD_VIEW: Ver sub discapacidad
+ROLE_ADMIN_ADMIN_SUB_DISCAPACIDAD_EXPORT: Exportar sub discapacidad
+ROLE_ADMIN_ADMIN_TIPO_DESPLAZADO_LIST: Listar desplazado
+ROLE_ADMIN_ADMIN_TIPO_DESPLAZADO_CREATE: Crear desplazado
+ROLE_ADMIN_ADMIN_TIPO_DESPLAZADO_EDIT: Editar desplazado
+ROLE_ADMIN_ADMIN_TIPO_DESPLAZADO_VIEW: Ver desplazado
+ROLE_ADMIN_ADMIN_TIPO_DESPLAZADO_EXPORT: Exportar desplazado
+ROLE_ADMIN_ADMIN_EPS_LIST: Listar EPS
+ROLE_ADMIN_ADMIN_EPS_CREATE: Crear EPS
+ROLE_ADMIN_ADMIN_EPS_EDIT: Editar EPS
+ROLE_ADMIN_ADMIN_EPS_VIEW: Ver EPS
+ROLE_ADMIN_ADMIN_EPS_EXPORT: Exportar EPS
+ROLE_ADMIN_ADMIN_NIVEL_ESCOLARIDAD_LIST: Listar nivel escolaridad
+ROLE_ADMIN_ADMIN_NIVEL_ESCOLARIDAD_CREATE: Crear nivel escolaridad
+ROLE_ADMIN_ADMIN_NIVEL_ESCOLARIDAD_EDIT: Editar nivel escolaridad
+ROLE_ADMIN_ADMIN_NIVEL_ESCOLARIDAD_VIEW: Ver nivel escolaridad
+ROLE_ADMIN_ADMIN_NIVEL_ESCOLARIDAD_EXPORT: Exportar nivel escolaridad
+ROLE_ADMIN_ADMIN_TIPO_ESTABLECIMIENTO_EDUCATIVO_LIST: Listar tipo establecimiento
+ROLE_ADMIN_ADMIN_TIPO_ESTABLECIMIENTO_EDUCATIVO_CREATE: Crear tipo establecimiento
+ROLE_ADMIN_ADMIN_TIPO_ESTABLECIMIENTO_EDUCATIVO_EDIT: Editar tipo establecimiento
+ROLE_ADMIN_ADMIN_TIPO_ESTABLECIMIENTO_EDUCATIVO_VIEW: Ver tipo establecimiento
+ROLE_ADMIN_ADMIN_TIPO_ESTABLECIMIENTO_EDUCATIVO_EXPORT: Exportar tipo establecimiento
+ROLE_ADMIN_ADMIN_ESTABLECIMIENTO_EDUCATIVO_LIST: Listar establecimiento educativo
+ROLE_ADMIN_ADMIN_ESTABLECIMIENTO_EDUCATIVO_CREATE: Crear establecimiento educativo
+ROLE_ADMIN_ADMIN_ESTABLECIMIENTO_EDUCATIVO_EDIT: Editar establecimiento educativo
+ROLE_ADMIN_ADMIN_ESTABLECIMIENTO_EDUCATIVO_VIEW: Ver establecimiento educativo
+ROLE_ADMIN_ADMIN_ESTABLECIMIENTO_EDUCATIVO_EXPORT: Exportar establecimiento educativo
+ROLE_ADMIN_ADMIN_OCUPACION_LIST: Listar ocupación
+ROLE_ADMIN_ADMIN_OCUPACION_CREATE: Crear ocupación
+ROLE_ADMIN_ADMIN_OCUPACION_EDIT: Editar ocupación
+ROLE_ADMIN_ADMIN_OCUPACION_VIEW: Ver ocupación
+ROLE_ADMIN_ADMIN_OCUPACION_EXPORT: Exportar ocupación
+ROLE_ADMIN_ADMIN_TIPO_SANGRE_LIST: Listar tipo de sangre
+ROLE_ADMIN_ADMIN_TIPO_SANGRE_CREATE: Crear tipo de sangre
+ROLE_ADMIN_ADMIN_TIPO_SANGRE_EDIT: Editar tipo de sangre
+ROLE_ADMIN_ADMIN_TIPO_SANGRE_VIEW: Ver tipo de sangre
+ROLE_ADMIN_ADMIN_TIPO_SANGRE_EXPORT: Exportar tipo de sangre
+ROLE_ADMIN_ADMIN_PLAN_ANUAL_METODOLOGICO_LIST: Listar Guia Metodológica
+ROLE_ADMIN_ADMIN_PLAN_ANUAL_METODOLOGICO_CREATE: Crear Guia Metodológica
+ROLE_ADMIN_ADMIN_PLAN_ANUAL_METODOLOGICO_EDIT: Editar Guia Metodológica
+ROLE_ADMIN_ADMIN_PLAN_ANUAL_METODOLOGICO_VIEW: Ver Guia Metodológica
+ROLE_ADMIN_ADMIN_PLAN_ANUAL_METODOLOGICO_EXPORT: Exportar Guia Metodológica
+ROLE_ADMIN_ADMIN_EVENTO_CREATE: Crear Evento
+ROLE_ADMIN_ADMIN_EVENTO_EDIT: Editar Evento
+ROLE_ADMIN_ADMIN_EVENTO_LIST: Listar Evento
+ROLE_ADMIN_ADMIN_EVENTO_EXPORT: Exportar Evento
+ROLE_ADMIN_ADMIN_EVENTO_VIEW: Ver Evento
+ROLE_ADMIN_ADMIN_EQUIPO_EVENTO_LIST: Listar Equipos Evento
+ROLE_ADMIN_ADMIN_EQUIPO_EVENTO_CREATE: Crear Equipos Evento
+ROLE_ADMIN_ADMIN_EQUIPO_EVENTO_EDIT: Editar Equipos Evento
+ROLE_ADMIN_ADMIN_EQUIPO_EVENTO_VIEW: Ver Equipos Evento
+ROLE_ADMIN_ADMIN_EQUIPO_EVENTO_EXPORT: Exportar Equipos Evento
+ROLE_ADMIN_ADMIN_JUGADOR_EVENTO_LIST: Listar Jugadores Evento
+ROLE_ADMIN_ADMIN_JUGADOR_EVENTO_CREATE: Crear Jugadores Evento
+ROLE_ADMIN_ADMIN_JUGADOR_EVENTO_EDIT: Editar Jugadores Evento
+ROLE_ADMIN_ADMIN_JUGADOR_EVENTO_VIEW: Ver Jugadores Evento
+ROLE_ADMIN_ADMIN_JUGADOR_EVENTO_EXPORT: Exportar Jugadores Evento
+ROLE_ADMIN_ADMIN_SANCION_LIST: Listar sanción
+ROLE_ADMIN_ADMIN_SANCION_CREATE: Crear sanción
+ROLE_ADMIN_ADMIN_SANCION_EDIT: Editar sanción
+ROLE_ADMIN_ADMIN_SANCION_VIEW: Ver sanción
+ROLE_ADMIN_ADMIN_SANCION_EXPORT: Exportar sanción
+ROLE_ADMIN_ADMIN_ENCUENTRO_SISTEMA_UNO_LIST: Listar Encuentros Sistema Uno
+ROLE_ADMIN_ADMIN_ENCUENTRO_SISTEMA_UNO_CREATE: Crear Encuentros Sistema Uno
+ROLE_ADMIN_ADMIN_ENCUENTRO_SISTEMA_UNO_EDIT: Editar Encuentros Sistema Uno
+ROLE_ADMIN_ADMIN_ENCUENTRO_SISTEMA_UNO_VIEW: Ver Encuentros Sistema Uno
+ROLE_ADMIN_ADMIN_ENCUENTRO_SISTEMA_UNO_EXPORT: Exportar Encuentros Sistema Uno
+ROLE_ADMIN_ADMIN_ENCUENTRO_SISTEMA_DOS_LIST: Listar Encuentros Sistema Dos
+ROLE_ADMIN_ADMIN_ENCUENTRO_SISTEMA_DOS_CREATE: Crear Encuentros Sistema Dos
+ROLE_ADMIN_ADMIN_ENCUENTRO_SISTEMA_DOS_EDIT: Editar Encuentros Sistema Dos
+ROLE_ADMIN_ADMIN_ENCUENTRO_SISTEMA_DOS_VIEW: Ver Encuentros Sistema Dos
+ROLE_ADMIN_ADMIN_ENCUENTRO_SISTEMA_DOS_EXPORT: Exportar Encuentros Sistema Dos
+ROLE_ADMIN_ADMIN_ENCUENTRO_SISTEMA_TRES_LIST: Listar Encuentros Sistema Tres
+ROLE_ADMIN_ADMIN_ENCUENTRO_SISTEMA_TRES_CREATE: Crear Encuentros Sistema Tres
+ROLE_ADMIN_ADMIN_ENCUENTRO_SISTEMA_TRES_EDIT: Editar Encuentros Sistema Tres
+ROLE_ADMIN_ADMIN_ENCUENTRO_SISTEMA_TRES_VIEW: Ver Encuentros Sistema Tres
+ROLE_ADMIN_ADMIN_ENCUENTRO_SISTEMA_TRES_EXPORT: Exportar Encuentros Sistema Tres
+ROLE_ADMIN_ADMIN_ENCUENTRO_SISTEMA_CUATRO_LIST: Listar Encuentros Sistema Cuatro
+ROLE_ADMIN_ADMIN_ENCUENTRO_SISTEMA_CUATRO_CREATE: Crear Encuentros Sistema Cuatro
+ROLE_ADMIN_ADMIN_ENCUENTRO_SISTEMA_CUATRO_EDIT: Editar Encuentros Sistema Cuatro
+ROLE_ADMIN_ADMIN_ENCUENTRO_SISTEMA_CUATRO_VIEW: Ver Encuentros Sistema Cuatro
+ROLE_ADMIN_ADMIN_ENCUENTRO_SISTEMA_CUATRO_EXPORT: Exportar Encuentros Sistema Cuatro
+ROLE_ADMIN_ADMIN_TIPO_FALTA_LIST: Listar tipo de falta
+ROLE_ADMIN_ADMIN_TIPO_FALTA_CREATE: Crear tipo de falta
+ROLE_ADMIN_ADMIN_TIPO_FALTA_EDIT: Editar tipo de falta
+ROLE_ADMIN_ADMIN_TIPO_FALTA_VIEW: Ver tipo de falta
+ROLE_ADMIN_ADMIN_TIPO_FALTA_EXPORT: Exportar tipo de falta
+ROLE_ADMIN_ADMIN_SUB_CATEGORIA_EVENTO_LIST: Listar Subcategoria Evento
+ROLE_ADMIN_ADMIN_SUB_CATEGORIA_EVENTO_CREATE: Crear Subcategoria Evento
+ROLE_ADMIN_ADMIN_SUB_CATEGORIA_EVENTO_EDIT: Editar Subcategoria Evento
+ROLE_ADMIN_ADMIN_SUB_CATEGORIA_EVENTO_VIEW: Ver Subcategoria Evento
+ROLE_ADMIN_ADMIN_SUB_CATEGORIA_EVENTO_EXPORT: Exportar Subcategoria Evento
+ROLE_ADMIN_ADMIN_PLAN_CLASE_EXPORT: Exportar Plan de Clase
+ROLE_ADMIN_ADMIN_PLAN_CLASE_LIST: Lista Plan de Clase 
+ROLE_ADMIN_ADMIN_PLAN_CLASE_EDIT: Editar Plan de Clase
+ROLE_ADMIN_ADMIN_PLAN_CLASE_CREATE: Crear Plan de Clase
+ROLE_ADMIN_ADMIN_PLAN_CLASE_VIEW: Ver Plan de Clase
+ROLE_ADMIN_ADMIN_BANNER_LIST: Listar anuncio
+ROLE_ADMIN_ADMIN_BANNER_CREATE: Crear anuncio
+ROLE_ADMIN_ADMIN_BANNER_EDIT: Editar anuncio
+ROLE_ADMIN_ADMIN_BANNER_VIEW: Ver anuncio
+ROLE_ADMIN_ADMIN_BANNER_EXPORT: Exportar anuncio
+"ROLE_ADMIN: ROLE_USER, ROLE_SONATA_ADMIN, ROLE_PERSONAJURIDICA, ROLE_PERSONANATURAL, ROLE_ORGANISMO_DEPORTIVO": Rol administrador
+ROLE_USER: Rol usuario
+ROLE_SONATA_ADMIN: Rol sonata admin
+ROLE_PERSONAJURIDICA: Persona jurídica
+ROLE_ORGANISMO_DEPORTIVO: Organismo deportivo
+ROLE_PERSONANATURAL: Persona natural
+"ROLE_SUPER_ADMIN: ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH": Rol switch admin
+ROLE_ALLOWED_TO_SWITCH: Rol switch
+"ROLE_DEPORTISTA: ROLE_DEPORTISTA": Rol deportista
+"ROLE_REPORTE_ESTADISTICAS: ROLE_REPORTE_ESTADISTICAS": Rol estadísticas
+ROLE_ADMIN: Acceso Dashboard
+ROLE_REPORTE_ESTADISTICAS: Rol estadística
+ROLE_SUPER_ADMIN: Súper usuario
+"ROLE_FORMADOR: ROLE_FORMADOR": Rol formador
+ROLE_FORMADOR: Rol formador
+ROLE_GESTOR_TERRITORIAL: Rol gestor territorial
+export_format_pdf: PDF
+export_format_xls: XLS
+export_format_csv: CSV
+export_format_jpg: JPG
+"ROLE_GESTOR_ESCENARIO: ROLE_GESTOR_ESCENARIO": Gestor escenario
+ROLE_GESTOR_ESCENARIO: Gestor escenario
+export_format_jpg: JPG
+"ROLE_PREINSCRIPCION_ADMINISTRAR_PREINSCRITOS: ROLE_PREINSCRIPCION_ADMINISTRAR_PREINSCRITOS": Administrar preinscritos de oferta
+ROLE_PREINSCRIPCION_ADMINISTRAR_PREINSCRITOS: Administrar preinscritos de oferta
+
+ROLE_ADMIN_ADMIN_RESERVA_LIST: Listar reserva
+ROLE_ADMIN_ADMIN_RESERVA_CREATE: Crear reserva
+ROLE_ADMIN_ADMIN_RESERVA_EDIT: Editar reserva
+ROLE_ADMIN_ADMIN_RESERVA_VIEW: Ver reserva
+ROLE_ADMIN_ADMIN_RESERVA_EXPORT: Exportar reserva
+ROLE_ADMIN_ADMIN_TIPO_RESERVA_LIST: Listar tipo reserva
+ROLE_ADMIN_ADMIN_TIPO_RESERVA_CREATE: Crear tipo reserva
+ROLE_ADMIN_ADMIN_TIPO_RESERVA_EDIT: Editar tipo reserva
+ROLE_ADMIN_ADMIN_TIPO_RESERVA_VIEW: Ver tipo reserva
+ROLE_ADMIN_ADMIN_TIPO_RESERVA_EXPORT: Exportar tipo reserva
+ROLE_MEDICO: Médico
+ROLE_DEPORTISTA: Deportista
+ROLE_NUTRICIONISTA: Nutricionista
+ROLE_ADMINISTRAR_ORGANISMOS_DEPORTIVOS: Administrar organismos deportivos
+
+ROLE_ADMIN_ADMIN_BLOQUEO_ESCENARIO_LIST: Listar bloqueos de escenario
+ROLE_ADMIN_ADMIN_BLOQUEO_ESCENARIO_CREATE: Crerar bloqueos de escenario
+ROLE_ADMIN_ADMIN_BLOQUEO_ESCENARIO_VIEW: Ver bloqueos de escenario
+ROLE_ADMIN_ADMIN_BLOQUEO_ESCENARIO_EDIT: Editar bloqueos de escenario
+ROLE_ADMIN_ADMIN_BLOQUEO_ESCENARIO_EXPORT: Exportar bloqueos de escenario
+###########  Texto "List" Bradcrumb Sonata  #################
+
+
+Bloqueo Escenario List: Escenarios bloqueados
+Action: Acciones
+Delete: Borrar
+Accion List: Lista de acciones
+Area List: Lista de áreas
+Estrategia List: Lista de estrategias
+Categoria Institucional List: Lista de categorias institucionales
+Atributo Disciplina List: Lista de atributos de disciplina
+Banner Create: Crear banner
+Banner List: Listar banner
+Banner Sim List: Lista de banners
+Bonificacion Juzgamiento List: Lista de bonificaciones de juzgamiento
+Campo Ambiental List: Lista campos ambientales
+Campo Infraestructura List: Lista campos Infraestructura
+Caracterizacion Usuario List: Lista de caracterizaciones de usuario
+Categoria Disciplina List: Categorías de disciplinas
+Categoria Infraestructura List: Lista de categorias de Infraestructura
+Categoria Evento List: Lista de categorías de evento
+Categoria Rama List: Lista de categorías de ramas
+Client List: Lista de clientes OAUTH 2
+Discapacidad List: Listar discapacidad
+Disciplina List: Lista de disciplinas
+Eps Create: Crear EPS
+Eps List: Listar EPS
+Encuentro Sistema Tres List: Encuentros Eliminatoria
+Enfoque List: Enfoque
+Escenario Deportivo List: Escenarios deportivos
+Establecimiento Educativo List: Lista de establecimientos educativos
+Estado Contrato List: Lista de estados de contrato
+Etnia Create: Crear etnia
+Etnia List: Lista de etnias
+Festivo List: Lista de festivos
+Fuente Financiacion List: Lista de fuentes de financiación
+Group List: Lista de roles
+Group Create: Crear rol
+Indicador List: Lista de indicadores
+Item Desempate List: Lista de ítems de desempate
+Jugador Evento List: Jugador evento
+Justificacion Partido List: Lista de justificaciones de partidos
+Justificacion W List: Lista de justificaciones por W
+Matriz Programacion List: Lista de matrices de programación
+Modalidad Evento List: Lista de modalidades de eventos
+Motivo Reseva List: Lista de motivos de reserva
+Nivel Escolaridad Create: Crear nivel escolaridad
+Nivel Escolaridad List: Listar nivel escolaridad
+Observacion Escenario List: Lista de observaciones de escenarios
+Ocupacion Create: Crear ocupación
+Ocupacion List: Listar ocupación
+Oferta List: Lista de ofertas
+Organizacion Deportiva List: Listar organizaciones deportiva
+Preinscripcion Oferta List: Usuarios pre-inscritos
+Programa List: Lista de programas
+Proyecto List: Lista de proyectos
+Punto Atencion List: Lista de puntos de atención
+Punto Atencion Create: Crear punto atención
+Rama List: Lista de ramas
+Rama Create: Crear rama
+Reserva List: Reservas de escenarios deportivos
+Resolucion List: Lista de resoluciones
+Sancion List: Lista de sanciones
+Sistema Puntaje List: Lista de sistemas de puntaje
+Subcategoria Disciplina List: Lista de subcategorias de disciplinas
+Sub Discapacidad Create: Crear sub discapacidad
+Sub Discapacidad List: Listar sub discapacidad
+Terminos Y Condiciones List: Lista de términos y condiciones
+Terminos Y Condiciones Evento List: Lista de términos y condiciones de eventos
+Tipo Articulo List: Lista de tipos de artículos
+Tipo Componente List: Lista de tipos de componentes
+Tipo Documento List: Lista de tipos de documentos
+Tipo Desplazado Create: Crear tipo de desplazados
+Tipo Desplazado List: Listar tipo de desplazados
+Tipo Escenario List: Lista de tipos de escenario
+Tipo Establecimiento Educativo Create: Crear tipo establecimiento educativo
+Tipo Establecimiento Educativo List: Listar tipo establecimiento educativo
+Tipo Evento List: Lista de tipos de eventos
+Tipo Falta List: Lista de tipos de faltas
+Tipo Justificacion List: Lista de tipos de justificación
+Tipo Puntaje List: Lista de tipos de puntaje
+Tipo Recurso List: Lista de tipos de recursos
+Tipo Relacion List: Lista de tipos de relaciones
+Tipo Sangre Create: Crear tipo de sangre
+Tipo Sangre List: Listar tipo de sangre
+Torneo Base List: Lista de torneos base
+Unidad Medida List: Lista de unidades de medida
+User List: Lista de usuarios
+Usuario Escenario Deportivo List: Gestores de escenarios
+Variable Global List: Lista de variables globales
+Tipo Organismo List: Lista tipo organismo
+Municipio List: Lista de municipios
+Municipio Create: Crear municipio
+Barrio List: Lista de barrios
+Barrio Create: Crear barrio
+Tipo Identificacion List: Lista tipo de identificación
+Tipo Entidad List: Lista tipo de entidad
+Tendencia List: Lista de tendencia
+Encuesta List: Encuestas
+Direccion format: Formato de la dirección
+Tipo Reserva List: Lista de tipo reserva 
+Tipo Reserva Create: Crear tipo reserva 
+Sub Categoria Evento List: Lista de Subcategorías de eventos
+Plan Anual Metodologico List: Guías Metodológicas
+Plan Clase List: Planes de clases
+Actividad List: Lista de actividades
+Noticia List: Lista de noticias
+Kit Territorial List: Kits Territoriales
+Encuentro Sistema Uno List: Escalera
+Encuentro Sistema Uno Resultado: Resultado
+Continuar: Continuar
+Ninguno List: Ninguno
+Mostrar: Mostrar
+Encuentro Sistema Dos List:  Sistema Por Liga
+Encuentro Sistemma Uno editar: Editar
+Equipo Evento List : Equipos 
+Equipo Evento Create : Crear equipo
+EquipoEvento : Equipo
+Unidad Deportiva List: Lista de unidad deportiva 
+Unidad Deportiva Create: Crear unidad deportiva 
+Tipo Escenario Create: Crear tipo escenario
+Categoria Division List: Lista de categorías de división
+Categoria Division Create: Crear categoría división 
+gender_undefined: Indeterminado
+gender_female: Femenino
+Evento List : Lista de eventos
+Enlace Create: Crear Enlace
+Categoria Enlace Create: Crear Categoria Enlace 
+Recomendado Create : Crear Recomendado
+Noticia Create: Crear Noticia
+gender_male: Masculino
+tiempovigencia: 5
+Modelo List: Lista de modelos
+api :
+    mensajes :
+        error :
+            tipo_documento : Por favor ingrese un tipo de documento
+            numero_identificacion : Por favor ingrese un número de identificación
+            nombre : Por favor ingrese un nombre
+            apellido : Por favor ingrese apellidos
+            sexo : Por favor ingrese sexo
+            fecha_nacimiento : Por favor ingrese una fecha de nacimiento
+            clave : Por favor ingrese una clave
+            barrio : Por favor ingrese un barrio
+            comuna : Por favor ingrese una comuna
+            direccion : Por favor ingrese una direccion
+            estrato : Por favor ingrese un estrato
+            correo : Por favor ingrese un correo
+            usuario_ya_registrado : El Usuario ya se encuentra registrado
+            tipo_identificacion_no_existe : El Tipo de documento ingresado no es válido
+            orientacion_sexual_no_existe : La Orientación sexual ingresada no es válida
+            barrio_no_existe: El Barrio ingresado no es válido
+            comuna_no_existe: La Comuna ingresada no es válida
+            estrato_no_existe: El Estrato ingresado no es válido
+            email_no_valido: El Correo Electrónico ingresado no es válido
+            unaletra: La contraseña debe contener al menos una letra.
+            unamayuscula: Debe contener al menos una mayúscula.
+            unnumero: La contraseña debe contener al menos un número.
+            caracteresminimo: Debe contener al menos 6 caracteres.            
+            no_encontrado: Elemento no encontrado.
+            escenario_deportivo_no_encontrado: Escenario Deportivo no encontrado.
+            fecha_campo_vacio: El campo Fecha no puede estar vacio.
+            hora_inicial_campo_vacio: El campo Hora Inicial no puede estar vacio.
+            hora_final_campo_vacio: El campo Hora Final no puede estar vacio.
+            usuario_no_encontrado: El Usuario no es valido.
+            reserva_no_encontrado: La Reserva no es valida.
+            division_no_encontrado: La División no es valida.
+            reserva_id_campo_vacio: El campo reserva id no puede estar vacio.
+            division_id_campo_vacio: El campo División id no puede estar vacio.
+            usuarios_reserva_campo_vacio: El campo Usuarios no puede estar vacio.
+            usuarios_reserva_usuario_id: El Usuario con el identificador
+            usuarios_reserva_no_existe: no existe
+            mis_reservas_no_existe: Usted no tiene Reservas
+            mis_escenarios_no_existe: Usted no tiene Escenarios Deportivos
+            reserva_usuarios_no_existe: La Reserva no tiene usuarios asignados
+
+flash_batch_merge_error: Se presento un error al momento de realizar la acción.
+
+Reserva Edit: Editar reserva
+Categoria Infraestructura Edit: Categoría Infraestructura
+
+admin:
+    botones: 
+        cancelar: Cancelar
+        descargar: Descargar
+        enviar: Enviar
+        guardar: Guardar
+        solicitud: Responder solicitud
+        editar: Editar
+    detallesolicitud: 
+        aprobar: Aprobado
+        alertas:
+            obstituloalerta: Atención
+            destituloalerta: Por favor diligencie las observaciones.
+            icotituloalerta: <i class='fa fa-sad' aria-hidden='true'></i>
+        detalle: Detalle
+        infogeneral: Información general
+        infodisciplinas: Disciplinas
+        observaciones: Observaciones
+        rechazar: Rechazado
+        titulo: Aprobar o rechazar solicitud
+        volver: Volver
+        vigencia: Vigencia
+    organizaciondeportiva:
+        fecharegistro: Fecha registro
+        periodoestatutario: Período estatutario
+        terminoregistro: Registro terminado
+    tituloacciones: Acciones
+    
+alerta:
+    usuarios_aprobados: Usuario(s) Aprobado(s).
+    reservas_aprobadas: Reserva(s) Aprobada(s).
+    usuarios_recambio: Usuario(s) actualizado(s) a Recambio
+    usuarios_exitoso: Usuario(s) actualizado(s) a Exitoso
+    usuarios_Pendiente: Usuario(s) actualizado(s) a Pendiente
+    equipos_aprobados: Equipo(s) Aprobado(s).
+    equipos_rechazados: Equipo(s) Rechazado(s).
+    
+
+    reservas_rechazadas: Reserva(s) Rechazadas(s).
+    escenario_deportivo_eliminado: Escenario(s) deportivo(s) eliminado(s) exitosamente
+    error_eliminar_escenario_deportivo: Escenario(s) deportivo(s) eliminado(s) exitosamente
+
+area:
+    nombre: Nombre
+    codigo: Código alcaldía
+    descripcion: Descripción
+    activo: Activo
+ 
+ayuda:
+    direccion: Esta guía te puede ayudar a ingresar tu dirección. Utiliza los campos que necesites.
+boton:
+    cancelar: Cancelar
+    enviar: Enviar
+    oferta: 
+        preinscritos: Ver preinscripciones
+        preinscribirme: Ver
+    preinscripcion: 
+        aprobar: Aprobar
+        rechazar: Rechazar
+    guardar: Guardar
+    ver_perfil: Ver Perfil
+    salir: Salir
+
+btn:
+    aprobar_rechazar: Aprobar o rechazar
+    accion:
+        crear: Crear
+    asistencia: Asistencia
+    cancelar_reserva: Cancelar reserva
+    cambiar:
+        contrasena: Cambiar contraseña
+    cargar: 
+        excel: Subir documento Excel
+    cerrar: Cerrar
+    crear:
+        carne: Crear carné
+        mostrar: Mostrar
+        carnes: Carnés
+        estrategia: Crear estrategia
+        nuevo: Crear usuario y agregar a oferta
+        oferta: Crear oferta
+        proyecto: Crear proyecto
+    descargar: Descargar
+    editar: Editar
+
+correos:
+    preinscripcion:
+        asunto: Actualización de preinscripción
+        mensaje:  Hola, tu solicitud fue %estado%, para ingresar a la oferta da clic en el siguiente botón.
+    reserva:
+        titulo: Comprobante de solicitud de reserva
+        asunto: Solicitud de reserva éxitosa
+        usuarios: Usuarios
+    reserva_gestor:
+        asunto: Nueva solicitud de reserva de escenario deportivo
+        titulo: Nueva solicitud de reserva de escenario deportivo
+        usuarios: Usuarios que asistiran
+        usuario: Usuario que solicita
+    cambiossolicitud:
+        aprobado:  Aprobada
+        asunto: Actualización para solicitud de registro
+        mensaje:  Hola, tu solicitud fue %estado%, para ingresar a tu cuenta da clic en el siguiente botón.
+        mensajevigencia:  La vigencia del registro es hasta %vigencia%.
+        rechazada:  Rechazada
+        tituloobservaciones: Observaciones:.
+    mensaje:
+        cambio:
+            email: Tu usuario ha sido modificado
+            username: Tu usuario ha sido modificado
+            datos: Hola, tu correo a cambiado de <span>%email1%</span> a <span>%email2%</span>
+            acceso: Hola, el administrador ha modificado tus datos de acceso al sistema, para ingresar de nuevo podrás hacer con los siguientes datos
+            tipoDocumento: Tipo de documento
+            numeroIdentificacion: Número de identificación
+    sujeto:
+        cambio: Tus datos han sido modificados.
+
+    reserva_respuesta:
+        titulo: Respuesta solicitud de reserva escenario deportivo
+        asunto: Respuesta solicitud de reserva escenario deportivo
+        estado_reserva: Estado reserva
+        motivo_cancelacion: Motivo de cancelación
+    evento:
+        jugadorEventoAsunto: Solicitud Adjuntar Documentos Usuario
+    usuario:
+        registroUsuarioAsunto: Solicitud Adjuntar Documentos Organismo Deportivo
+    oferta:
+        asunto: Usuario Expulsado Oferta
+        titulo: Usuario Expulsado Oferta Por Inasistencias
+        mensaje: El Usuario %usuario% con Número de Identificación %noIdentificacion% ha sido Expulsado de la Oferta %oferta% por superar el maximo de Inasistencias permitidas %cantidadMaximaInasistencias%
+
+
+error:
+    cruce:
+        reserva: Hay una reserva activa en la(s) división(es) seleccionada(s), en las fechas y horas definidas.
+        oferta:  Hay una oferta activa en algunas de las divisiones del escenario seleccionado, en caso de no encontrar divisiones disponibles por favor cambiar los parámetros de la reserva.
+    division:
+        bloqueo: |
+            Una o mas de las divisiónes seleccionadas estan bloqueadas del %inicio% al %fin% de %hinicio% a %hfin% por: %causa%.
+    general: Ocurrió un error el enviar la información.
+    clave:
+        regex: La clave debe tener mínimo un número, una letras y ser mínimo de 6 caracteres.
+    carnes:
+        pdf: Se presento un problema al momento de crear los carnés de los participantes.
+    no_numeros: No se permite números
+    solo_numeros: Solo se permite números
+    eliminar:
+        disciplina: No se puede eliminar las disciplinas que ya estén asociadas a divisiones.
+    estrategia_disciplina:
+        repetida: La disciplina %valor% ya fue seleccionada.
+        cobertura_min: En la disciplina "%disciplina%" el valor Cobertura mínima no puede ser mayor a Cobertura máxima.
+        cobertura_ideal: En la disciplina "%disciplina%" el valor Cobertura ideal no puede ser mayor a Cobertura máxima.
+    estrategia_tendencia:
+        repetida: La tendencia %valor% ya fue seleccionada.
+        cobertura_min: En la tendencia "%tendencia%" el valor Cobertura mínima no puede ser mayor a Cobertura máxima.
+        cobertura_max: En la tendencia "%tendencia%" el valor Cobertura máxima no puede ser mayor a Cobertura mínima.
+        vacio:
+            cobertura_min: En la tendencia "%tendencia%" el valor Cobertura mínima no puede ser un campo vació.
+            cobertura_max: En la tendencia "%tendencia%" el valor Cobertura ideal no puede ser un campo vacío.
+            tendencia: No se ha seleccionado alguna(s) tendencia(s) de la lista.
+    estrategia_categoria_institucional:
+        repetida: La categoría institucional %valor% ya fue seleccionada.
+    estrategia:
+        cobertura_ideal: El valor Cobertura ideal no puede ser mayor a Cobertura máxima.
+        cobertura_min: El valor Cobertura mínima no puede ser mayor a Cobertura máxima.
+        valor_max: Se ha superado el valor maximo permitido
+        disciplinas_tendencias_menos_uno: Debe agregar al menos una disciplina tendencia o categoría institucional.
+    gestor_escenario_deportivo:
+        usuario_creado: Este usuario ya esta registrado en el escenario deportivo seleccionado
+    import:
+        asistente:
+            no.existe: El asistente de la fila %fila%, no ha sido preinscrito.
+        maximos.datos: El número máximo de filas para importar es de "%max%".
+        buscar.texto: En la celda "%cell%", No se encontró el texto deseado en la cadena de caracteres.
+        length.data: El valor "%value%", de la celda %cell%, no cumple con el límite de caracteres correspondiente.
+        different.data: El valor "%value%", ingresado no es valido en la celda "%cell%" del archivo.
+        header:
+            not:
+                exist:
+                    title: El título "%header%", no es existe en el formato.
+                    data: El título "%header%", en la columna "%column%", no es valido para este formato.
+        booleano.data: El valor "%value%", de la celda "%cell%", solo recibe los valores de (1, 0, SI o NO).
+        null.data: No puede enviar datos vacíos para la celda "%cell%" del archivo.
+        text.data: No es un texto valido la información de la celda "%cell%" del archivo.
+        entity.data: No existe el valor "%value%", de la celda "%cell%", en la base de datos.
+        number.data: No es un número valido "%value%", para la celda "%cell%".
+        email.data: La información "%value%", de la celda "%cell%", no es un correo electrónico valido.
+        date.data: La fecha ingresada "%value%", para la celda "%cell%", no es valida.
+        float.data: El valor ingresado "%value%", en la celda "%cell%", no es valida, por favor use un formato decimal "ejemplo 10000.00".
+        unique.data: El valor "%value%", de la celda "%cell%", ya está siendo usado en la aplicación o dentro del documento adjunto.
+        flush: Se presentó un error al momento de guardar los datos, por favor vuelva a intentarlo.
+    oferta: 
+        disciplina_relacion: La disciplina "%disciplina%", tiene una oferta relacionada.
+        tendencia_relacion: La tendencia "%tendencia%", tiene una oferta relacionada.
+        categoria_institucional_relacion: La categoría institucional "%categoria%", tiene una oferta relacionada.
+        formador:
+            cruce: |
+                El formador %formador%, presenta un cruce con la oferta: %oferta%, el día %dia% en el horario de %horario%
+            division: |
+                El formador %formador%, presenta un cruce con la oferta: %oferta%, el día %dia% en el horario de %horario% para la división %division%
+            escenario: |
+                El formador %formador%, presenta un cruce con la oferta: %oferta%, el día %dia% en el horario de %horario% para el escenario %escenario%
+        deportista:
+            repetido: El deportista "%deportista%", está duplicado en la disciplina "%disciplina%".
+        puntoAtencion:
+            ocupado: Ya existe una oferta creada anteriormente en las fechas seleccionadas
+        sin:
+            usuarios: La oferta no posee usuarios pre inscritos seleccionados.
+    organizacion:
+        sin:
+            entidad: La organización no posee tipo de entidad.
+            disciplina_tendencia: La organización no posee disciplinas o tendencias.
+            organigrama: La organización no posee un organigrama.
+            deporistas: La organización no posee deportistas.
+    pagina_error: 
+        mensaje: Parece que ha habido un error con la página que estaba buscando. Es posible que la entrada haya sido eliminada o que la dirección no exista.
+        404: Página no encontrada
+        403: No tiene permiso de acceso esta página
+        otro: Algo salio mal, si el problema persiste comuniquese con el administrador del sistema
+    preinscripcion: 
+        usuario_repetido: EL usuario %usuario% ya esta registrado en la oferta.
+        usuario: El usuario ya ha sido inscrito a la oferta.
+        acompanante: El usuario no puede agregar acompañantes.
+        reporte_no_data: No se encontraron asistentes para las fecha "%fecha%".
+    programacion:
+        encontrada: Se ha encontrado una reserva para el dia %dia% dentro de las fechas establecidas.
+        vacio: Se debe agregar al menos un día con hora de inicio y hora final en programación.
+    programar:
+        no_disponible: El dia %dia% no existe horario habilitado para reservas.
+        escenario: Seleccione un escenario deportivo.
+        tipo_reserva: Ninguna de los divisiones del escenario cuenta con el tipo de reserva seleccionado.
+        divisiones: El escenario deportivo no cuenta con divisiones para realizar la reserva.
+        minimo: Debe ingresar hora inicial y final en por lo menos un día.
+        disponible: No existen divisiones disponibles para el escenario deportivo seleccionado en las fechas ingresadas.
+        fecha: Ingrese la fecha inicial.
+        fecha_inicial_menor: La fecha incial no puede ser menor a la actual.
+        previos: Las divisiones del escenario solo pueden ser reservadas con mínimo %dias% día(s) previo(s).
+        bloque: Para el escenario seleccionado se puede reservar mínimo %minimo% y máximo %maximo% minutos, para el (los) día(s) de la reserva.
+        organismo.anio: Solo es posible realizar reservas para el año en curso.
+        hora:
+            escenario: El día %dia% la hora  %jornada% no puede ser %condicion% a las %hora%
+            mayor: Error en el horario del día %dia%, la hora inicial de la %horario% no puede ser mayor a la final. 
+    no_vacio: El campo no puede estar vacío.
+    repetido: El valor "%valor%" está repetido.
+    usuario_o_clave: Usuario no encontrado
+    usuario_incorrecto: Usuario o contraseña incorrectos.
+    usuario:
+        expirado: Su tiempo de sesión ha expirado, por favor ingrese de nuevo. #Usuario su fecha de ingreso ha expirado.
+        deshabilitado: El usuario se encuentra deshabilitado.
+        carga_excel: 
+            campo_vacio: El campo "%columna%" en la fila %fila% se encuentra vació
+            no_existe:
+                tipo_identificacion: El campo "%columna%" en la fila %fila% no es un tipo de identificación valido
+            ya_existe:
+                numero_documento: El campo "%columna%" en la fila %fila% ya se encuentra registrado en el sistema
+            vacio: El archivo se encuentra vació
+        contrasena:
+                incorrecta: Contraseña actual incorrecta
+                nueva:
+                    diferente: Las nuevas contraseñas no coinciden
+                    igual_anterior: La nueva contraseña es igual a la actual
+        ya_existe:
+            preinscripcion_oferta: EL usuario %usuario% ya se ha preinscrito en la oferta anteriormente
+            usuario: El usuario %usuario% ya se encuentra registrado en el sistema, esta opción esta disponible para usuarios nuevos
+    disciplina:
+        deportista:
+            repetido: En la disciplina %disciplina%, el deportista %deportista% se encuentra repetido.
+        no_seleccionado: El campo disciplina se encuentra vació
+    direccion:
+        campos_vacios: Los campos son requeridos y se encuentran vacíos
+    escenario:
+        no_seleccionado: El campo Escenario se encuentra vacío
+    mensaje: 
+        deportista:
+            organizacion: El deportista "%deportista%", ya pertenece a la organización deportiva "%organizacionDeportiva%".
+    municipio:
+        no_seleccionado: El campo Municipio se encuentra vacío
+    barrio:
+        no_seleccionado: El campo Barrio se encuentra vacío
+    tendencia:
+        no_seleccionado: El campo tendencia se encuentra vacío
+    check_cobertura:
+        no_existe: Seleccione una disciplina o una tendencia
+    puntoAtencion:
+        vacio: El campo punto de atención se encuentra vacío
+        no_existe: Seleccione un punto de atención o escenario deportivo
+        direccion:
+            vacio: El campo dirección en punto de atención se encuentra vacío
+        latitud:
+            vacio: El campo latitud en punto de atención se encuentra vació
+            no_numerico: La latitud no es una coordenada valida
+        longitud:
+            vacio: El campo longitud en punto de atención se encuentra vacío
+            no_numerico: La longitud no es una coordenada valida
+    fecha_final:
+        mayor_fecha_Inicial: La fecha de inicio es mayor a la fecha final
+        no_existe:
+            hora_inicial: El día "%dia%" no posee hora de inicio
+            hora_final: El día "%dia%" no posee hora final
+        fecha_final:
+            hora_inicial_mayor: La hora de inicio es mayor a la hora final en el día "%dia%"
+    reserva:
+        tipo: Debe seleccionar el tipo de reserva.
+        usuario:
+            repetido: El participante con número de documento %documento% solo puede ser registrado una vez.
+            duplicado: El participante  %nombre% solo puede ser registrado una vez.
+            menor: El participante con número de documento %documento% no cumple con el mínimo de %edad% de edad.
+            pequeno: El participante  %nombre% no cumple con el mínimo de %edad% de edad.
+        division:
+            minimo: La ubicación %division% debe tener un minimo de %minimo% usuarios inscritos.
+            vacio: Si no necesita acompañantes debe por lo menos registrarse usted en una división.
+        pendiente: Ya tiene una reserva activa para %tipo% por favor asista a la reserva hecha e intente nuevamente.
+    seleccion:
+        minima: Debe seleccionar por lo menos un elemento de la lista.
+formulario:
+    vereda: Vereda
+    barrio: Barrio
+    estrategia:
+        institucional: Categorías a nivel institucional
+        segmentacion: Segmentación
+        select_corte: Seleccione un periodo de tiempo para el corte de asistencia
+        plazo_adicional: Plazo Adicional (Días)
+    programacion: Programación
+    dia: Día
+    hora_inicial: Hora inicial (Formato 24 horas)
+    hora_final: Hora final (Formato 24 horas)
+    formador: Formador
+    gestor: Gestor
+    asistio: Asistió
+    asistio.todos: Marcar todo como asistió
+    clasificacion_organizacion: Clasificación de la organización
+    administradores: Administradores
+    accion:
+        guardar: Guardar
+        cancelar: Cancelar
+        borrar: Borrar
+    autocomplete:
+        buscando: Buscando...
+        caracteres: Inserte al menos %cantidad% caracteres.
+        no:
+            usuario: No existe usuario, por favor regístrelo.
+    calificacion: 
+        general: Calificación general
+    campos_usuario: Campos extra de usuarios
+    categoria:
+        ambiental: Categoría ambiental
+    codigo: Código
+    complemento: Complemento
+    comuna: Comuna
+    corregimiento: Comuna o corregimiento
+    corregimiento_escenario: Corregimiento
+    diagnostico: Diagnostico
+    direccion:
+        seleccion:
+            tipo_via: Seleccione un tipo de vía
+            letra: Seleccione una letra
+            prefijo: Seleccione un prefijo
+            cuadrante: Seleccione un cuadrante
+            sufijo: Seleccione un sufijo
+        tipo_via: 
+            corregimiento: Corregimiento
+            kilometro: Kilometro
+    equipo: Equipo
+    habilitado: ¿Habilitar usuario?
+    info_adicional:
+        desplazado: Desplazado
+        discapacidad: Discapacidad
+        establecimiento_educativo: Establecimiento educativo
+        ocupacion: Ocupación
+        nivel_escolaridad: Nivel de escolaridad
+        eps: EPS
+        es_jefe_cabeza_hogar: ¿Es jefe cabeza de hogar?
+        sub_discapacidad: Subtipo de discapacidad
+        tiene_discapacidad: ¿Tiene discapacidad?
+        tipo_desplazado: Tipo de desplazado
+        tipo_discapacidad: Tipo de discapacidad
+        tipo_establecimiento_educativo: Tipo de establecimiento educativo
+    ingresa: 
+        datos:
+            identificaicon: Ingresa los datos de identifación de la persona
+    importancia:
+        relativa: Importancia relativa entre grupos
+    labels:
+        id: Id
+        apellidos: Apellidos
+        clienteId: Cliente id
+        descripcion: Descripción
+        nombres: Nombres
+        nombre: Nombre
+        permisos: Permisos
+        puntos: Puntos de juego limpio
+        llave: Llave
+        redirect:
+            urls: URLs de re-dirección
+        tipo:
+            permisos: Tipo de permisos
+    localizacion: Localización
+    login:
+        clave: Contraseña
+        documento: Número de documento
+        registrarse: Registrarse
+        registrar: Registrar
+        tipo_documento: Tipo de documento
+    proyecto:
+        area: Área
+        codigo: Código SAP
+        nombre: Nombre
+        descripcion: Descripción
+        acciones:
+            title: Acciones
+        activo: Estado
+    oferta:
+        informacion: Información
+        imagen: Imagen
+        descripcion: Descripción
+        formador: Formador
+        formador.numeroIdentificacion: Número de identificación formador
+        gestor: Gestor
+        acompanantes: ¿Los usuarios preinscritos pueden llevar acompañantes?
+        area: Área
+        contacto: Contacto
+        diagnostico: ¿A los usuarios preinscritos se les definirá un diagnostico médico?
+        direccion:
+            creada: Buscar una dirección para filtrar la información
+        escenario: Escenario
+        fecha_inicio: Fecha inicio
+        fecha_final: Fecha final
+        escenario_seleccion: 
+            seleccion: Escenario INDER
+        estrategia: Estrategia
+        nombre: Nombre
+        otro: 
+            seleccion: Punto de atención
+        pre_inscribirme: Pre-inscribirme
+        proyecto: Proyecto
+        punto_atencion: Punto de atención
+        puntoAtencion:
+            agregar: Agregar un nuevo punto de atención
+            Barrio: Barrio
+            creado: Seleccionar un punto de atención existente
+            crear: Crear punto de atención
+            crear_nuevo: Crear nuevo punto de atención
+            municipio: Municipio
+            nueva:
+                direccion: Dirección
+            seleccion: Seleccione un punto de atención
+            title: Selección
+        disciplina: Disciplina
+        tendencia: Tendencia
+        institucional: Categoría institucional
+        min_usuarios: Mínimo de usuario
+        max_usuarios: Máximo de usuario
+        con_acompanantes: ¿Con acompañantes?
+        con_diagnostico: ¿Usuarios con diagnostico?
+        horario: Horario
+        select_disciplina: Seleccione una disciplina
+        select_area: Seleccione un área
+        select_estrategia: Seleccione una estrategia
+        select_proyecto: Seleccione un proyecto
+        select_tendencia: Seleccione una tendencia
+        select_institucional: Seleccione una categoría
+        select_oferta: Seleccione una oferta
+        select_puntoAtencion: Seleccione un punto de atención
+        no_hay_puntos: No se encontraron puntos de atención, puede crear un nuevo punto seleccionando la casilla "Agregar un nuevo punto de atención"
+        seleccione_un_barrio: Por favor seleccione un barrio
+        seleccion: 
+            disciplina: Agregar disciplina
+            tendencia: Agregar tendencia
+            categoria_institucional: Agregar categoría institucional
+            nada: Ninguno
+            disciplinaTendenciaInstitucional: Disciplina, tendencia o categoría institucional
+        title: Oferta
+        ubicacion: Ubicación
+        title_jugador_evento: Inscribir Jugador Evento
+    participante: Participante
+    preinscripcion:
+        acompanantes: Acompañantes
+        activo: Estado de inscripción
+        inscrito: ¿Inscribir a oferta?
+        fecha_inscripcion: Fecha de inscripción
+    problema_inicio_sesion:
+        titulo: ¿Tienes problemas para iniciar sesión?
+        atencion_ciudadano: Atención al ciudadano
+        preguntas_frecuentes: Preguntas comunes
+    requerido: Requerido
+    usar: Usar
+    usuario:
+        edad: Edad
+        nombre_completo: Nombre completo
+        firstname: Nombre
+        lastname: Apellido
+        numeroIdentificacion: Número de identificación
+        tipoIdentificacion: Tipo de identificación
+        puntoAtencion: Información residencial
+        caracterizacion: Información adicional
+        grupos: Grupos
+        contrasena:
+            actual: Contraseña actual
+            nueva: Nueva contraseña
+            confirmar_nueva: Confirmar nueva contraseña
+    registro_usuario:
+        bloque:
+            datos_contacto: Datos de contacto
+            informacion_general: Información General
+            rol: Rol
+    reestablecer contrasena:
+        revisar_email: |
+            Un email ha sido enviado a %correo%. Contiene un enlace de activación que debes presionar para restablecer tu contraseña.
+            Nota: Solo se puede solicitar una nueva contraseña dentro %tokenLifetime% horas.
+
+            Si no recibe un correo electrónico, comprueba tu carpeta de correo no deseado o inténtelo de nuevo.
+        campo:
+            usuario: Nombre de usuario
+            numeroDocumento: Número de documento
+        error:
+            usuario_invalido: El usuario "%username%" no existe.
+        mensaje_email: |
+            Hola %username%!
+
+            <p>Para restablecer tu contraseña - por favor haz </p>
+            <p><a href="%confirmationUrl%">Click aquí</a></p>
+
+            <p>Atentamente,</p>
+            <p>SIMON Sistema de información misional</p>
+            
+    validar:
+        limite:
+            minimo: El campo necesita un mínimo de {{ limit }} caracteres
+    seleccionar:
+        horario: Selecciona el horario
+    tipo:
+        documento:
+            seleccion: Seleccione un tipo de documento
+            acompanate: Ingresa el tipo de documento de tu acompañante.
+    
+carne:
+    torneo: Torneo
+    comuna: Comuna
+    equipo: Equipo
+    colegio: Colegio
+    rol: Rol
+    comuna: Comuna
+    
+parametrosclave:
+    titulo: Recomendaciones para su clave
+    unaletra: Debe contener al menos una letra.
+    unamayuscula: Debe contener al menos una mayúscula.
+    unnumero: Debe contener al menos un número.
+    caracteresminimo: Debe contener al menos 6 caracteres.
+    minimo: El campo necesita un mínimo de {{ limit }} caracteres.
+    
+formulario_registro:
+    descargar_informe_oferta: Descargar Informe
+    accionnopermitida: Acción no permitida
+    aceptar_hb: Aceptar políticas de Habeas Data
+    aceptar_tc: Aceptar Términos y condiciones
+    alertas:
+        disciplinasyaseleccionada: La disciplina ya fue seleccionada, por favor selecciona otra.
+        mensajeerror: Ocurrió un error, por favor intente de nuevo.
+        registrado: Sus datos han sido registrados.
+        revisecampos: Por favor revise los campos.
+        segurotermina: La información, no podrá ser modificada una vez envíe la información. ¿Está seguro?
+        tituloalerta: ¡Error!.
+        titulo_ok: ¡Gracias!.
+    asociar:
+        deportista: Asocia los deportistas a cada disciplina.
+    atencioncamposobligatorios: Atención
+    atras: Anterior
+    camposobligatorios: Todos los campos marcados con <span>* </span>son obligatorios.
+    cancelar: Cancelar
+    carga_archivo:
+        archivo_valido: Por favor seleccione un archivo de excel valido
+        excel_usuarios: Carga de archivo excel
+    cedulaminimo: Debe tener al menos 7 números y máximo 11 caracteres.
+    clave: Contraseña (Mínimo 8 caracteres)
+    clavenocoinciden: <i class="fa fa-key" aria-hidden="true"></i> Las claves no coinciden.
+    claves_deben_coincidir: Las claves deben coincidir
+    confirmar_clave: Confirmar Contraseña
+    contacto:
+        barrio: Barrio
+        correo_electronico: Correo electrónico
+        datoscontactoadmin: Datos de contacto
+        direccion: Dirección de residencia
+        direccion_confirmar: Confirma aquí la dirección
+        direccion_residencia: Dirección
+        direccionnumero: Número
+        ingresodireccion: Por favor ingrese la dirección utilizando cada uno de los campos.
+        ingresedireccionresidencia: Ingrese la dirección de residencia.
+        municipio: Municipio
+        nomenclatura: Nomenclatura.
+        seleccionebarrio: Seleccione barrio
+        seleccionemunicipio: Seleccione municipio
+        telefono_movil: Teléfono móvil / Teléfono fijo
+    correoelectronicorequerido: Ingrese el correo electrónico.
+    correo_registrado: <i class="fa fa-envelope" aria-hidden="true"></i> El correo ya se encuentra registrado.
+    deportistas: Deportistas
+    direccionOcomuna: Dirección o corregimiento
+    error:
+        acepta:
+            tc: Recuerde que debe leer y aceptar la política de términos y condiciones.
+    expira: Expira en
+    felicitaciones: ¡Felicitaciones!
+    felicitaciones_descripcion: Has completado la información. Nuestros funcionarios la revisarán en el menor tiempo posible. Recibirás una respuesta en el correo que nos proporcionaste.
+    felicitaciones_gracias: Gracias
+    guardar: Guardar
+    guardarcontinuar: Guardar y Continuar
+    guardar.registra.otro: Guardar y registrar otro
+    identificacionregistrada: |
+        <i class="fa fa-user" aria-hidden="true"></i> El número de identificación ya se encuentra registrado, 
+        para recuperar su contraseña dirijase al siguiente enlace
+        
+    mensaje_aceptahb: Por favor acepte las políticas de Habeas data.
+    mensaje_aceptatc: Por favor acepte los términos y condiciones.
+    nit_registrado: El NIT ya se encuentra registrado en el sistema.
+    no_vacio: El campo no puede estar vacío.
+    pasouno:
+        disciplinas_promueve: ¿Que disciplinas promueve tu organización?
+        disciplinas_seleccione: Seleccione
+        titulodisciplinaadmin: Disciplina
+        titulo_disciplinas: Disciplina(s)
+    pasodos: 
+        agregarorgano: Agregar órgano
+        asigna_usuario: Asigna usuario
+        asociar_usuarios: Asociar usuarios
+        documento: Documento
+        intro: ¿Cómo está conformado el organigrama de tu organización?
+        nombre: Nombre
+        miembrosorganigramaadmin: Miembros organigrama
+        perfil: Perfil
+        quitarorgano: Quitar órgano
+        seleccion_tipo: Seleccione un tipo de órgano
+        telefono: Teléfono
+        tipoorgano: Seleccione un tipo de órgano
+    pasotres:
+        intro: Asocia a los deportistas de cada disciplina
+        tituloadmin: Deportista(s)
+        titulo: Deportista(s)
+    pasocuatro:
+        documento: Documento
+        intro: Anexa los documentos necesarios para respaldar tu solicitud arrastrándolos en el siguiente recuadro.
+        titulo: Documentos (únicamente PDF o Word)
+        tituloadmin: Documento(s)
+        titulodocumentoadmin: Documento(s)
+    pasocinco:
+        intro: Agrega el período estatutario de la comisión disciplinaria de tu organización
+        titulo: Período estatutario
+        tituloadmin: Período estatutario
+    paso_uno: 1. Disciplinas
+    paso_dos: 2. Usuarios Organigrama
+    paso_tres: 3. Deportistas
+    paso_cuatro: 4. Documentos
+    paso_cinco: 4. Período Estatutario
+    pjuridica_informacion:
+        numero_nit: Número de identificación
+        razon_social: Razón Social
+        tipo_identificacion: Tipo de identificación
+        tipo_entidad: Tipo de entidad
+        tipo_club: Tipo de club
+    pnatural_informacion:
+        apellido: Apellido(s) completos
+        fecha_nacimiento: Fecha de nacimiento
+        genero: Sexo
+        estrato: Estrato
+        etnia: Etnia
+        orientacion_sexual: ¿Pertenece a la comunidad LGTBI?
+        numero_identificacion: Número de identificación
+        nombre: Nombre(s) completos
+        tipo_documento: Tipo de documento
+        imagen_perfil: Foto de perfil
+        fecha_nacimiento: Fecha de nacimiento
+    registrado: Los datos han sido registrados.
+    rol: Rol
+    solicitudregistro: Solicitud de Registro
+    solotexto: Sólo se permite el ingreso de texto sin números.
+    telefonominimo: Debe tener al menos 7 números.
+    termina_proceso: Ya estamos terminando, por favor completa la siguiente información que nos permitirá ofrecerte un mejor servicio
+    terminado: Todos los datos han sido guardados y el proceso de registro ha culminado satisfactoriamente.
+    tipoidentificacion: Seleccione el tipo.
+    tipo_persona: Tipo de persona
+    yaterminado: El formulario de registro ya ha sido diligenciado.
+
+formulario_reserva:
+    inicio:
+        manana: Hora incial mañana
+        tarde: Hora inicial tarde
+    fin:
+        manana: Hora final mañana
+        tarde: Hora final tarde
+    error_fecha_deshabilitada: Fecha para reservas deshabilitada
+    error_piscinas: Los cupos para este escenario están llenos para las fechas y horas seleccionadas
+    solicitudregistro: Reserva de escenario deportivo
+    lista:
+        numero_reserva: Número de reserva
+        usuario: Usuario
+        escenarioDeportivo: Escenario Deportivo
+        fechaInicio: Fecha de Inicio
+        fechaFinal: Fecha Final
+        estado: Estado
+        tipoReserva: Tipo de reserva
+    inicio: Inicio
+    crear: Crear
+    termina_proceso: Ya estamos terminando, por favor completa la siguiente información que nos permitirá ofrecerte un mejor servicio
+    paso_uno: 1. Seleccionar escenario
+    paso_dos: 2. Ubicación
+    paso_tres: 3. Deportistas
+    paso_cuatro: 4. Términos y Condiciones
+    paso_cinco: 5. Confirmación
+    paso_tres_2: 3. Términos y Condiciones
+    paso_cuatro_2: 4. Confirmación
+    alertas:
+        disciplinasyaseleccionada: La disciplina ya fue seleccionada, por favor selecciona otra.
+        mensajeerror: Ocurrió un error, por favor intente de nuevo.
+        registrado: Sus datos han sido registrados.
+        revisecampos: Por favor revise los campos.
+        segurotermina: La información, no podrá ser modificada una vez envíe la información. ¿Está seguro?
+        tituloalerta: ¡Error!.
+        titulo_ok: ¡Gracias!.
+        error_edad_uno : El usuario debe ser mayor de
+        error_edad_dos : años para poder usar este servicio
+        error_repetido : Este usuario ya esta en la lista
+        error_cantidad_minima: No supera la cantidad de jugadores minima
+        error_aprobar_reserva: No se puede aprobar la reserva porque ya inició
+        error_rechazar_reserva: No se puede cancelar la reserva porque ya inició
+        error_usuario_igual: Usted no puede ser deportista de la reserva
+    labels:
+        paso_uno: 
+            nombre: Nombre del escenario
+            barrio: Barrio
+            unidad_deportiva: Unidad deportiva 
+            tipo_escenario: Tipo de escenario
+            direccion_residencia: Dirección de residencia
+            ubicacion: Ubicación
+            latitud: Latitud
+            longitud: Longitud
+            hora_inicio: Hora Inicio (Formato Militar 24H)
+            hora_fin: Hora Fin (Formato Militar 24H)
+            ocultar_mapa : Ocultar mapa
+            mostrar_mapa : Mostrar mapa
+            telefono : Teléfono
+            disciplina: Disciplina 
+            horario: Horario
+            direccion : Dirección
+            seleciona_fecha : Seleccionar una fecha
+            email_escenario : Email de escenario
+            atencion : Atención!
+            error_vacio : El campo no puede estar vacío.
+            consultar_disponible : Consultar disponibilidad
+            fecha_no_disponible : Fecha no disponible
+            no_disponible : No disponible
+            disponible : Disponible
+            mantenimiento : Mantenimiento
+            error_fecha_menor: la fecha no puede ser menor a la actual
+            error_hora_fecha_inicial_mayor : La hora de inicio y fecha inicio deben ser menor a la final.
+            error_hora_fecha_escenario_vacio: Debe de completar todos los campos de Escenario deportivo, Tipo de Reseva, Fecha y Hora.
+            error_fecha_inicio_menor_actual: La Fecha Inicial no puede ser menor a la actual
+            error_hora_fecha_reserva_mayor_menor: La fecha y hora final deben ser mayor a la fecha y hora inicial.
+            error_fecha_maximo_dias: El sistema solo permite realizar reservas de práctica libre 30 días más adelante del día actual
+            error_hora_inicial_mayor : La hora inicial no puede ser mayor que la hora final
+            error_hora_inicial1_mayor : La hora inicial de la mañana no puede ser mayor que la hora final de la mañana
+            error_hora_inicial2_mayor : La hora inicial de la tarde no puede ser mayor que la hora final de la tarde
+            error_hora_inicial3_mayor : La hora inicial de la mañana no puede ser mayor que la hora inicial de la tarde
+            error_hora_inicial4_mayor : La hora final de la mañana no puede ser mayor que la hora inicial de la tarde
+            error_hora_inicial5_mayor : La hora final de la mañana no puede ser superior a las 12:00 (h)
+            error_hora_inicial6_mayor : La hora inicial de la tarde no puede ser menor a las 12:00 (h)
+            error_fecha_inicial_mayor : La fecha inicio no puede ser mayor que la fecha final
+            mismo_mes : Las fechas indicadas no pueden ser de meses distintos para el reporte en PDF
+            error_reserva_no_disponible : No se puede realizar la reserva, los días seleccionados no están disponibles
+            fecha : Fecha
+            error_disponibilidad: Motivos Reserva no Disponible
+            error_disponibilidad_error1: La fecha seleccionada es menor a la fecha actual
+            error_disponibilidad_error2_controller: Las divisiones del escenario seleccionado requieren %dias% dia(s) previo(s) para realizar la reserva.
+            error_disponibilidad_error2: Las divisiones del escenario seleccionado requieren
+            error_disponibilidad_error2Dias: dia(s) previo(s) para realizar la reserva
+            error_disponibilidad_error3: El escenario permite reservar máximo # Excede con el máximo de horas que puede utilizar el escenario
+            error_disponibilidad_error4: El escenario permite reservar minimo  #No cumple con el mínimo de horas que puede utilizar el escenario
+            error_disponibilidad_errorHoras: hora(s)
+            error_disponibilidad_fecha_no_disponible: Ya existen reservas durante los días %dias%
+            error_disponibilidad_error5: Ya existen reservas en el período de tiempo seleccionado
+            error_disponibilidad_error6: Se van a realizar mantenimientos durantes estos días            
+            error_disponibilidad_error7: El escenario seleccionado no tiene divisiones disponibles
+            error_disponibilidad_error10: El escenario seleccionado no tiene divisiones disponibles para esta tendencia
+            error_disponibilidad_error11: El escenario seleccionado no tiene divisiones disponibles para esta disciplina
+            error_disponibilidad_error12: El escenario seleccionado no tiene horarios disponibles
+            error_disponibilidad_error13: La hora seleccionada no puede ser menor a la hora de inicio del horario del martes
+            error_disponibilidad_error14: La hora seleccionada no puede superar a la hora final del horario del martes
+            error_disponibilidad_error15: La hora seleccionada debe de estar en el siguiente rango del lunes en la mañana
+            error_disponibilidad_error16: La hora seleccionada debe de estar en el siguiente rango del lunes en la tarde
+            error_disponibilidad_error17: La hora seleccionada no puede ser menor a la hora de inicio del horario del miercoles
+            error_disponibilidad_error18: La hora seleccionada no puede superar a la hora final del horario del miercoles
+            error_disponibilidad_error19: La hora seleccionada no puede ser menor a la hora de inicio del horario del jueves
+            error_disponibilidad_error20: La hora seleccionada no puede superar a la hora final del horario del jueves
+            error_disponibilidad_error21: La hora seleccionada no puede ser menor a la hora de inicio del horario del viernes
+            error_disponibilidad_error22: La hora seleccionada no puede superar a la hora final del horario del viernes
+            error_disponibilidad_error23: La hora seleccionada no puede ser menor a la hora de inicio del horario del sabado
+            error_disponibilidad_error24: La hora seleccionada no puede superar a la hora final del horario del sabado
+            error_disponibilidad_error25: La hora seleccionada no puede ser menor a la hora de inicio del horario del domingo
+            error_disponibilidad_error26: La hora seleccionada no puede superar a la hora final del horario del domingo
+            error_disponibilidad_error26: La hora seleccionada no puede superar a la hora final del horario del domingo
+            error_disponibilidad_error27: No hay horario de atencion al publico los dias domingo,selecciona un dia diferente
+            error_disponibilidad_error28: No hay horario de atencion al publico los dias sabado,selecciona un dia diferente
+            error_disponibilidad_error29: No hay horario de atencion al publico los dias viernes,selecciona un dia diferente
+            error_disponibilidad_error30: No hay horario de atencion al publico los dias jueves,selecciona un dia diferente
+            error_disponibilidad_error31: No hay horario de atencion al publico los dias miercoles,selecciona un dia diferente
+            error_disponibilidad_error32: No hay horario de atencion al publico los dias martes,selecciona un dia diferente
+            error_disponibilidad_error33: No hay horario de atencion al publico los dias lunes,selecciona un dia diferente
+            error_disponibilidad_error34: El escenario no tiene los bloques de tiempo definidos
+            error_disponibilidad_error35: La hora seleccionada debe de estar en el siguiente horario los lunes
+            error_disponibilidad_error36: La hora seleccionada debe de estar en el siguiente horario los martes
+            error_disponibilidad_error37: La hora seleccionada debe de estar en el siguiente horario los miercoles
+            error_disponibilidad_error38: La hora seleccionada debe de estar en el siguiente horario los jueves
+            error_disponibilidad_error39: La hora seleccionada debe de estar en el siguiente horario los viernes
+            error_disponibilidad_error40: La hora seleccionada debe de estar en el siguiente horario los sabados
+            error_disponibilidad_error41: La hora seleccionada debe de estar en el siguiente horario los domingos
+            error_disponibilidad_error42: La hora seleccionada debe de estar en el rango de horario de atencion de los lunes
+            error_disponibilidad_error43: La hora seleccionada debe de estar en el rango de horario de atencion de los martes
+            error_disponibilidad_error44: La hora seleccionada debe de estar en el rango de horario de atencion de los miercoles
+            error_disponibilidad_error45: La hora seleccionada debe de estar en el rango de horario de atencion de los jueves
+            error_disponibilidad_error46: La hora seleccionada debe de estar en el rango de horario de atencion de los viernes
+            error_disponibilidad_error47: La hora seleccionada debe de estar en el rango de horario de atencion de los sabado
+            error_disponibilidad_error48: La hora seleccionada debe de estar en el rango de horario de atencion de los domingo
+            error_disponibilidad_error49: No hay horarios disponibles para las divisiones de este escenario
+            error_disponibilidad_error50: Los cupos para este escenario están llenos para las fechas y horas seleccionadas
+            error_disponibilidad_error227: No hay horario de atencion al publico los dias domingo para una de las divisiones, selecciona un dia diferente
+            error_disponibilidad_error228: No hay horario de atencion al publico los dias sabado para una de las divisiones, selecciona un dia diferente
+            error_disponibilidad_error229: No hay horario de atencion al publico los dias viernes para una de las divisiones, selecciona un dia diferente
+            error_disponibilidad_error330: No hay horario de atencion al publico los dias jueves para una de las divisiones, selecciona un dia diferente
+            error_disponibilidad_error331: No hay horario de atencion al publico los dias miercoles para una de las divisiones, selecciona un dia diferente
+            error_disponibilidad_error332: No hay horario de atencion al publico los dias martes para una de las divisiones, selecciona un dia diferente
+            error_disponibilidad_error333: No hay horario de atencion al publico los dias lunes para una de las divisiones,selecciona un dia diferente
+            error_disponibilidad_error51: No se encontró el Escenario Deportivo
+            error_disponibilidad_error52: El Escenario Seleccionado no tiene Divisiones con el Tipo de Reserva escogido
+            error_disponibilidad_error53: El día %dia% puede reservar minimo %tiempoMinimo% y maximo %tiempoMaximo% horas.
+
+            placeholder_hora: hh:mm
+            seleccionar: Seleccionar
+            error_seleccionar: Debes seleccionar una Tendencia o una Disciplina para continuar
+            tendencia: Tendencia 
+        paso_dos: 
+            restricciones: Este escenario no necesita de restricciones
+            tipo_reserva: Tipos de reserva
+            disciplina: Disciplina(s)
+            tendencia: Tendencias
+            error_restricciones: Debe por lo menos ingresar Tipo de reserva o Disciplina o Tendencia
+            gestores: Gestores
+            principal: Principal
+            secundarios: Secundarios
+            normas: Normas del escenario
+            divisiones: Ubicación
+            divisiones_noDisponibles: Ubicaciones no disponibles
+            todas_divisiones: Reservar todo el escenario deportivo
+        paso_tres: 
+            deportistas : Ingresa los deportistas que utilizarán el escenario
+            informacion_general: Información general 
+            info_uno : Recuerda que para la ubicación "%ubicacion%" el número de asistentes debe ser de mínimo %minimo% y máximo %maximo% usuarios.
+            info_tres :  El servicio es para personas mayores de %edad% 
+            info_cuatro :  años de edad. Niños entre 10 y 12 años deben presentar la tarjeta de identidad 
+            anterior : Anterior
+            tipo_documento: Tipo de documento
+            no_documento : No. Documento
+            deportistas_asistiran: Selecciona los deportistas que asistirán
+        paso_cuatro:
+            terminos: Términos y condiciones de uso de escenarios
+            descripcion_terminos:  Recuerde que para hacer uso de los escenarios INDER, debe leer y aceptar los términos y condiciones
+            boton_terminos: Términos y condiciones escenario
+            anterior : Anterior
+            cerrar: Cerrar
+            formulario_caracterizacion: por favor ingrese o actualice la siguiente informaciòn
+            descripcion_formulario_caracterizacion: Debe completar el siguiente formulario para continuar con la reserva
+        paso_cinco:
+            fecha : Fecha
+            hora : Hora
+            division : Ubicación
+            direccion : Dirección
+            telefono : Teléfono
+            recuerda : Recuerda
+            info: Su solicitud ha sido registrada con éxito, una vez esté aprobada o negada según las validaciones realizadas por el gestor del escenario, recibirá un correo electrónico con la respuesta.
+            info_cero: Si tiene alguna duda referente al estado de la reserva, por favor consulte el correo electrónico del escenario y envíe su inquietud.
+            info_uno : En caso de ser aprobada los usuarios deben estar en el escenario 20 minútos antes de la hora de la reserva.
+            info_dos : Los usuarios deberán cubrir un costo social, cancelando $4.000 por persona (por hora reservada), que se cancelan mediante pago electrónico por medio del botón "Efectuar pago"
+            pago: Efectuar pago
+            intructivo: Ver instructivo de pago
+            anterior : Anterior
+
+    guardarcontinuar: Guardar y continuar
+
+mensaje:
+    oferta:
+        no_existe: La oferta no existe.
+        inactiva: La oferta esta inactiva.
+        fecha_rango: La oferta esta fuera de las fechas de preinscripción.
+        cupo_lleno: La oferta completo su cupo.
+        edad: Usted se ha tratado de inscribir en una oferta que no aplica para su edad. Debe seleccionar una oferta de acuerdo a su rango de edad.
+        asistencia_vencida: La fecha disponible para definir la asistencia ha terminado.
+    asistentes:
+        nulos: No se encontraron asistentes registrados.
+    maximo:
+        caracter: Máximo %maximo%, carácteres.
+    organizacion_deportiva:
+        alerta:
+            tipo_entidad: Señor@ organización deportiva, tenga en cuenta que si cambia su tipo de entidad se perderán los datos almacenados la sección de <b>usuarios organigrama</b>.
+    preinscripcion:
+        asistentes:
+            registrados: Se registraron los asistentes de forma correcta.
+            usuario_preinscrito_eliminado_asistencias: El Usuario %usuario% fue eliminado de la oferta por superar el máximo de inasistencias permitidas.
+        rechazar: 
+            acompanantes: El pre-inscrito "%usuario%" no puedo ser eliminado de la oferta ya que posee acompañanates relacionados.
+            estado: Estado de la solicitud %estado%
+            mensaje: |
+                Señor(a) %usuario%, su solicitud de prescripción a la oferta %oferta% ha sido rechazada, 
+                le invitamos a consultar una nueva oferta institucional que cumpla con  sus necesidades o enviar un correo a 
+                atencion.ciudadano@inder.gov.co para recibir información detallada sobre nuestras ofertas de acuerdo a sus necesidades.
+            eliminado: La preincripción se rechazo de forma correcta.
+            eliminados: Las preincripciones se recharon de forma correcta.
+            titulo: Se eliminarán el usuario y sus acompañantes de la oferta.
+            aclaracion: Recuerde que si rechaza el usuario y este se encuentra relacionado con ofertas o acciones en el sistema(asistencias), se perderá trazabilidad de este usuario.
+            texto: ¿Desea continuar?
+    registro:
+        titulo: ¿Seguro que desea salir?
+        texto: Está editando el formulario en este momento.
+        btn:
+            si: Si, Deseo salir
+            si.guardar: Si, deseo guardar
+            no: Cancelar
+    no: No
+    si: Si
+    usuario:
+        deportista:
+            creado: Registrado con éxito. Pendiente por aprobación del administrador
+        creado:
+            preinscripcion_oferta: El usuario %usuario% se ha preinscrito a la oferta correctamente
+
+menu publico:
+    inder: Volver al sitio web INDER Alcaldía de Medellín
+    atencion ciudadana: Atención ciudadana
+    el instituto: El instituto
+    observatorio: Observatorio
+    sala de prensa: Sala de prensa
+    sistema informacion: Sistema de Información
+    administrador: Administrador
+
+oferta:
+    fecha_inicial: Fecha inicial
+    fecha_final: Fecha Final
+    seleccionar_rango_fecha_reporte_oferta: Reporte oferta
+    fecha_inicio_preinscripcion: Fecha de inicio de preinscripciones
+    fecha_final_preinscripcion: Fecha de finalización de preinscripciones
+    titulo_reporte: Listado de ofertas
+
+opcion:
+    registrarse: El usuario buscado no está registrado.
+    crear:
+        nuevo:
+            usuario: ¿Desea crear un nuevo usuario?
+
+reporte:
+    listado:
+        preinscripcion:
+            titulo: Listado de asistentes
+
+seleccionar:
+    opcion: Seleccione una opción
+    ninguna: Ninguna opción
+    imagen: Seleccione una imagen
+    foto: Seleccione una foto para subir
+    entidad: Escoja una opción
+    fecha: Seleccione una fecha
+
+titulo:
+    fecha_generacion: Fecha de generación
+    caminando: Caminando con vos
+    inscribirse: Click aquí para inscribirte
+    no:
+        registra: No registra
+    bloqueoEscenario: Bloquear escenario
+    error: Error!
+    reservas: Reservas
+    reserva_caracterizacion: Formulario de Caracterización Usuario
+    reserva_caracterizacion_regresar: Volver
+    impersonating: Personificar 
+    actividad: Actividad
+    buscar:
+        usuario: Buscar usuario
+    categoria_division: Categoría división
+    tipo_reserva: Tipo de reserva
+    categoria_disciplina: Categoría de disciplina
+    unidad_deportiva: Unidad deportiva
+    asistencias: Asistencias
+    inicio: Ir a la página principal
+    asistencia: Asistencia
+    area: Área
+    areas: Áreas
+    banner: Banner
+    barrios: Barrios
+    campo_usuario: Campo de usuario
+    campo:
+        ambiental: Campo ambiental
+        infraestructura: Campo de infraestructura
+    categoria:
+        ambiental: Categoría ambiental
+        division: Categoría división
+        infraestructura: Categoría infraestructura
+    cliente_ws: Clientes OAUTH 2
+    crear:
+        usuario: Ingresa los siguientes datos para crear un nuevo usuario.
+    desde: Desde
+    dia: Día
+    discapacidad: Discapacidad
+    disciplina: Disciplina
+    disciplina_estrategia: Disciplina de estrategia
+    disciplina_organizacion: Disciplina organización
+    entrar: Entrar
+    eps: EPS
+    escenario_deportivo: Escenario deportivo
+    estrategia: Estrategia
+    establecimiento_educativo: Establecimiento educativo
+    estrategias: Estrategias
+    etnia: Etnia
+    enviando: Enviando
+    fuente_financiacion: Fuente de Financiación
+    generar:
+        reporte: Generar reporte
+    guia_metodologica: Guía Metodológica
+    usuario_escenario_deportivo: Gestor escenario deportivo
+    hasta: Hasta
+    indicadores: Indicadores
+    ingresar: Ingresar
+    informacion:
+        adicional: Información adicional
+        conoce:
+            terminos: Conoce nuestros Términos y condiciones
+        descargar:
+            politicas: Descarga nuestra política de protección de datos
+        diagnostico: Usuario con diagnostico
+        general: Información general
+        habeas: EL INSTITUTO DE DEPORTES Y RECREACIÓN – INDER Medellín, identificado con Nit 800.194.096-0, en cumplimiento de la Constitución Política y la Ley 1581 de 2012, reglamentado parcialmente por el Decreto 1377 de 2013,  de protección de datos personales informa a todos los beneficiarios,  y cualquier tercero interesado; que cumplimos con las exigencias especiales para la protección de datos personales de menores de edad (niños, niñas y adolescentes) y de los adultos que suministran sus datos personales con fines deportivos y demás actividades; preservando su protección, conservación y garantizando su uso responsable y seguro, procurando proteger el derecho a la privacidad y protección de su información personal y toda aquella que nos suministró a través de nuestros formatos, formularios ubicados en nuestras instalaciones y en el sitio web antes y después de la vigencia del decreto y la ley, que sus datos personales se encuentren incluidos en nuestras bases de datos.
+        personal: Información personal
+        proteccion: Política de protección de datos, Términos y condiciones
+        terminos: ""
+    importancia:
+        relativa: Importancia relativa
+    felicitaciones: ¡Felicitaciones!
+    mis_reservas: Mis reservas
+    modelos: Modelo
+    municipios: Municipios
+    nivel_escolaridad: Nivel escolaridad
+    nueva:
+        reserva: Nueva reserva
+    ocupacion: Ocupación
+    oferta_institucional: Oferta institucional
+    oferta: Oferta
+    ofertas: Ofertas
+    oferta_dashboard: El INDER Alcaldía de Medellín , lo invita a consultar las ofertas institucionales disponibles
+    organigrama: Organigrama
+    organismo_deportista: Organismo deportista
+    organizaciones_deportivas: Organizaciones deportivas
+    perfiles_organigrama: Perfiles organigrama
+    plan:
+        anual: 
+            metodologico: Plan anual metodológico
+    persona:
+        natural: Persona Natural
+        juridica: Persona Jurídica
+        deprotivo: Organismos Deportivos
+    preinscripcion:
+        consulta: Consultar oferta
+        oferta: Pre-inscripción a oferta
+        informacion_general: Información general
+        informacion_adicional: Información adicional
+    programacion: Programación
+    proyecto: Proyecto
+    proyectos: Proyectos
+    punto_atencion: Punto de atención
+    que_desea_hacer: ¿Qué deseas hacer ahora?
+    registrar_acompanantes: Registrar acompañante(s)
+    registrar_asistencia: Registrar asistencia
+    registro: 
+        actividad: a la actividad
+        asistieron: asistieron
+        manual: Registro manual
+        manual.mensaje: Selecciona el tipo de documento e ingresa el número del documento de identidad de los usuarios que 
+        carga:
+            registro: Registro por excel
+            masivo: Puedes cargar la asistencia con un archivo Excel. Descarga el modelo del documento de Excel en este 
+            subir: Subir documento de Excel
+    reestablecer contrasena: Restablecer contraseña
+    regresar inicio: Regresar
+    reserva: Reserva
+    roles: Roles
+    saludo: Hola <span>%nombre%</span> Bienvenido al Sistema de Información misional INDER Alcaldía de Medellín.
+    sistema: Sistema de información
+    solicitud contrasena: Solicitud exitosa
+    solicitud_guardada: Solicitud guardada con éxito
+    sub_discapacidad: Sub discapacidad
+    tendencia: Tendencia
+    tipo_desplazado: Tipo desplazado
+    tendencia_estrategia: Tendencia de estrategia
+    tipo_entidad: Tipo entidad
+    tipo_escenario: Tipo de escenario
+    tipo_establecimiento_educativo: Tipo establecimiento educativo
+    tipofalta: Tipo de falta
+    tipo_identificacion: Tipo de identificación
+    tipo_organismo: Tipo de organismos
+    tipo.reserva: Tipo de reserva
+    tipo_sangre: Tipo de sangre
+    usuario:
+        carga:
+            masiva: Registro masivo de usuarios por Excel
+            mensaje: Registra de manera masiva usuarios con un archivo de Excel. Descarga el modelo del documento de Excel en este 
+            enlace: enlace
+        cambiar: 
+            contrasena: Cambio de contraseña
+    usuarios: Usuarios
+    variable:
+        auxiliar: Variable auxiliar
+        auxiliar.general: Variable auxiliar general
+    ver:
+        todos: Ver todos
+    volver_oferta: Volver a la oferta
+    recuperar_contrasena: Recuperar contraseña
+    atencion: Atención
+    mensaje_atencion_contrasena: Si no cuentas con un email registrado deberás enviar copia de tu documento de identidad y carta de solicitud indicando un correo electrónico para ser asociado a tu cuenta debidamente  firmada y  escaneadas al correo institucional sim.inder@inder.gov.co
+    mensaje_atencion_bloqueado: Su cuenta ha sido bloqueada, por favor comunicarse con el INDER Alcaldía de Medellin al correo sim.inder@inder.gov.co para obtener más información
+    mensaje_atencion_expirado: Su cuenta ha expirado, por favor comunicarse con el INDER Alcaldía de Medellin al correo sim.inder@inder.gov.co para obtener más información
+    oferta_cerrada: Oferta cerrada.
+   
+formulario_banner:
+    label:
+        comunas: Comunas
+        imagen_web: Imagen Web
+        imagen_mobile: Imagen Móvil
+        fecha_inicio: Fecha de inicio
+        fecha_fin: Fecha de fin
+        nombre: Nombre
+        vecesVisto: Veces visto
+
+###########  Texto "Create" Bradcrumb Sonata  #################
+User Create: Crear usuario
+Oferta Create: Crear oferta
+Area Create: Crear área
+Proyecto Create: Crear proyecto
+Estrategia Create: Crear estrategia
+Tipo Organismo Create: Crear tipo organismo
+Tipo Identificacion Create: Crear tipo de identificación
+Tipo Entidad Create: Crear tipo de entidad
+Tendencia Create: Crear tendencia
+Preinscripcion Oferta Create: Preinscribir usuario a oferta
+Categoria Disciplina Create: Crear categoría de disciplina
+Usuario Escenario Deportivo Create: Agregar gestor a escenario
+Fuente Financiacion Create: Agregar fuente de financiación
+Enfoque Create: Agregar enfoque
+Categoria Institucional Create: Crear categoría institucional
+
+formulario_escenario_deportivo:
+    title: Crear
+    inicio : Inicio
+    escenarios_deportivos : Escenarios deportivos
+    paso_uno: 1. Información general
+    paso_dos: 2. Reglas del escenario
+    paso_tres: 3. Ubicación
+    paso_cuatro: 4. Información técnica
+    paso_cuatro_uno: 4.1 Infraestructura
+    paso_cuatro_dos: 4.2 Ambiental
+    error_eliminar: No se pudo eliminar este escenario deportivo
+    escenario_deportivo_eliminado: Escenario Deportivo eliminado exitosamente
+    archivo: Uno de los archivos tiene un tamaño superior a 2MB
+    no_vacio: El campo no puede estar vacío.
+    placeholder:
+        selecione_archivo: Seleccione un archivo
+    labels:
+        paso_uno: 
+            nombre: Nombre del escenario
+            barrio: Barrio
+            informacionReserva: Información adicional para reserva
+            unidad_deportiva: Unidad deportiva 
+            tipo_escenario: Tipo de escenario
+            direccion_residencia: Dirección
+            ubicacion: Ubicación
+            latitud: Latitud
+            longitud: Longitud
+            hora_inicio: Hora Inicio
+            hora_fin: Hora Fin
+            ocultar_mapa : Ocultar mapa
+            mostrar_mapa : Mostrar mapa
+            telefono : Teléfono
+            email_escenario : Email de escenario
+            error_vacio : El campo no puede estar vacío.
+            error_hora_inicial_mayor : La hora inicial no puede ser mayor que la hora final
+            marcador: Arrastre el marcador para ubicar el escenario
+            error_marcador: debes arrastrar el marcador para ubicar el escenario
+            atencion: Atención
+            advertencia: El tipo de escenario no tiene informacion de infraestructura y ambientales relacionado
+        paso_dos: 
+            restricciones: Este escenario no necesita de restricciones
+            tipo_reserva: Tipos de reserva
+            disciplina: Disciplina(s)
+            tendencia: Tendencias
+            error_restricciones: Debe por lo menos ingresar Tipo de reserva o Disciplina o Tendencia
+            gestores: Gestores
+            principal: Principal
+            secundarios: Secundarios
+            normas: Normas del escenario
+            horario: Horario
+            error_horarios: Por lo menos un dia debe de tener horario
+            error_campo: Ambas horas son requeridas
+            error_campo_igual: Los horarios deben ser diferentes
+            divisionHorario: Asignar el mismo horario a las divisiones
+        paso_tres: 
+            informacion_general: Información general 
+            ancho: Ancho (metros)
+            largo: Largo (metros)
+            profundidad: Profundidad
+            subir_imagen: Subir imagen
+            seleccionar_imagen: Seleccionar una imagen
+            crear_divisiones: Crear divisiones
+            agregar_otra_division: Agregar otra división
+            quitar_esta_division: Quitar esta división
+            division:
+                tipo_reserva: Tipo de reserva
+                categoria_division: Categoría de la división
+                division: División
+                disciplinas: Disciplina(s)
+                tendencias: Tendencia(s)
+                tiempo_minimo: Bloque minimo para reserva
+                tiempo_maximo: Bloque maximo para reserva
+                bloque_tiempo: Bloque de Tiempo (minutos)
+                usuarios_minimo: Mínimo de usuarios 
+                usuarios_maximo: Máximo de usuarios
+                dias_previos_reserva: Días previos para realizar reserva
+                edad_minima: Edad mínima para hacer uso del escenario 
+                error_tiempo_minimo : El tiempo minimo no puede ser mayor que el tiempo máximo
+                error_usuarios_minimos : Los usuarios minimos no puede ser mayor que los usuarios máximos
+                error_negativo : No puede ingresar un valor negativo
+                requiere_aprobacion : No requiere aprobacion para la reserva
+                no_puede_eliminar_division : No se puede eliminar la División %division% porque tiene reservas asociadas
+            gestores: Gestores
+            principal: Principal
+            secundarios: Secundarios
+            normas: Normas del escenario
+        paso_cuatro:
+            cobama_lote: Cobama Lote
+            matricula: Matrícula
+            codigo_escenario: Código del escenario 
+            planos: Planos (jpg, png y pdf)
+            imagenes: Imágenes (jpg o png)
+            eliminarPlanos: Eliminar los planos guardados actualmente
+            eliminarImagenes: Eliminar las imágenes guardadas actualmente
+            tieneAcueducto: Tiene Acueducto
+            cantidadContadoresAcueducto: Cantidad de contadores del acueducto
+            codigoContadoresAcueducto: Código de contadores del acueducto
+            observacionesAcueducto: Observaciones del acueducto
+
+            tieneEnergia: Tiene energia electrica
+            cantidadContadoresEnergia:  Cantidad de contadores de energia electrica
+            codigoContadoresEnergia: Código de contadores de energia electrica
+            observacionesEnergia: Observaciones de  energia electrica
+
+            tieneTelefono: Tiene linea telefonica
+            observacionesTelefono: Observaciones de la linea telefonica
+
+            tieneInternet: Tiene conexión a internet
+
+            tieneIluminacion: Tiene iluminación
+            fuente: Fuente de iluminación
+
+        paso_cuatro_uno:
+            categoria: Selecciona una categoría
+            subcategoria: Selecciona una subcategoría
+
+
+    guardarcontinuar: Guardar y continuar
+formulario_campo:
+    labels:
+        tipoEntrada: Tipo de entrada
+        guardarcontinuar: Guardar y continuar
+###########  Texto "Edit" Bradcrumb Sonata  #################
+Preinscripcion Oferta Edit: Editar preinscripción
+
+unidad_deportiva:
+    nombre: Nombre
+    nombre_unidad: Nombre de la unidad deportiva
+    habilitado: Habilitar
+
+formulario_tipo_escenario:
+    unico_codigo: El codigo ya existe
+
+formulario_sancion:
+    labels:
+          inicio: Inicio
+          eventos: Eventos
+          sanciones: Sanciones
+          sancion: Sanción
+          nombre: Nombre
+          tipoFalta: Tipo Falta
+          puntos: Puntaje Juego Limpio
+          descripcion: Descripción
+          cerrar: Cerrar
+          seleccion: Seleccione un tipo de falta
+
+formulario_evento:
+    inscribir: Inscribirse
+    errorRango: Las fechas para inscribirse al evento ya no estan disponibles
+    errorIncripcionEvento: El evento seleccionado no tiene Inscripcion Publica ni Pre Inscripcion Publica, contacte con el administrador.
+    errorCupo: El evento seleccionado no tiene cupos disponibles por el momento.
+    cupoHombres: El evento seleccionado ya no tiene mas cupos disponibles para hombres
+    cupoMujeres: El evento seleccionado ya no tiene mas cupos disponibles para mujeres
+    errorEdadMayor: El usuario no tiene la edad minima para este evento
+    errorEdadMenor: El usuario supera la edad permitida para este evento
+    errorEdadVacia: El usuario en sesion no tiene fecha de nacimiento, actualice sus datos
+    errorCantidadJugadores: La cantidad de jugadores ingresados no puede ser mayor a %jugadoresMaximos%
+    errorCantidadJugadoresMinimos: La cantidad de jugadores ingresados no puede ser menor a %jugadoresMinimos%
+    errorEquiposEvento: Este evento ya tiene la cantidad máxima de equipos registrados
+    errorJugadoresEvento: Este evento ya tiene la cantidad máxima de participantes registrados
+    errorUsuarioDiferente: El usuario que está tratando de inscribir no corresponde al mismo que está logueado
+    datosAlcorreo: Señor usuario, usted debe enviar al correo electrónico edwin.florez@inder.gov.co la siguiente información, Imágen documento de identidad, Imágen certificado EPS
+    presatisfactorio: Pre-inscripción satisfactoria en el evento
+    satisfactorio:  Inscrito satisfactoriamente en el evento
+    existente: Ya estas inscrito al evento seleccionado
+    inicio: Inicio
+    evento: Eventos
+    crear: Crear
+    volver: Volver
+    no_negativo: El número no puede ser un valor negativo
+    no_mayor: El numero minimo no puede superar al numero mayor
+    tamaño_imagen: (La imagen debe tener un tamaño mínimo de 800 x 200 píxeles)
+    tabs:
+        configuracion: Configuración
+        sancion: Sanción 
+        clasificacioncalendario: Clasificación y calendario
+        agregarotra: Agregar otra categoría
+        añadirotra: Añadir otra
+        guardarcontinuar: Guardar y continuar
+        inscripcion: Inscripción
+        equiposyparticipantes: Equipos y participantes
+        estadisticas: Estadísticas
+        sanciones: Sanciones
+        carnes: Carnés
+        clasificasionYcalendarioTabs:
+            Escalera: Escalera
+            EscaleraLista: Lista
+            Piramide: Piramide
+            Chimenea: Chimenea
+            Modoliga: Modo liga
+            Eliminatoria: Eliminatoria
+            GruposyPlayOff:  Grupos y PlayOff
+            Ninguno: Ninguno
+
+    buttons:
+        evento: Evento
+        roles: Roles
+    error:
+        menorque: Sin ingresas este número el sistema podria no funcionar
+        usuario_no_existe: Este usuario no existe en la base de datos
+    labels:
+        configuracion:
+            estado: Estado
+            nombre: Nombre del evento
+            estrategia: Estrategia
+            disciplina: Disciplina
+            rama: Rama
+            fuente: Fuente de financiación
+            enfoque: Enfoque
+            tipo_evento: Tipo
+            categoria: Categoría
+            subcategoria: Subcategorías
+            division: División
+            fecha: Fecha
+            hora_inicial: Hora de inicio
+            hora_final:
+            inicioevento: Inicio del evento
+            finevento: Fin del evento
+            inicioinscripciones: Inicio de inscripciones
+            fininscripciones: Fin de inscripciones
+            cupos: Cupos
+            numeroequipos: Número de equipos
+            numerocupos : Número de Cupos
+            participantesequipos: Participantes por equipo
+            minimo: Mínimo
+            maximo: Máximo
+            hombres: Hombres
+            mujeres: Mujeres
+            menor: Menor de...
+            mayor: Mayor de...
+            habilitar_recambios: Habilitar recambios
+            habilitar_lista_larga: Habilitar lista larga
+            personaporsexo: Número de personas por sexo
+            limitanteporedad: Limitantes por edad
+            terminos: Términos y condiciones
+            descripcion: Descripción del evento
+            agregar_imagen: Agregar imagen
+            unicoescenario: Reserva de escenario único para este evento
+            punto_atencion: Punto de atención
+            label_escenario: Escenario
+            label_barrio: Barrio
+            seleccione_usuario: Seleccione un Usuario
+            asignar_roler: Asignar roles
+            roles:
+                rol1: Administrador de eventos
+                rol2: Coordinador de Jueces
+                rol3: Deportistas
+                rol4: Director técnico
+                rol5: Delegado
+                rol6: Asistente técnico
+            formato_hora: (Formato Militar 24H)            
+        error: 
+            campo: La fecha seleccionada no puede ser menor a la fecha actual
+            inscripcion: Las fechas de inscripcion deben ser menores a las fechas del evento
+        exito:
+            eventoguardado: Los datos del evento se han guardado correctamente
+            carne: Carné configurado correctamente
+        inscripcion:
+            camposformularios: Campos que tendrá el formulario
+            activarinscripcionpublica: Activar Inscripción pública
+            activarpreinscripcionpublica: Activar Pre-inscripción pública
+            activarformularioganador: Activar Formulario ganador(es) del torneo
+            activarformulariopararecambios: Activar Formulario para recambios
+            sujeto: (Sujeto a aprobación)
+            Nosujeto: (No requiere aprobación)
+        sancion:
+            nombre: Nombre del evento
+        jugador_evento: 
+            documentacion: Documentación
+            documento_identidad: Documento de Identidad
+            certificaco_eps: Certificaco EPS
+            vista_previa: Vista Previa
+            inscribir_jugador: Inscribir Jugador
+            inscribir_equipo: Inscribir Equipo
+            escriba_equipo: Ingrese el nombre del Equipo
+            equipo_registrado: Equipo Registrado con Éxito
+            label_equipo: Equipo
+            label_no_documento: No. Documento
+            estado: Estado
+            observacion:  Observacion
+            label_participante: Participante
+            label_equipo: Equipo
+            label_jugador_eliminado: Jugador Eliminado con Éxito
+            label_equipo_eliminado: Equipo Eliminado con Éxito
+            agregar_nuevo: Agregar nuevo
+            numero_jugadores: Jugadores
+            nombre_equipo: Equipo
+            select_equipo: Seleccione un equipo
+            label_equipo_1: Equipo uno
+            label_equipo_2: Equipo dos
+            label_equipo_3: Equipo tres
+            label_equipo_4: Equipo cuatro
+            nombre: Nombre
+            imagen_documento: Imágen documento de identidad
+            imagen_eps: Imágen certificado EPS
+            informacion_enviar_usuario_correo: Señor usuario, usted debe enviar al correo electrónico edwin.florez@inder.gov.co la siguiente información
+            informacion_enviar_usuario_correo_organismo: Señor usuario, usted debe enviar la información que aparece en "Resolucion 064 del 16/02/2017 Procedimiento para otorgar reconocimiento deportivo" al correo electrónico edwin.florez@inder.gov.co            
+            participantes: Integrantes del equipo
+            nombreParticipante: Nombre del participante
+formulario_termino_condicion:
+        titulo: Términos y Condiciones
+        labels: 
+               descripcion: Descripción
+
+formulario_categoria_ambiental:
+  labels:
+    tipoCategoria: Campo Ambiental
+Categoria Ambiental List: Lista de categorias ambientales
+
+formulario_categoria_infraestructura:
+  labels:
+    tipoCategoria: Campo Infraestructura
+    
+formulario_plan_anual_metodologico:
+    registro: La guia metodológica fue registrada de manera correcta en el sistema.
+    no_actividades: Recuerda que estará inactivo hasta que se le carguen actividades
+    activo: Activo
+    title: Crear Guía Metodológica
+    paso_uno: 1. Información básica
+    paso_dos: 2. Componentes
+    paso_tres: 3. Contenidos
+    paso_cuatro: 4. Asignación
+    no_vacio: El campo no puede estar vacío.
+    accion_actividades: Ver Actividades
+    accion_planes_clase: Ver Planes de clase
+    editar_actividades: Editar
+    componente: Componentes
+    select_enfoque: Seleccione una modalidad
+    select_disciplina: Seleccione una disciplina
+    select_clasificacion: Seleccione una clasificación
+    select_nivel: Seleccione un nivel
+    select_modelo: Seleccione un modelo
+    select_componente: Seleccione un componente
+    select_contenido: Seleccione un contenido
+    select_tiempo_ejecucion: Seleccione un tiempo de ejecución
+    select_estrategia: Seleccione una estrategia
+    select_actividad: Seleccione una actividad
+    validar_ponderacion: La ponderación no puede ser menor al 100%
+    validar_ponderaciones: La suma de las ponderaciones no puede exceder el 100% 
+    guardarContinuar: Guardar y continuar
+    labels:
+        paso_uno:
+            clasificacion: Clasificación
+            disciplina: Disciplina
+            enfoque: Modalidad
+            nivel: Nivel
+            nombre: Nombre
+            estado: Estado
+        paso_dos:
+            modelo: Modelo
+            objetivo : Objetivo
+            ponderacion: Ponderación
+            ponderaciones: Ponderación automática para todos los componentes
+        paso_tres:
+            ponderaciones: Ponderación automática para todos los contenidos
+            componente: Componente
+            contenidos: Contenido
+            nombre: Nombre del contenido
+            objetivo: Objetivo
+            ponderacion: Ponderación
+            tema: Tema
+            actores: Actores
+        paso_cuatro:
+            estrategia: Estrategia
+            contenido: Contenido
+            nombre: Actividad
+            tiempo_ejecucion: Tiempo de ejecución
+            duracion: Duración
+            indicador: Indicador
+            metodo_evaluacion: Evaluación del indicador
+            logro: Logro
+
+formulario_actividades:
+    title: Crear Actividad
+    actividad_editada: Actividad editada
+    actividad_eliminada: Actividad eliminada
+
+formulario_plan_clases:
+    title: Crear Plan de clases
+    select_guia_metodologica: Seleccione una guía metodológica
+    select_clave: Seleccione una clave de observación
+    labels:
+        fecha: Fecha
+        fecha_inicio: Fecha inicio ejecución
+        fecha_fin: Fecha fin ejecución
+        tecnico: Técnico
+        social: Social
+        complementacion: Complementación (campo opcional)
+        clave_observacion: Clave observación
+        actividades: Actividades
+
+formulario_ninguno:
+    punto_atencion: Punto de atención
+    EscenarioDepor: Escenario deportivo
+    Division: División
+    DivisionSeleccion: Seleccione una División
+
+formulario_eliminatoria:
+    cantidad: La cantidad de equipos inscritos al evento debe de ser 8, 16 o 32 para seleccionar el sistema de eliminatoria
+    
+formulario_escalera: 
+    label: Puntos
+    marcador: Marcador
+    canastas: Canastas
+    labelDerrota: Derrota 
+    labelEmpate: Empate
+    labelFalta: Faltas
+    labelVictoria: Victoria 
+    puntosParaGanar: puntos para ganar el evento 
+    guardar: Guardar y continuar
+    vacioDerrota: el campo Derrota no puede estar vacio
+    vacioEmpate: el campo Empate no puede estar vacio
+    vacioVictoria : el campo Victoria no puede estar vacio
+    vaciopuntosParaGanar : el campo puntos para ganar no puede estar vacio
+    fecha: Fecha
+    hora: Hora
+    escenario: Selecciones el escenario deportivo
+    eliminar: Eliminar
+    ponderacion: Ponderación 
+    encuentro_eliminado: Encuentro eliminado
+    encuentro_editado:   Encuentro editado
+    encuentro_add: Encuentro Añadido
+    descargar: Descargar PDF
+    noDatos: No hay datos disponibles
+    seleccion: Seleccione ubicación
+    setUno: Set Uno
+    setDos: Set Dos
+    setTres: Set Tres
+    setCuatro: Set Cuatro
+    setCinco: Set Cinco
+    puntosAfavor: Set a Favor 
+    puntosEnContra: Set En Contra
+    TantosAfavor: Tantos a Favor
+    TantosEnContra: Tantos en Contra
+    scoe: Scoe
+    tscoe: Tscoe
+
+formulario_liga:
+    label: Puntos
+    labelDerrota: Puntos Derrota 
+    labelEmpate:  Puntos Empate
+    labelFalta:   Puntos Faltas
+    labelVictoria:  Puntos Victoria 
+    puntosParaGanar: Puntos para ganar el evento 
+    guardar: Guardar y continuar
+    puntosJl: Puntos Juego Limpio
+    PuntosW: Puntos Por W
+    EncuentroSistemaDos: Encuentros Liga
+    setUno: Set Uno
+    setDos: Set Dos
+    setTres: Set Tres
+    setCuatro: Set Cuatro
+    setCinco: Set Cinco
+    puntosAfavor: Set a Favor 
+    puntosEnContra: Set En Contra
+    TantosAfavor: Tantos a Favor
+    TantosEnContra: Tantos en Contra
+    scoe: Scoe
+    tscoe: Tscoe
+    JuegoLimpio: Puntos Juego Limpio
+
+formulario_play_off:
+     error: Equipos iguales en algun campo del formulario
+     cantidad: La cantidad de equipos inscritos al evento debe de ser de 16 para seleccionar el sistema PlayOff
+
+formulario_encuesta:
+    ayudaEncuesta: Hola, ayudanos con esta sencilla encuesta. Gracias.
+    crear: Crear
+    editar: Editar
+    titulo: Encuesta
+    encuestas: Encuestas
+    title: Crear Encuesta
+    titulo_repuesta: Respuestas
+    dias: días
+    comuna: Comuna
+    estrategia: Estrategia
+    oferta: Oferta
+    boton: ver respuestas
+    vacio: No se encontraron respuesta
+    placeholder:
+        periodo: Seleccione un período
+        comuna: Seleccione una comuna 
+        estrategia: Seleccione una estrategia 
+        oferta: Seleccione una oferta 
+        periodicidad: Seleccione una periodicidad 
+    labels:
+        boton: Guardar
+        boton_consultar: Consultar período
+        tiempo_ejecucion: Tiempo de ejecución
+        fecha_inicio: Fecha de inicio
+        duracion: Duración
+        periodo: Período 
+        periodicida: Periodicidad
+        muestra: Muestra
+        opcion: Opción
+        opciones: Opciones
+        guardarcontinuar: Guardar
+        guardarcrear: Guardar y crear otro
+        nombre_opcion: Nombre de la opción
+    error: 
+        periodo_menor: Debe ser mayor a la fecha del período anterior
+        menos_una_opcion: La pregunta debe tener mas de una opción
+        error_no_selection: Debes almenos seleccionar una comuna,estrategia u oferta
+        muestra_vacio: La muesta no puede ir vacía
+        encuesta_pregunta_vacio: La encuesta debe tener minimo una(1) pregunta
+        fecha_inicio: La fecha de inicio debe ser mayor a la actual
+    periodicida :
+        semanal: Semanal
+        mensual: Mensual
+        trimestral: Trimestral
+        semestral: Semestral
+    respuesta:
+        tabla_opcion: Opción
+        tabla_porcentaje: Porcentajes
+        tabla_cantidad_user: Cantidad de usuarios
+        muestra: Muestras 
+        muestra_comuna : Muestra esperada de Comuna
+        muestra_estrategia: Muestra esperada de Estrategia
+        muestra_ofera: Muestra esperada de Oferta
+        muestra_alcanzada: Muestra alcanzada
+        periodo_consultar: Período a consultar
+        fecha: Fecha de ejecución del período
+        perido_fecha_inicial: Fecha inicial período
+        periodo_fecha_final: Fecha final período
+
+EncuetroSistemaTres: 
+    tipoJuegoUno: Al mejor 1
+    tipoJuegoDos: Al mejor 2
+    llave: llave
+    label: Marcador
+    goles: Goles A Favor
+    contra: Goles En Contra
+    diferencia: Diferencia De Goles
+
+formulario_noticias:
+    title: Crear noticia
+    labels:
+        titulo: Título
+        descripcion: Descripción
+        imagen: Imágen
+        fecha: Fecha
+
+formulario_kit_territorial:
+    title: Crear Kit Territorial
+    
+Encuentro Sistema Cuatro List: PlayOff
+
+Error_campo_PlayOff:
+   error: Un equipo se encuentra repetido en los grupos
+
+Encuentro Sistema cuatro programar: Programar
+
+Chimenea List: Chimenea
+Escalera List: Escalera
+Piramide List: Piramide
+Jugadores List: Evento  /  Jugadores
+
+Error_usuarios_organismo_deportivo: El Organismo Deportivo no tiene Usuarios Deportistas
+
+Sunday: Domingo
+Monday: Lunes
+Tuesday: Martes
+Wednesday: Miercoles
+Thursday: Jueves
+Friday: Viernes
+Saturday: Sabado
+
+Variable_global:
+    fecha_inicial: Fecha inicial para deshabilitar las reservas
+    fecha_final: Fecha final para deshabilitar las reservas
+
+texto_login: |
+    Recuerda que para ingresar ya no necesitarás “Nombre de usuario”, en su lugar debes seleccionar  tu tipo de documento y luego ingresar el número de tu documento. 
+    La contraseña será la misma que ya tenías registrada.
+    </br>
+    Si nunca definiste tipo de documento, no es necesario completar dicho campo.
+Enlace List: Lista de Enlaces
+Categoria Enlace List: Lista Categorias de Enlace
+categorias: Categorías
+CategoriaEnlace: Categoria Enlace
+Recomendado List: Lista de Recomendados
+titulo_encuesta: +Encuesta
+titulo_encuesta_datos: Datos
+encuesta_add: Encuesta añadida
+jugadorNoexiste: Por favor seleccione un usuario válido.
+
+jugadorNoexisteUno: El numero de cedula  
+jugadorNoexisteDos:  no esta asociado a ningun usuario registrado, el usuario debe estar previamente registrado.
+jugadorYaAsociado: El número de cédula del jugador ingresado ya está asociado al evento.
+fechaMenorActual: la fecha seleccionada es menor a la fecha actual
+fechaFinMenorInicio: La fecha final es menor a la fecha de inicio
+novacio: El campo no puede estar vacío.
+sistemasJuego_seleccion: Al guardar el formulario de puntajes no podra cambiar el sistema de juego selecionado.
+sistemasJuego_seleccion_eliminatoria: Al agregar un nuevo encuentro para eliminatoria no podra cambiar el sistema de juego selecionado.
+sistemasJuego_select: No puede cambiar el sistema de juego selecionado.
+
+The selected item does not exist: El elemento seleccionado no es valido
+agregar_administradores: Gestionar administradores
+errorCupoEquiposEventos: No puedes aprobar mas equipos por que el cupo se ha superado
+titulobanner: Banner
+horasistemaJuego: Hora
+fechasistemaJuego: Fecha
+competidorunosistemaJuego: Competidor uno
+competidordossistemaJuego: Competidor dos
+EncuentroSistemaTres: Encuentro Eliminatoria
+Corregimientoinder: Corregimiento
+Motivo Cancelacion List: Motivos de cancelación
+Motivo Cancelacion Create: Crear
+Motivos Cancelacion: Motivo de cancelación
+motivoCancelacionSelect: Seleccione un motivo de cancelación
+motivoCancelacionError: Debe escoger un motivo para cancelar la reserva
+cancelar: Cancelar
+
+January: Enero 
+February: Febrero 
+March: Marzo 
+April: Abril 
+May: Mayo 
+June: Junio 
+July: Julio 
+August: Agosto 
+September: Septiembre 
+October: Octubre 
+November: Noviembre 
+December: Diciembre 
+Encuentro Sistema Dos Create: Crear Encuentro Liga
+EncuentroSistemaDos: Encuentro Liga
+Escalera Create: Crear Encuentro Escalera
+Piramide Create: Crear Encuentro Piramide
+Chimenea Create: Crear Encuentro Chimenea
+
+label:
+    reserva:
+        dia: Dia reserva
+        hora: Horario
+    motivo: Motivo
+    mostrar:
+        nombre: ¿Mostrar nombre?
+        equipo: ¿Mostrar equipo?
+        evento: ¿Mostrar evento?
+        colegio: ¿Mostrar colegio?
+        comuna: ¿Mostrar comuna?
+        fecha: ¿Mostrar fecha de nacimiento?
+        deporte: ¿Mostrar deporte?
+        rama: ¿Mostrar rama?
+        rol: ¿Mostrar rol?
+        cabezote: Cargar imágen del carné
+    carne: Configuración del carné
+    tamano_imagen: La imágen debe ser de exactamente 349 x 100 px.
+    bloquea:
+        escenario: ¿Bloquea escenario?
+    seleccion:
+        dia:
+            unico: Seleccione día

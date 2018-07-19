@@ -1,0 +1,68 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.1/fullcalendar.min.css">
+
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+    <style>
+    </style>
+
+{% endblock %}
+
+{% block title %}AdminBundle:Usuario:registro{% endblock %} 
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_escenariodeportivo_list') }}">{% trans %}formulario_escenario_deportivo.escenarios_deportivos{% endtrans %}</a></li>
+        <li><a href="{{ url('admin_logic_reserva_list') }}">{% trans %}titulo.reservas{% endtrans %}</a></li>
+        <li class="active">{% trans %}formulario_reserva.crear{% endtrans %}</li>
+    </ol>                                                        
+{% endblock %}
+
+{% block sonata_page_content %}
+    <section class="content">
+        {% block sonata_admin_content %}
+            {{ form_start(form, {'attr': {'id': 'formulario_reserva_paso1', novalidate: 'true'} } ) }}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_reserva.solicitudregistro{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Solicitud-registro-pasos -->
+                <div class="row">
+                    <div class="col-md-4 iconoText2">
+                        {% include 'AdminBundle:Reservas/Pasos:iconos.html.twig' with {vistaPaso: 5} %}
+                    </div>
+
+                    <div class="col-md-8 fondoAzul2">
+                        <div class="infoBox felicitaciones">
+                            <div class="circuloIcono">
+                                <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                            </div>
+                            <h2>¡Felicitaciones!</h2>
+                            <p>Reserva registrada de manera éxitosa.<br><br>
+                                <a class="btn btnVerde" href="{{path('sonata_admin_dashboard')}}"><span>Aceptar</span></a>
+                            </p>
+                        </div>
+                        <div style="display: none;">
+                            {{ form_rest(form) }}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <span id="alertas" data-tituloalerta="{% trans %}formulario_reserva.alertas.tituloalerta {% endtrans %}" data-yaseleccionada="{% trans %}formulario_registro.alertas.disciplinasyaseleccionada {% endtrans %}" data-revisecampos="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-registrado="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-mensajeerror="{% trans %}formulario_registro.alertas.mensajeerror {% endtrans %}" data-titulook="{% trans %}formulario_registro.alertas.titulo_ok {% endtrans %}"></span>
+            <span id='disciplinas' class='disciplinas' data-numero="{{ disciplinas|length }}"></span>
+            <span id="url" data-infoorganigrama="{{ path("info_organigrama") }}"></span>
+            {{ form_end(form) }}
+        {% endblock sonata_admin_content %}
+    </section>
+{% endblock sonata_page_content %}

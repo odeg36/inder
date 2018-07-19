@@ -1,0 +1,532 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+        .white{
+            background : #fff !important;
+        }
+        .red{
+            color : #ff0201 !important;
+        }
+        .mg-top{
+            margin-top : 10px !important;
+        }
+        .mg-bottom{
+            margin-bottom : 10px !important;
+        }
+        .pd-left{ 
+            padding-left : 5px !important;
+        }
+        .pd-right{
+            padding-right : 5px !important;
+        }
+        .center{
+            text-align : center !important;
+        }
+    </style>
+{% endblock %}
+
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_planclase_list') }}">{% trans %}Plan Clase List{% endtrans %}</a></li>        
+        <li class="active">
+        {% if planClaseId == 0 %}
+            {% trans %}btn.accion.crear{% endtrans %}
+        {% else %}
+            {% trans %}btn.editar{% endtrans %}
+        {% endif %}
+        </li>
+    </ol>
+{% endblock %}
+
+{% block sonata_page_content %}
+    {% block sonata_admin_content %}
+        <!-- Content Wrapper. Contains page content -->
+        <div class="">
+            <!-- formulario -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_plan_clases.title{% endtrans %}</h4>
+                        <a type="button" class="btn-regresar sonata-action-element" href="{{ path('admin_logic_planclase_list') }}" style="padding: 5px 12px 3px 12px;">
+                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                            {{'Volver'|trans}}
+                        </a>
+                    </div>
+                </div>
+                <!-- Planes de clase -->
+                <div class="row">
+                    <div class="col-md-12 fondoAzul2">
+                        {{ form_start(form, {'attr': {'id': 'formulario_planClases', novalidate: 'true'} } ) }}
+                            <div class="infoBox row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 contenedorInfoUno">
+                                    <div class="col-md-12">
+                                        {{form_label(form.estrategia)}}
+                                        {{form_widget(form.estrategia)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.estrategia.vars.errors }%}
+                                    </div>
+                                    <div class="col-md-12">
+                                        {{form_label(form.oferta)}}
+                                        {{form_widget(form.oferta)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.oferta.vars.errors }%}
+                                    </div>
+                                    <div class="col-md-12" style="margin-left: -5px">
+                                        <div class="col-md-12" style="margin-bottom: -12px">
+                                            <label class="required">{% trans %}formulario_plan_clases.labels.fecha{% endtrans %}</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <strong>{{form_label(form.fechaInicio)}}</strong>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                <div >                                                
+                                                    {{form_widget(form.fechaInicio) }}
+                                                </div>
+                                            </div>
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.fechaInicio.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-3">
+                                            <strong>{{form_label(form.fechaFin)}}</strong>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                <div >
+                                                    {{form_widget(form.fechaFin) }}
+                                                </div>
+                                            </div>
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.fechaFin.vars.errors }%}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 sombra" style="margin-top: 20px">
+                                        <div class="nav-tabs-custom">
+                                            {% include 'AdminBundle:PlanClase/Tabs:tab.html.twig' with {tabActivo: 'tecnico', planClaseId: planClaseId} %}
+                                            <!-- Formulario tecnico -->
+                                            <div id="form-tecnico">
+                                                <div class="col-md-12 tab-content white">
+                                                    <div class="col-md-12 campoGris" style="margin-bottom: 20px">
+                                                        <div class="col-md-12">
+                                                            {{form_label(form.planAnualMetodologico)}}
+                                                            {{form_widget(form.planAnualMetodologico)}}
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.planAnualMetodologico.vars.errors }%}
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {{form_label(form.componente)}}
+                                                            {{form_widget(form.componente)}}
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.componente.vars.errors }%}
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {{form_label(form.contenido)}}
+                                                            {{form_widget(form.contenido, { 'id': 'contenidoPlanClasesTecnico' }) }}
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.contenido.vars.errors }%}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <ul class="nav d-flex tab-btn-interno">
+                                                    <li class="marginR10 active">
+                                                        <a href="#parte-inicial-info" data-toggle="tab" aria-expanded="true" id="parte-inicial">
+                                                            <button class="btn btn-default">
+                                                                <i class="fa fa-cubes" aria-hidden="true"></i>
+                                                                Parte Inicial
+                                                            </button>
+                                                        </a>
+                                                    </li>
+                                                    <li class="marginR10">
+                                                        <a href="#parte-central-info" data-toggle="tab" aria-expanded="false" id="parte-central">
+                                                            <button class="btn btn-default">
+                                                                <i class="fa fa-cubes" aria-hidden="true"></i>
+                                                                Parte Central
+                                                            </button>
+                                                        </a>
+                                                    </li>
+                                                    <li class="marginR10">
+                                                        <a href="#parte-final-info" data-toggle="tab" aria-expanded="false" id="parte-final">
+                                                            <button class="btn btn-default">
+                                                                <i class="fa fa-cubes" aria-hidden="true"></i>
+                                                                Parte Final
+                                                            </button>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <div class="linea-gris"></div>
+                                                <!-- Contenido de las tres partes -->
+                                                <div class="col-md-12 tab-pane active" id="parte-inicial-info">
+                                                    <div class="col-md-12">
+                                                        <section class="col-xs-12 error-mesajes">
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.actividades.vars.errors }%}
+                                                        </section>
+                                                            {%
+                                                                form_theme form
+                                                                    'AdminBundle:PlanClase:actividades.html.twig'
+                                                                    'jquery.collection.html.twig'
+                                                            %}
+                                                        {{ form_row(form.actividades) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 tab-pane" id="parte-central-info">
+                                                    <div class="col-md-12">
+                                                        <section class="col-xs-12 error-mesajes">
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.actividades2.vars.errors }%}
+                                                        </section>
+                                                            {%
+                                                                form_theme form
+                                                                    'AdminBundle:PlanClase:actividades.html.twig'
+                                                                    'jquery.collection.html.twig'
+                                                            %}
+                                                        {{ form_row(form.actividades2) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 tab-pane" id="parte-final-info">
+                                                    <div class="col-md-12">
+                                                        <section class="col-xs-12 error-mesajes">
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.actividades3.vars.errors }%}
+                                                        </section>
+                                                            {%
+                                                                form_theme form
+                                                                    'AdminBundle:PlanClase:actividades.html.twig'
+                                                                    'jquery.collection.html.twig'
+                                                            %}
+                                                        {{ form_row(form.actividades3) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Formulario tecnico -->
+                                            <!-- Formulario social -->
+                                            <div id="form-social">
+                                                <div class="col-md-12 tab-content white">
+                                                    <div class="col-md-12 campoGris" style="margin-bottom: 20px">
+                                                        <div class="col-md-6">
+                                                            {{form_label(form.planAnualMetodologico2)}}
+                                                            {{form_widget(form.planAnualMetodologico2)}}
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.planAnualMetodologico2.vars.errors }%}
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {{form_label(form.modelo)}}
+                                                            {{form_widget(form.modelo)}}
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.modelo.vars.errors }%}
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {{form_label(form.componente2)}}
+                                                            {{form_widget(form.componente2)}}
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.componente2.vars.errors }%}
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {{form_label(form.contenido2)}}
+                                                            {{form_widget(form.contenido2, { 'id': 'contenidoPlanClasesSocial' })}}
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.contenido2.vars.errors }%}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <ul class="nav d-flex tab-btn-interno">
+                                                    <li class="marginR10 active">
+                                                        <a href="#parte-inicial2-info" data-toggle="tab" aria-expanded="true" id="parte-inicial2">
+                                                            <button class="btn btn-default">
+                                                                <i class="fa fa-cubes" aria-hidden="true"></i>
+                                                                Parte Inicial
+                                                            </button>
+                                                        </a>
+                                                    </li>
+                                                    <li class="marginR10">
+                                                        <a href="#parte-central2-info" data-toggle="tab" aria-expanded="false" id="parte-central2">
+                                                            <button class="btn btn-default">
+                                                                <i class="fa fa-cubes" aria-hidden="true"></i>
+                                                                Parte Central
+                                                            </button>
+                                                        </a>
+                                                    </li>
+                                                    <li class="marginR10">
+                                                        <a href="#parte-final2-info" data-toggle="tab" aria-expanded="false" id="parte-final2">
+                                                            <button class="btn btn-default">
+                                                                <i class="fa fa-cubes" aria-hidden="true"></i>
+                                                                Parte Final
+                                                            </button>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <div class="linea-gris"></div>
+                                                <!-- Contenido de las tres partes -->
+                                                <div class="col-md-12 tab-pane active" id="parte-inicial2-info">
+                                                    <div class="col-md-12">
+                                                        <section class="col-xs-12 error-mesajes">
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.actividades4.vars.errors }%}
+                                                        </section>
+                                                            {%
+                                                                form_theme form
+                                                                    'AdminBundle:PlanClase:actividades2.html.twig'
+                                                                    'jquery.collection.html.twig'
+                                                            %}
+                                                        {{ form_row(form.actividades4) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 tab-pane" id="parte-central2-info">
+                                                    <div class="col-md-12">
+                                                        <section class="col-xs-12 error-mesajes">
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.actividades5.vars.errors }%}
+                                                        </section>
+                                                            {%
+                                                                form_theme form
+                                                                    'AdminBundle:PlanClase:actividades2.html.twig'
+                                                                    'jquery.collection.html.twig'
+                                                            %}
+                                                        {{ form_row(form.actividades5) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 tab-pane" id="parte-final2-info">
+                                                    <div class="col-md-12">
+                                                        <section class="col-xs-12 error-mesajes">
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.actividades6.vars.errors }%}
+                                                        </section>
+                                                            {%
+                                                                form_theme form
+                                                                    'AdminBundle:PlanClase:actividades2.html.twig'
+                                                                    'jquery.collection.html.twig'
+                                                            %}
+                                                        {{ form_row(form.actividades6) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Formulario social -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                    <div class="col-md-12 division"></div>
+                                    <div class="col-md-12">
+                                        <span></span>
+                                        <div class="col-md-12">
+                                            <a type="button" class="btn btnNaranja" href="{{ path('admin_logic_planclase_list') }}">
+                                                <i class="fa fa-chevron-left"></i>
+                                                {{'Cancelar'|trans}}
+                                            </a>
+                                            {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                        </div>
+                                        <div style="display: none;">
+                                            {{ form_rest(form) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.content-wrapper -->
+    {% endblock sonata_admin_content %}
+    <script type="text/javascript">
+        var $addActividadesLink = $('<div class="col-md-12 btnCentrar" ><a href="#" class="btn btnVerde btnSize add_actividad_link"><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar actividad</a></div>');
+        var $deleteActividadesLink = $('<div class="row btnCentrar"><div class="col-md-4 btnCentrar campoGris"><a href=""><button type="button" class="btn btnSize btnRojo"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar esta actividad</button></a></div></div>');
+        var $deleteActividadesLink = $('<a href=""><button type="button" class="btn btnSize btnRojo"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar esta actividad</button></a>');
+
+        var $addActividades2Link = $('<div class="col-md-12 btnCentrar" ><a href="#" class="btn btnVerde btnSize add_actividad_link"><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar actividad</a></div>');
+        var $deleteActividades2Link = $('<div class="row btnCentrar"><div class="col-md-4 btnCentrar campoGris"><a href=""><button type="button" class="btn btnSize btnRojo"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar esta actividad</button></a></div></div>');
+        var $deleteActividades2Link = $('<a href=""><button type="button" class="btn btnSize btnRojo"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar esta actividad</button></a>');
+
+        var $addActividades3Link = $('<div class="col-md-12 btnCentrar" ><a href="#" class="btn btnVerde btnSize add_actividad_link"><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar actividad</a></div>');
+        var $deleteActividades3Link = $('<div class="row btnCentrar"><div class="col-md-4 btnCentrar campoGris"><a href=""><button type="button" class="btn btnSize btnRojo"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar esta actividad</button></a></div></div>');
+        var $deleteActividades3Link = $('<a href=""><button type="button" class="btn btnSize btnRojo"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar esta actividad</button></a>');
+
+        var $addActividades4Link = $('<div class="col-md-12 btnCentrar" ><a href="#" class="btn btnVerde btnSize add_actividad_link"><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar actividad</a></div>');
+        var $deleteActividades4Link = $('<div class="row btnCentrar"><div class="col-md-4 btnCentrar campoGris"><a href=""><button type="button" class="btn btnSize btnRojo"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar esta actividad</button></a></div></div>');
+        var $deleteActividades4Link = $('<a href=""><button type="button" class="btn btnSize btnRojo"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar esta actividad</button></a>');
+
+        var $addActividades5Link = $('<div class="col-md-12 btnCentrar" ><a href="#" class="btn btnVerde btnSize add_actividad_link"><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar actividad</a></div>');
+        var $deleteActividades5Link = $('<div class="row btnCentrar"><div class="col-md-4 btnCentrar campoGris"><a href=""><button type="button" class="btn btnSize btnRojo"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar esta actividad</button></a></div></div>');
+        var $deleteActividades5Link = $('<a href=""><button type="button" class="btn btnSize btnRojo"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar esta actividad</button></a>');
+
+        var $addActividades6Link = $('<div class="col-md-12 btnCentrar" ><a href="#" class="btn btnVerde btnSize add_actividad_link"><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar actividad</a></div>');
+        var $deleteActividades6Link = $('<div class="row btnCentrar"><div class="col-md-4 btnCentrar campoGris"><a href=""><button type="button" class="btn btnSize btnRojo"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar esta actividad</button></a></div></div>');
+        var $deleteActividades6Link = $('<a href=""><button type="button" class="btn btnSize btnRojo"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar esta actividad</button></a>');
+        
+        $('.actividades-collection').collection({
+            name_prefix: '{{ form.actividades.vars.full_name }}',
+            drag_drop: '',
+            allow_up: '',
+            add:$addActividadesLink,
+            remove: $deleteActividadesLink,
+            up: '',
+            down: '',
+            duplicate: '',
+            add_at_the_end: true,
+            after_add: function(collection, element) {
+                inder.plan_clase.setSelect1Tecnico(element.attr('data-id'));
+            }
+        });
+
+        $('.actividades2-collection').collection({
+            name_prefix: '{{ form.actividades2.vars.full_name }}',
+            drag_drop: '',
+            allow_up: '',
+            add:$addActividades2Link,
+            remove: $deleteActividades2Link,
+            up: '',
+            down: '',
+            duplicate: '',
+            add_at_the_end: true,
+            after_add: function(collection, element) {
+                inder.plan_clase.setSelect2Tecnico(element.attr('data-id'));
+            }
+        });
+
+        $('.actividades3-collection').collection({
+            name_prefix: '{{ form.actividades3.vars.full_name }}',
+            drag_drop: '',
+            allow_up: '',
+            add:$addActividades3Link,
+            remove: $deleteActividades3Link,
+            up: '',
+            down: '',
+            duplicate: '',
+            add_at_the_end: true,
+            after_add: function(collection, element) {
+                inder.plan_clase.setSelect3Tecnico(element.attr('data-id'));
+            }
+        });
+
+        $('.actividades4-collection').collection({
+            name_prefix: '{{ form.actividades4.vars.full_name }}',
+            drag_drop: '',
+            allow_up: '',
+            add:$addActividades4Link,
+            remove: $deleteActividades4Link,
+            up: '',
+            down: '',
+            duplicate: '',
+            add_at_the_end: true,
+            after_add: function(collection, element) {
+                inder.plan_clase.setSelect1Social(element.attr('data-id'));
+            }
+        });
+
+        $('.actividades5-collection').collection({
+            name_prefix: '{{ form.actividades5.vars.full_name }}',
+            drag_drop: '',
+            allow_up: '',
+            add:$addActividades5Link,
+            remove: $deleteActividades5Link,
+            up: '',
+            down: '',
+            duplicate: '',
+            add_at_the_end: true,
+            after_add: function(collection, element) {
+                inder.plan_clase.setSelect2Social(element.attr('data-id'));
+            }
+        });
+
+        $('.actividades6-collection').collection({
+            name_prefix: '{{ form.actividades6.vars.full_name }}',
+            drag_drop: '',
+            allow_up: '',
+            add:$addActividades6Link,
+            remove: $deleteActividades6Link,
+            up: '',
+            down: '',
+            duplicate: '',
+            add_at_the_end: true,
+            after_add: function(collection, element) {
+                inder.plan_clase.setSelect3Social(element.attr('data-id'));
+            }
+        });
+
+        $('#form-social').hide();
+
+        $('#pestaña-tecnico').click(function(evt) {
+            $("#form-social").hide();
+            $("#form-tecnico").show();
+        });
+
+        $('#pestaña-social').click(function(evt) {
+            $("#form-tecnico").hide();
+            $("#form-social").show();
+        });
+
+        $('#parte-central-info').hide();
+        $('#parte-final-info').hide();
+        $('#parte-central2-info').hide();
+        $('#parte-final2-info').hide();
+
+        $('#parte-inicial').click(function(evt) {
+            $('#parte-inicial-info').show();
+            $('#parte-central-info').hide();
+            $('#parte-final-info').hide();
+        });
+
+        $('#parte-central').click(function(evt) {
+            $('#parte-inicial-info').hide();
+            $('#parte-central-info').show();
+            $('#parte-final-info').hide();
+        });
+
+        $('#parte-final').click(function(evt) {
+            $('#parte-inicial-info').hide();
+            $('#parte-central-info').hide();
+            $('#parte-final-info').show();
+        });
+
+        $('#parte-inicial2').click(function(evt) {
+            $('#parte-inicial2-info').show();
+            $('#parte-central2-info').hide();
+            $('#parte-final2-info').hide();
+        });
+
+        $('#parte-central2').click(function(evt) {
+            $('#parte-inicial2-info').hide();
+            $('#parte-central2-info').show();
+            $('#parte-final2-info').hide();
+        });
+
+        $('#parte-final2').click(function(evt) {
+            $('#parte-inicial2-info').hide();
+            $('#parte-central2-info').hide();
+            $('#parte-final2-info').show();
+        });
+    </script>
+    <style>
+        .fileinput-cancel {
+            display: none !important;
+        }
+        .fileinput-remove {
+            display: inline !important;
+        }
+        .btn-default {
+            background-color: #c7daef !important;
+            color: #007385 !important;
+            border-color: #bbb !important;
+            -webkit-transition: background-color 0.3s ease-in-out !important;
+            transition: background-color 0.3s ease-in-out !important;
+        }
+        .btn-default:hover {
+            background-color: #007385 !important;
+            color: #c7daef !important;
+            border-color: #007385 !important;
+            -webkit-transition: background-color 0.3s ease-in-out !important;
+            transition: background-color 0.3s ease-in-out !important;
+        }
+        .btn-outline-secondary i{
+            margin: auto !important;
+        }
+        strong label{
+            color : #000000 !important;
+            margin: 0px !important;
+        }
+        .collection-actions{
+            display:none !important;
+        }
+        .margen-bottom-10{
+            margin-bottom: 15px !important;
+        }
+    </style>
+{% endblock sonata_page_content %}

@@ -1,0 +1,75 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+{% endblock %}
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+{% block sonata_page_content %}
+    <section class="content">
+        {% block sonata_admin_content %}
+
+            {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_registro.solicitudregistro{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Solicitud-registro-pasos -->
+                <div class="row">
+                    <div class="col-md-4 iconoText2">
+                        <div class="iconoInfo2">
+                            <div class="linea1"></div>
+                            <div class="circulo activoCheck">
+                                <i class="fa fa-check"></i>
+                            </div>
+                            <div class="linea2"></div>
+                            <div class="circulo activoCheck">
+                                <i class="fa fa-check"></i>
+                            </div>
+                            <div class="linea2"></div>
+                            <div class="circulo activoCheck">
+                                <i class="fa fa-check"></i>
+                            </div>
+                            {#<div class="linea2"></div>
+                            <div class="circulo activoCheck">
+                                <i class="fa fa-check"></i>
+                            </div>#}
+                            {#<div class="linea2"></div>
+                            <div class="circulo activoCheck">
+                                <i class="fa fa-check"></i>
+                            </div>#}
+                        </div>
+                        <div class="pasos esconderTabletas">
+                            <div class="pasosInfo">
+                                <i class="fa fa-exclamation-triangle fa-4x" aria-hidden="true"></i>
+                                <p>{{ 'formulario_registro.termina_proceso' | trans }}.</p>
+                            </div>
+                            <div>
+                                <ol>
+                                    <li class="esconderTabletas">{% trans %}formulario_registro.paso_uno{% endtrans %}</li>
+                                    <li class="esconderTabletas">{% trans %}formulario_registro.paso_dos{% endtrans %}</li>
+                                    <li class="esconderTabletas">{% trans %}formulario_registro.paso_tres{% endtrans %}</li>
+                                    {#<li class="esconderTabletas">{% trans %}formulario_registro.paso_cuatro{% endtrans %}</li>#}
+{#                                    <li>{% trans %}formulario_registro.paso_cinco{% endtrans %}</li>#}
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 fondoAzul2">
+                        <div class="infoBox felicitaciones">
+                            <div class="circuloIcono">
+                                <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                            </div>
+                            <h2>{% trans %}formulario_registro.felicitaciones{% endtrans %}</h2>
+                            <p>{% trans %}formulario_registro.felicitaciones_descripcion{% endtrans %}<br>
+                                <span>{% trans %}formulario_registro.felicitaciones_gracias{% endtrans %}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock sonata_admin_content %}
+    </section>
+{% endblock sonata_page_content %}

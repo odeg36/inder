@@ -1,0 +1,91 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+    </style>
+{% endblock %}
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_plananualmetodologico_list') }}">{% trans %}Plan Anual Metodologico List{% endtrans %}</a></li>        
+        <li class="active">
+        {% if idplananualmetodologico == 0 %}
+            {% trans %}btn.accion.crear{% endtrans %}
+        {% else %}
+            {{ nombre }}
+        {% endif %}
+        </li>
+    </ol>
+{% endblock %}
+{% block sonata_page_content %}
+    {% block sonata_admin_content %}
+        <!-- Content Wrapper. Contains page content -->
+        <div class="">
+            <!-- formulario -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_plan_anual_metodologico.title{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Planes Anuales Metodologicos -->
+                <div class="row">
+                    <div class="col-md-4 iconoText2">
+                        {% include 'AdminBundle:PlanAnualMetodologico/Pasos:iconos.html.twig' with {vistaPaso: 1, 'idplananualmetodologico' : idplananualmetodologico, 'nombre' : nombre} %}
+                    </div>
+                    <div class="col-md-8 fondoAzul2">
+                        {{ form_start(form, {'attr': {'id': 'formulario_plan_anual_metodologico', novalidate: 'true'} } ) }}
+                            <div class="infoBox row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 contenedorInfoUno">
+                                    
+                                    <div class="col-md-12">
+                                        {{form_label(form.enfoque)}}
+                                        {{form_widget(form.enfoque )}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.enfoque.vars.errors }%}
+                                    </div>
+                                    <div id = "datosBasicosId" data-enfoque="{{ enfoque }}" data-social= "{{ cantidadsocial }}" >
+                                        <div class="col-lg-12 col-md-12">
+                                            {{form_label(form.clasificacion)}}
+                                            {{form_widget(form.clasificacion)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.clasificacion.vars.errors }%}
+                                        </div>
+                                        <div id = "disciplinaId" data-clasificacion="{{ clasificacion }}">
+                                            <div class="col-md-12">
+                                                {{form_label(form.disciplina)}}
+                                                {{form_widget(form.disciplina)}}
+                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.disciplina.vars.errors }%}
+                                            </div>
+                                            <div class="col-md-12">
+                                                {{form_label(form.niveles)}}
+                                                {{form_widget(form.niveles)}}
+                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.niveles.vars.errors }%}
+                                            </div>
+                                        </div>
+                                        {{form_widget(form.nombre)}}
+                                        {{form_widget(form.estado)}}                                        
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                    <div class="col-md-12 division"></div>
+                                    <div class="col-md-12">
+                                        <span></span>
+                                        <div class="col-md-12">
+                                            {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                        </div>
+                                        <div style="display: none;">
+                                            {{ form_rest(form) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.content-wrapper -->
+    {% endblock sonata_admin_content %}
+{% endblock sonata_page_content %}

@@ -1,0 +1,106 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+{% endblock %}
+{% block title %}{{organizacionId != ""?'Actualización de datos':'Registro'}}{% endblock %}
+{% block sonata_breadcrumb %}
+    {% if organizacionId != ""%}
+        <div class="hidden-xs">
+            <ol class="nav navbar-top-links breadcrumb">
+                <ol class="nav navbar-top-links breadcrumb">
+                    <li>
+                        <a href="{{path('sonata_admin_dashboard')}}">
+                            <i class="fa fa-home"></i>                                        
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{path('admin_logic_organizaciondeportiva_list')}}">
+                            {{'Organizacion Deportiva List'|trans}}                                        
+                        </a>
+                    </li>
+                    <li class="active">
+                        <span>{{'Edición de organismo'|trans}}</span>
+                    </li>
+                </ol>
+            </ol>
+        </div>
+    {% endif %}
+{% endblock sonata_breadcrumb %}
+{% block sonata_page_content %}
+    <section class="content">
+        {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+        {% block sonata_admin_content %}
+            <form 
+                name="{{form.vars.id}}" 
+                method="{{form.vars.method}}" 
+                id="formulario_disciplina" 
+                action="{{ path('info_complementaria', {'organismo':organizacionId})}}"
+                novalidate="true">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 titulos">
+                            <h4>
+                                {% if organizacionId != "" %}
+                                    {{'Actualización de datos'|trans}}
+                                {% else %}
+                                    {{'formulario_registro.solicitudregistro'|trans}}
+                                {% endif %}
+                            </h4>
+                        </div>
+                    </div>
+                    <!-- Solicitud-registro-pasos -->
+                    <div class="row">
+                        <div class="col-md-4 iconoText2">
+                            {% include 'AdminBundle:Usuario/Pasos:iconos.html.twig' with {vistaPaso: 1} %}
+                        </div>
+                        <div class="col-md-8 fondoAzul2">
+                            <div class="infoBox row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 uno contenedorInfoUno">
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                    {% if form.tipoEntidad is defined%}
+                                        <div class="col-md-12">
+                                            <div class="alert alert-warning">
+                                                {{ 'mensaje.organizacion_deportiva.alerta.tipo_entidad' | trans | raw }}
+                                            </div>
+                                            {{form_label(form.tipoEntidad)}}
+                                            {{form_widget(form.tipoEntidad)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoEntidad.vars.errors }%}
+                                        </div>
+                                    {%endif%}
+                                    <div class="col-md-12">
+                                        <label>{% trans %}formulario_registro.pasouno.titulo_disciplinas{% endtrans %}</label>
+                                        <p>{% trans %}formulario_registro.pasouno.disciplinas_promueve{% endtrans %}</p>
+                                    </div>
+                                    <div class="col-md-12">
+                                        {{form_label(form.disciplinas)}}
+                                        {{form_widget(form.disciplinas)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.disciplinas.vars.errors }%}
+                                    </div>
+                                    <div class="col-md-12">
+                                        {{form_label(form.tendencias)}}
+                                        {{form_widget(form.tendencias)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tendencias.vars.errors }%}
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                    <div class="col-md-12 division"></div>
+                                    <div class="col-md-12">
+                                        {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                    </div>
+                                    <div style="display: none;">
+                                        {{ form_rest(form) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <span id="alertas" data-tituloalerta="{% trans %}formulario_registro.alertas.tituloalerta {% endtrans %}" data-yaseleccionada="{% trans %}formulario_registro.alertas.disciplinasyaseleccionada {% endtrans %}" data-revisecampos="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-registrado="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-mensajeerror="{% trans %}formulario_registro.alertas.mensajeerror {% endtrans %}" data-titulook="{% trans %}formulario_registro.alertas.titulo_ok {% endtrans %}"></span>
+                <span id='disciplinas' class='disciplinas' data-numero="{{ disciplinas|length }}"></span>
+                <span id="url" data-infoorganigrama="{{ path("info_organigrama") }}"></span>
+                {{ form_end(form) }}
+            {% endblock sonata_admin_content %}
+    </section>
+{% endblock sonata_page_content %}

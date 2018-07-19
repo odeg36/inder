@@ -1,0 +1,913 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends base_template %}
+
+{#{% set oferta = obtenerOferta(app.request.get('filter')['oferta']['value'])%}#}
+
+{%- block actions -%}
+
+    {#
+
+    This file is part of the Sonata package.
+
+    (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+    For the full copyright and license information, please view the LICENSE
+    file that was distributed with this source code.
+
+    #}
+
+{%- endblock -%}
+
+{% block tab_menu %}{{ knp_menu_render(admin.sidemenu(action), {'currentClass' : 'active', 'template': sonata_admin.adminPool.getTemplate('tab_menu_template')}, 'twig') }}{% endblock %}
+
+{% block title %}
+    {#
+        The list template can be used in nested mode,
+        so we define the title corresponding to the parent's admin.
+    #}
+
+    {% if admin.isChild and admin.parent.subject %}
+        {{ "title_edit"|trans({'%name%': admin.parent.toString(admin.parent.subject)|truncate(15) }, 'SonataAdminBundle') }}
+    {% endif %}
+{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_evento_list') }}">{% trans %}Evento List{% endtrans %}</a></li>  
+        <li><a href="{{ url('admin_logic_evento_configuracion',{ 'id': eventoId}) }}">{{ nombreEvento }}</a></li>       
+        <li class="active">{% trans %}formulario_evento.tabs.clasificasionYcalendarioTabs.GruposyPlayOff{% endtrans %}</li>
+    </ol>
+{% endblock %}
+
+{% block navbar_title %}
+    {{ block('title') }}
+{% endblock %}
+
+{% block notice %}
+    {% for type in sonata_flashmessages_types() %}
+        {% set domain = domain is defined ? domain : null %}
+        {% for message in sonata_flashmessages_get(type, domain) %}
+            <div class="alert alert-{{ type|sonata_status_class }} alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ message|raw |trans}}
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endblock notice %}
+
+
+{% block informacion_adicional %}
+
+    {% include 'AdminBundle:Evento/Tabs:tab.html.twig' with {activo: 4 , idevento: eventoId  ,  tabActivo: 'clasificacionCalendario'} %}
+    {% include 'AdminBundle:Evento/Tabs:tabsConfiguracion.html.twig' with {activo: 4 , idevento: eventoId, tabActivo: tipoDeSistema , guardado :guardado} %}
+
+    {% if  alertaSis == 0 %}
+        <div class="alert alert-warning">
+            <strong>{% trans %}sistemasJuego_select{% endtrans %}</strong>
+        </div>
+    {% endif %}
+
+   {% if idSistemaJuego == 0 %}
+        <div class="linea-gris"></div>
+        <div class="row" style="margin-right: 15px; margin-left: 15px">
+            {{ form_start(form, {'attr': {'id': 'formulario_liga_sistemaJuegoCuatro', novalidate: 'true'} } ) }}
+
+                <div class="alert alert-warning">
+                        <strong>{% trans %}sistemasJuego_seleccion{% endtrans %}</strong>
+                </div>
+                <div class="col-md-4 p-right10">
+                    {{form_label(formSitemaJuegoUno.puntos_derrota)}}
+                    {{form_widget(formSitemaJuegoUno.puntos_derrota)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formSitemaJuegoUno.puntos_derrota.vars.errors }%}
+                </div>
+                <div class="col-md-4 p-right10">
+                    {{form_label(formSitemaJuegoUno.puntos_empate)}}
+                    {{form_widget(formSitemaJuegoUno.puntos_empate)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formSitemaJuegoUno.puntos_empate.vars.errors }%}
+                </div>
+                <div class="col-md-4">
+                    {{form_label(formSitemaJuegoUno.puntos_victoria)}}
+                    {{form_widget(formSitemaJuegoUno.puntos_victoria)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formSitemaJuegoUno.puntos_victoria.vars.errors }%}
+                </div>
+                <div class="col-md-4 p-right10">
+                    <br>
+                    {{form_label(formSitemaJuegoUno.puntos_w)}}
+                    {{form_widget(formSitemaJuegoUno.puntos_w)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formSitemaJuegoUno.puntos_w.vars.errors }%}       
+                </div>
+                <div class="col-md-4 p-right10">
+                    <br>
+                    {{form_label(formSitemaJuegoUno.puntos_juego_limpio)}}
+                    {{form_widget(formSitemaJuegoUno.puntos_juego_limpio)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formSitemaJuegoUno.puntos_juego_limpio.vars.errors }%}       
+                </div>
+                <div class="col-md-12">
+                    <br>
+                    {{ form_widget(formSitemaJuegoUno.agregar, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                </div>
+                <div style="display: none;">
+                    {{ form_rest(formSitemaJuegoUno) }}
+                </div>
+            {{ form_end(formSitemaJuegoUno) }}
+        </div>
+    {% endif %}
+    {% if idSistemaJuego != 0 %}
+        <div class="linea-gris"></div>
+        <div class="col-md-12">
+            <label class="required" style="color: #0099b1; margin-bottom: 15px">{% trans %}formulario.usuario.grupos{% endtrans %}</label>
+            <ul class="nav d-flex tab-btn-interno">
+                <li class="marginR10 active">
+                    <a href="#grupo-a-info" data-toggle="tab" aria-expanded="true" id="grupo-a">
+                        <button class="btn btn-default">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            Grupo A
+                        </button>
+                    </a>
+                </li>
+                <li class="marginR10">
+                    <a href="#grupo-b-info" data-toggle="tab" aria-expanded="false" id="grupo-b">
+                        <button class="btn btn-default">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            Grupo B
+                        </button>
+                    </a>
+                </li>
+                <li class="marginR10">
+                    <a href="#grupo-c-info" data-toggle="tab" aria-expanded="false" id="grupo-c">
+                        <button class="btn btn-default">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            Grupo C
+                        </button>
+                    </a>
+                </li>
+                <li class="marginR10">
+                    <a href="#grupo-d-info" data-toggle="tab" aria-expanded="false" id="grupo-d">
+                        <button class="btn btn-default">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            Grupo D
+                        </button>
+                    </a>
+                </li>
+                <li class="marginR10">
+                    <a href="#playOff-info" data-toggle="tab" aria-expanded="false" id="playOff">
+                        <button class="btn btn-default">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            PlayOff
+                        </button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-12 tab-pane active" id="grupo-a-info">
+        {{ form_start(form, {'attr': {'id': 'formulario_gruposEncuentroSistemaCuatro', novalidate: 'true'} } ) }}
+            <div class="col-md-12">
+                {{form_label(formGruposJuegoCuatro.equipoEvento)}}
+                {% if sistemaJuegoGrupo != null %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento, { 'attr':{'disabled':'disabled'} })}}
+                {% else %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento)}}
+                {% endif %}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formGruposJuegoCuatro.equipoEvento.vars.errors }%}
+                {{form_label(formGruposJuegoCuatro.equipoEvento2)}}
+                {% if sistemaJuegoGrupo != null %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento2, { 'attr':{'disabled':'disabled'} })}}
+                {% else %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento2)}}
+                {% endif %}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formGruposJuegoCuatro.equipoEvento2.vars.errors }%}
+                {{form_label(formGruposJuegoCuatro.equipoEvento3)}}
+                {% if sistemaJuegoGrupo != null %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento3, { 'attr':{'disabled':'disabled'} })}}
+                {% else %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento3)}}
+                {% endif %}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formGruposJuegoCuatro.equipoEvento3.vars.errors }%}
+                {{form_label(formGruposJuegoCuatro.equipoEvento4)}}
+                {% if sistemaJuegoGrupo != null %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento4, { 'attr':{'disabled':'disabled'} })}}
+                {% else %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento4)}}
+                {% endif %}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formGruposJuegoCuatro.equipoEvento4.vars.errors }%}
+            </div>
+        </div>
+        <div class="col-md-12 tab-pane" id="grupo-b-info">
+            <div class="col-md-12">
+                {{form_label(formGruposJuegoCuatro.equipoEvento5)}}
+                {% if sistemaJuegoGrupo != null %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento5, { 'attr':{'disabled':'disabled'} })}}
+                {% else %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento5)}}
+                {% endif %}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formGruposJuegoCuatro.equipoEvento5.vars.errors }%}
+                {{form_label(formGruposJuegoCuatro.equipoEvento6)}}
+                {% if sistemaJuegoGrupo != null %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento6, { 'attr':{'disabled':'disabled'} })}}
+                {% else %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento6)}}
+                {% endif %}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formGruposJuegoCuatro.equipoEvento6.vars.errors }%}
+                {{form_label(formGruposJuegoCuatro.equipoEvento7)}}
+                {% if sistemaJuegoGrupo != null %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento7, { 'attr':{'disabled':'disabled'} })}}
+                {% else %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento7)}}
+                {% endif %}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formGruposJuegoCuatro.equipoEvento7.vars.errors }%}
+                {{form_label(formGruposJuegoCuatro.equipoEvento8)}}
+                {% if sistemaJuegoGrupo != null %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento8, { 'attr':{'disabled':'disabled'} })}}
+                {% else %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento8)}}
+                {% endif %}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formGruposJuegoCuatro.equipoEvento8.vars.errors }%}
+            </div>
+        </div>
+        <div class="col-md-12 tab-pane" id="grupo-c-info">
+            <div class="col-md-12">
+                {{form_label(formGruposJuegoCuatro.equipoEvento9)}}
+                {% if sistemaJuegoGrupo != null %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento9, { 'attr':{'disabled':'disabled'} })}}
+                {% else %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento9)}}
+                {% endif %}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formGruposJuegoCuatro.equipoEvento9.vars.errors }%}
+                {{form_label(formGruposJuegoCuatro.equipoEvento10)}}
+                {% if sistemaJuegoGrupo != null %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento10, { 'attr':{'disabled':'disabled'} })}}
+                {% else %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento10)}}
+                {% endif %}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formGruposJuegoCuatro.equipoEvento10.vars.errors }%}
+                {{form_label(formGruposJuegoCuatro.equipoEvento11)}}
+                {% if sistemaJuegoGrupo != null %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento11, { 'attr':{'disabled':'disabled'} })}}
+                {% else %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento11)}}
+                {% endif %}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formGruposJuegoCuatro.equipoEvento11.vars.errors }%}
+                {{form_label(formGruposJuegoCuatro.equipoEvento12)}}
+                {% if sistemaJuegoGrupo != null %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento12, { 'attr':{'disabled':'disabled'} })}}
+                {% else %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento12)}}
+                {% endif %}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formGruposJuegoCuatro.equipoEvento12.vars.errors }%}
+            </div>
+        </div>
+        <div class="col-md-12 tab-pane" id="grupo-d-info">
+            <div class="col-md-12">
+                {{form_label(formGruposJuegoCuatro.equipoEvento13)}}
+                {% if sistemaJuegoGrupo != null %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento13, { 'attr':{'disabled':'disabled'} })}}
+                {% else %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento13)}}
+                {% endif %}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formGruposJuegoCuatro.equipoEvento13.vars.errors }%}
+                {{form_label(formGruposJuegoCuatro.equipoEvento14)}}
+                {% if sistemaJuegoGrupo != null %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento14, { 'attr':{'disabled':'disabled'} })}}
+                {% else %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento14)}}
+                {% endif %}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formGruposJuegoCuatro.equipoEvento14.vars.errors }%}
+                {{form_label(formGruposJuegoCuatro.equipoEvento15)}}
+                {% if sistemaJuegoGrupo != null %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento15, { 'attr':{'disabled':'disabled'} })}}
+                {% else %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento15)}}
+                {% endif %}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formGruposJuegoCuatro.equipoEvento15.vars.errors }%}
+                {{form_label(formGruposJuegoCuatro.equipoEvento16)}}
+                {% if sistemaJuegoGrupo != null %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento16, { 'attr':{'disabled':'disabled'} })}}
+                {% else %}
+                    {{form_widget(formGruposJuegoCuatro.equipoEvento16)}}
+                {% endif %}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formGruposJuegoCuatro.equipoEvento16.vars.errors }%}
+            </div>
+        </div>
+        <div class="col-md-12 tab-pane" id="playOff-info">
+            <div class="col-md-12">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <br>
+            {% if sistemaJuegoGrupo != null %}
+                {{ form_widget(formGruposJuegoCuatro.agregar, { 'id': 'btnguardar', 'class' : 'btn btnVerde', 'attr':{'disabled':'disabled'}}) }}
+            {% else %}
+                {{ form_widget(formGruposJuegoCuatro.agregar, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+            {% endif %}
+        </div>
+        <div style="display: none;">
+            {{ form_rest(formGruposJuegoCuatro) }}
+        </div>
+    {{ form_end(formGruposJuegoCuatro) }}
+    {% endif %}
+{#prueba cambio de pestaña#}
+    <div class="row" style="margin-right: 15px; margin-left: 15px">
+        <div class="col-md-12 sombra">
+            <div class="nav-tabs-custom">
+                <div class="col-md-12 tab-content padding-total20">
+                    <!-- Configuración -->
+                    <div class="col-md-12 tab-pane active " >
+                        <!-- botones internos evento y inscripción -->
+                        <div class="nav-tabs-custom">
+                            <ul class="nav d-flex tab-btn-interno">
+                                <li class="marginR10 active">
+                                    <a href="#grupo-a-info" data-toggle="tab" aria-expanded="true" id="grupo-a2">
+                                        <button class="btn btn-default">
+                                            <i class="fa fa-users" aria-hidden="true"></i>
+                                            Encuentros
+                                        </button>
+                                    </a>
+                                </li>
+                                <li class="marginR10">
+                                    <a href="#grupo-b-info" data-toggle="tab" aria-expanded="false" id="grupo-b2">
+                                        <button class="btn btn-default">
+                                            <i class="fa fa-users" aria-hidden="true"></i>
+                                            Posiciones
+                                        </button>
+                                    </a>
+                                </li>
+                                <a type="button" class="btn-regresar sonata-action-element" href="{{ path('admin_logic_evento_equiposParticipantes', { 'id':eventoId } ) }}" style="padding: 5px 12px 3px 12px; position: absolute; right: 0;">
+                                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                    {{ 'admin.detallesolicitud.volver' | trans }}
+                                </a>
+                            </ul>
+
+                          <div class="col-md-12 tab-pane" id="grupo-b2-info">
+
+                                    <div class="col-md-12 posicionesTitula">
+                                        <h3>posiciones</h3>
+                                    </div>  
+                            
+                         {% for tablaPosiciones in pocisiones %}
+
+                            <div class="col-md-12">
+                            
+                                    <table class="table tablaPreinscrito">
+                                        <tbody>
+                                            <tr>
+                                              <th>Posicion</th>
+                                              <th>Competidor</th>
+                                              <th>Partidos Jugados</th>
+                                              <th>Partidos Ganados</th>
+                                              <th>Partidos Empatados</th>
+                                              <th>Partidos Perdidos</th>
+                                              <th>Puntos</th>
+                                              <th>Puntos Juego Limpio</th>
+                                            </tr>
+                                        {% set i =1 %}
+                                        {% for tabla in tablaPosiciones %}
+                                            <tr>
+                                              <td>{{i}}</td>
+                                              <td>{{tabla.nombre}}</td>
+                                              <td>{{tabla.partidos}}</td>
+                                              {% if  tabla.partidosganados is defined %} 
+                                              <td>{{tabla.partidosganados}}</td>
+                                              {% else %}
+                                              <td>{{0}}</td>
+                                              {% endif %}
+                                              {% if  tabla.partidosempatados is defined %} 
+                                              <td>{{tabla.partidosempatados}}</td>
+                                              {% else %}
+                                              <td>{{0}}</td>
+                                              {% endif %}
+                                              {% if  tabla.partidosperdidos is defined %} 
+                                              <td>{{tabla.partidosperdidos}}</td>
+                                              {% else %}
+                                              <td>{{0}}</td>
+                                              {% endif %}
+                                              <td>{{tabla.puntos}}</td>
+                                              
+                                              {% if  tabla.puntosJuegoLimpio is defined %} 
+                                              <td>{{tabla.puntosJuegoLimpio}}</td>
+                                              {% else %}
+                                              <td>{{0}}</td>
+                                              {% endif %}
+
+                                            </tr>
+
+                                            {% set i = i + 1  %}
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                            </div>
+                             {% endfor %}
+
+                            </div>
+
+
+
+
+                            <div class="linea-gris"></div>                                        
+                            
+                        </div>
+                      
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Información general -->
+
+
+
+    {# fin prueba cambio de pestaña#}
+
+
+
+        <br><br>
+        
+{% endblock %}
+
+{% block list_table %}
+
+<div class="col-md-12 tab-pane active" id="grupo-a2-info">
+    {% if is_granted('ROLE_ADMIN_ADMIN_EVENTO_EDIT') or sonata_user.userAdmin.isGranted('ROLE_ADMIN_ADMIN_EVENTO_EDIT', app.user) %}
+        <div class="col-xs-12 col-md-12">
+        
+            {% spaceless %}  
+                
+            {% endspaceless %}
+        
+                                
+                {% set batchactions = admin.batchactions %}
+                {% if admin.hasRoute('batch') and batchactions|length %}
+                    <form action="{{ admin.generateUrl('batch', {'filter': admin.filterParameters, 'id':eventoId , 'tipo': tipoDeSistema  }) }}" method="POST" >
+                        <input type="hidden" name="_sonata_csrf_token" value="{{ csrf_token }}">
+
+                    {% endif %}
+
+                    {# Add a margin if no pager to prevent dropdown cropping on window #}
+                    <div class="box box-primary" {% if admin.datagrid.pager.lastPage == 1 %}style="margin-bottom: 100px;"{% endif %}>
+                        <div class="box-body {% if admin.datagrid.results|length > 0 %}table-responsive no-padding{% endif %}">
+                            {{ sonata_block_render_event('sonata.admin.list.table.top', { 'admin': admin }) }}
+                        {% block list_header %}
+                        
+                        {% endblock %}
+
+                        {% if admin.datagrid.results|length > 0 %}
+                            <table class="table table-bordered table-striped sonata-ba-list tablaPreinscrito">
+                                {% block table_header %}
+                                    <thead>
+                                        <tr class="sonata-ba-list-field-header">
+                                            {% for field_description in admin.list.elements %}
+                                                {% if admin.hasRoute('batch') and field_description.getOption('code') == '_batch' and batchactions|length > 0 %}
+                                                    <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">
+                                                        <input type="checkbox" id="list_batch_checkbox">
+                                                    </th>
+                                                {% elseif field_description.getOption('code') == '_select' %}
+                                                    <th class="sonata-ba-list-field-header sonata-ba-list-field-header-select"></th>
+                                                    {% elseif field_description.name == '_action' and app.request.isXmlHttpRequest %}
+                                                        {# Action buttons disabled in ajax view! #}
+                                                    {% elseif field_description.getOption('ajax_hidden') == true and app.request.isXmlHttpRequest %}
+                                                        {# Disable fields with 'ajax_hidden' option set to true #}
+                                                    {% else %}
+                                                        {% set sortable = false %}
+                                                        {% if field_description.options.sortable is defined and field_description.options.sortable %}
+                                                            {% set sortable             = true %}
+                                                            {% set sort_parameters      = admin.modelmanager.sortparameters(field_description, admin.datagrid) %}
+                                                            {% set current              = admin.datagrid.values._sort_by == field_description or admin.datagrid.values._sort_by.fieldName == sort_parameters.filter._sort_by %}
+                                                            {% set sort_active_class    = current ? 'sonata-ba-list-field-order-active' : '' %}
+                                                            {% set sort_by              = current ? admin.datagrid.values._sort_order : field_description.options._sort_order %}
+                                                        {% endif %}
+
+                                                    {% spaceless %}
+                                                        <th class="sonata-ba-list-field-header-{{ field_description.type}} {% if sortable %} sonata-ba-list-field-header-order-{{ sort_by|lower }} {{ sort_active_class }}{% endif %}{% if field_description.options.header_class is defined %} {{ field_description.options.header_class }}{% endif %}"{% if field_description.options.header_style is defined %} style="{{ field_description.options.header_style }}"{% endif %}>
+                                                            {% if sortable %}<a href="{{ admin.generateUrl('list', sort_parameters) }}">{% endif %}
+                                                                {% if field_description.getOption('label_icon') %}
+                                                                    <i class="sonata-ba-list-field-header-label-icon {{ field_description.getOption('label_icon') }}" aria-hidden="true"></i>
+                                                                {% endif %}
+                                                                {{ field_description.label|trans({}, field_description.translationDomain) }}
+                                                                {% if sortable %}</a>{% endif %}
+                                                        </th>
+                                                    {% endspaceless %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </tr>
+                                    </thead>
+                                {% endblock %}
+
+                                {% block table_body %}
+                                    <tbody>
+                                        {% include admin.getTemplate('outer_list_rows_' ~ admin.getListMode()) %}
+                                    </tbody>
+                                {% endblock %}
+
+                                {% block table_footer %}
+                                {% endblock %}
+                            </table>
+                        {% else %}
+                            {% block no_result_content %}
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-aqua"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">{{ 'no_result'|trans({}, 'SonataAdminBundle') }}</span>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 0%"></div>
+                                        </div>
+                                        <span class="progress-description">
+                                            {% if not app.request.xmlHttpRequest %}
+                                                
+                                            {% endif %}
+                                        </span>
+                                    </div><!-- /.info-box-content -->
+                                </div>
+                            {% endblock %}
+                        {% endif %}
+
+                        {{ sonata_block_render_event('sonata.admin.list.table.bottom', { 'admin': admin }) }}
+                    </div>
+                    {% block list_footer %}
+                        {% if admin.datagrid.results|length > 0 %}
+                            <div class="box-footer">
+                                <div class="form-inline clearfix">
+                                    {% if not app.request.isXmlHttpRequest %}
+                                        <div class="pull-left">
+                                            {% if admin.hasRoute('batch') and batchactions|length > 0  %}
+                                                {% block batch %}
+                                                    <script>
+                                                        {% block batch_javascript %}
+                                                            jQuery(document).ready(function ($) {
+                                                                // Toggle individual checkboxes when the batch checkbox is changed
+                                                                $('#list_batch_checkbox').on('ifChanged change', function () {
+                                                                    var checkboxes = $(this)
+                                                                            .closest('table')
+                                                                            .find('td.sonata-ba-list-field-batch input[type="checkbox"], div.sonata-ba-list-field-batch input[type="checkbox"]')
+                                                                            ;
+                                                                    if (window.SONATA_CONFIG.USE_ICHECK) {
+                                                                        checkboxes.iCheck($(this).is(':checked') ? 'check' : 'uncheck');
+                                                                    } else {
+                                                                        checkboxes.prop('checked', this.checked);
+                                                                    }
+                                                                });
+
+                                                                // Add a CSS class to rows when they are selected
+                                                                $('td.sonata-ba-list-field-batch input[type="checkbox"], div.sonata-ba-list-field-batch input[type="checkbox"]')
+                                                                        .on('ifChanged change', function () {
+                                                                            $(this)
+                                                                                    .closest('tr, div.sonata-ba-list-field-batch')
+                                                                                    .toggleClass('sonata-ba-list-row-selected', $(this).is(':checked'))
+                                                                                    ;
+                                                                        })
+                                                                        .trigger('ifChanged')
+                                                                        ;
+                                                            });
+                                                        {% endblock %}
+                                                    </script>
+
+                                                    {% block batch_actions %}
+                                                        <label class="checkbox" for="{{ admin.uniqid }}_all_elements">
+                                                            <input type="checkbox" name="all_elements" id="{{ admin.uniqid }}_all_elements">
+                                                            {{ 'all_elements'|trans({}, 'SonataAdminBundle') }}
+                                                            ({{ admin.datagrid.pager.nbresults }})
+                                                        </label>
+
+                                                        <select name="action" style="width: auto; height: auto" class="form-control">
+                                                            {% for action, options in batchactions %}
+                                                                <option value="{{ action }}">{{ options.label|trans({}, options.translation_domain|default(admin.translationDomain)) }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    {% endblock %}
+
+                                                    <input type="submit" class="btn btn-small btn-primary" value="{{ 'btn_batch'|trans({}, 'SonataAdminBundle') }}">
+                                                {% endblock %}
+                                            {% endif %}
+                                        </div>
+
+
+                                        {# NEXT_MAJOR : remove this assignment #}
+                                        {% set export_formats = export_formats|default(admin.exportFormats) %}
+
+                                        <div class="pull-right">
+                                            {% if admin.hasRoute('export') and admin.hasAccess('export') and export_formats|length %}
+                                                
+                                                &nbsp;-&nbsp;
+                                            {% endif %}
+
+                                            {% block pager_results %}
+                                                {% include admin.getTemplate('pager_results') %}
+                                            {% endblock %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                {% block pager_links %}
+                                    {% if admin.datagrid.pager.haveToPaginate() %}
+                                        <hr/>
+                                        {% include admin.getTemplate('pager_links') %}
+                                    {% endif %}
+                                {% endblock %}
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+                </div>
+                {% if admin.hasRoute('batch') and batchactions|length %}
+                </form>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block list_filters_actions %}
+    {% if is_granted('ROLE_ADMIN_ADMIN_EVENTO_EDIT') or sonata_user.userAdmin.isGranted('ROLE_ADMIN_ADMIN_EVENTO_EDIT', app.user) %}
+        {%- if admin.datagrid.filters|length %}
+    <ul class="nav navbar-nav navbar-right">
+        <li class="sonata-actions">
+            {#<a href="{{path('admin_logic_preinscripcionoferta_asistencia', {id:oferta.id} )}}" >
+                <i class="fa fa-clock-o"></i> {{ 'titulo.asistencia' | trans}}
+            </a>#}
+        </li>
+        <li class="dropdown sonata-actions">
+            <a href="#" class="dropdown-toggle sonata-ba-action" data-toggle="dropdown">
+                <i class="fa fa-filter" aria-hidden="true"></i>
+                {{ 'link_filters'|trans({}, 'SonataAdminBundle') }} <b class="caret"></b>
+            </a>
+
+            <ul class="dropdown-menu" role="menu">
+                {% for filter in admin.datagrid.filters if (filter.options['show_filter'] is same as(true) or filter.options['show_filter'] is null) %}
+                    {% set filterActive = ((filter.isActive() or filter.options['show_filter']) and not admin.isDefaultFilter(filter.formName)) %}
+                    <li>
+                        <a href="#" class="sonata-toggle-filter sonata-ba-action" filter-target="filter-{{ admin.uniqid }}-{{ filter.name }}" filter-container="filter-container-{{ admin.uniqid() }}">
+                            <i class="fa {{ (filter.isActive() or filter.options['show_filter']) ? 'fa-check-square-o' : 'fa-square-o' }}"></i>{{ filter.label|trans({}, filter.translationDomain ?: admin.translationDomain) }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+        
+        <li class="btn btn-agregar-nuevo">
+            <a class="sonata-action-element"  href="{{path('reporte_encuentros_sistema_cuatro', {idevento: eventoId , sistemaJuego: idSistemaJuego} )}}">
+                <i class="fa fa-download" aria-hidden="true"></i>
+                {% trans %}formulario_escalera.descargar{% endtrans %}
+            </a> 
+        </li>
+    </ul>
+    {% endif -%}
+    {% endif %}
+{% endblock %}
+
+{% block list_filters %}
+    {% if is_granted('ROLE_ADMIN_ADMIN_EVENTO_EDIT') or sonata_user.userAdmin.isGranted('ROLE_ADMIN_ADMIN_EVENTO_EDIT', app.user) %}
+        {% if admin.datagrid.filters %}
+        {% form_theme form admin.getTemplate('filter') %}
+
+        <div class="col-xs-12 col-md-12 sonata-filters-box" style="display: {{ admin.datagrid.hasDisplayableFilters ? 'block' : 'none' }}" id="filter-container-{{ admin.uniqid() }}">
+            <div class="box box-primary" >
+                <div class="box-body">
+                    <form class="sonata-filter-form form-horizontal {{ admin.isChild and 1 == admin.datagrid.filters|length ? 'hide' : '' }}" action="{{ admin.generateUrl('list',{id:eventoId},{tipo:tipoDeSistema}) }}" method="GET" role="form">
+                        {{ form_errors(form) }}
+
+                        <div class="row">
+                            <div class="col-sm-9">
+                                {% set withAdvancedFilter = false %}
+                                {% for filter in admin.datagrid.filters %}
+                                    {% set filterActive = ((filter.isActive() and filter.options['show_filter'] is null) or (filter.options['show_filter'] is same as(true))) and not admin.isDefaultFilter(filter.formName) %}
+                                    {% set filterVisible = filter.options['show_filter'] is same as(true) or filter.options['show_filter'] is null %}
+                                    <div class="form-group {% block sonata_list_filter_group_class %}{% endblock %}" id="filter-{{ admin.uniqid }}-{{ filter.name }}" sonata-filter="{{ filterVisible ? 'true' : 'false' }}" style="display: {% if filterActive %}block{% else %}none{% endif %}">
+                                        {% if filter.label is not same as(false) %}
+                                            <label for="{{ form.children[filter.formName].children['value'].vars.id }}" class="col-sm-3 control-label">{{ filter.label|trans({}, filter.translationDomain ?: admin.translationDomain) }}</label>
+                                        {% endif %}
+                                        {% set attr = form.children[filter.formName].children['type'].vars.attr|default({}) %}
+
+                                        <div class="col-sm-4 advanced-filter">
+                                            {{ form_widget(form.children[filter.formName].children['type'], {'attr':  attr}) }}
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            {{ form_widget(form.children[filter.formName].children['value']) }}
+                                        </div>
+
+                                        <input type="hidden" name="id" value="{{ eventoId }}">
+                                        <input type="hidden" name="tipo" value="{{ tipoDeSistema }}">
+
+                                        <div class="col-sm-1">
+                                            <label class="control-label">
+                                                <a href="{{ admin.generateUrl('list', {filters: 'reset', id:eventoId, tipo:tipoDeSistema}) }}" class="sonata-toggle-filter sonata-ba-action" filter-target="filter-{{ admin.uniqid }}-{{ filter.name }}" filter-container="filter-container-{{ admin.uniqid() }}">
+                                                    <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                                                </a>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    {% if filter.options['advanced_filter'] %}
+                                        {% set withAdvancedFilter = true %}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <input type="hidden" name="filter[_page]" id="filter__page" value="1">
+
+                                {% set foo = form.children['_page'].setRendered() %}
+                                {{ form_rest(form) }}
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa fa-filter" aria-hidden="true"></i> {{ 'btn_filter'|trans({}, 'SonataAdminBundle') }}
+                                    </button>
+
+                                    <a class="btn btn-default" href="{{ admin.generateUrl('list', {filters: 'reset', id:eventoId, tipo:tipoDeSistema}) }}">
+                                        {{ 'link_reset_filter'|trans({}, 'SonataAdminBundle') }}
+                                    </a>
+                                </div>
+
+                                {% if withAdvancedFilter %}
+                                    <div class="form-group">
+                                        <a href="#" data-toggle="advanced-filter">
+                                            <i class="fa fa-cogs" aria-hidden="true"></i>
+                                            {{ 'btn_advanced_filters'|trans({}, 'SonataAdminBundle') }}
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        {% for paramKey, paramValue in admin.persistentParameters %}
+                            <input type="hidden" name="{{ paramKey }}" value="{{ paramValue }}">
+                            <input type="hidden" name="id" value="{{ eventoId }}">
+                            <input type="hidden" name="tipo" value="{{ tipoDeSistema }}">
+                        {% endfor %}
+                    </form>
+                </div>
+            </div>
+        </div>
+        <span id="idsForm" data-oferta="filter-{{admin.uniqid}}-oferta"></span>
+    {% endif %}
+    {% endif %}
+    <script type="text/javascript">
+
+            function isNumberKey(evt)
+            {
+                var charCode = (evt.which) ? evt.which : event.keyCode;
+                console.log(charCode);
+                if (charCode != 46 && charCode != 45 && charCode > 31
+                        && (charCode < 48 || charCode > 57))
+                    return false;
+
+                return true;
+            }
+
+            $('#encuentro_sistema_cuatro_puntos_derrota').keypress(function(eve) {
+                if ((eve.which != 46 || $(this).val().indexOf('.') != -1) && (eve.which < 48 || eve.which > 57) || (eve.which == 46 && $(this).caret().start == 0) ) {
+                eve.preventDefault();
+            }
+     
+
+            $('#encuentro_sistema_cuatro_puntos_derrota').keyup(function(eve) {
+                if($(this).val().indexOf('.') == 0) {    $(this).val($(this).val().substring(1));
+                }
+                });
+            });
+
+
+            $('#encuentro_sistema_cuatro_puntos_empate').keypress(function(eve) {
+                if ((eve.which != 46 || $(this).val().indexOf('.') != -1) && (eve.which < 48 || eve.which > 57) || (eve.which == 46 && $(this).caret().start == 0) ) {
+                eve.preventDefault();
+            }
+     
+
+            $('#encuentro_sistema_cuatro_puntos_empate').keyup(function(eve) {
+                if($(this).val().indexOf('.') == 0) {    $(this).val($(this).val().substring(1));
+                }
+                });
+            });
+
+
+            $('#encuentro_sistema_cuatro_puntos_victoria').keypress(function(eve) {
+                if ((eve.which != 46 || $(this).val().indexOf('.') != -1) && (eve.which < 48 || eve.which > 57) || (eve.which == 46 && $(this).caret().start == 0) ) {
+                eve.preventDefault();
+            }
+     
+
+            $('#encuentro_sistema_cuatro_puntos_victoria').keyup(function(eve) {
+                if($(this).val().indexOf('.') == 0) {    $(this).val($(this).val().substring(1));
+                }
+                });
+            });
+
+
+            $('#encuentro_sistema_cuatro_puntos_w').keypress(function(eve) {
+                if ((eve.which != 46 || $(this).val().indexOf('.') != -1) && (eve.which < 48 || eve.which > 57) || (eve.which == 46 && $(this).caret().start == 0) ) {
+                eve.preventDefault();
+            }
+     
+
+            $('#encuentro_sistema_cuatro_puntos_w').keyup(function(eve) {
+                if($(this).val().indexOf('.') == 0) {    $(this).val($(this).val().substring(1));
+                }
+                });
+            });
+
+
+            $('#encuentro_sistema_cuatro_puntos_juego_limpio').keypress(function(eve) {
+                if ((eve.which != 46 || $(this).val().indexOf('.') != -1) && (eve.which < 48 || eve.which > 57) || (eve.which == 46 && $(this).caret().start == 0) ) {
+                eve.preventDefault();
+            }
+     
+
+            $('#encuentro_sistema_cuatro_puntos_juego_limpio').keyup(function(eve) {
+                if($(this).val().indexOf('.') == 0) {    $(this).val($(this).val().substring(1));
+                }
+                });
+            });
+
+
+    $(document).ready(function() {
+
+            $('#grupo-a2-info').show();
+            $('#grupo-b2-info').hide();
+            $('.btn-agregar-nuevo').show();
+            $('.sticky-wrapper').show();
+            
+    });
+
+        $('#grupo-a2').click(function(evt) {
+            $('#grupo-a2-info').show();
+            $('#grupo-b2-info').hide();
+            $('.btn-agregar-nuevo').show();
+            $('.sticky-wrapper').show();
+
+        });
+
+        $('#grupo-b2').click(function(evt) {
+            $('#grupo-a2-info').hide();
+            $('#grupo-b2-info').show();
+            $('.btn-agregar-nuevo').hide();
+            $('.sticky-wrapper').hide();
+        });
+
+
+
+        $('#grupo-b-info').hide();
+        $('#grupo-c-info').hide();
+        $('#grupo-d-info').hide();
+        $('#playOff-info').hide();
+
+        $('#grupo-a').click(function(evt) {
+            $('#grupo-a-info').show();
+            $('#grupo-b-info').hide();
+            $('#grupo-c-info').hide();
+            $('#grupo-d-info').hide();
+            $('#playOff-info').hide();
+        });
+
+        $('#grupo-b').click(function(evt) {
+            $('#grupo-a-info').hide();
+            $('#grupo-b-info').show();
+            $('#grupo-c-info').hide();
+            $('#grupo-d-info').hide();
+            $('#playOff-info').hide();
+        });
+
+        $('#grupo-c').click(function(evt) {
+            $('#grupo-a-info').hide();
+            $('#grupo-b-info').hide();
+            $('#grupo-c-info').show();
+            $('#grupo-d-info').hide();
+            $('#playOff-info').hide();
+        });
+
+        $('#grupo-d').click(function(evt) {
+            $('#grupo-a-info').hide();
+            $('#grupo-b-info').hide();
+            $('#grupo-c-info').hide();
+            $('#grupo-d-info').show();
+            $('#playOff-info').hide();
+        });
+
+        $('#playOff').click(function(evt) {
+            $('#grupo-a-info').hide();
+            $('#grupo-b-info').hide();
+            $('#grupo-c-info').hide();
+            $('#grupo-d-info').hide();
+            $('#playOff-info').show();
+        });
+    </script>
+
+    <style>
+        .posicionesTitula{
+            color: #0099b1;
+            font-weight: bold !important;
+            background: #fff !important;
+            border-bottom: 3px solid #0099b1 !important;
+            margin-bottom: 20px !important;
+        }
+    </style>
+{% endblock %}

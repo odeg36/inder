@@ -1,0 +1,9 @@
+{% block opcion_respuesta_type_row %}
+<div class="campoGris col-md-12" >
+    <div class="col-md-12">
+        {{ form_widget(form.nombre) }}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nombre.vars.errors }%}
+    </div>
+    {{ form_rest(form) }}   
+</div>
+{% endblock %}

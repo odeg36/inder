@@ -1,0 +1,16 @@
+{% block subcategoria_evento_type_row %}
+    <div class="mg-bottom col-xs-3 col-sm-3 col-md-3 " >
+        <div class="col-md-12 pd-left pd-right">
+            {{ form_widget(form.nombre) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nombre.vars.errors }%}
+        </div>
+        {{ form_rest(form) }}   
+        <div class="col-md-12  pd-left pd-right center">
+            <div class="collection-actions">
+                <a href="#" class="btn btnRojo btnSize  collection-remove collection-action">
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                </a>
+            </div>   
+        </div>   
+    </div>
+{% endblock %}

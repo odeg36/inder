@@ -1,0 +1,11 @@
+{% extends "::base.reporte.html.twig" %}
+
+{% block body %}
+    {% for key, jugador in jugadores %}
+        <div style="page-break-after:always">
+            <div style="width: 244px; height: 153px">
+                {% include 'AdminBundle:JugadorEvento/Carne:vista.carne.html.twig' with {jugadorEvento: jugador, carne: carne} %}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

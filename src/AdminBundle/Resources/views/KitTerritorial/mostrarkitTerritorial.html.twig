@@ -1,0 +1,129 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+        .breadcrumb {
+            padding: 8px 15px !important;
+            margin-bottom: 20px !important;
+            list-style: none !important;
+            background-color: #f5f5f5 !important;
+            border-radius: 4px !important;
+            float: inherit !important;
+        }
+    </style>
+{% endblock %}
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+{% block sonata_page_content %}
+    
+    {% block sonata_admin_content %}
+  
+           <div class="content-wrapper content-wrapper-ajuste" style="padding-top: 208px;">
+                <section class="content container">
+
+            <!-- Migas de pan -->
+            <section class="container-fluid">
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                    <li><a href="#">Kit Territorial</a></li>
+                    <li class="active">Ver</li>
+                </ol>
+            </section>           
+                                                            
+                        <!-- Trigger the modal with a button -->
+                       
+                        <section class="content-header tituloFooter">
+                                                                                                                                                                                                                                                                        
+                                                            
+                            
+                                                                                                                            
+                                
+                                
+                                        <div class="sonata-ba-show"><div class="sonata-ba-view">
+
+        
+
+        
+                                    <div class="row">
+                                    
+                <div class="col-md-12 ">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <h4 class="box-title">
+                             Kit Territorial
+                            </h4>
+                        </div>
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table">
+                                <tbody>
+                                    <tr class="sonata-ba-view-container">
+                                        <th>
+                                            
+                                             
+                                             {{comuna }}                                            
+                                            
+                                            
+                                        </th>
+                                        <td>
+                                            {% for temaComunas in temaComuna %} 
+                                            <li>
+                                             {{ temaComunas.temaModelo.nombre|e }}    -  Nivel: {{ temaComunas.nivel|e }}
+                                            </li>
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+    </div>
+    </div>
+    </div>
+                                
+                                
+                                    </section>
+                                    </section>
+            </div>
+
+    {% endblock sonata_admin_content %}
+ 
+    <style>
+
+    
+        .fileinput-cancel {
+            display: none !important;
+        }
+        .fileinput-remove {
+            display: inline !important;
+        }
+        .btn-default {
+            background-color: #c7daef !important;
+            color: #007385 !important;
+            border-color: #bbb !important;
+            -webkit-transition: background-color 0.3s ease-in-out !important;
+            transition: background-color 0.3s ease-in-out !important;
+        }
+        .btn-default:hover {
+            background-color: #007385 !important;
+            color: #c7daef !important;
+            border-color: #007385 !important;
+            -webkit-transition: background-color 0.3s ease-in-out !important;
+            transition: background-color 0.3s ease-in-out !important;
+        }
+        .btn-outline-secondary i{
+            margin: auto !important;
+        }
+        strong label{
+            color : #000000 !important;
+            margin: 0px !important;
+        }
+        .collection-actions{
+            display:none !important;
+        }
+        .margen-bottom-10{
+            margin-bottom: 15px !important;
+        }
+    </style>
+{% endblock sonata_page_content %}

@@ -1,0 +1,92 @@
+LogicBundle\Entity\BannerSim:
+    properties:
+        nombre:
+            - NotNull: ~
+        codigo:
+            - NotNull: ~
+
+LogicBundle\Entity\Eps:
+    properties:
+        nombre:
+            - NotNull: ~
+            
+LogicBundle\Entity\Ocupacion:
+    properties:
+        nombre:
+            - NotNull: ~
+            
+LogicBundle\Entity\NivelEscolaridad:
+    properties:
+        nombre:
+            - NotNull: ~
+
+LogicBundle\Entity\TipoEstablecimientoEducativo:
+    properties:
+        nombre:
+            - NotNull: ~
+            
+LogicBundle\Entity\Disciplina:
+    properties:
+        nombre:
+            - NotNull: ~
+
+LogicBundle\Entity\EscenarioDeportivo:
+    properties:
+        nombre:
+            - NotNull: ~
+
+LogicBundle\Entity\EstablecimientoEducativo:
+    properties:
+        nombre:
+            - NotNull: ~
+
+LogicBundle\Entity\FuenteFinanciacion:
+    properties:
+        nombre:
+            - NotNull: ~
+
+LogicBundle\Entity\Oferta:
+    properties:
+        formador:
+            - NotNull: ~
+        gestor:
+            - NotNull: ~
+            
+LogicBundle\Entity\Area:
+    properties:
+        nombre:
+            - NotNull: ~
+        codigo:
+            - NotNull: ~
+            
+LogicBundle\Entity\Proyecto:
+    properties:
+        nombre:
+            - NotNull: ~
+        codigo:
+            - NotNull: ~
+        area:
+            - NotNull: ~
+                     
+LogicBundle\Entity\Estrategia:
+    properties:
+        nombre:
+            - NotNull: ~
+        proyecto:
+            - NotNull: ~
+        coberturaGeneralMin:
+            - NotNull: ~
+        coberturaGeneralMax:
+            - NotNull: ~
+        
+LogicBundle\Entity\PuntoAtencion:
+    properties:
+        direccion:
+            - NotNull: ~
+
+LogicBundle\Entity\TipoEscenario:
+    properties:
+        nombre:
+            - NotNull: ~
+        codigo:
+            - NotNull: ~

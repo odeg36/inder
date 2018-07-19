@@ -1,0 +1,40 @@
+{% block contenido_type_row %}
+    <div class="campoGris row  margenPasos contenido-hijo-eliminar margen-bottom-10 " id="form_contenido_{{ form.vars.name }}" data-id="{{ form.vars.name }}">
+        <div class="col-md-12">
+            {{form_label(form.componente)}}
+            {{form_widget(form.componente)}}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.componente.vars.errors }%}
+        </div>
+        <div class="col-md-12" style="margin-top: 10px">
+            <label>{% trans %}formulario_plan_anual_metodologico.labels.paso_tres.contenidos{% endtrans %}</label>
+            <div class="col-md-12">
+                {{form_label(form.nombre)}}
+                {{form_widget(form.nombre)}}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nombre.vars.errors }%}
+            </div>
+            <div class="col-md-12">
+                {{form_label(form.tema)}}
+                {{form_widget(form.tema)}}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tema.vars.errors }%}
+            </div>
+            <div class="col-md-12">
+                {{form_label(form.objetivo)}}
+                {{form_widget(form.objetivo)}}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.objetivo.vars.errors }%}
+            </div>
+            <div class="col-md-12">
+                {{form_label(form.actores)}}
+                {{form_widget(form.actores)}}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.actores.vars.errors }%}
+            </div>
+            {{ form_rest(form) }}  
+        </div>      
+        <div class="col-md-12 collection-remove collection-action btnCentrar "  >
+            <div class="col-md-4 btnCentrar campoGris">
+                <button type="button" class="btn btn_remover btnRojo">
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar este contenido
+                </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

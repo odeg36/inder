@@ -1,0 +1,111 @@
+security:
+    encoders:
+        Application\Sonata\UserBundle\Entity\User:
+            id: inder.encoder
+        
+    access_decision_manager:
+       strategy: unanimous
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        # Disabling the security for the web debug toolbar, the profiler and Assetic.
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+            
+        oauth_token:
+            pattern:    ^/oauth/v2/token
+            security:   false
+
+        # -> custom firewall for the admin area of the URL
+        admin:
+            pattern:            /admin(.*)
+            context:            user
+            simple_form:
+                authenticator:  sim_authenticator
+                provider:       fos_userbundle
+                login_path:     /admin/login
+                use_forward:    false
+                check_path:     /admin/login_check
+                failure_path:   null
+                success_handler: admin.login_success_handler
+            logout:
+                path:           /admin/logout
+                target:         /admin/login
+            anonymous:          true
+            switch_user: true
+
+        # -> end custom configuration
+
+        api:
+            pattern:    ^/api
+            fos_oauth:  true
+            stateless:  true
+#            anonymous:  true # note that anonymous access is now enabled
+            anonymous:  true # can be omitted as its default value
+
+        # -> custom firewall for the admin area of the URL
+        admin:
+            pattern:            /admin(.*)
+            context:            user
+            form_login:
+                provider:       fos_userbundle
+                login_path:     /admin/login
+                use_forward:    false
+                check_path:     /admin/login_check
+                failure_path:   null
+            logout:
+                path:           /admin/logout
+                target:         /admin/login
+            anonymous:          true
+            switch_user: true
+        
+        main:
+            pattern:             .*
+            context:             user
+            form_login:
+                provider:       fos_userbundle
+                login_path:     /admin/login
+                use_forward:    false
+                check_path:     /admin/login_check
+                failure_path:   null
+            logout:             true
+            anonymous:          true
+                
+    access_control:
+        # Admin login page needs to be accessed without credential
+        - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin, role: IS_AUTHENTICATED_FULLY }
+
+        # Secured part of the site
+        # This config requires being logged for the whole site and having the admin role for the admin part.
+        # Change these rules to adapt them to your needs
+        - { path: ^/oauth/v2/auth_login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/public/.*, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: ^/api/doc, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: ^/api, roles: [ IS_AUTHENTICATED_FULLY ] }
+        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_USER, ROLE_SONATA_ADMIN, ROLE_PERSONAJURIDICA, ROLE_PERSONANATURAL, ROLE_ORGANISMO_DEPORTIVO]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_DEPORTISTA: [ROLE_DEPORTISTA]
+        ROLE_REPORTE_ESTADISTICAS: [ROLE_REPORTE_ESTADISTICAS]
+        ROLE_GESTOR_TERRITORIAL: [ROLE_GESTOR_TERRITORIAL]
+        ROLE_GESTOR_ESCENARIO: [ROLE_GESTOR_ESCENARIO]
+        ROLE_ORGANISMO_DEPORTIVO: [ROLE_ORGANISMO_DEPORTIVO]
+        ROLE_PREINSCRIPCION_ADMINISTRAR_PREINSCRITOS: [ROLE_PREINSCRIPCION_ADMINISTRAR_PREINSCRITOS]
+        ROLE_ADMINISTRAR_ORGANISMOS_DEPORTIVOS: [ROLE_ADMINISTRAR_ORGANISMOS_DEPORTIVOS]
+
+        #SONATA:
+        #   - ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT  # if you are using acl then this line must be commented}
+        
+    acl:
+        connection: default 

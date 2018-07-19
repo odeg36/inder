@@ -1,0 +1,77 @@
+<div class="iconoInfo2">
+    {% if 2 <= vistaPaso %}
+        <div class="linea1"></div>
+        <div class="circulo activoCheck">
+            <i class="fa fa-check"></i>
+        </div>
+    {% endif %}
+    {% if 3 <= vistaPaso %}
+        <div class="linea2"></div>
+        <div class="circulo activoCheck">
+            <i class="fa fa-check"></i>
+        </div>
+    {% endif %}
+    {#{% if 4 <= vistaPaso %}
+        <div class="linea2"></div>
+        <div class="circulo activoCheck">
+            <i class="fa fa-check"></i>
+        </div>
+    {% endif %}#}
+    {% if 5 <= vistaPaso %}
+        <div class="linea2"></div>
+        <div class="circulo activoCheck">
+            <i class="fa fa-check"></i>
+        </div>
+    {% endif %}
+
+    {% if 1 == vistaPaso %}
+        <div class="linea1" id="linea1"></div>
+        <div class="circulo" id="circulo2"></div>
+    {% else %}
+        <div class="linea2" id="linea1"></div>
+        <div class="circulo" id="circulo2"></div>
+    {% endif %}
+</div>
+<div class="pasos">
+    <div class="pasosInfo">
+        <div>
+            <i class="fa fa-{{organizacionId?'save':'exclamation-triangle'}} fa-4x" aria-hidden="true"></i>
+        </div>
+        {% if organizacionId == "" %}
+            <div>
+                <p>{% trans %}formulario_registro.termina_proceso{% endtrans %}</p>
+            </div>
+        {% endif %}
+    </div>
+    <div>
+        <ol>
+            <li class="esconderTabletas">
+                <a href="{{ path('info_complementaria', {'organismo':organizacionId}) }}">
+                    {% trans %}formulario_registro.paso_uno{% endtrans %}
+                </a>
+            </li>
+            <li class="esconderTabletas">
+                <a href="{{ path('info_organigrama', {'organismo':organizacionId}) }}">
+                    {% trans %}formulario_registro.paso_dos{% endtrans %}
+                </a>
+            </li>
+            <li class="esconderTabletas">
+                <a href="{{ path('info_deportistas', {'organismo':organizacionId}) }}">
+                    {% trans %}formulario_registro.paso_tres{% endtrans %}
+                </a>
+            </li>
+            {#<li class="esconderTabletas">
+                <a href="{{ path('info_documentos') }}">
+                    {% trans %}formulario_registro.paso_cuatro{% endtrans %}
+                </a>
+            </li>#}
+            {% if organizacion.tipoEntidad and organizacion.tipoEntidad.abreviatura != "END"%}
+                <li>
+                    <a href="{{ path('info_pestatutario', {'organismo':organizacionId}) }}">
+                        {% trans %}formulario_registro.paso_cinco{% endtrans %}
+                    </a>
+                </li>
+            {% endif %}
+        </ol>
+    </div>
+</div>

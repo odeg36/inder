@@ -1,0 +1,14 @@
+imports:
+    - { resource: "@LogicBundle/Resources/config/services.yml" }
+    - { resource: "@LogicBundle/Resources/config/doctrine_extensions.yml" }
+    - { resource: "@LogicBundle/Resources/config/listeners.yml" }
+
+parameters:
+    tipos_campos:
+        entidad: Entidad
+        numerico: Numerico 
+        fecha: Fecha
+        boolean: Boolean
+        texto: Texto
+        area_texto: Area de texto
+    rol_deportista: ROLE_DEPORTISTA

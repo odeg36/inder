@@ -1,0 +1,256 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+        .fondoDireccionEscenario {
+            background: #ecf0f5;
+            margin-bottom: 10px !important;
+        }
+    </style>
+{% endblock %}
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_escenariodeportivo_list') }}">{% trans %}Escenario Deportivo List{% endtrans %}</a></li>        
+        <li class="active">
+            {% if idescenario == 0 %}
+                {% trans %}btn.accion.crear{% endtrans %}
+            {% else %}
+                {{ nombreEscenario }}
+            {% endif %}
+        </li>
+    </ol>
+{% endblock %}
+{% block sonata_page_content %}
+    {% block sonata_admin_content %}
+        <!-- Content Wrapper. Contains page content -->
+        <div class="">
+            <!-- formulario -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_escenario_deportivo.title{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Escenarios deportivos -->
+                <div class="row">
+                    <div class="col-md-4 iconoText2">
+                        {% include 'AdminBundle:EscenarioDeportivo/Pasos:iconos.html.twig' with {vistaPaso: 1, 'idescenario' : idescenario, 'mostrar4142': validacionTipoEscenario} %}
+                    </div>
+                    <div class="col-md-8 fondoAzul2">
+                        {{ form_start(form, {'attr': {'id': 'formulario_escenario_deportivo', novalidate: 'true'} } ) }}
+                        <div class="infoBox row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 contenedorInfoUno">
+                                <input type="hidden" name="direccionEscenarioDeportivo" id="direccionEscenarioDeportivo" value={{direccionEscenarioDeportivo}}>
+                                <input type="hidden" name="idEscenarioDeportivo" id="idEscenarioDeportivo" value={{idescenario}}>
+                                {% if codigoEscenario != null %}
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <label>{% trans %}formulario_escenario_deportivo.labels.paso_cuatro.codigo_escenario{% endtrans %}</label>
+                                        <div class="col-md-12 fondoDireccion">
+                                            <p>{{ codigoEscenario }}</p>
+                                        </div>
+                                    </div>                                    
+                                {% endif %}
+
+                                <div class="col-md-12">
+                                    {{form_label(form.nombre)}}
+                                    {{form_widget(form.nombre)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nombre.vars.errors }%}
+                                </div>
+                                <div class="sonata-ba-collapsed-fields">
+                                    <div class="municipio col-lg-12 col-md-12">
+                                        {{form_label(form.municipio)}}
+                                        {{form_widget(form.municipio, { 'id': 'municipio' })}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.municipio.vars.errors }%}
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 direccionOComuna hidden">
+                                        {{form_label(form.direccionOcomuna)}}
+                                        {{form_widget(form.direccionOcomuna)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.direccionOcomuna.vars.errors }%}
+                                    </div>
+                                    <div class="barrio col-lg-12 col-md-12 hidden">
+                                        {{form_label(form.barrio)}}
+                                        {{form_widget(form.barrio)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.barrio.vars.errors }%}
+                                    </div>
+                                    <div class="comuna hidden">
+                                        <div class="col-lg-12 col-md-12" >
+                                            {{form_label(form.comuna_format)}}
+                                            {{form_widget(form.comuna_format)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.comuna_format.vars.errors }%}
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 fondoDireccion" >
+                                            {{form_label(form.direccionComuna)}}
+                                            {{form_widget(form.direccionComuna)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.direccionComuna.vars.errors }%}
+                                        </div>
+                                    </div>
+                                    <div class="direccion hidden">
+                                        <div class="col-lg-12 col-md-12" >
+                                            {{form_label(form.direccion_creado)}}
+                                            {{form_widget(form.direccion_creado)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.direccion_creado.vars.errors }%}
+                                        </div>
+                                        <div class="col-sm-12 col-md-12 fondoDireccion">
+                                            {{form_label(form.direccion)}}
+                                            {{form_widget(form.direccion)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.direccion.vars.errors }%}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.unidad_deportiva)}}
+                                    {{form_widget(form.unidad_deportiva)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.barrio.vars.errors }%}
+                                </div>
+
+                                <div class="col-md-12">
+
+                                    <div id="mensajePasos" style="display:none;" class="alert alert-warning alert-dismissable">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                        <strong>{% trans %}formulario_escenario_deportivo.labels.paso_uno.atencion {% endtrans %}</strong> {% trans %}formulario_escenario_deportivo.labels.paso_uno.advertencia {% endtrans %}.
+                                    </div>
+
+                                    {{form_label(form.tipo_escenario)}}
+                                    {{form_widget(form.tipo_escenario, { 'id': 'tipoEscenarioSeleccion' })}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.barrio.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+
+                                    <label>{% trans %}formulario_escenario_deportivo.labels.paso_uno.ubicacion {% endtrans %}<span>*</span></label>
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.ubicacion.vars.errors }%}
+                                </div>
+
+                                <div class="col-md-12">
+                                    {{ form_row(form.localizacion) }}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.telefono)}}
+                                    {{form_widget(form.telefono)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.telefono.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.email)}}
+                                    {{form_widget(form.email)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.email.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.informacionReserva)}}
+                                    {{form_widget(form.informacionReserva)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.informacionReserva.vars.errors }%}
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                <div class="col-md-12 division"></div>
+                                <div class="col-md-12">
+                                    <span></span>
+                                    <div class="col-md-12">
+                                        {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                    </div>
+                                    <div style="display: none;">
+                                        {{ form_rest(form) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.content-wrapper -->
+    {% endblock sonata_admin_content %}
+
+
+    <script>
+
+        $('#tipoEscenarioSeleccion').on('change', function () {
+
+            if ($("#tipoEscenarioSeleccion option:selected").text() == "CHORRITOS" ||
+                    $("#tipoEscenarioSeleccion option:selected").text() == "GIMNASIOS" ||
+                    $("#tipoEscenarioSeleccion option:selected").text() == "JUEGOS INFANTILES" ||
+                    $("#tipoEscenarioSeleccion option:selected").text() == "LUDOTEKA" ||
+                    $("#tipoEscenarioSeleccion option:selected").text() == "PISCINA" ||
+                    $("#tipoEscenarioSeleccion option:selected").text() == "PISTA DE SKATE" ||
+                    $("#tipoEscenarioSeleccion option:selected").text() == "PISTA DE TROTE" ||
+                    $("#tipoEscenarioSeleccion option:selected").text() == "PLACA POLIDEPORTIVA" ||
+                    $("#tipoEscenarioSeleccion option:selected").text() == "SEDES ADMINISTRATIVAS Y ESPACIOS COMPLEMENTARIOS"
+                    ) {
+                $("#mensajePasos").hide();
+            } else {
+                $("#mensajePasos").show();
+            }
+
+
+        });
+
+
+        $(document).ready(function () {
+
+            if ($("#tipoEscenarioSeleccion option:selected").text() == "CHORRITOS" ||
+                    $("#tipoEscenarioSeleccion option:selected").text() == "GIMNASIOS" ||
+                    $("#tipoEscenarioSeleccion option:selected").text() == "JUEGOS INFANTILES" ||
+                    $("#tipoEscenarioSeleccion option:selected").text() == "LUDOTEKA" ||
+                    $("#tipoEscenarioSeleccion option:selected").text() == "PISCINA" ||
+                    $("#tipoEscenarioSeleccion option:selected").text() == "PISTA DE SKATE" ||
+                    $("#tipoEscenarioSeleccion option:selected").text() == "PISTA DE TROTE" ||
+                    $("#tipoEscenarioSeleccion option:selected").text() == "PLACA POLIDEPORTIVA" ||
+                    $("#tipoEscenarioSeleccion option:selected").text() == "SEDES ADMINISTRATIVAS Y ESPACIOS COMPLEMENTARIOS"
+                    ) {
+                $("#mensajePasos").hide();
+            } else {
+                $("#mensajePasos").show();
+            }
+
+            $('input.choice-direcion-type').iCheck({checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue'});
+            $('input.choice-direcion-type').on('ifChecked', function (event) {
+                inder.formulario.registro.direccionTipo(event.target, true);
+            });
+            var check_1 = $('[id*="direccionOcomuna_0"]');
+            var check_2 = $('[id*="direccionOcomuna_1"]');
+            $("input[type='checkbox']").iCheck({
+                checkboxClass: 'icheckbox_square-blue'
+            });
+            inder.preinscripcion.checkboxMedicamentos();
+            inder.preinscripcion.checkboxEnfermedades();
+
+            $('select').select2({
+                placeholder: Translator.trans('seleccionar.opcion'),
+                allowClear: true,
+                width: '100%'
+            });
+            inder.oferta.crearSeccionPuntoAtencion($('.checkNuevoPuntoAtencion').prop('checked'));
+            var municipio = $('#municipio');
+            if (municipio.val() != "") {
+                if (check_1.length > 0 || check_2.length > 0) {
+                    if (check_1.iCheck('update')[0].checked || check_2.iCheck('update')[0].checked) {
+                        $("div.direccionOComuna").removeClass("hidden");
+                        var opcion = "";
+                        if (check_1.iCheck('update')[0].checked) {
+                            opcion = check_1.attr("choice-key");
+                        } else {
+                            opcion = check_2.attr("choice-key");
+                        }
+                        if (inder.formulario.registro.direccion == opcion) {
+                            $("div." + inder.formulario.registro.barrio).find('label').html(inder.formulario.registro.barrio_titulo);
+                        } else if (inder.formulario.registro.comuna == opcion) {
+                            $("div." + inder.formulario.registro.barrio).find('label').html(inder.formulario.registro.vereda_titulo);
+                        }
+                        $("div." + opcion).removeClass("hidden");
+                        $("div.puntoAtencion").removeClass("hidden");
+                    } else {
+                        $("div." + inder.formulario.registro.direccion).removeClass("hidden");
+                        $("div.puntoAtencion").removeClass("hidden");
+                    }
+                    $("div." + inder.formulario.registro.barrio).removeClass("hidden");
+                }
+            }
+        });
+    </script>
+
+{% endblock sonata_page_content %}

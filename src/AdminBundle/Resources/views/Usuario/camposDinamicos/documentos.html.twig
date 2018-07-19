@@ -1,0 +1,7 @@
+{% block organizaciondeportiva_label %}{% endblock %}
+{% block organizaciondeportiva_errors %}{% endblock %}
+{% block organizaciondeportiva_widget %}
+    <div class="col-lg-10">
+        {{ form_widget(form.archivo, {'attr': {'class': 'form-control', 'accept' : 'application/msword, application/pdf '} }) }}
+    </div>
+{% endblock %}

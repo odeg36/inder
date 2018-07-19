@@ -1,0 +1,15 @@
+{% block tipo_falta_type_row %}
+    <div class="campoGris row  margenPasos division-hijo-eliminar margen-bottom-10 " id="form_division_{{ form.vars.name }}" data-id="{{ form.vars.name }}">
+               
+        
+                
+        <div class="col-md-12">
+            <strong>
+                {{form_label(form.faltasEncuentroJugador)}}
+            </strong>
+            {{ form_widget(form.faltasEncuentroJugador) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.faltasEncuentroJugador.vars.errors }%}
+        </div>
+        {{ form_rest(form) }}        
+    </div>
+{% endblock %}

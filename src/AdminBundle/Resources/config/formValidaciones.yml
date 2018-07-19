@@ -1,0 +1,42 @@
+services:
+    admin.valid.usuario.unico:
+        class: AdminBundle\Validator\Constraints\ConstraintsUsuarioUnicoValidator
+        tags:
+            - { name: validator.constraint_validator, alias: usuario_unico }
+        arguments: ["@service_container"]
+        
+    admin.valid.usuario.con.email:
+        class: AdminBundle\Validator\Constraints\ConstraintsUsuarioConEmailValidator
+        tags:
+            - { name: validator.constraint_validator, alias: usuario_con_email }
+        arguments: ["@service_container"]
+    
+    admin.valid.email.unico:
+        class: AdminBundle\Validator\Constraints\ConstraintsEmailUnicoValidator
+        tags:
+            - { name: validator.constraint_validator, alias: email_unico }
+        arguments: ["@service_container"]
+    
+    admin.valid.perfiles.permitidos:
+        class: AdminBundle\Validator\Constraints\ConstraintsPerfilesPermitidosValidator
+        tags:
+            - { name: validator.constraint_validator, alias: perfiles_permitidos }
+        arguments: ["@service_container"]
+        
+    admin.valid.discilplina.unica:
+        class: AdminBundle\Validator\Constraints\ConstraintsDisciplinaUnicaValidator
+        tags:
+            - { name: validator.constraint_validator, alias: disciplina_unica }
+        arguments: ["@service_container"]
+        
+    admin.valid.discilplina.o.tendencia:
+        class: AdminBundle\Validator\Constraints\ConstraintsDisciplinaOTendenciaValidator
+        tags:
+            - { name: validator.constraint_validator, alias: disciplina_o_tendencia }
+        arguments: ["@service_container"]
+        
+    admin.valid.asistente.unico:
+        class: AdminBundle\Validator\Constraints\ConstraintsAsistenteUnicoValidator
+        tags:
+            - { name: validator.constraint_validator, alias: asistente_unico }
+        arguments: ["@service_container"]

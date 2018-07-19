@@ -1,0 +1,13 @@
+{% if admin.hasAccess('create', object) and admin.hasRoute('edit') and is_granted('ROLE_SUPER_ADMIN') %}
+    	{% set dateTime = date(object.fechaInicio.date)%}
+    	{% set dateTimeActual = date()%}    	
+		{% if dateTime|date('Y-m-d') > dateTimeActual|date('Y-m-d') %}
+			<a id="abrirModalCancelar" class="btn btn-sm btn-default edit_link" data-toggle="modal" data-target="#motivoCancelacion2Id" data-objeto="{{object.id}}" data-href="{{ admin.generateUrl('cancelarReserva', {id: object.id}) }}">
+				<i class="fa fa-clock-o" aria-hidden="true"></i>
+				{{ 'btn.cancelar_reserva'|trans }}
+			</a>
+			{{ include('AdminBundle:MotivoCancelacionReserva:modal_cancelar_reserva_actionList.html.twig') }}
+		{% endif %}
+        
+    
+{% endif %}

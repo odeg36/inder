@@ -1,0 +1,60 @@
+{% block deportistaType_row %}
+    {% set nombreUsuario = '' %}
+    {% if form.vars.value is defined and form.vars.value is not null %}
+        {% set nombreUsuario = form.vars.value.usuarioDeportista.fullname %}
+    {% endif %}
+    <section class="col-xs-12 error-mesajes">
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+    </section>
+    <div class="row margen">
+        <span id="alertas_{{ form.vars.id }}" data-tituloalerta="{% trans %}formulario_registro.alertas.tituloalerta {% endtrans %}" data-yaseleccionada="{% trans %}formulario_registro.alertas.disciplinasyaseleccionada{% endtrans %}" data-revisecampos="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-registrado="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-mensajeerror="{% trans %}formulario_registro.alertas.mensajeerror {% endtrans %}" data-titulook="{% trans %}formulario_registro.alertas.titulo_ok {% endtrans %}"></span>
+        <span id="usuario_{{ form.vars.id }}" data-existe="{{ path('verifica_existe_usuario_deportista', {'tipoDocumento': form.vars.id, 'rol': '', 'organizacionDeportiva': form.organizacionDeportiva.vars.value}) }}" data-get="{{ path('get_usuario') }}" data-registrar="{{ path('registrar_usuario') }}"></span>
+        <div class="col-sm-12 col-md-3">
+            {{ form_widget(form.tipoidentificacion, {'attr': {'class': 'form-control tipo_identificacion_' ~ form.vars.id, 'onchange': 'inder.formulario.paso3.cambiaTipoIdentificacion(this, "'~ form.vars.id ~'")'}, 'id': ''}) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoidentificacion.vars.errors }%}
+        </div>
+        <div class="col-sm-12 col-md-4">
+            {{ form_widget(form.usuariodeportista, {'attr': {'class': 'form-control numero_documento_' ~ form.vars.id, 'onchange' : 'inder.formulario.paso3.nuevaInformacion(this, "'~ form.vars.id ~'")'}}) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.usuariodeportista.vars.errors }%}
+        </div>
+        <div class="col-sm-12 col-md-4 nombre_deportista_{{ form.vars.id }}">
+            <h5>
+                {% if nombreUsuario is not null %}
+                    {{ nombreUsuario }}
+                {% else %}
+                    &nbsp;
+                {% endif %}
+            </h5>
+        </div>
+
+        <div class="col-xs-12 registroUsuario registro_usuario_{{ form.vars.id }}"></div>
+        <div class="col-xs-12 mensaje_registro_usuario_{{ form.vars.id }}"></div>
+    </div>
+
+    <script type="text/javascript">
+        var id = "{{ form.vars.id }}";
+        var uniqId = "select_documento_" + "{{ form.vars.id }}";
+        var opciones = {
+            url_list: $('#usuario_' + "{{ form.vars.id }}").attr('data-existe'),
+            url_get: $('#usuario_' + "{{ form.vars.id }}").attr('data-get'),
+            otherOptions: {
+                minimumInputLength: 1,
+                formatNoMatches: Translator.trans('formulario.autocomplete.no.usuario'),
+                formatSearching: Translator.trans('formulario.autocomplete.buscando'),
+                formatInputTooShort: Translator.trans('formulario.autocomplete.caracteres', {cantidad: 1}),
+                dropdownCssClass: uniqId
+            }
+        };
+        $(".numero_documento_" + "{{ form.vars.id }}").autocompleter(opciones);
+        inder.formulario.paso3.cambiarInput(uniqId, id);
+
+        $(document).ready(function () {
+            var usuariodeportista = "{{ form.usuariodeportista.vars.value }}";
+            var elemento = $(".numero_documento_" + "{{ form.vars.id }}");
+
+            if (usuariodeportista) {
+                inder.formulario.paso3.nuevaInformacion(elemento, "{{ form.vars.id }}");
+            }
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,231 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+        .breadcrumb {
+            padding: 8px 15px !important;
+            margin-bottom: 20px !important;
+            list-style: none !important;
+            background-color: #f5f5f5 !important;
+            border-radius: 4px !important;
+            float: inherit !important;
+        }
+    </style>
+{% endblock %}
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+{% block sonata_page_content %}
+    {% block sonata_admin_content %}
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper alto-contenido p-top">
+            <!-- Migas de pan -->
+            <section class="container-fluid">
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                    <li><a href="#">Escenarios deportivos</a></li>
+                    <li class="active">Crear</li>
+                </ol>
+            </section>
+            <!-- formulario -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_escenario_deportivo.title{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Escenarios deportivos -->
+                <div class="row">
+                    <div class="col-md-4 iconoText2">
+                        {% include 'AdminBundle:EscenarioDeportivo/Pasos:iconos.html.twig' with {vistaPaso: 4, idescenario: idescenario} %}
+                    </div>
+                    <div class="col-md-8 fondoAzul2">
+                        {{ form_start(form, {'attr': {'id': 'formulario_escenario_deportivo', novalidate: 'true'} } ) }}
+                            <div class="infoBox row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 uno contenedorInfoUno">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <strong>{% trans %}formulario_escenario_deportivo.labels.paso_cuatro.cobama_lote{% endtrans %}</strong>
+                                        {{form_widget(form.cobamaLote)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.cobamaLote.vars.errors }%}
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <strong>{% trans %}formulario_escenario_deportivo.labels.paso_cuatro.matricula{% endtrans %}</strong>
+                                        {{form_widget(form.matricula)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.matricula.vars.errors }%}
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+
+                                        <label>{% trans %}formulario_escenario_deportivo.labels.paso_cuatro.codigo_escenario{% endtrans %}</label>
+                                        <div class="col-md-12 fondoDireccion">
+                                            <p>{{ idescenario }}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            {{form_label(form.planos)}}
+                                            {{form_widget(form.planos)}}
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            {{form_label(form.imagenes)}}
+                                            {{form_widget(form.imagenes)}}
+                                            <!-- <p>Arrastre al recuadro las imágenes que desea asociar al escenario.</p>-->
+                                        </div>
+                                        <div class="col-md-12 form-group">
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            {{form_label(form.tieneAcueducto)}}
+                                            {{form_widget(form.tieneAcueducto)}}
+                                        </div>
+                                    </div>
+                                    <div id ="acueducto" data-val={{ tieneAcueducto }} >
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                {{form_label(form.cantidadContadoresAcueducto)}}
+                                                {{form_widget(form.cantidadContadoresAcueducto)}}
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                {{form_label(form.codigoContadoresAcueducto)}}
+                                                {{form_widget(form.codigoContadoresAcueducto)}}
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                {{form_label(form.observacionesAcueducto)}}
+                                                {{form_widget(form.observacionesAcueducto)}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            {{form_label(form.tieneEnergia)}}
+                                            {{form_widget(form.tieneEnergia)}}
+                                        </div>
+                                    </div>
+                                    <div id ="energia" data-val={{ tieneEnergia }}  >
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                {{form_label(form.cantidadContadoresEnergia)}}
+                                                {{form_widget(form.cantidadContadoresEnergia)}}
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                {{form_label(form.codigoContadoresEnergia)}}
+                                                {{form_widget(form.codigoContadoresEnergia)}}
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                {{form_label(form.observacionesEnergia)}}
+                                                {{form_widget(form.observacionesEnergia)}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            {{form_label(form.tieneTelefono)}}
+                                            {{form_widget(form.tieneTelefono)}}
+                                        </div>
+                                    </div>
+                                    <div id ="telefonia" data-val={{ tieneTelefono }} >
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                {{form_label(form.observacionesTelefono)}}
+                                                {{form_widget(form.observacionesTelefono)}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            {{form_label(form.tieneInternet)}}
+                                            {{form_widget(form.tieneInternet)}}
+                                        </div>
+                                    </div>
+                                     <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            {{form_label(form.tieneIluminacion)}}
+                                            {{form_widget(form.tieneIluminacion)}}
+                                        </div>
+                                    </div>
+                                    <div id ="iluminacion" data-val={{ tieneIluminacion }} >
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                {{form_label(form.fuente)}}
+                                                {{form_widget(form.fuente)}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                        
+                                        <!--
+                                        <div class="col-xs-12 col-sm-4 col-md-4 areaSubirDoc">
+                                            <i class="fa fa-upload" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-8 col-md-8">
+                                            <ul class="columnas">
+                                                <li>imagen1.jpg <i class="fa fa-minus-circle" aria-hidden="true"></i></li>
+                                                <li>imagen2.jpg <i class="fa fa-minus-circle" aria-hidden="true"></i></li>
+                                                <li>imagen3.jpg <i class="fa fa-minus-circle" aria-hidden="true"></i></li>
+                                                <li>imagen4.jpg <i class="fa fa-minus-circle" aria-hidden="true"></i></li>
+                                            </ul>
+                                        </div>
+                                        -->
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                    <div class="col-md-12 division"></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <a href="{{ path('admin_logic_escenariodeportivo_addpaso3', { 'id':idescenario } ) }}" class="btn btnVerde">
+                                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                            Anterior
+                                        </a>
+                                        {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                        <div style="display: none;">
+                                            {{ form_rest(form) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.content-wrapper -->
+        <style>
+            .fileinput-cancel {
+                display: none !important;
+            }
+            .fileinput-remove {
+                display: inline !important;
+            }
+            .btn-default {
+                background-color: #c7daef !important;
+                color: #007385 !important;
+                border-color: #bbb !important;
+                -webkit-transition: background-color 0.3s ease-in-out !important;
+                transition: background-color 0.3s ease-in-out !important;
+            }
+            .btn-default:hover {
+                background-color: #007385 !important;
+                color: #c7daef !important;
+                border-color: #007385 !important;
+                -webkit-transition: background-color 0.3s ease-in-out !important;
+                transition: background-color 0.3s ease-in-out !important;
+            }
+            .btn-outline-secondary i{
+                margin: auto !important;
+            }
+            strong label{
+                color : #000000 !important;
+                margin: 0px !important;
+            }
+        </style>
+    {% endblock sonata_admin_content %}
+{% endblock sonata_page_content %}

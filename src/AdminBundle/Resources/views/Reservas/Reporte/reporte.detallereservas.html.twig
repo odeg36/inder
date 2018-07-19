@@ -1,0 +1,131 @@
+{% extends "::base.reporte.html.twig" %}
+
+{% block body %}
+    <div class="container-fluid cabecera-contenedor">
+        <div class="row">
+            <div class="col-xs-8 cabecera-logo-simon text-center">
+                <img src="{{ app.request.getSchemeAndHttpHost() }}/bundles/admin/img/logo-simon-header.png" alt="">
+            </div>
+            <div class="col-xs-4 cabecera-logo-alcaldia">
+                <img src="{{ app.request.getSchemeAndHttpHost() }}/bundles/admin/img/logos-inder-alcaldia.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="col-md-12 ">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h4 class="box-title">
+                        Reserva
+                    </h4>
+                </div>
+                <div class="box-body table-responsive no-padding">
+                    <table class="table">
+                        <tbody>
+                            <tr class="sonata-ba-view-container">
+                                <th>Número Reserva</th>
+                                <td>
+                                    {{reserva.id}}
+                                </td>                                    
+                            </tr>
+                            <tr class="sonata-ba-view-container">
+                                <th>Solicitado por</th>
+                                <td>
+                                    {% if reserva.usuario %}
+                                        {{reserva.usuario.firstname}} {{reserva.usuario.lastname}}
+                                    {% endif %}
+                                </td>                                    
+                            </tr>
+                            <tr class="sonata-ba-view-container">
+                                <th>Escenario</th>
+                                <td>                                
+                                    {{reserva.escenarioDeportivo.nombre}}
+                                </td>                                    
+                            </tr>
+                            <tr class="sonata-ba-view-container">
+                                <th>Estado</th>
+                                <td>                                
+                                    {{reserva.estado}}
+                                </td>                                    
+                            </tr>
+                            <tr class="sonata-ba-view-container">                                        
+                                <th>Division</th>
+                                <td>
+                                    {% if (reserva.divisiones != null) %}
+                                        {% for divisionReserva in reserva.divisiones %}
+                                            {{divisionReserva.division.nombre}} <br>                                
+                                            <strong>Deportistas</strong><br>
+                                            {%for usuarioDivisionReserva in divisionReserva.divisionReservas%}
+                                                <ul>
+                                                    <li>{{usuarioDivisionReserva.usuario.numeroDocumento}} - {{usuarioDivisionReserva.usuario.nombreCompleto}}</li>
+                                                </ul>
+                                            {%endfor%}  
+                                        {% endfor %}
+                                    {% else %}
+                                        No se han seleccionado una Divisiones
+                                    {% endif %}                                        
+                                </td>                                    
+                            </tr>
+                            <tr class="sonata-ba-view-container">                                        
+                                <th>Barrio</th>
+                                <td>                                
+                                    {{reserva.escenarioDeportivo.barrio}}
+                                </td>                                    
+                            </tr>
+                            <tr class="sonata-ba-view-container">                                        
+                                <th>Disciplina</th>
+                                <td>           
+                                    {% if (reserva.divisiones != null) %}
+                                        {% if (reserva.disciplina != null) %}                                        
+                                            {{reserva.disciplina.nombre}}    
+                                        {% else %}
+                                            No se ha seleccionado una Disciplina
+                                        {% endif %}                    
+                                    {% else %}
+                                        No se ha seleccionado una Disciplina
+                                    {% endif %}                     
+
+                                </td>                                    
+                            </tr>
+                            <tr class="sonata-ba-view-container">                                        
+                                <th>Tipo Reserva</th>
+                                <td>
+                                    {{reserva.tipoReserva}}
+                                </td>
+                            </tr>
+                            <tr class="sonata-ba-view-container">                                        
+                                <th>Fecha Inicio</th>
+                                <td>{{reserva.fechaInicio.date|date('d/m/Y')}}</td>                                    
+                            </tr>
+                            <tr class="sonata-ba-view-container">                                        
+                                <th>Fecha Final</th>
+                                <td>{{reserva.fechaFinal.date|date('d/m/Y')}}</td>
+                            </tr>
+                            <tr class="sonata-ba-view-container">                                        
+                                <th>Días Reserva</th>
+                                <td>
+                                    {% for programacion in reserva.programaciones %}
+                                        {%if programacion.inicioManana and programacion.inicioTarde%}
+                                            <ul>
+                                                <li>{{programacion.dia}} {{programacion.inicioManana|date("H:i")}} - {{programacion.finTarde|date("H:i")}}</li>
+                                            </ul>
+                                        {%elseif programacion.inicioManana %}
+                                            <ul>
+                                                <li>{{programacion.dia}} {{programacion.inicioManana|date("H:i")}} - {{programacion.finManana|date("H:i")}}</li>
+                                            </ul>
+                                        {%elseif programacion.inicioTarde %}
+                                            <ul>
+                                                <li>{{programacion.dia}} {{programacion.inicioTarde|date("H:i")}} - {{programacion.finTarde|date("H:i")}}</li>
+                                            </ul>
+                                        {%endif%}
+                                    {% endfor %}
+                                </td>                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

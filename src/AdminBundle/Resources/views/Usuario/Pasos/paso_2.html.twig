@@ -1,0 +1,125 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+
+{% block title %}{{organizacionId != ""?'Actualización de datos':'Registro'}}{% endblock %}
+{% block sonata_breadcrumb %}
+    {% if organizacionId != ""%}
+        <div class="hidden-xs">
+            <ol class="nav navbar-top-links breadcrumb">
+                <ol class="nav navbar-top-links breadcrumb">
+                    <li>
+                        <a href="{{path('sonata_admin_dashboard')}}">
+                            <i class="fa fa-home"></i>                                        
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{path('admin_logic_organizaciondeportiva_list')}}">
+                            {{'Organizacion Deportiva List'|trans}}                                        
+                        </a>
+                    </li>
+                    <li class="active">
+                        <span>{{'Edición de organismo'|trans}}</span>
+                    </li>
+                </ol>
+            </ol>
+        </div>
+    {% endif %}
+{% endblock sonata_breadcrumb %}
+{% block sonata_page_content %}
+    <section class="content">
+        {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+        {% block sonata_admin_content %}
+            <form 
+                name="{{form.vars.id}}" 
+                method="{{form.vars.method}}" 
+                id="formulario_disciplina" 
+                action="{{ path('info_organigrama', {'organismo':organizacionId})}}"
+                novalidate="true">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 titulos">
+                            <h4>
+                                {% if organizacionId != "" %}
+                                    {{'Actualización de datos'|trans}}
+                                {% else %}
+                                    {{'formulario_registro.solicitudregistro'|trans}}
+                                {% endif %}
+                            </h4>
+                        </div>
+                    </div>
+                    {% for flashMessage in app.session.flashbag.get('message') %}
+                        <div class="flash-notice">
+                            <h2>{{ flashMessage }}</h2>
+                        </div>
+                    {% endfor %}
+                    <div class="row">
+                        <div class="col-md-4 iconoText2">
+                            {% include 'AdminBundle:Usuario/Pasos:iconos.html.twig' with {vistaPaso: 2} %}
+                        </div>
+                        <div class="col-md-8 fondoAzul2">
+                            <div class="infoBox row">
+                                <div class="col-sm-12 col-md-12 contenedorInfoUno">
+                                    <div class="col-sm-12 col-md-12 uno">
+                                        <div class="col-md-12">
+                                            <label>{% trans %}formulario_registro.pasodos.asociar_usuarios{% endtrans %}<span>*</span></label>
+                                            <p>{% trans %}formulario_registro.pasodos.intro{% endtrans %}</p>
+                                        </div>
+
+                                        <div class="col-xs-12 col-md-12">
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                        </div>
+                                        {%
+                                        form_theme form
+                                            'AdminBundle:Usuario:camposDinamicos/tipoorganismousuario.html.twig'
+                                            'AdminBundle:Usuario:camposDinamicos/perfilorganismos.html.twig'
+                                            'jquery.collection.html.twig'
+                                        %}
+                                        {{form_row(form.organismosorganizacion)}}
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                    <div class="col-md-12 division"></div>
+                                    <div class="col-md-12">
+                                        <a href="{{ path('info_complementaria', {'organismo':organizacionId}) }}">
+                                            <button type="button" class="btn btnVerde">
+                                                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                                {% trans %}formulario_registro.atras{% endtrans %}
+                                            </button>
+                                        </a>
+                                        {{ form_widget(form.save, { 'id': 'btnguardar'}) }}
+                                    </div>
+                                    <div style="display: none;">
+                                        {{ form_rest(form) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <span id="alertas" data-tituloalerta="{% trans %}formulario_registro.alertas.tituloalerta {% endtrans %}" data-yaseleccionada="{% trans %}formulario_registro.alertas.disciplinasyaseleccionada {% endtrans %}" data-revisecampos="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-registrado="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-mensajeerror="{% trans %}formulario_registro.alertas.mensajeerror {% endtrans %}" data-titulook="{% trans %}formulario_registro.alertas.titulo_ok {% endtrans %}"></span>
+                <span id="url" data-infoorganigrama="{{ path("info_organigrama") }}"></span>
+            {{ form_end(form) }}
+        {% endblock sonata_admin_content %}
+    </section>
+
+    <script type="text/javascript">
+        $('.organos').collection({
+            prefix: 'parent',
+            drag_drop: false,
+            allow_up: true,
+            add: false,
+            remove: false,
+            up: '<div style="display:none;"></div>',
+            down: '<div style="display:none;"></div>',
+            add_at_the_end: true,
+            children: [{
+                    drag_drop: false,
+                    selector: '.perfiles',
+                    add: '<a><i class="ico-anadirdisciplina fa fa-plus-circle fa-2x" aria-hidden="true"></i></a>',
+                    remove: '<a><i class="fa fa-minus-circle fa-2x" aria-hidden="true"></i></a>',
+                    up: '<div style="display:none;"></div>',
+                    down: '<div style="display:none;"></div>',
+                    add_at_the_end: true
+                }]
+        });
+    </script>
+{% endblock sonata_page_content %}

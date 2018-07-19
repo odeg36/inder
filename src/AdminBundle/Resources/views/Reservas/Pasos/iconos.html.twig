@@ -1,0 +1,101 @@
+<div class="iconoInfo2">
+    {% if 2 <= vistaPaso %}
+        <div class="linea2"></div>
+        <div class="circulo activoCheck">
+            <i class="fa fa-check"></i>
+        </div>
+    {% endif %}
+    {% if 3 <= vistaPaso %}
+        <div class="linea2"></div>
+        <div class="circulo activoCheck">
+            <i class="fa fa-check"></i>
+        </div>
+    {% endif %}
+    {% if 4 <= vistaPaso %}
+        <div class="linea2"></div>
+        <div class="circulo activoCheck">
+            <i class="fa fa-check"></i>
+        </div>
+    {% endif %}
+    {% if 5 == vistaPaso %}
+        <div class="linea2" id="linea2"></div>
+        <div class="circulo activoCheck">
+            <i class="fa fa-check"></i>
+        </div>
+    {% endif %}
+    {% if 6 == vistaPaso %}
+        <div class="linea2" id="linea2"></div>
+        <div class="circulo activoCheck">
+            <i class="fa fa-check"></i>
+        </div> 
+    {% endif %}   
+    
+    {% if 5 == vistaPaso %}
+        <div class="linea2" id="linea2"></div>
+        <div class="circulo activoCheck">
+            <i class="fa fa-check"></i>
+        </div>
+    {% else %}
+        <div class="linea2" id="linea2"></div>
+        <div class="circulo" id="circulo2"></div>
+    {% endif %}
+    
+</div>
+<div class="pasos">
+    <div>
+        <ol>
+            <li class="esconderTabletas">
+{#                <a href="{{ path('admin_logic_reserva_paso1',{id:idreserva}) }}">#}
+                <a>
+                    {% trans %}formulario_reserva.paso_uno{% endtrans %}
+                </a>
+            </li>
+            <li class="esconderTabletas">
+{#                <a href="{{ path('admin_logic_reserva_paso2',{id:idreserva}) }}">#}
+                <a>
+                    {% trans %}formulario_reserva.paso_dos{% endtrans %}
+                </a>
+            </li>
+            {% if 2 < vistaPaso %}
+                
+                    <li class="esconderTabletas">
+{#                        <a href="{{ path('admin_logic_reserva_paso3',{id:idreserva}) }}">#}
+                        <a>
+                            {% trans %}formulario_reserva.paso_tres{% endtrans %}
+                        </a>
+                    </li>
+                    <li class="esconderTabletas">
+                        <a >
+{#                        <a href="{{ path('admin_logic_reserva_paso4',{id:idreserva}) }}">#}
+                            {% trans %}formulario_reserva.paso_cuatro{% endtrans %}
+                        </a>
+                    </li>
+                    <li class="esconderTabletas">
+                        <a>
+{#                        <a href="{{ path('admin_logic_reserva_paso5',{id:idreserva}) }}">#}
+                            {% trans %}formulario_reserva.paso_cinco{% endtrans %}
+                        </a>
+                    </li>
+            {% else %}
+                <li class="esconderTabletas">
+                    <a>
+{#                    <a href="{{ path('admin_logic_reserva_paso3',{id:idreserva}) }}">#}
+                        {% trans %}formulario_reserva.paso_tres{% endtrans %}
+                    </a>
+                </li>
+                <li class="esconderTabletas">
+{#                    <a href="{{ path('admin_logic_reserva_paso4',{id:idreserva}) }}">#}
+                    <a>
+                        {% trans %}formulario_reserva.paso_cuatro{% endtrans %}
+                    </a>
+                </li>
+                <li class="esconderTabletas">
+{#                    <a href="{{ path('admin_logic_reserva_paso5',{id:idreserva}) }}">#}
+                    <a >
+                        {% trans %}formulario_reserva.paso_cinco{% endtrans %}
+                    </a>
+                </li>
+            {% endif %}
+        </ol>
+    </div>
+</div>

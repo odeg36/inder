@@ -1,0 +1,82 @@
+{% block usuario_reserva_type_row %}
+    {%set divisionReserva = form.parent.parent.vars.value%}
+    {%set minimo = 0%}
+    {%set maximo = 0%}
+    {%if divisionReserva is not null%}
+        {%for tipoReserva in divisionReserva.division.tiposReservaEscenarioDeportivo %}
+            {%if tipoReserva.tipoReserva.id == divisionReserva.reserva.tipoReserva.id%}
+                {%for tipo in tipoReserva.tipoReservaEscenarioDeportivoDivisiones %}
+                    {%if divisionReserva.division.id == tipo.divisionTipoReserva.id%}
+                        {% set minimo = tipo.usuariosMinimos%}
+                        {% set maximo = tipo.usuariosMaximos%}
+                    {%endif%}
+                {%endfor%}
+            {%endif%}
+        {%endfor%}
+        <section class="col-xs-12 error-mesajes">
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+        </section>
+        <div class="row margen contenedor-hijo">
+
+            <input type="hidden" class="elementos-division" value="{{form.vars.name}}">
+            <input type="hidden" class="maximo-elementos-division" value="{{maximo}}">
+            <span id="alertas_{{ form.vars.id }}" data-tituloalerta="{% trans %}formulario_registro.alertas.tituloalerta {% endtrans %}" data-yaseleccionada="{% trans %}formulario_registro.alertas.disciplinasyaseleccionada{% endtrans %}" data-revisecampos="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-registrado="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-mensajeerror="{% trans %}formulario_registro.alertas.mensajeerror {% endtrans %}" data-titulook="{% trans %}formulario_registro.alertas.titulo_ok {% endtrans %}"></span>
+            <span id="usuario_{{ form.vars.id }}" data-existe="{{ path('listar_usuarios_tipo_documento_documento', {'tipoDocumento': form.vars.id, 'rol': rol_deportista}) }}" data-get="{{ path('get_usuario') }}" data-registrar="{{ path('registrar_usuario') }}"></span>
+            <div class="col-sm-12 col-md-3">
+                {{ form_widget(form.tipoIdentificacion, {'data': 2, 'attr': {'value': 2,'class': 'form-control tipo_identificacion_' ~ form.vars.id, 'onchange': 'inder.formulario.paso3.cambiaTipoIdentificacion(this, "'~ form.vars.id ~'")'}, 'id': form.tipoIdentificacion.vars.id}) }}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoIdentificacion.vars.errors }%}
+            </div>
+            {%set id_usuario = 0%}
+        {%if form.vars.value is not null and form.vars.value.usuario is not null%}{%set id_usuario = form.vars.value.usuario.id%}{%endif%}
+
+        <div class="col-sm-12 col-md-4">
+            {{ form_widget(form.numeroIdentificacion, {'value': id_usuario,'attr': {'class': 'form-control numero_documento_' ~ form.vars.id, 'onchange' : 'inder.formulario.paso3.nuevaInformacion(this, "'~ form.vars.id ~'")', 'id': form.numeroIdentificacion.vars.id}}) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.numeroIdentificacion.vars.errors }%}
+        </div>
+        <div class="col-sm-12 col-md-4 nombre_deportista_{{ form.vars.id }}">
+            {%if form.vars.value is not null and form.vars.value.usuario is not null and form.vars.value.usuario.id is not null%}
+                <h5>{{form.vars.value.usuario.nombreCompleto}}</h5>
+            {%else%}
+                <h5>&nbsp;</h5>
+            {%endif%}
+        </div>
+        <div class="col-xs-12 registroUsuario registro_usuario_{{ form.vars.id }}"></div>
+        <div class="col-xs-12 mensaje_registro_usuario_{{ form.vars.id }}"></div>
+    </div>
+
+    <script type="text/javascript">
+
+        var id = "{{ form.vars.id }}";
+        var uniqId = "select_documento_" + "{{ form.vars.id }}";
+        var opciones = {
+            url_list: $('#usuario_' + "{{ form.vars.id }}").attr('data-existe'),
+            url_get: $('#usuario_' + "{{ form.vars.id }}").attr('data-get'),
+            otherOptions: {
+                minimumInputLength: 5,
+                formatNoMatches: Translator.trans('formulario.autocomplete.no.usuario'),
+                formatSearching: Translator.trans('formulario.autocomplete.buscando'),
+                formatInputTooShort: Translator.trans('formulario.autocomplete.caracteres', {cantidad: 5}),
+                dropdownCssClass: uniqId
+            }
+        };
+
+
+        $(document).ready(function () {
+            $(".numero_documento_" + "{{ form.vars.id }}").autocompleter(opciones);
+            inder.formulario.paso3.cambiarInput(uniqId, id);
+            var usuariodeportista = "{{ form.numeroIdentificacion.vars.value }}";
+            var elemento = $(".numero_documento_" + "{{ form.vars.id }}");
+
+            if (usuariodeportista) {
+                inder.formulario.paso3.nuevaInformacion(elemento, "{{ form.vars.id }}");
+            }
+        {%if form.vars.value is not null and form.vars.value.usuario is not null%}
+                    $("#{{form.tipoIdentificacion.vars.id}}").select2('val', '{{form.vars.value.usuario.tipoIdentificacion.id}}');
+        {%endif%}
+
+                });
+    </script>
+{%endif%}
+{% endblock usuario_reserva_type_row %}
+
+

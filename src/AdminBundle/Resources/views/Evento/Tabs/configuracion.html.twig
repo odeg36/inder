@@ -1,0 +1,536 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+        .white{
+            background : #fff !important;
+        }
+        .red{
+            color : #ff0201 !important;
+        }
+        .mg-top{
+            margin-top : 10px !important;
+        }
+        .mg-bottom{
+            margin-bottom : 10px !important;
+        }
+        .pd-left{ 
+            padding-left : 5px !important;
+        }
+        .pd-right{
+            padding-right : 5px !important;
+        }
+        .center{
+            text-align : center !important;
+        }
+        p {
+            font-weight: bold;
+        }
+        #divImagenes{
+            border-radius: 15px;
+            border: 1px solid #0099b1;
+            padding: 20px;
+            width: 200px;
+            margin-top: 10px;
+        }
+        #imagenEvento{
+            height: 150px;
+            width: 150px;
+        }
+    </style>
+{% endblock %}
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_evento_list') }}">{% trans %}Evento List{% endtrans %}</a></li>        
+        <li class="active">
+            {% if idevento == 0 %}
+                {% trans %}btn.accion.crear{% endtrans %}
+            {% else %}
+                {{ nombreEvento }}
+            {% endif %}
+        </li>
+    </ol>
+{% endblock %}
+
+{% block sonata_page_content %}
+    {% block sonata_admin_content %}
+        <!-- Content Wrapper. Contains page content -->
+        <div class="">
+            <!-- formulario -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>
+                            {% if idevento == 0 %}
+                                + {% trans %}formulario_evento.crear{% endtrans %}
+                            {% else %}
+                                {{ nombreEvento }}
+                            {% endif %}
+                        </h4>
+                        <ul class="nav navbar-nav navbar-right" style="padding-right: 12px">
+                            <a type="button" class="btn-regresar sonata-action-element" href="{{path('admin_logic_evento_list')}}" style="padding: 5px 12px 3px 12px">
+                                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                {{ 'admin.detallesolicitud.volver' | trans }}
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Información general -->
+                <div class="row">
+                    <div class="col-md-12 sombra">
+                        <!-- Custom Tabs -->
+
+                        <div class="nav-tabs-custom">
+                            {% include 'AdminBundle:Evento/Tabs:tab.html.twig' with {tabActivo: 'configuracion', idevento: idevento, tipoSistema: tipoSistema} %}
+
+                            <div class="col-md-12 tab-content padding-total20">
+                                <!-- Configuración -->
+                                <div class="col-md-12 tab-pane active " >
+                                    <!-- botones internos evento y inscripción -->
+                                    <div class="nav-tabs-custom">
+
+                                        <div class="linea-gris"></div>
+                                        {{ form_start(form, {'attr': {'id': 'formulario_configuracion_evento', novalidate: 'true'} } ) }}
+                                        <div class="col-md-12 tab-content white">
+                                            <!-- Contenido de eventos -->
+                                            <div class="col-md-12 tab-pane active" id="evento-info">
+                                                <div class="col-md-12">
+                                                    {{form_label(form.estado)}}
+                                                    {{form_widget(form.estado)}}
+                                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.estado.vars.errors }%}
+                                                </div>
+                                                <div class="col-md-12 linea-gris"></div>
+                                                <div class="col-md-12 mg-top">
+                                                    {{form_label(form.nombre)}}
+                                                    {{form_widget(form.nombre)}}
+                                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nombre.vars.errors }%}
+                                                </div>
+                                                <div class="col-md-12">
+                                                    {{form_label(form.estrategia)}}
+                                                    {{form_widget(form.estrategia)}}
+                                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.estrategia.vars.errors }%}
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-6 pd-right">
+                                                        {{form_label(form.disciplina)}}
+                                                        {{form_widget(form.disciplina)}}
+                                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.disciplina.vars.errors }%}
+                                                    </div>
+                                                    <div class="col-md-6 pd-left">
+                                                        {{form_label(form.rama)}}
+                                                        {{form_widget(form.rama)}}
+                                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.rama.vars.errors }%}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-6 pd-right">
+                                                        {{form_label(form.fuenteFinanciacion)}}
+                                                        {{form_widget(form.fuenteFinanciacion)}}
+                                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.fuenteFinanciacion.vars.errors }%}
+                                                    </div>
+                                                    <div class="col-md-6 pd-left">
+                                                        {{form_label(form.tipoEnfoque)}}
+                                                        {{form_widget(form.tipoEnfoque)}}
+                                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoEnfoque.vars.errors }%}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 marginB0 mg-top">
+                                                    <label>{% trans %}categorias{% endtrans %}</label>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-12 contenedorInfoUno">
+                                                    <div class="col-md-12 campoGris bordeSolido">
+                                                        <section class="col-xs-12 error-mesajes">
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.categoriaSubcategorias.vars.errors }%}
+                                                        </section>
+                                                        {%
+                                                                    form_theme form
+                                                                        'AdminBundle:Evento:categorias.html.twig'
+                                                                        'jquery.collection.html.twig'
+                                                        %}
+                                                        {{ form_row(form.categoriaSubcategorias) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 marginB0 mg-top">
+                                                    <label>{% trans %}formulario_evento.labels.configuracion.fecha{% endtrans %} <span class="red" >*</span></label>
+                                                </div>
+                                                <div class="col-md-12 marginB0 mg-top">
+                                                    <div class="col-md-3 p-right10">
+                                                        {{form_label(form.fechaInicial)}}
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                            </div>
+                                                            <div >                
+                                                                {{form_widget(form.fechaInicial)}}
+                                                            </div>
+                                                        </div>
+                                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.fechaInicial.vars.errors }%}
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        {{form_label(form.fechaFinal)}}
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                            </div>
+                                                            <div >                
+                                                                {{form_widget(form.fechaFinal)}}
+                                                            </div>
+                                                        </div>
+                                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.fechaFinal.vars.errors }%}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-3 p-right10">
+                                                        {{form_label(form.fechaInicialInscripcion)}}
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                            </div>
+                                                            <div >
+                                                                {{form_widget(form.fechaInicialInscripcion)}}
+                                                            </div>
+                                                        </div>
+                                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.fechaInicialInscripcion.vars.errors }%}
+                                                    </div>
+                                                    <div class="col-md-3 p-right10">
+                                                        <label>&nbsp;</label>
+                                                        {{form_label(form.horaInicial)}}
+                                                        {{form_widget(form.horaInicial)}}
+                                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.horaInicial.vars.errors }%}
+                                                    </div>
+                                                    <div class="col-md-3 p-right10">
+                                                        {{form_label(form.fechaFinalInscripcion)}}
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                            </div>
+                                                            <div >
+                                                                {{form_widget(form.fechaFinalInscripcion)}}
+                                                            </div>
+                                                        </div>
+                                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.fechaFinalInscripcion.vars.errors }%}
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <label>&nbsp;</label>
+                                                        {{form_label(form.horaFinal)}}
+                                                        {{form_widget(form.horaFinal)}}
+
+                                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.horaFinal.vars.errors }%}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    {{form_label(form.cupo)}}
+                                                    {{form_widget(form.cupo, {id:'cupo'})}}
+                                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.cupo.vars.errors }%}
+                                                </div>
+                                                <div id="campos_equipo" data-cupo="{{ cupos }}" >
+                                                    <div class="col-md-3">
+                                                        {{form_label(form.numeroEquipos)}}
+                                                        {{form_widget(form.numeroEquipos)}}
+                                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.numeroEquipos.vars.errors }%}
+                                                    </div>
+                                                    <div class="col-md-12 marginB0">
+                                                        <strong>{% trans %}formulario_evento.labels.configuracion.participantesequipos{% endtrans %}</strong>
+                                                    </div>
+                                                    <div class="col-md-3 p-right10">
+                                                        {{form_label(form.participantesEquipoMinimo)}}
+                                                        {{form_widget(form.participantesEquipoMinimo)}}
+                                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.participantesEquipoMinimo.vars.errors }%}
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        {{form_label(form.participantesEquipoMaximo)}}
+                                                        {{form_widget(form.participantesEquipoMaximo)}}
+                                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.participantesEquipoMaximo.vars.errors }%}
+                                                    </div>
+                                                    <div class="col-md-12 mg-top">
+                                                        <div>
+                                                            {{form_widget(form.habilitarRecambios)}}
+                                                            {{form_label(form.habilitarRecambios)}}
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.habilitarRecambios.vars.errors }%}
+                                                        </div>
+                                                        <div>
+                                                            {{form_widget(form.habilitarListaLarga)}}
+                                                            {{form_label(form.habilitarListaLarga)}}
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.habilitarListaLarga.vars.errors }%}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="campos_individual" data-cupo="{{ cupos }}">
+                                                    <div class="col-md-3">
+                                                        {{form_label(form.numeroCupos)}}
+                                                        {{form_widget(form.numeroCupos)}}
+                                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.numeroCupos.vars.errors }%}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 mg-top">
+                                                    <label>Restricciones</label>
+                                                    <br>
+                                                    {{form_widget(form.personaporsexo)}}
+                                                    {{form_label(form.personaporsexo)}}
+                                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.personaporsexo.vars.errors }%}
+                                                </div>
+                                                <div id="personaporsexo" data-personaporsexo="{{ personaporsexo }}" >
+                                                    <div class="col-md-3 p-right10">
+                                                        {{form_label(form.numeroMujeres)}}
+                                                        {{form_widget(form.numeroMujeres)}}
+                                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.numeroMujeres.vars.errors }%}
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        {{form_label(form.numeroHombres)}}
+                                                        {{form_widget(form.numeroHombres)}}
+                                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.numeroHombres.vars.errors }%}
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12 mg-top">
+                                                    {{form_widget(form.limitanteporedad)}}
+                                                    {{form_label(form.limitanteporedad)}}
+                                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.limitanteporedad.vars.errors }%}
+                                                </div>
+                                                <div id="limitanteporedad" data-limitanteporedad="{{ limitanteporedad }}" >
+                                                    <div class="col-md-3 p-right10">
+                                                        {{form_label(form.edadMayorQue)}}
+                                                        {{form_widget(form.edadMayorQue)}}
+                                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.edadMayorQue.vars.errors }%}
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        {{form_label(form.edadMenorQue)}}
+                                                        {{form_widget(form.edadMenorQue)}}
+                                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.edadMenorQue.vars.errors }%}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 linea-gris"></div>
+
+                                                <div class="col-md-12 mg-top">
+                                                    {{form_widget(form.tieneReserva)}}
+                                                    {{form_label(form.tieneReserva)}}
+                                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tieneReserva.vars.errors }%}
+                                                </div>
+                                                <div class="col-md-12 " id="tieneReservaPuntoAtencion" >
+                                                    <div class="col-md-12 mg-top">
+                                                        {{form_label(form.tienePuntoAtencion)}}                                                        
+                                                        {{form_widget(form.tienePuntoAtencion, { 'id': 'tienePuntoAtencion' }) }}
+                                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tienePuntoAtencion.vars.errors }%}
+                                                    </div>
+                                                    <div class="col-md-12 lineaSolida"></div>
+
+                                                    <div class="col-md-12 seleccion-escenario mostrar">
+                                                        <div class="box box-primary">
+                                                            <div class="box-header">
+                                                                <h4 class="box-title">
+                                                                    {% trans %}formulario_evento.labels.configuracion.label_escenario{% endtrans %}
+                                                                </h4>
+                                                            </div>                                                            
+                                                            <div class="box-body">
+                                                                <div class="col-md-12 mg-top">
+                                                                    {{form_label(form.escenarioDeportivo)}}                                                        
+                                                                    {{form_widget(form.escenarioDeportivo, { 'id': 'escenarioDeportivo' }) }}
+                                                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.escenarioDeportivo.vars.errors }%}
+                                                                </div>
+                                                                <div class="col-md-12 mg-top">
+                                                                    {{form_label(form.division)}}                                                        
+                                                                    {{form_widget(form.division)}}
+                                                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.division.vars.errors }%}
+                                                                </div>                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 seleccion-puntoAtencion mostrar">
+                                                        <div class="box box-primary">
+                                                            <div class="box-header">
+                                                                <h4 class="box-title">
+                                                                    {% trans %}formulario_evento.labels.configuracion.punto_atencion{% endtrans %}
+                                                                </h4>
+                                                            </div>                                                            
+
+                                                            <div class="box-body">
+                                                                <div class="col-md-12 mg-top">
+                                                                    {{form_label(form.municipio)}}                                                        
+                                                                    {{form_widget(form.municipio, { 'id': 'municipio' }) }}
+                                                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.municipio.vars.errors }%}
+                                                                </div>                                                                
+                                                                <div class="col-md-12 mg-top">
+                                                                    {{form_label(form.barrio)}}                                                        
+                                                                    {{form_widget(form.barrio, { 'id': 'barrio' }) }}
+                                                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.barrio.vars.errors }%}
+                                                                </div>
+                                                                <div>
+                                                                    <div>
+                                                                        <div class="col-md-12 mg-top">
+                                                                            {{form_label(form.direccion_creado)}} 
+                                                                            {{form_widget(form.direccion_creado, { 'id': 'direccion_creado' }) }}
+                                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.direccion_creado.vars.errors }%}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>
+                                                                        <div>
+                                                                            {{form_label(form.puntoAtencion)}} 
+                                                                            {{form_widget(form.puntoAtencion, { 'id': 'puntoAtencion' }) }}
+                                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.puntoAtencion.vars.errors }%}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-12 mg-top">
+                                                                    {{form_widget(form.formulario_evento_puntoatencion_check, { 'id': 'formulario_evento_puntoatencion_check' }) }}
+                                                                    {{form_label(form.formulario_evento_puntoatencion_check)}} 
+                                                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.formulario_evento_puntoatencion_check.vars.errors }%}
+                                                                </div>                                                                
+                                                                <div>
+                                                                    <div>
+                                                                        <div class="col-lg-12 col-md-12 mostrarDirNueva">                                                                            
+                                                                            <div class="col-md-12 mg-top">
+                                                                                {{form_label(form.direccion_format)}} 
+                                                                                {{form_widget(form.direccion_format, { 'id': 'direccion_format' }) }}
+                                                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.direccion_format.vars.errors }%}
+                                                                            </div>                                                                            
+                                                                        </div>    
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>
+                                                                        <div class="col-lg-12 col-md-12 mostrarDirNueva">                                                                            
+                                                                            <div class="col-md-12 mg-top">
+                                                                                {{form_label(form.direccion)}} 
+                                                                                {{form_widget(form.direccion, { 'id': 'direccion' }) }}
+                                                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.direccion.vars.errors }%}
+                                                                            </div>                                                                            
+                                                                        </div>    
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>
+                                                                        <div class="col-lg-12 col-md-12 ">                                                                            
+                                                                            <div class="col-md-12 mg-top">
+                                                                                {{form_label(form.latitud)}} 
+                                                                                {{form_widget(form.latitud, { 'id': 'latitud' }) }}
+                                                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.latitud.vars.errors }%}
+                                                                            </div>                                                                            
+                                                                        </div>    
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>
+                                                                        <div class="col-lg-12 col-md-12 ">                                                                            
+                                                                            <div class="col-md-12 mg-top">
+                                                                                {{form_label(form.longitud)}} 
+                                                                                {{form_widget(form.longitud, { 'id': 'longitud' }) }}
+                                                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.longitud.vars.errors }%}
+                                                                            </div>                                                                            
+                                                                        </div>    
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>                                                    
+                                                </div>                                                 
+                                                <div class="col-md-12 linea-gris"></div>
+                                                <div class="col-md-12">
+                                                    {{form_label(form.descripcion)}}
+                                                    {{form_widget(form.descripcion)}}
+                                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.descripcion.vars.errors }%}
+                                                </div>
+                                                <div class="col-md-12">
+                                                    {{form_label(form.terminosCondiciones)}}
+                                                    {{form_widget(form.terminosCondiciones)}}
+                                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.terminosCondiciones.vars.errors }%}
+                                                </div>
+                                                <div class="col-md-12 linea-gris"></div>
+                                                <div class="col-md-12">
+                                                    {{form_label(form.imagen)}}
+                                                    <p>{% trans %}formulario_evento.tamaño_imagen{% endtrans %}</p>
+                                                    {{form_widget(form.imagen)}}
+                                                    {% if imagenEvento == null %}
+                                                    {% else %}
+                                                        <div class="col-md-4" id="divImagen">                        
+                                                            <div id="divImagenes">
+                                                                <img id="imagenEvento" src="{{imagenEvento}}">
+                                                            </div>                                            
+                                                        </div>
+                                                    {% endif %}
+                                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.imagen.vars.errors }%}
+                                                </div>
+                                                <!-- Roles del Evento -->
+                                                <div class="col-md-12 linea-gris"></div>
+                                                <div class="col-md-12 mg-top">
+                                                    <label>{% trans %}formulario_evento.labels.configuracion.asignar_roler{% endtrans %}<span class= "red">*</span></label>
+                                                </div>
+                                                <div class="col-md-12">
+
+                                                    <section class="col-xs-12 error-mesajes">
+                                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.usuarios.vars.errors }%}
+                                                    </section>                                        
+                                                    {%
+                                                            form_theme form
+                                                                'AdminBundle:Evento/Tabs:usuario.html.twig'
+                                                                'jquery.collection.html.twig'
+                                                    %}
+                                                    {{ form_row(form.usuarios) }}
+                                                </div>
+
+                                                <div class="col-md-12 lineaPunteada marginB20"></div>
+                                                <div class="col-md-12 d-flex justify-content-end marginB0">
+                                                    {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                                    <div style="display: none;">
+                                                        {{ form_rest(form) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        {{ form_end(form) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+
+                $('.subcategorias-collection').collection({
+                    name_prefix: '{{ form.categoriaSubcategorias.vars.full_name }}',
+                    drag_drop: '',
+                    allow_up: '',
+                    add: '<a href="#" class="btn btnVerde btnSize"><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar Categoria</a>',
+                    remove: '<a href="#" class="btn btnRojo btnSize"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar Categoria</a>',
+                    up: '',
+                    down: '',
+                    duplicate: '',
+                    add_at_the_end: true,
+                    after_add: function (collection, element) {
+                        inder.evento.setSelect2(element.attr('data-id'));
+                    }
+                });
+
+                $('.usuarios-collection').collection({
+                    name_prefix: '{{ form.usuarios.vars.full_name }}',
+                    drag_drop: '',
+                    allow_up: '',
+                    add: '<a href="#" class="btn btnVerde btnSize add_division_link"> <i id="addUser" class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a>',
+                    remove: '<a href="#" class="btn btnRojo btnSize add_division_link"><i class="fa fa-minus-circle fa-2x delete" aria-hidden="true"></i></a>',
+                    up: '',
+                    down: '',
+                    min: 0,
+                    max: 100,
+                    duplicate: '',
+                    add_at_the_end: true,
+                    after_add: function (collection, element) {
+                        inder.evento.setSelect2(element.attr('data-id'))
+                    }
+                });
+
+        </script>
+    {% endblock sonata_admin_content %}
+{% endblock sonata_page_content %}

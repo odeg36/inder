@@ -1,0 +1,82 @@
+sonata_intl:
+    timezone:
+        locales:
+            en_Es: America/Bogota
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+        sonata.admin.block.search_result:
+            contexts: [admin]
+sonata_user:
+    security_acl: true
+    manager_type: orm # can be orm or mongodb
+    impersonating:
+        route: sonata_admin_dashboard
+
+sonata_admin:
+    persist_filters: true
+    options:
+        html5_validate:       false
+    templates:
+        layout:                AdminBundle::standard_layout.html.twig
+        knp_menu_template:     AdminBundle:Menu:sonata_menu.html.twig
+        list:                  AdminBundle:CRUD:list.html.twig
+        user_block:            AdminBundle:Usuario:user_block.html.twig
+        list:                  AdminBundle:CRUD:base_list.html.twig
+        button_create:         AdminBundle:Button:create_button.html.twig
+        button_list:           AdminBundle:Button:list_button.html.twig
+        button_edit:           AdminBundle:Button:edit_button.html.twig
+        button_show:           AdminBundle:Button:show_button.html.twig
+        
+    security:
+        handler: sonata.admin.security.handler.role
+
+        # acl security information
+        information:
+            LIST:       LIST
+            CREATE:     CREATE
+            EDIT:       EDIT
+            VIEW:       VIEW
+            EXPORT:     EXPORT
+            
+        # permissions not related to an object instance and also to be available when objects do not exist
+        # the DELETE admin permission means the user is allowed to batch delete objects
+        admin_permissions: [CREATE, LIST, DELETE, UNDELETE, EXPORT, OPERATOR, MASTER]
+
+        # permission related to the objects
+        object_permissions: [VIEW, EDIT, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
+        
+    dashboard:
+        groups:
+            oferta_servicios:
+                roles: [IS_AUTHENTICATED_FULLY]
+                label: 'Oferta Institucional'
+                icon:   ' '
+            escenarios_deportivos:
+                roles: [IS_AUTHENTICATED_FULLY]
+                label: 'Escenarios Deportivos'
+                icon:   ' '
+            sonata_user:
+                roles: [IS_AUTHENTICATED_FULLY]
+                label: 'Organismos Deportivos'
+                icon:   ' '
+            fixture_deportivo:
+                roles: [IS_AUTHENTICATED_FULLY]
+                label: 'Eventos'
+                icon:   ' '
+            cultura_d:
+                roles: [IS_AUTHENTICATED_FULLY]
+                label: 'Cultura D'
+                icon:   ' '
+            listas:
+                roles: [IS_AUTHENTICATED_FULLY]
+                label: 'Administrador'
+                icon:   ' '
+
+        blocks:
+            # display a dashboard block
+            - { class: col-xs-12, position: top,  type: sonata.admin.block.admin_list, settings: { groups: [listas,oferta_servicios,escenarios_deportivos,cultura_d] } }
+            - { position: right,  type: sonata.admin.block.admin_list, settings: { groups: [sonata_user,fixture_deportivo,organismos_deportivos] } }
+

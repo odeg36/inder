@@ -1,0 +1,35 @@
+services_banner:
+    type: rest
+    resource: ServicesBundle\Controller\Banner\BannerController
+    prefix: /
+
+services_encuesta:
+    type: rest
+    resource: ServicesBundle\Controller\Encuesta\EncuestaController
+    prefix: /
+
+services_municipio:
+    type: rest
+    resource: ServicesBundle\Controller\Municipio\MunicipioController
+    prefix: /
+
+services_reserva:
+    type: rest
+    resource: ServicesBundle\Controller\Reserva\ReservaController
+    prefix: /
+
+services_tipo_identificacion:
+    type: rest
+    resource: ServicesBundle\Controller\TipoIdentificacion\TipoIdentificacionController
+    prefix: /
+
+services_usuario:
+    type: rest
+    resource: ServicesBundle\Controller\Usuario\UsuarioController
+    prefix: /
+
+services_usuario_registro:
+    type: rest
+    resource: ServicesBundle\Controller\Usuario\RegistroController
+    prefix: /
+    

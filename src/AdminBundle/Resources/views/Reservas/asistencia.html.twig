@@ -1,0 +1,146 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends base_template %}
+
+{% block title %}
+    {{ "title_create"|trans({}, 'SonataAdminBundle') }}
+{% endblock %}
+
+{% block navbar_title %}
+    {{ block('title') }}
+{% endblock %}
+
+{% block tab_menu %}{{ knp_menu_render(admin.sidemenu(action), {'currentClass' : 'active', 'template': sonata_admin.adminPool.getTemplate('tab_menu_template')}, 'twig') }}{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_reserva_list') }}">{% trans %}Reserva List{% endtrans %}</a></li>        
+        <li class="active">{% trans %}btn.asistencia{% endtrans %}</li>
+    </ol>
+{% endblock %}
+
+{% block form %}
+    <div class="container">
+        {{form_start(form, { attr: {novalidate: true} })}}
+        <div class="row">
+            <div class="col-md-12 titulos2">
+                <div class="col-md-12 asistencias">
+                    <h4>{{ 'titulo.asistencias' | trans }}</h4>
+                    <div class="btnTitulos">
+                        <a href="{{ admin.generateUrl('list') }}" class="btn btnVerde btnSize">
+                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                            {{ 'admin.detallesolicitud.volver' | trans }}
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="col-md-12">
+                        {{form_label(form.dias_semana)}}
+                        {{form_widget(form.dias_semana)}}
+                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.dias_semana.vars.errors }%}
+                        
+                        {{form_label(form.seleccion_dia_unico)}}
+                        {{form_widget(form.seleccion_dia_unico)}}
+                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.seleccion_dia_unico.vars.errors }%}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Información general -->
+        <div class="contenedor-asistencia">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box-header">
+                        <h3 class="box-title">{{ 'titulo.registrar_asistencia' | trans }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div>
+                    <div class="mensaje-resultado-asistentes alerta-info-amarillo" style="display: none;"></div>
+                    <div class="cargando text-center" style="display: none;">
+                        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+                
+                <div class="col-xs-12">
+                    <div class="row">
+                        <div class="col-xs-12 marginB10">
+                            {{ form_widget(form.seleccionar_todo) }}
+                        </div>
+                    </div>
+                </div>
+
+                {% include 'AdminBundle:Reservas/Formulario:coleccion.asistentes.html.twig' %}
+                {#<div class="col-md-12 campoGris" id="registroManual">
+                    <div class="col-md-12">
+                        <p>{{ 'titulo.registro.manual.mensaje' | trans }}<span> {{ 'titulo.registro.asistieron' | trans }}</span> {{ 'titulo.registro.actividad' | trans }}</p>
+                    </div>
+                    <section class="col-xs-12 error-mesajes">
+                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.asistenciaReservas.vars.errors }%}
+                    </section>
+                    {{form_label(form)}}
+                    {%
+                        form_theme form
+                            'AdminBundle:Reservas/Formulario:asistencias.html.twig'
+                            'jquery.collection.html.twig'
+                    %}
+                    {{ form_row(form.asistenciaReservas) }}
+                </div>#}
+            </div>
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 botones">
+                <button type="submit" class="btn btnVerde">
+                    <i class="fa fa-floppy-o"></i>
+                    {{ 'admin.botones.guardar' | trans }}
+                </button>
+                <a type="button" class="btn btnNaranja"  href="{{ path('admin_logic_reserva_list') }}" style="margin-left: 15px">
+                    <i class="fa fa-chevron-left"></i>
+                    {{ 'admin.botones.cancelar' | trans }}
+                </a>
+            </div>
+        </div>
+        {{form_end(form)}}
+    </div>
+
+    <script type="text/javascript">
+        {#$('.collecctionAsistencias').collection({
+            name_prefix: '{{ form.asistenciaReservas.vars.full_name }}',
+            drag_drop: '',
+            allow_up: '',
+            add: '<a href="#" class="btn-agregar-asistente"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></a>',
+            remove: '<a href="#" class="hidden"><i class="fa fa-minus-circle fa-2x" aria-hidden="true"></i></a>',
+            up: '',
+            down: '',
+            duplicate: '',
+            add_at_the_end: true,
+            after_add: function(collection, element) {
+                inder.asistencia.habilitarBotonEliminar();
+            }
+        });#}
+        
+        $(document).ready(function(){
+            inder.asistencia.reserva.reserva = {{ reserva.id }};
+            {#inder.asistencia.reserva.cambioSeleccionDia($("select.seleccion_dia_unico_reserva"), false);
+            
+            inder.asistencia.reserva.habilitarBotonEliminar();#}
+        });
+    </script>
+{% endblock %}
+
+

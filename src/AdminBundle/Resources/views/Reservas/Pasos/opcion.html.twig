@@ -1,0 +1,27 @@
+{% block usuario_reserva_type_row %}
+
+    <div class="row  margenPasos margen-bottom-10 " id="form_opcion_{{ form.vars.name }}" data-id="{{ form.vars.name }}">
+    
+        <div class="col-lg-4 col-md-4">            
+            {{ form_widget(form.tipoIdentificacion) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoIdentificacion.vars.errors }%}
+        </div>
+        <div class="col-lg-3 col-md-3">
+            {{ form_widget(form.numeroIdentificacion, { 'attr': {'data-id': form.vars.name, 'class': 'form-control numeroIdentificacionReservaPaso3' }   }) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.numeroIdentificacion.vars.errors }%}
+        </div>
+            
+        <div class="col-md-4">
+            {{form_widget(form.firstname)}}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.firstname.vars.errors }%}   
+        </div>
+        {{ form_rest(form) }}   
+        <div class="col-md-1">
+            <div class="collection-actions">
+                <a href="#" class="btn btnRojo btnSize collection-remove collection-action">
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                </a>
+            </div>   
+        </div>   
+    </div>
+{% endblock %}

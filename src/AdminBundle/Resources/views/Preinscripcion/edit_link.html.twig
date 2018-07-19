@@ -1,0 +1,6 @@
+{% if admin.hasAccess('edit', object) and admin.hasRoute('edit') %}
+    <a href="{{ admin.generateObjectUrl('edit', object) }}?oferta={{app.request.get('filter')['oferta']['value']}}" class="btn btn-sm btn-default edit_link" title="{{ 'action_edit'|trans({}, 'SonataAdminBundle') }}">
+        <i class="fa fa-check" aria-hidden="true"></i> / <i class="fa fa-times-circle" aria-hidden="true"></i>
+        {{ 'btn.aprobar_rechazar'|trans() }}
+    </a>
+{% endif %}

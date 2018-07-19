@@ -1,0 +1,174 @@
+<!-- Detalles -->
+<div class="row" id="boxMargen">
+    <!-- Información general -->
+    <div class="col-md-6" id="boxPadding">
+        <div class="box bordeBox">
+            <div class="box-header">
+                <h3 class="box-title">
+                    <i class="fa fa-list" aria-hidden="true"></i> 
+                    {{ 'titulo.informacion.personal' | trans }}
+                </h3>
+            </div>
+            <div class="box-body">
+                <div class="table">
+                    <div class="filaTr">
+                        <div class="columnaTh">{{ 'formulario.labels.nombre' | trans }}</div>
+                        <div class="columnaTd">
+                            {{ object.usuario.fullname }}
+                        </div>
+                    </div>
+                    <div class="filaTr">
+                        <div class="columnaTh">{{ 'formulario_registro.contacto.correo_electronico' | trans }}</div>
+                        <div class="columnaTd">
+                            {{ object.usuario.email }}
+                        </div>
+                    </div>
+                    <div class="filaTr">
+                        <div class="columnaTh">{{ 'formulario_reserva.labels.paso_uno.telefono' | trans }}</div>
+                        <div class="columnaTd">
+                            {{ object.usuario.phone }}
+                        </div>
+                    </div>
+                    <div class="filaTr">
+                        <div class="columnaTh">{{ 'formulario_registro.pnatural_informacion.estrato' | trans }}</div>
+                        <div class="columnaTd">
+                            {{ object.usuario.estrato }}
+                        </div>
+                    </div>
+                    <div class="filaTr">
+                        <div class="columnaTh">{{ 'formulario_registro.pnatural_informacion.fecha_nacimiento' | trans }}</div>
+                        <div class="columnaTd">
+                            {{ object.usuario.dateOfBirth | date("m/d/Y") }}
+                        </div>
+                    </div>
+                    <div class="filaTr">
+                        <div class="columnaTh">{{ 'formulario_registro.contacto.municipio' | trans }}</div>
+                        <div class="columnaTd">
+                            {% if object.usuario.barrio is defined and object.usuario.barrio is not null %}
+                                {{ object.usuario.barrio.municipio }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="filaTr">
+                        <div class="columnaTh">{{ 'formulario_registro.contacto.barrio' | trans }}</div>
+                        <div class="columnaTd">
+                            {{ object.usuario.barrio }}
+                        </div>
+                    </div>
+                    <div class="filaTr">
+                        <div class="columnaTh">{{ 'formulario_registro.pnatural_informacion.orientacion_sexual' | trans }}</div>
+                        <div class="columnaTd">
+                            {{ object.usuario.orientacionSexual }}
+                        </div>
+                    </div>
+                    <div class="filaTr">
+                        <div class="columnaTh">{{ 'formulario.info_adicional.eps' | trans }}</div>
+                        <div class="columnaTd">
+                            {{ object.usuario.eps }}
+                        </div>
+                    </div>
+                    <div class="filaTr">
+                        <div class="columnaTh">{{ 'formulario_registro.pnatural_informacion.genero' | trans }}</div>
+                        <div class="columnaTd">
+                            {{ genero(object.usuario.gender) }}
+                        </div>
+                    </div>
+                    <div class="filaTr">
+                        <div class="columnaTh">{{ 'formulario_registro.pnatural_informacion.etnia' | trans }}</div>
+                        <div class="columnaTd">
+                            {{ object.usuario.etnia }}
+                        </div>
+                    </div>
+                    <div class="filaTr">
+                        <div class="columnaTh">{{ 'formulario.info_adicional.nivel_escolaridad' | trans }}</div>
+                        <div class="columnaTd">
+                            {{ object.usuario.nivelEscolaridad }}
+                        </div>
+                    </div>
+                    <div class="filaTr">
+                        <div class="columnaTh">{{ 'formulario.info_adicional.tipo_establecimiento_educativo' | trans }}</div>
+                        <div class="columnaTd">
+                            {{ object.usuario.tipoEstablecimientoEducativo }}
+                        </div>
+                    </div>
+                    <div class="filaTr">
+                        <div class="columnaTh">{{ 'formulario.info_adicional.establecimiento_educativo' | trans }}</div>
+                        <div class="columnaTd">
+                            {{ object.usuario.establecimientoEducativo }}
+                        </div>
+                    </div>
+                    <div class="filaTr">
+                        <div class="columnaTh">{{ 'formulario.info_adicional.ocupacion' | trans }}</div>
+                        <div class="columnaTd">
+                            {{ object.usuario.ocupacion }}
+                        </div>
+                    </div>
+                    <div class="filaTr">
+                        <div class="columnaTh">{{ 'titulo.tipo_desplazado' | trans }}</div>
+                        <div class="columnaTd">
+                            {{ object.usuario.tipoDesplazado }}
+                        </div>
+                    </div>
+                    <div class="filaTr">
+                        <div class="columnaTh">{{ 'formulario.info_adicional.tipo_discapacidad' | trans }}</div>
+                        <div class="columnaTd">
+                            {% if object.usuario.subDiscapacidad is defined and object.usuario.subDiscapacidad is not null %}
+                                {{ object.usuario.subDiscapacidad.discapacidad }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="filaTr">
+                        <div class="columnaTh">{{ 'formulario.info_adicional.sub_discapacidad' | trans }}</div>
+                        <div class="columnaTd">
+                            {{ object.usuario.subDiscapacidad }}
+                        </div>
+                    </div>
+                    <div class="filaTr">
+                        <div class="columnaTh">{{ 'formulario.info_adicional.es_jefe_cabeza_hogar' | trans }}</div>
+                        <div class="columnaTd">
+                            {% if object.usuario.esJefeCabezaHogar %}
+                                <div>{{ 'mensaje.si' | trans }}</div>
+                            {% else %}
+                                <div>{{ 'mensaje.no' | trans }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if object.oferta.estrategia is defined and object.oferta.estrategia is not null %}
+        <div class="col-md-6" id="boxPadding">
+            <div class="box bordeBox">
+                <div class="box-header">
+                    <h3 class="box-title">
+                        <i class="fa fa-list" aria-hidden="true"></i> 
+                        {{ 'titulo.informacion.adicional' | trans }}
+                    </h3>
+                </div>
+                <div class="box-body">
+                    <div class="table">
+                        {% for campo in object.oferta.estrategia.estrategiaCampos %}
+                            {% if campo.usar %}
+                                <div class="filaTr">
+                                    <div class="columnaTh">{{ campo.campoUsuario.nombre }}</div>
+                                    <div class="columnaTd">
+                                        {% if campo.campoUsuario.tipo == "Boolean" %}
+                                            {% if buscarValorObject(object.usuario.informacionExtraUsuario, campo.campoUsuario.nombreMapeado) == 1 %}
+                                                {{ 'mensaje.si' | trans }}
+                                            {% else %}
+                                                {{ 'mensaje.no' | trans }}
+                                            {% endif %}
+                                        {% else %}
+                                            {{ buscarValorObject(object.usuario.informacionExtraUsuario, campo.campoUsuario.nombreMapeado) }}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}  
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>

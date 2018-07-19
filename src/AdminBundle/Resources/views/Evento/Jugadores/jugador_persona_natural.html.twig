@@ -1,0 +1,74 @@
+{% block jugador_equipo_evento_type_row %}
+    <div class=" campoGrisClaro padding-total20 mg-bottom row margen-bottom-10 " id="form_jugadorEventos_{{ form.vars.name }}" data-id="{{ form.vars.name }}">
+        <span id="alertas_{{ form.vars.id }}" data-tituloalerta="{% trans %}formulario_registro.alertas.tituloalerta {% endtrans %}" data-yaseleccionada="{% trans %}formulario_registro.alertas.disciplinasyaseleccionada{% endtrans %}" data-revisecampos="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-registrado="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-mensajeerror="{% trans %}formulario_registro.alertas.mensajeerror {% endtrans %}" data-titulook="{% trans %}formulario_registro.alertas.titulo_ok {% endtrans %}"></span>
+        <span id="usuario_{{ form.vars.id }}" data-existe="{{ path('listar_usuarios_tipo_documento_documento', {'tipoDocumento': form.vars.id, 'rol': ''}) }}" data-get="{{ path('get_usuario') }}" data-registrar="{{ path('registrar_usuario') }}"></span>
+
+        <div class="col-xs-12 col-md-4">
+            {{form_label(form.tipoIdentificacion)}}
+            {{ form_widget(form.tipoIdentificacion, {'attr': {'class': 'form-control tipo_identificacion_' ~ form.vars.id, 'onchange': 'inder.formulario.paso3.cambiaTipoIdentificacion(this, "'~ form.vars.id ~'")'}, 'id': ''}) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoIdentificacion.vars.errors }%}
+        </div>
+        <div class="col-xs-12 col-md-4">
+            {{form_label(form.usuarioJugadorEvento)}}
+            {{ form_widget(form.usuarioJugadorEvento, {'attr': {'class': 'form-control numero_documento_' ~ form.vars.id, 'onchange' : 'inder.formulario.paso3.nuevaInformacion(this, "'~ form.vars.id ~'")'}}) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.usuarioJugadorEvento.vars.errors }%}
+        </div>
+        <div class="col-xs-12 col-md-4 nombre_deportista_{{ form.vars.id }}">
+            <br>
+            <h5>&nbsp;</h5>
+        </div>
+        <div class="col-md-12">
+            {{form_label(form.observacion)}}
+            {{ form_widget(form.observacion) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.observacion.vars.errors }%}
+        </div>
+        {% if form.informacionExtraUsuario.children|length > 0 %}
+            <div class="col-md-12">
+                {#<div class="col-md-12 sombra">#}
+                <div class="col-md-12">
+                    <label class="box-title">{{'titulo.preinscripcion.informacion_adicional'|trans}}</label>
+                </div>
+                <div class="col-md-12 nuevaOferta">
+                    {% include 'AdminBundle:Evento/Jugadores:informacion_extra.html.twig' with { form : form.informacionExtraUsuario}%}
+                </div>
+                {#</div>#}
+            </div>
+        {% else %}
+            {% do form.informacionExtraUsuario.setRendered %}
+        {% endif %}
+        {{ form_rest(form) }}   
+        <div class="col-md-12 collection-remove collection-action btnCentrar "  >
+            <div class="col-md-4 btnCentrar campoGris">
+                <button type="button" class="btn btn_remover btnRojo">
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar este participante
+                </button>
+            </div>
+        </div>  
+    </div>
+    <script type="text/javascript">
+        var id = "{{ form.vars.id }}";
+        var uniqId = "select_documento_" + "{{ form.vars.id }}";
+        var opciones = {
+            url_list: $('#usuario_' + "{{ form.vars.id }}").attr('data-existe'),
+            url_get: $('#usuario_' + "{{ form.vars.id }}").attr('data-get'),
+            otherOptions: {
+                minimumInputLength: 5,
+                formatNoMatches: Translator.trans('formulario.autocomplete.no.usuario'),
+                formatSearching: Translator.trans('formulario.autocomplete.buscando'),
+                formatInputTooShort: Translator.trans('formulario.autocomplete.caracteres', {cantidad: 5}),
+                dropdownCssClass: uniqId
+            }
+        };
+        $(".numero_documento_" + "{{ form.vars.id }}").autocompleter(opciones);
+        inder.formulario.paso3.cambiarInput(uniqId, id);
+
+        $(document).ready(function () {
+            var usuariodeportista = "{{ form.usuarioJugadorEvento.vars.value }}";
+            var elemento = $(".numero_documento_" + "{{ form.vars.id }}");
+
+            if (usuariodeportista) {
+                inder.formulario.paso3.nuevaInformacion(elemento, "{{ form.vars.id }}");
+            }
+        });
+    </script>
+{% endblock %}

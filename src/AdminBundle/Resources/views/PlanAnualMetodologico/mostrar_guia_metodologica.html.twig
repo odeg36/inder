@@ -1,0 +1,181 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_plananualmetodologico_list') }}">{% trans %}Plan Anual Metodologico List{% endtrans %}</a></li>        
+        <li class="active">{{ nombrePam }}</li>
+    </ol>
+{% endblock %}
+
+{% block sonata_page_content %}
+<section class="content-header tituloFooter">
+    <section class="content-header tituloFooter">
+        <div class="sticky-wrapper">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-collapse">
+                        <div class="navbar-left">
+                            <h4>
+                            {% trans %}admin.detallesolicitud.detalle{% endtrans %}
+                            </h4>
+                        </div>
+                        <div class="navbar-right">
+                            <li class="btn" style="margin-top: 2.5px;">
+                                <a type="button" class="btn-regresar sonata-action-element" href="{{ path('admin_logic_plananualmetodologico_list') }}" style="padding: 5px 12px 3px 12px;">
+                                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                    {{'Volver'|trans}}
+                                </a>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+         </div>
+    </section>
+    <div class="sonata-ba-show">
+        <div class="sonata-ba-view">
+            <div class="row">
+                <div class="col-md-12 ">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <h4 class="box-title">
+                                {% trans %}titulo.guia_metodologica{% endtrans %}
+                            </h4>
+                        </div>
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table">
+                                <tbody>
+                                    <tr class="sonata-ba-view-container">
+                                        <th>Nombre</th>
+                                        <td>
+                                            {{pam.nombre}}
+                                        </td>                                    
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">                                        
+                                        <th>Modalidad</th>
+                                        <td>
+                                            {{pam.enfoque.nombre}}                                          
+                                        </td>                                    
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">                                        
+                                        <th>Clasificación</th>
+                                        <td>
+                                            {% if (pam.clasificacion != null) %}                                        
+                                                {{pam.clasificacion.nombre}}
+                                            {% else %}
+                                                No se ha seleccionado una clasificacion
+                                            {% endif %}                           
+                                        </td>                                    
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">                                        
+                                        <th>Disciplina</th>
+                                        <td>                                
+                                            {% if (pam.disciplina != null) %}                                        
+                                                {{pam.disciplina.nombre}}
+                                            {% else %}
+                                                No se ha seleccionado una disciplina
+                                            {% endif %}
+                                        </td>                                    
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">                                        
+                                        <th>Nivel</th>
+                                        <td>                                
+                                            {% if (pam.niveles != null) %} 
+                                                {%for nivel in pam.niveles%}
+                                                    {{nivel.nombre}}
+                                                {%endfor%}
+                                            {% else %}
+                                                No se ha seleccionado un nivel
+                                            {% endif %}
+                                        </td>                                    
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">                                        
+                                        <th>Componentes</th>
+                                        <td>
+                                        {% if (pam.componentes != null) %}           
+                                            {% set componentes = pam.componentes %}
+                                            {% for componente in componentes %}
+                                                <ul class="sonata-ba-show-one-to-many">
+                                                    {% if pam.enfoque == 'Técnico' %}
+                                                        <li>Nombre: {{componente.nombre}}</li>
+                                                        <li>Objetivo: {{componente.objetivo}}</li>
+                                                        <li>Ponderación: {{componente.ponderacion}}%</li>
+                                                    {% else %}
+                                                        <li>Modelo: {{componente.modelo}}</li>
+                                                        <li>Nombre: {{componente.nombre}}</li>
+                                                        <li>Objetivo: {{componente.objetivo}}</li>
+                                                    {% endif %}
+                                                </ul>
+                                            {% endfor %}
+                                        {% else %}
+                                            No se han seleccionado componentes
+                                        {% endif %}                  
+                                        </td>                                    
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">
+                                        <th>Contenidos</th>
+                                        <td>
+                                        {% if (pam.componentes != null) %}                                        
+                                            {% set componentes = pam.componentes %}
+                                            {% for componente in componentes %}
+                                                <ul class="sonata-ba-show-one-to-many">
+                                                    <li>{{componente.nombre}}</li>
+                                                    {% if (pam.componentes != null) %}                                               
+                                                    {% set contenidos = componente.contenidos %}
+                                                        {% for contenido in contenidos %}
+                                                            <br>
+                                                            <ul class="sonata-ba-show-one-to-many">
+                                                                {% if pam.enfoque == 'Técnico' %}
+                                                                    <li>Nombre: {{contenido.nombre}}</li>
+                                                                    <li>Objetivo: {{contenido.objetivo}}</li>
+                                                                    <li>Ponderación: {{contenido.ponderacion}}%</li>
+                                                                {% else %}
+                                                                    <li>Nombre: {{contenido.nombre}}</li>
+                                                                    <li>Tema: {{contenido.tema}}</li>
+                                                                    <li>Objetivo: {{contenido.objetivo}}</li>
+                                                                    <li>Actores: {{contenido.actores}}</li>
+                                                                {% endif %}
+                                                            </ul>
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        No se han seleccionado contenidos
+                                                    {% endif %}
+                                                </ul>
+                                            {% endfor %}
+                                        {% else %}
+                                            No se han seleccionado componentes
+                                        {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">                                        
+                                        <th>Ofertas</th>
+                                        <td>
+                                        {% if (pam.ofertas != null) %}           
+                                            {% set ofertas = pam.ofertas %}
+                                            {% for oferta in ofertas %}
+                                                <ul class="sonata-ba-show-one-to-many">
+                                                    <li>{{oferta.estrategia.nombre}}</li>
+                                                    <br>
+                                                    <ul class="sonata-ba-show-one-to-many">
+                                                        <li>Nombre: {{oferta.nombre}}</li>
+                                                    </ul>
+                                                </ul>
+                                            {% endfor %}
+                                        {% else %}
+                                            No se han seleccionado ofertas
+                                        {% endif %}                   
+                                        </td>                                    
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock sonata_page_content %}

@@ -1,0 +1,332 @@
+{% block form %}
+    {% import "SonataAdminBundle:CRUD:base_edit_form_macro.html.twig" as form_helper %}
+    {{ sonata_block_render_event('sonata.admin.edit.form.top', { 'admin': admin, 'object': object }) }}
+
+    {% set url = admin.id(object) is not null ? 'edit' : 'create' %}
+
+    {% if not admin.hasRoute(url)%}
+        <div>
+            {{ "form_not_available"|trans({}, "SonataAdminBundle") }}
+        </div>
+    {% else %}
+        <form
+            {% if sonata_admin.adminPool.getOption('form_type') == 'horizontal' %}class="form-horizontal"{% endif %}
+            role="form"
+            action="{% block sonata_form_action_url %}{{ admin.generateUrl(url, {'id': admin.id(object), 'uniqid': admin.uniqid, 'subclass': app.request.get('subclass')}) }}{% endblock %}"
+            {% if form.vars.multipart %} enctype="multipart/form-data"{% endif %}
+            method="POST"
+            {% if not sonata_admin.adminPool.getOption('html5_validate') %}novalidate="novalidate"{% endif %}
+        {% block sonata_form_attributes %}{% endblock %}
+        >
+
+        {{ include('SonataAdminBundle:Helper:render_form_dismissable_errors.html.twig') }}
+        {% block sonata_pre_fieldsets %}
+            <div class="row">
+            {% endblock %}
+
+            {% block sonata_tab_content %}
+                {% set has_tab = ((admin.formtabs|length == 1 and admin.formtabs|keys[0] != 'default') or admin.formtabs|length > 1 ) %}
+
+                <div class="col-md-12">
+                    {% if has_tab %}
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs" role="tablist">
+                                {% for name, form_tab in admin.formtabs %}
+                                    <li{% if loop.index == 1 %} class="active"{% endif %}><a href="#tab_{{ admin.uniqid }}_{{ loop.index }}" data-toggle="tab"><i class="fa fa-exclamation-circle has-errors hide" aria-hidden="true"></i> {{ form_tab.label|trans({}, form_tab.translation_domain ?: admin.translationDomain) }}</a></li>
+                                    {% endfor %}
+                            </ul>
+                            <div class="tab-content">
+                                {% for code, form_tab in admin.formtabs %}
+                                    <div class="tab-pane fade{% if loop.first %} in active{% endif %}" id="tab_{{ admin.uniqid }}_{{ loop.index }}">
+                                        <div class="box-body  container-fluid">
+                                            <div class="sonata-ba-collapsed-fields">
+                                                {% if form_tab.description != false %}
+                                                    <p>{{ form_tab.description|raw }}</p>
+                                                {% endif %}
+                                                {{ form_helper.render_groups(admin, form, form_tab['groups'], has_tab) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-md-6 p-right10">
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <h4 class="box-title">
+                                        {{ 'formulario.registro_usuario.bloque.informacion_general' | trans }}
+                                    </h4>
+                                </div>
+                                <div class="box-body">
+                                    <div class="sonata-ba-collapsed-fields">
+                                        {{ form_row(form.tipoIdentificacion) }}
+                                        {{ form_row(form.numeroIdentificacion) }}
+                                        {{ form_row(form.firstname) }}
+                                        {{ form_row(form.lastname) }}
+                                        {{ form_row(form.gender) }}
+                                        {{ form_row(form.orientacionSexual) }}
+                                        {{ form_row(form.dateOfBirth) }}
+                                        {{ form_row(form.imagen_perfil) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <h4 class="box-title">
+                                        {{ 'formulario.registro_usuario.bloque.datos_contacto' | trans }}
+                                    </h4>
+                                </div>
+                                <div class="box-body">
+                                    <div class="sonata-ba-collapsed-fields">
+                                        {{ form_row(form.email) }}
+                                        {{ form_row(form.phone) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% if is_granted('ROLE_SUPER_ADMIN') or sonata_user.userAdmin.isGranted('ROLE_SUPER_ADMIN', app.user) %}
+                            <div class="col-md-6">
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <h4 class="box-title">
+                                            {{ 'formulario.registro_usuario.bloque.rol' | trans }}
+                                        </h4>
+                                    </div>
+                                    <div class="box-body">
+                                        <div class="sonata-ba-collapsed-fields">
+                                            {{ form_row(form.groups) }}
+                                            {{ form_row(form.enabled) }}
+                                            {{ form_row(form.fechaExpiracion) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        <div class="col-md-12">
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <h4 class="box-title">
+                                        {{ 'formulario.usuario.puntoAtencion' | trans }}
+                                    </h4>
+                                </div>
+                                <div class="box-body">
+                                    <div class="sonata-ba-collapsed-fields">
+                                        <div class="municipio col-lg-12 col-md-12">
+                                            {{ form_row(form.municipio, { 'id': 'municipio' }) }}
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 direccionOComuna hidden">
+                                            {{ form_row(form.direccionOcomuna) }}
+                                        </div>
+                                        <div class="barrio col-lg-12 col-md-12 hidden">
+                                            {{ form_row(form.barrio) }}
+                                        </div>
+                                        <div class="comuna hidden">
+                                            <div class="col-lg-12 col-md-12" >
+                                                {{ form_row(form.comuna_format) }}
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 fondoDireccion" >
+                                                {{ form_row(form.direccionComuna) }}
+                                            </div>
+                                        </div>
+                                        <div class="direccion hidden">
+                                            <div class="col-lg-12 col-md-12" >
+                                                {{ form_row(form.direccion_creado) }}
+                                            </div>
+                                            <div class="col-sm-12 col-md-12 fondoDireccion">
+                                                {{ form_row(form.direccionResidencia) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <h4 class="box-title">
+                                        {{ 'formulario.usuario.caracterizacion' | trans }}
+                                    </h4>
+                                </div>
+                                <div class="box-body espacio-columnas">
+                                    <div class="sonata-ba-collapsed-fields">
+                                        <div class="col-md-6">
+                                            {{form_row(form.eps)}}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{form_row(form.nivelEscolaridad)}}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{form_row(form.tipoEstablecimientoEducativo)}}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{form_row(form.establecimientoEducativo)}}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{form_row(form.ocupacion)}}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{form_row(form.etnia)}}
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{form_row(form.esDesplazado)}}
+                                        </div>
+                                        <div id="campoDesplazado" class="ocultar">
+                                            <div class="col-md-12">
+                                                {{form_row(form.tipoDesplazado)}}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{form_row(form.esDiscapacitado)}}
+                                        </div>
+                                        <div id="campoDiscapacitado" class="ocultar">
+                                            <div class="col-md-12">
+                                                {{form_row(form.discapacidad)}}
+                                            </div>
+                                            <div class="col-md-12">
+                                                {{form_row(form.subDiscapacidad)}}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{form_row(form.esJefeCabezaHogar)}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endblock %}
+
+            {% block sonata_post_fieldsets %}
+            </div>
+        {% endblock %}
+
+        {{ form_rest(form) }}
+
+        {% block formactions %}
+            <div class="well well-small form-actions">
+                {% block sonata_form_actions %}
+                    {% if app.request.isxmlhttprequest %}
+                        {% if admin.id(object) is not null %}
+                            <button type="submit" class="btn btn-success" name="btn_update"><i class="fa fa-save" aria-hidden="true"></i> {{ 'btn_update'|trans({}, 'SonataAdminBundle') }}</button>
+                        {% else %}
+                            <button type="submit" class="btn btn-success" name="btn_create"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ 'btn_create'|trans({}, 'SonataAdminBundle') }}</button>
+                        {% endif %}
+                    {% else %}
+                        {% if admin.supportsPreviewMode %}
+                            <button class="btn btn-info persist-preview" name="btn_preview" type="submit">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                {{ 'btn_preview'|trans({}, 'SonataAdminBundle') }}
+                            </button>
+                        {% endif %}
+                        {% if admin.id(object) is not null %}
+                            {% if is_granted('ROLE_SUPER_ADMIN') or sonata_user.userAdmin.isGranted('ROLE_SUPER_ADMIN', app.user) %}
+                                <a class="btn btn-cancelar" href="{{ admin.generateUrl('list') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i>{{ 'formulario.accion.cancelar'|trans({}) }}</a>
+                                    {% if admin.hasRoute('list') and admin.hasAccess('list') %}
+                                    <button type="submit" class="btn btn-success" name="btn_update_and_list"><i class="fa fa-save"></i> {{ 'formulario.accion.guardar'|trans({}) }}</button>
+                                {% endif %}
+                            {% else %}
+                                <button type="submit" class="btn btn-success" name="btn_update"><i class="fa fa-save"></i> {{ 'formulario.accion.guardar'|trans({}) }}</button>
+                            {% endif %}
+
+                            {#{% if admin.hasRoute('delete') and admin.hasAccess('delete', object) %}
+                                {{ 'delete_or'|trans({}, 'SonataAdminBundle') }}
+                                <a class="btn btn-danger" href="{{ admin.generateObjectUrl('delete', object) }}"><i class="fa fa-minus-circle" aria-hidden="true"></i> {{ 'link_delete'|trans({}, 'SonataAdminBundle') }}</a>
+                            {% endif %}#}
+
+                            {% if admin.isAclEnabled() and admin.hasRoute('acl') and admin.hasAccess('acl', object) %}
+                                <a class="btn btn-info" href="{{ admin.generateObjectUrl('acl', object) }}"><i class="fa fa-users" aria-hidden="true"></i> {{ 'link_edit_acl'|trans({}, 'SonataAdminBundle') }}</a>
+                            {% endif %}
+                        {% else %}
+                            <a class="btn btn-cancelar" href="{{ admin.generateUrl('list') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i>{{ 'formulario.accion.cancelar'|trans({}) }}</a>
+                            <button type="submit" class="btn btn-success" name="btn_update_and_list"><i class="fa fa-save"></i> {{ 'formulario.accion.guardar'|trans({}) }}</button>
+                        {% endif %}
+                    {% endif %}
+                {% endblock %}
+            </div>
+        {% endblock formactions %}
+    </form>
+{% endif%}
+{% if admin.canAccessObject('edit', object) and admin.hasRoute('edit') %}
+    {% if is_granted('ROLE_SUPER_ADMIN') or sonata_user.userAdmin.isGranted('ROLE_SUPER_ADMIN', app.user) or app.user.id == object.id %}
+        <div class="row col-md-12">
+            <div class="col-md-12">
+                <div class="box-header">
+                    <h3 class="box-title">{{ 'titulo.usuario.cambiar.contrasena' | trans }}</h3>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row contenedorContrasena">
+                    <div class="col-md-12">
+                        <form method="POST" action="{{path('admin_sonata_user_user_cambiarContrasenaUsuario',{ id: object.id})}}" enctype="multipart/form-data">
+                            <div class="col-md-12">
+                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formCambiarContrasenaUsuario.vars.errors }%}
+                                {% if formCambiarContrasenaUsuario.contrasenaActual is defined %}
+                                    {{form_label(formCambiarContrasenaUsuario.contrasenaActual)}}
+                                    {{form_widget(formCambiarContrasenaUsuario.contrasenaActual)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formCambiarContrasenaUsuario.contrasenaActual.vars.errors }%}
+                                {% endif %}
+                                {{form_label(formCambiarContrasenaUsuario.contrasenaNueva.first)}}
+                                {{form_widget(formCambiarContrasenaUsuario.contrasenaNueva.first)}}
+                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formCambiarContrasenaUsuario.contrasenaNueva.first.vars.errors }%}
+                                {{form_label(formCambiarContrasenaUsuario.contrasenaNueva.second)}}
+                                {{form_widget(formCambiarContrasenaUsuario.contrasenaNueva.second)}}
+                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formCambiarContrasenaUsuario.contrasenaNueva.second.vars.errors }%}
+                                {{form_rest(formCambiarContrasenaUsuario)}}
+                            </div>
+                            <div class="col-md-12">
+                                <br>
+                                <button type="submit" class="btn btnVerde pull-right">
+                                    <i class="fa fa-save" aria-hidden="true"></i>
+                                    {{ 'btn.cambiar.contrasena' | trans }}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endif %}
+{% if(sonata_user.userAdmin.isGranted('ROLE_SUPER_ADMIN', app.user) and action == "create") %}
+    <div class="row">
+        <div class="col-md-12  marginT20">
+            <div class="box-header">
+                <h3 class="box-title">{{ 'titulo.usuario.carga.masiva' | trans }}</h3>
+            </div>
+        </div>
+        <div class="col-md-12 contenedorContrasena">
+            <div class="row contenedorExcel">
+                <label>{{ 'titulo.usuario.carga.mensaje' | trans }} 
+                    <a href="{{asset('bundles/admin/doc/formato_cargar_usuarios.xlsx')}}"  target="_blank">{{ 'titulo.usuario.carga.enlace' | trans }}</a>.
+                </label>
+                <div class="col-md-12">
+                    <form method="POST" action="{{path('admin_sonata_user_user_cargarMultiplesUsuarios')}}" enctype="multipart/form-data">
+                        <div class="col-md-12">
+                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formCargarMultiplesUsuarios.vars.errors }%}
+                            {{form_label(formCargarMultiplesUsuarios.archivo_usuarios)}}
+                            {{form_widget(formCargarMultiplesUsuarios.archivo_usuarios)}}
+                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : formCargarMultiplesUsuarios.archivo_usuarios.vars.errors }%}
+                            {{form_rest(formCargarMultiplesUsuarios)}}
+                        </div>
+                        <div class="col-md-12">
+                            <br>
+                            <button type="submit" class="btn btnVerde pull-right">
+                                <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                                {{ 'btn.cargar.excel' | trans }}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{{ sonata_block_render_event('sonata.admin.edit.form.bottom', { 'admin': admin, 'object': object }) }}
+<span id="idFormulario" data-idForm="{{form.vars.id}}_"></span>
+{% endblock %}

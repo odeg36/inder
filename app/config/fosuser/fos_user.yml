@@ -1,0 +1,20 @@
+fos_user:
+    db_driver:      orm # can be orm or odm
+    firewall_name:  main
+    user_class:     Application\Sonata\UserBundle\Entity\User
+
+    from_email:
+        address: you@example.com
+        sender_name: You
+
+    group:
+        group_class:   Application\Sonata\UserBundle\Entity\Group
+        group_manager: sonata.user.orm.group_manager                    # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
+
+    service:
+        user_manager: sonata.user.orm.user_manager
+        mailer: fos_user.mailer.twig_swift
+        username_canonicalizer: inder.canonicalizer
+    resetting:
+        email:
+            template:   email/password_resetting.email.twig

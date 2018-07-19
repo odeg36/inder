@@ -1,0 +1,29 @@
+{% for key, preinscrito in preinscritos %}
+    <div class="col-xs-12 col-md-4 p-right-left-15 asistencia-hijo-eliminar elemento-hijo-{{ form.vars.name }}">
+        <div class="sombra p10-mb10">
+            <div class="row">
+                <div class="col-xs-8 col-md-8 p-right-left-15">
+                    <div>
+                        {{ preinscrito.usuario.nombre_completo }}
+                    </div>
+                    <div>
+                        <b>
+                            {{ preinscrito.usuario.abreviatura_tipo_ducumento }}
+                            {{ preinscrito.usuario.numero_identificacion }}
+                        </b>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-md-4">
+                    <label>
+                        <input type="checkbox" name="asistentes[asistio][{{key}}]" 
+                           {% if preinscrito.asistio %}checked="checked"{% endif %} 
+                           class="checkbox-{{ preinscrito.usuario.username }} checkbox-clear checkbox-asistencia" data-id-usuario="{{ preinscrito.usuario.id }}"
+                           onclick="inder.asistencia.setUsuariosAsistentes(this)" />
+                        {{ 'formulario.asistio' | trans }}
+                    </label>    
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+

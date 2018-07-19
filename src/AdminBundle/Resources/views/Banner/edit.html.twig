@@ -1,0 +1,32 @@
+{% extends 'SonataAdminBundle:CRUD:base_edit.html.twig' %}
+    
+{% block form %}
+    <input type="hidden" name="imagenWeb" id="imagenWeb" value="{{object.imagenWeb}}">
+    <input type="hidden" name="imagenMobil" id="imagenMobil" value="{{object.imagenMobil}}">
+{{ parent() }}
+<script  type="text/javascript">
+    $('.fechaInicio').parent().on("dp.change", function (e) {
+        $('.fechaFin').parent().data("DateTimePicker").setMinDate(e.date);
+    });
+    
+    $('.fechaFin').parent().on("dp.change", function (e) {
+        $('.fechaInicio').parent().data("DateTimePicker").setMaxDate(e.date);
+    });
+    
+    var divImagenWebBanner = $('.divImagenWebBanner').parent();
+    console.log($('#imagenWeb').val());
+    if ($('#imagenWeb').val() != null && $('#imagenWeb').val() != " " && $('#imagenWeb').val() != undefined && $('#imagenWeb').val() != 'img-perfil') {
+        console.log($('#imagenWeb').val());
+        var inputImagenWebBanner = $('.divImagenWebBanner');
+        console.log($('.divImagenWebBanner'));
+        $(inputImagenWebBanner).attr("value",$('#imagenWeb').val());
+        divImagenWebBanner.append('<br><img class="fotoPerfil" src="'+$('#imagenWeb').val()+'"/>');
+    }
+
+    var divImagenMobileBanner = $('.divImagenMobileBanner').parent();
+    if ($('#imagenMobil').val() != null && $('#imagenMobil').val() != " " && $('#imagenMobil').val() != undefined && $('#imagenMobil').val() != 'img-perfil') {
+        $('.divImagenMobileBanner').attr("value",$('#imagenMobil').val());
+        divImagenMobileBanner.append('<br><img class="fotoPerfil" src="'+$('#imagenMobil').val()+'"/>');
+    }
+</script>
+{% endblock %}

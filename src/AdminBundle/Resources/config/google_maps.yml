@@ -1,0 +1,5 @@
+ivory_google_map:
+    map:
+        debug: "%kernel.debug%"
+        language: "%locale%"
+        api_key: "%api_key_google_maps%"

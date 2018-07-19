@@ -1,0 +1,139 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_evento_list') }}">{% trans %}Evento List{% endtrans %}</a></li>        
+        <li class="active">
+            {% if evento.id%}
+                {{ evento.nombre }}
+            {% else %}
+                {% trans %}btn.accion.crear{% endtrans %}
+            {% endif %}
+        </li>
+    </ol>
+{% endblock %}
+
+{% block sonata_page_content %}
+    {% block sonata_admin_content %}
+        <div class="">
+            <!-- formulario -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>
+                            {% if evento.id is null %}
+                                + {% trans %}formulario_evento.crear{% endtrans %}
+                            {% else %}
+                                {{ evento.nombre }}
+                            {% endif %}
+                        </h4>
+                        <ul class="nav navbar-nav navbar-right" style="padding-right: 12px">
+                            <a type="button" class="btn-regresar sonata-action-element" href="{{path('admin_logic_evento_list')}}" style="padding: 5px 12px 3px 12px">
+                                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                {{ 'admin.detallesolicitud.volver' | trans }}
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Información general -->
+                <div class="col-md-12 sombra">
+                    <!-- Custom Tabs -->
+
+                    <div class="nav-tabs-custom">
+                        {% include 'AdminBundle:Evento/Tabs:tab.html.twig' with {tabActivo: 'carne', idevento: evento.id} %}
+
+                        <div class="col-md-12 tab-content padding-total20">
+                            <!-- Configuración -->
+                            <div class="col-md-12 tab-pane active " >
+                                <!-- botones internos evento y inscripción -->
+                                <div class="nav-tabs-custom">                                                                                        
+                                    {{ form_start(form, {'attr': {'id': 'formulario_carne_evento', novalidate: 'true'} } ) }}
+                                    <div class="col-md-12">
+
+                                        {% block notice %}
+                                            {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+                                        {% endblock notice %}
+                                        <div class="col-xs-12 col-md-6">
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                {{ form_widget(form.mostrarNombre, {'attr': {'class': 'form-control'} }) }}
+                                                {{ form_label(form.mostrarNombre) }}
+                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.mostrarNombre.vars.errors }%}
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                {{ form_widget(form.mostrarEquipo, {'attr': {'class': 'form-control'} }) }}
+                                                {{ form_label(form.mostrarEquipo) }}
+                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.mostrarEquipo.vars.errors }%}
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-6">
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                {{ form_widget(form.mostrarEvento, {'attr': {'class': 'select-perfil form-control'} }) }}
+                                                {{ form_label(form.mostrarEvento) }}
+                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.mostrarEvento.vars.errors }%}
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                {{ form_widget(form.mostrarColegio, {'attr': {'class': 'form-control'} }) }}
+                                                {{ form_label(form.mostrarColegio) }}
+                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.mostrarColegio.vars.errors }%}
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-6">
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                {{ form_widget(form.mostrarComuna, {'attr': {'class': 'form-control'} }) }}
+                                                {{ form_label(form.mostrarComuna) }}
+                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.mostrarComuna.vars.errors }%}
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                {{ form_widget(form.mostrarFechaNacimiento, {'attr': {'class': 'form-control'} }) }}
+                                                {{ form_label(form.mostrarFechaNacimiento) }}
+                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.mostrarFechaNacimiento.vars.errors }%}
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-6">
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                {{ form_widget(form.mostrarDeporte, {'attr': {'class': 'form-control'} }) }}
+                                                {{ form_label(form.mostrarDeporte) }}
+                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.mostrarDeporte.vars.errors }%}
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                {{ form_widget(form.mostrarRama, {'attr': {'class': 'form-control'} }) }}
+                                                {{ form_label(form.mostrarRama) }}
+                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.mostrarRama.vars.errors }%}
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-6">
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                {{ form_widget(form.mostrarRol, {'attr': {'class': 'form-control'} }) }}
+                                                {{ form_label(form.mostrarRol) }}
+                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.mostrarRol.vars.errors }%}
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-12">
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                {{ form_label(form.file) }}
+                                                <p>{{'label.tamano_imagen'|trans}}</p>
+                                                {{ form_widget(form.file) }}
+                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.file.vars.errors }%}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 d-flex justify-content-end marginB0">
+                                            {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                            <div style="display: none;">
+                                                {{ form_rest(form) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{ form_end(form) }}
+                                </div>
+                            </div>
+                        </div>                            
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock sonata_admin_content %}
+{% endblock sonata_page_content %}

@@ -1,0 +1,11 @@
+{% if admin.hasAccess('create', object) and admin.hasRoute('edit') %}
+    {% if is_granted('ROLE_GESTOR_ESCENARIO') or sonata_user.userAdmin.isGranted('ROLE_GESTOR_ESCENARIO', app.user) %}
+        {% if object.estado == "Aprobado" %}
+            <a href="{{ admin.generateUrl('asistencia', {id: object.id}) }}" class="btn btn-sm btn-default edit_link" 
+               title="{{ 'btn.accion.crear'|trans }}">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                {{ 'btn.asistencia'|trans }}
+            </a>
+        {% endif %}
+    {% endif %}
+{% endif %}

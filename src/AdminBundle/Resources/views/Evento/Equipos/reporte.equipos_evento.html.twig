@@ -1,0 +1,41 @@
+{% extends "::base.reporte.html.twig" %}
+
+{% block body %}
+    <div class="container-fluid cabecera-contenedor">
+        <div class="row">
+            <div class="col-xs-8 cabecera-logo-simon text-center">
+                <img src="{{ app.request.getSchemeAndHttpHost() }}/bundles/admin/img/logo-simon-header.png" alt="">
+            </div>
+            <div class="col-xs-4 cabecera-logo-alcaldia">
+                <img src="{{ app.request.getSchemeAndHttpHost() }}/bundles/admin/img/logos-inder-alcaldia.png" alt="">
+            </div>
+        </div>
+    </div>
+     <div class="container">
+        <table class="table table-responsive">
+            <caption class="text-center"><b> Reservas</b></caption>
+            <thead>
+                <tr>
+                    <th> Estado </th>
+                    <th> Jugadores </th>   
+                    <th> Equipo </th>          
+                </tr>
+            </thead>
+            <tbody>
+                {% for equipo in equipos %}
+                    <tr>
+                        {% if equipo.estado == 0 %}
+                            <td>Pendiente</td>
+                        {% elseif equipo.estado == 1 %}
+                            <td>Aprobado</td>
+                        {% else %}
+                            <td>Rechazado</td>
+                        {% endif %}
+                        <td>{{ equipo.jugadorEventos|length }}</td>
+                        <td>{{ equipo.nombre }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

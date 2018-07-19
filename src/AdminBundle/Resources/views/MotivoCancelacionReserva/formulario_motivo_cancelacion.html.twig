@@ -1,0 +1,5 @@
+{{ form_start(form, {'action': path('admin_logic_reserva_motivoCancelacion', { 'id' : idreserva }), 'attr': {'id': 'formulario_cancelacion_reserva', novalidate: 'true'} } ) }}
+    {{form_label(form.motivoCancelacion)}}
+    {{form_widget(form.motivoCancelacion)}}
+    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.motivoCancelacion.vars.errors }%}
+{{ form_end(form) }}

@@ -1,0 +1,180 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+        #divImagenes{
+            border-radius: 15px;
+            border: 1px solid #0099b1;
+            padding: 20px;
+            width: 200px;
+        }
+        #imagenEscenario{
+            height : 150px;
+            width: 150px;
+        }
+    </style>
+{% endblock %}
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_escenariodeportivo_list') }}">{% trans %}Escenario Deportivo List{% endtrans %}</a></li>        
+        <li class="active">
+            {% if idescenario == 0 %}
+                {% trans %}btn.accion.crear{% endtrans %}
+            {% else %}
+                {{ nombreEscenario }}
+            {% endif %}
+        </li>
+    </ol>
+{% endblock %}
+{% block sonata_page_content %}
+    {% block sonata_admin_content %}
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper alto-contenido p-top">
+            <!-- formulario -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_escenario_deportivo.title{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Escenarios deportivos -->
+                <div class="row">
+                    <div class="col-md-4 iconoText2">
+                        {% include 'AdminBundle:EscenarioDeportivo/Pasos:iconos.html.twig' with {vistaPaso: 4, idescenario: idescenario,'mostrar4142': validacionTipoEscenario} %}
+                    </div>
+                    <div class="col-md-8 fondoAzul2">
+                        {{ form_start(form, {'attr': {'id': 'formulario_escenario_deportivo', novalidate: 'true'} } ) }}
+                            <div class="infoBox row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 uno contenedorInfoUno">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <strong>{% trans %}formulario_escenario_deportivo.labels.paso_cuatro.cobama_lote{% endtrans %}</strong>
+                                        {{form_widget(form.cobamaLote)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.cobamaLote.vars.errors }%}
+                                    </div>
+
+                                   {# <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <strong>{% trans %}formulario_escenario_deportivo.labels.paso_cuatro.matricula{% endtrans %}</strong>
+                                        {{form_widget(form.matricula)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.matricula.vars.errors }%}
+                                    </div> #}
+
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <label>{% trans %}formulario_escenario_deportivo.labels.paso_cuatro.codigo_escenario{% endtrans %}</label>
+                                        <div class="col-md-12 fondoDireccion">
+                                            <p>{{ codigoEscenario }}</p>
+                                        </div>
+                                    </div>
+
+                                    {% if errorTamaño > 0 %} 
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="alert alert-danger">
+                                          {% trans %}formulario_escenario_deportivo.archivo{% endtrans %}
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    
+                                    
+
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            {{form_label(form.planos)}}
+                                            {{form_widget(form.planos)}}
+                                        </div>
+                                        {% if planosEscenario == null %}
+                                        {% else %}
+                                            {% for plano in planosEscenario %}
+                                            <div class="col-md-4" id="divImagen">                        
+                                                <div id="divImagenes">
+                                                    <img id="imagenEscenario" src="{{plano}}">
+                                                </div>                                            
+                                            </div>
+                                            {% endfor %}
+                                        {% endif %}
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            {{form_widget(form.eliminarPlanos)}}
+                                            {{form_label(form.eliminarPlanos)}}
+                                        </div>
+                                    </div>
+                                    
+                                    
+
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            {{form_label(form.imagenes)}}
+                                            {{form_widget(form.imagenes)}}
+                                        </div>
+                                        {% if imagenesEscenario == null %}
+                                        {% else %}
+                                            {% for imagen in imagenesEscenario %}
+                                            <div class="col-md-4" id="divImagen">                        
+                                                <div id="divImagenes">
+                                                    <img id="imagenEscenario" src="{{imagen}}">
+                                                </div>                                            
+                                            </div>
+                                            {% endfor %}
+                                        {% endif %}
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            {{form_widget(form.eliminarImagenes)}}
+                                            {{form_label(form.eliminarImagenes)}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                    <div class="col-md-12 division"></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <a href="{{ path('admin_logic_escenariodeportivo_addpaso3', { 'id':idescenario } ) }}" class="btn btnVerde">
+                                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                            Anterior
+                                        </a>
+                                        <span></span>
+                                        {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                        <div style="display: none;">
+                                            {{ form_rest(form) }}
+                                        </div>
+                                        <div style="display: none;">
+                                            {{ form_rest(form) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.content-wrapper -->
+        <style>
+            .fileinput-cancel {
+                display: none !important;
+            }
+            .fileinput-remove {
+                display: inline !important;
+            }
+            .btn-default {
+                background-color: #c7daef !important;
+                color: #007385 !important;
+                border-color: #bbb !important;
+                -webkit-transition: background-color 0.3s ease-in-out !important;
+                transition: background-color 0.3s ease-in-out !important;
+            }
+            .btn-default:hover {
+                background-color: #007385 !important;
+                color: #c7daef !important;
+                border-color: #007385 !important;
+                -webkit-transition: background-color 0.3s ease-in-out !important;
+                transition: background-color 0.3s ease-in-out !important;
+            }
+            .btn-outline-secondary i{
+                margin: auto !important;
+            }
+            strong label{
+                color : #000000 !important;
+                margin: 0px !important;
+            }
+        </style>
+    {% endblock sonata_admin_content %}
+{% endblock sonata_page_content %}

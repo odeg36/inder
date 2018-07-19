@@ -1,0 +1,115 @@
+{% block formulario_preinscripcion %}
+    {{form_start(form,{ attr: { class: 'form_' ~ form.vars.id, novalidate:true } } )}}
+    <div class="col-md-12">
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+    </div>
+    <div class="row" id="boxMargen">
+        <div class="col-md-12" style="padding-right: 20px">
+            <div class="col-md-12 sombra">
+                <div class="col-md-12">
+                    <div class="box-header">
+                        <h3 class="box-title">{{'titulo.reserva_caracterizacion'|trans}}</h3>
+                    </div>
+                </div>
+                <div class="col-md-12 nuevaOferta">
+                    <div class="col-md-12">
+                        {{form_label(form.email)}}
+                        {{form_widget(form.email)}}
+                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.email.vars.errors }%}
+                    </div>
+                    <div class="col-md-12">
+                        {{form_label(form.phone)}}
+                        {{form_widget(form.phone)}}
+                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.phone.vars.errors }%}
+                    </div>
+                    <div class="col-md-12">
+                        {{form_label(form.orientacionSexual)}}
+                        {{form_widget(form.orientacionSexual)}}
+                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.orientacionSexual.vars.errors }%}
+                    </div>
+                    <div class="col-md-12">
+                        {{form_label(form.eps)}}
+                        {{form_widget(form.eps)}}
+                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.eps.vars.errors }%}
+                    </div>
+                    <div class="col-md-12">
+                        {{form_label(form.nivelEscolaridad)}}
+                        {{form_widget(form.nivelEscolaridad)}}
+                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nivelEscolaridad.vars.errors }%}
+                    </div>
+                    
+                    <div class="col-md-12">
+                        {{form_label(form.tipoEstablecimientoEducativo)}}
+                        {{form_widget(form.tipoEstablecimientoEducativo)}}
+                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoEstablecimientoEducativo.vars.errors }%}
+                    </div>
+                    <div class="col-md-12">
+                        {{form_label(form.establecimientoEducativo)}}
+                        {{form_widget(form.establecimientoEducativo)}}
+                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.establecimientoEducativo.vars.errors }%}
+                    </div>
+                    <div class="col-md-12">
+                        {{form_label(form.ocupacion)}}
+                        {{form_widget(form.ocupacion)}}
+                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.ocupacion.vars.errors }%}
+                    </div>
+                    
+                    <div class="col-md-12">                        
+                        {{form_label(form.esDesplazado)}}
+                        <br>
+                        {{form_widget(form.esDesplazado)}}                        
+                    </div>
+                    <div id="campoDesplazado" class="ocultar">
+                        <div class="col-md-12">
+                            {{form_label(form.tipoDesplazado)}}
+                            {{form_widget(form.tipoDesplazado)}}
+                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoDesplazado.vars.errors }%}
+                        </div>
+                    </div>
+                    <div class="col-md-12">                    
+                        <br>
+                        {{form_label(form.esDiscapacitado)}}
+                        <br>
+                        {{form_widget(form.esDiscapacitado)}}                        
+                    </div>
+                    <div id="campoDiscapacitado" class="ocultar">
+                        <div class="col-md-12">
+                            {{form_label(form.discapacidad)}}
+                            {{form_widget(form.discapacidad)}}
+                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.discapacidad.vars.errors }%}
+                        </div>
+                        <div class="col-md-12">
+                            {{form_label(form.subDiscapacidad)}}
+                            {{form_widget(form.subDiscapacidad)}}
+                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.subDiscapacidad.vars.errors }%}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <br>
+                        {{form_label(form.esJefeCabezaHogar)}}
+                        <br>
+                        {{form_widget(form.esJefeCabezaHogar)}}
+                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.esJefeCabezaHogar.vars.errors }%}                        
+                    </div>
+                    <div class="col-md-12">
+                        <br>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="col-md-12 botones">
+                <div class="col-md-2 col-md-offset-10">
+                    <span></span>
+                    {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                    <div style="display: none;">
+                        {{ form_rest(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{form_end(form)}}
+    <span id="idFormulario" data-idForm="{{form.vars.id}}_"></span>
+{% endblock %}

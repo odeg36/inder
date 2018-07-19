@@ -1,0 +1,169 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+        .breadcrumb {
+            padding: 8px 15px !important;
+            margin-bottom: 20px !important;
+            list-style: none !important;
+            background-color: #f5f5f5 !important;
+            border-radius: 4px !important;
+            float: inherit !important;
+        }
+        .input-group-btn {
+            position: relative;
+            font-size: 0;
+            white-space: nowrap;
+        }
+    </style>
+
+{% endblock %}
+
+
+{% block title %}AdminBundle:Usuario:registro{% endblock %} 
+
+{% block sonata_page_content %}
+    <section class="content">
+        {% block sonata_admin_content %}
+            {{ form_start(form, {'attr': {'id': 'formulario_reserva_paso1', novalidate: 'true'} } ) }}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_reserva.solicitudregistro{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Solicitud-registro-pasos -->
+                <div class="row">
+                    <div class="col-md-4 iconoText2">
+                        {#{% if usuariosDivision <= 1 %}
+                            {% include 'AdminBundle:Reservas/Pasos:iconos.html.twig' with {vistaPaso: 3} %}
+                        {% else %}#}
+                        {% include 'AdminBundle:Reservas/Pasos:iconos.html.twig' with {vistaPaso: 4} %}
+                        {#                        {% endif %}#}
+                    </div>
+                    <div class="col-md-8 fondoAzul2">
+                        <div class="infoBox row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 contenedorInfoUno">
+                                <div class="col-md-12">
+                                    <label>{% trans %}formulario_reserva.labels.paso_cuatro.formulario_caracterizacion{% endtrans %}</label>
+                                    <p>{% trans %}formulario_reserva.labels.paso_cuatro.descripcion_formulario_caracterizacion{% endtrans %}</p>
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.email)}}
+                                    {{form_widget(form.email)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.email.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.phone)}}
+                                    {{form_widget(form.phone)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.phone.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.orientacionSexual)}}
+                                    {{form_widget(form.orientacionSexual)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.orientacionSexual.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.eps)}}
+                                    {{form_widget(form.eps)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.eps.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.nivelEscolaridad)}}
+                                    {{form_widget(form.nivelEscolaridad)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nivelEscolaridad.vars.errors }%}
+                                </div>
+
+                                <div class="col-md-12">
+                                    {{form_label(form.tipoEstablecimientoEducativo)}}
+                                    {{form_widget(form.tipoEstablecimientoEducativo)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoEstablecimientoEducativo.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.establecimientoEducativo)}}
+                                    {{form_widget(form.establecimientoEducativo)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.establecimientoEducativo.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.ocupacion)}}
+                                    {{form_widget(form.ocupacion)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.ocupacion.vars.errors }%}
+                                </div>
+
+                                <div class="col-md-12">                        
+                                    {{form_label(form.esDesplazado)}}
+                                    <br>
+                                    {{form_widget(form.esDesplazado)}}                        
+                                </div>
+                                <div id="campoDesplazado" class="ocultar">
+                                    <div class="col-md-12">
+                                        {{form_label(form.tipoDesplazado)}}
+                                        {{form_widget(form.tipoDesplazado)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoDesplazado.vars.errors }%}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">                    
+                                    <br>
+                                    {{form_label(form.esDiscapacitado)}}
+                                    <br>
+                                    {{form_widget(form.esDiscapacitado)}}                        
+                                </div>
+                                <div id="campoDiscapacitado" class="ocultar">
+                                    <div class="col-md-12">
+                                        {{form_label(form.discapacidad)}}
+                                        {{form_widget(form.discapacidad)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.discapacidad.vars.errors }%}
+                                    </div>
+                                    <div class="col-md-12">
+                                        {{form_label(form.subDiscapacidad)}}
+                                        {{form_widget(form.subDiscapacidad)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.subDiscapacidad.vars.errors }%}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <br>
+                                    {{form_label(form.esJefeCabezaHogar)}}
+                                    <br>
+                                    {{form_widget(form.esJefeCabezaHogar)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.esJefeCabezaHogar.vars.errors }%}                        
+                                </div>
+                                <div class="col-md-12">
+                                    <br>
+                                </div>
+
+                            </div>
+                            <span id="idFormulario" data-idForm="{{form.vars.id}}_"></span>
+                            <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                <div class="col-md-12 division"></div>
+                                <div class="col-md-12">
+                                    <a type="button" class="btn btnNaranja" onclick="inder.reserva.cancelarReserva()">
+                                        <i class="fa fa-chevron-left"></i>
+                                        {{'Cancelar'|trans}}
+                                    </a>
+                                    <a href="{{ path('admin_logic_reserva_paso3', { 'id':idreserva } ) }}" class="btn btnVerde">
+                                        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                        {% trans %}formulario_reserva.labels.paso_cuatro.anterior{% endtrans %}
+                                    </a>
+                                    <span></span>
+                                    {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                    <div style="display: none;">
+                                        {{ form_rest(form) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span id="alertas" data-tituloalerta="{% trans %}formulario_reserva.alertas.tituloalerta {% endtrans %}" data-yaseleccionada="{% trans %}formulario_registro.alertas.disciplinasyaseleccionada {% endtrans %}" data-revisecampos="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-registrado="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-mensajeerror="{% trans %}formulario_registro.alertas.mensajeerror {% endtrans %}" data-titulook="{% trans %}formulario_registro.alertas.titulo_ok {% endtrans %}"></span>
+            <span id="url" data-infoorganigrama="{{ path("info_organigrama") }}"></span>
+            {{ form_end(form) }}
+
+
+        {% endblock sonata_admin_content %}
+    </section>
+{% endblock sonata_page_content %}

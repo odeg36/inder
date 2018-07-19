@@ -1,0 +1,145 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends base_template %}
+
+
+
+{% block sonata_wrapper %}
+    <div class="content-wrapper ajuste-contenido p-top">
+        <!-- Content Header (Page header) -->
+        <div class="container">                    
+
+            <!-- Main content -->
+            <section class="content">
+
+                <!-- Main row -->
+                <div class="row">
+                    <!-- Left col -->
+                    <section class="col-lg-4 connectedSortable" id="login">
+                        <div class="box box-primary">
+                            <!-- box-header-->
+                            <div class="box-header with-border">
+                                <h3>{{'titulo.ingresar'|trans}}</h3>
+                            </div>
+                            {% for label, messages in app.flashes(['warning', 'error','notice']) %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{{ label }}">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% block sonata_user_login_error %}
+                                {% if error %}
+                                    <div class="alert alert-danger alert-error margenAlerta">
+                                        {{ error.messageKey|trans }}
+                                    </div>
+                                {% endif %}
+                            {% endblock %}
+                            <!-- /box-header-->
+                            <form action="{{ path("sonata_user_admin_security_check") }}" method="post" role="form" class="box-body" novalidate>
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+                                <div class="form-group has-feedback">
+                                    <label>{{'formulario.login.tipo_documento'|trans}}</label>
+                                    <select class="form-control" style="width:100% !important;" id="tipo_documento"  name="_tipo_documento" required="required" >
+                                        <option></option>
+                                        {% for tipo in tiposIdentificacion() %}
+                                            <option value="{{tipo.abreviatura}}">{{tipo.nombre}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="form-group has-feedback">
+                                    <label>{{'formulario.login.documento'|trans}}</label>
+                                    <input type="text" class="form-control" id="documento" name="_documento" required="required" placeholder="{{ 'formulario_registro.pnatural_informacion.numero_identificacion'|trans }}"/>
+                                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                                </div>
+
+                                <div class="form-group has-feedback">
+                                    <label>{{'formulario.login.clave'|trans}}</label>
+                                    <input type="password" class="form-control" id="password" name="_password" required="required" placeholder="{{ 'security.login.password'|trans({}, 'SonataUserBundle') }}"/>
+                                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-2 col-lg-4 p-bottom10">
+                                        <button type="submit" class="btn btnVerde">
+                                            <i class="fa fa-sign-in" aria-hidden="true"></i>
+                                            {{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-6 col-md-10 col-lg-8 p-bottom10">
+                                        <a href="{{ path("formulario_registro") }}" class="btn btnNaranja">
+                                            <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                            {{'formulario.login.registrarse'|trans}}
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-12 col-md-12 col-lg-12 p-bottom10">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+                                                {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <a class="col-sm-12 col-md-12 col-lg-12" href="{{ path('sonata_user_admin_resetting_request') }}">
+                                        {{ 'forgotten_password'|trans({}, 'SonataUserBundle') }}
+                                    </a>
+
+                                    <a class="col-sm-12 col-md-12 col-lg-12" href="{{ path('problemas_inicio_sesion') }}">
+                                        {{ 'formulario.problema_inicio_sesion.titulo'|trans({}) }}
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                    <!-- /.Left col -->
+                    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+                    <section class="col-lg-8 connectedSortable"> 
+                        <div class="banner-inicio"></div>
+                    </section>
+                    <!-- /right col -->
+                </div>
+                <!-- /.row (main row) -->
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+    <div id="infoLogin" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div  style="background:#0097b0;" class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body" style="background-color: white; font-size: 1.1em">
+                    <center>
+                        {{'texto_login'|trans|raw}}
+                    </center>
+                </div>
+                <div style="background:#0097b0;"  class="modal-footer">
+                    <center>
+                        <button style="background: transparent; color:white; border-color: white;" type="button" class="btn btn-default" data-dismiss="modal"><img src="{{asset('/bundles/admin/img/botonModal.png')}}" alt="banner!" /> Cerrar</button>
+                    </center>    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#infoLogin").modal("show");
+        });
+    </script>
+{% endblock sonata_wrapper %}

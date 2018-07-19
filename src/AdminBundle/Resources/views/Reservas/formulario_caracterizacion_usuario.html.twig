@@ -1,0 +1,81 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends base_template %}
+
+{% block title %}
+    {{ "title_create"|trans({}, 'SonataAdminBundle') }}
+{% endblock %}
+
+{% block navbar_title %}
+    {{ block('title') }}
+{% endblock %}
+
+{% block tab_menu %}{{ knp_menu_render(admin.sidemenu(action), {'currentClass' : 'active', 'template': sonata_admin.adminPool.getTemplate('tab_menu_template')}, 'twig') }}{% endblock %}
+
+{% block sonata_breadcrumb %}
+    <div class="hidden-xs">
+        {% if _breadcrumb is not empty or action is defined %}
+            <ol class="nav navbar-top-links breadcrumb">
+                {% if _breadcrumb is empty %}
+                    {% if action is defined %}
+                        {% for menu in breadcrumbs_builder.breadcrumbs(admin, action) %}
+                            {%- set translation_domain = menu.extra('translation_domain', 'messages') -%}
+                            {%- set label = menu.label -%}
+                            {%- if translation_domain is not same as(false) -%}
+                            {%- set label = label|trans(menu.extra('translation_params', {}), translation_domain) -%}
+                            {%- endif -%}
+
+                            {% if not loop.last %}
+                                <li>
+                                    {% if menu.uri is not empty %}
+                                        <a href="{{ admin.generateUrl('list') }}">
+                                            {% if menu.extra('safe_label', true) %}
+                                                {{- label|raw -}}
+                                            {% else %}
+                                                {{- label -}}
+                                            {% endif %}
+                                        </a>
+                                    {% else %}
+                                        <span>{{ label }}</span>
+                                    {% endif %}
+                                </li>
+                            {% else %}
+                                <li class="active"><span>{{ label }}</span></li>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        {% else %}
+                            {{ _breadcrumb|raw }}
+                        {% endif %}
+            </ol>
+        {% endif %}
+    </div>
+{% endblock sonata_breadcrumb %}
+{% block form %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 titulos">
+                <h4>{{'titulo.reserva_caracterizacion'|trans}}</h4>
+                <a class="btn btn-regresar" href="{{ path('admin_logic_reserva_paso4',{id:idreserva}) }}">                
+                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                    {{'titulo.reserva_caracterizacion_regresar'|trans}}
+                </a>
+            </div>
+        </div>
+        <!-- Información general -->
+        {% include 'AdminBundle:Reservas/Formulario:caracterizacion_usuario.html.twig' %}
+    </div>
+    {{ sonata_block_render_event('sonata.admin.edit.form.bottom', { 'admin': admin }) }}
+    <span id="idFormulario" data-idForm="{{form.vars.id}}_"></span>
+{% endblock %}
+
+

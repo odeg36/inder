@@ -1,0 +1,13 @@
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     '%kernel.root_dir%/../lib/wkhtmltopdf'
+#        binary:     '%kernel.root_dir%/../lib/osx/wkhtmltopdf'
+#        options:
+#            javascript-delay: 3000
+        options:    []
+    image:
+        enabled:    true
+        binary:     '%kernel.root_dir%/../lib/wkhtmltoimage'
+        options:    []
+    temporary_folder: %kernel.root_dir%/../web/carnes

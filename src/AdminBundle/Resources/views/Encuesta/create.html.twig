@@ -1,0 +1,291 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+        .breadcrumb {
+            padding: 8px 15px !important;
+            margin-bottom: 20px !important;
+            list-style: none !important;
+            background-color: #f5f5f5 !important;
+            border-radius: 4px !important;
+            float: inherit !important;
+        }
+        .mg-bottom {
+            margin-bottom: 10px !important;
+        }
+        .mp-bottom {
+            margin-bottom: 5px !important;
+        }
+
+        .btnMorado{
+            background: transparent;
+            border-color: #862CFE;
+        }
+    </style>
+{% endblock %}
+{% block title %}AdminBundle:Registro:encuesta{% endblock %}
+{% block sonata_page_content %}
+    {% block sonata_admin_content %}
+        <!-- Content Wrapper. Contains page content -->
+        <div class="">
+
+            <!-- Migas de pan -->
+            {% if edicion == '0' %}
+            <section class="container-fluid">
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-home"></i></a></li>
+                    <li><a href="{{ path('admin_logic_encuesta_list') }}">{% trans %}formulario_encuesta.encuestas{% endtrans %}</a></li>
+                    <li class="active">{% trans %}formulario_encuesta.crear{% endtrans %}</li>
+                </ol>
+            </section>
+            {% else %}
+            <section class="container-fluid">
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-home"></i></a></li>
+                    <li><a href="{{ path('admin_logic_encuesta_list') }}">{% trans %}formulario_encuesta.encuestas{% endtrans %}</a></li>
+                    <li class="active">{% trans %}formulario_encuesta.editar{% endtrans %}</li>
+                </ol>
+            </section>
+            {% endif %}
+
+            <!-- formulario -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}titulo_encuesta{% endtrans %}</h4>
+                        <ul class="nav navbar-nav navbar-right" style="padding-right: 12px">
+                            <a type="button" class="btn-regresar sonata-action-element" href="{{path('admin_logic_encuesta_list')}}" style="padding: 5px 12px 3px 12px">
+                                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                {{ 'admin.detallesolicitud.volver' | trans }}
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Escenarios deportivos -->
+                <div class="row">
+                   {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+                   
+                    <div class="col-md-12 fondoAzul2">
+                        {{ form_start(form, {'attr': {'id': 'formulario_encuesta', novalidate: 'true'} } ) }}
+                            <div class="infoBox row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 contenedorInfoUno">
+
+                                    <div class="col-md-12" style="background: #0099b1;">
+                                        <h4 style="color: #f9f6f6;"><b>{% trans %}titulo_encuesta_datos{% endtrans %}</b></h4>
+                                    </div>
+                                    
+                                    <div class="col-md-12">
+                                        {{form_label(form.nombre)}}
+                                        {{form_widget(form.nombre)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nombre.vars.errors }%}
+                                    </div>
+                                    
+                                    <div class="col-md-12">
+                                        <label class="required" >{% trans %}formulario_encuesta.labels.tiempo_ejecucion{% endtrans %}</label>
+                                    </div>
+                                                                        
+                                    <div class="col-md-3">
+                                         <strong>{% trans %}formulario_encuesta.labels.fecha_inicio{% endtrans %}</strong>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <div >                                                
+                                                {{form_widget(form.fechaInicio, { 'id': 'fechaInicio' }) }}
+                                            </div>
+                                        </div>
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.fechaInicio.vars.errors }%}
+                                    </div>
+
+                                     <div class="col-md-3">
+                                        <strong>{% trans %}formulario_encuesta.labels.duracion{% endtrans %}</strong>
+                                        {{form_widget(form.duracion)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nombre.vars.errors }%}
+                                    </div>
+                                      <div class="col-md-1">
+                                        <br> 
+                                       
+                                        <p class="h5">{% trans %}formulario_encuesta.dias{% endtrans %}</p>
+                                    </div>
+
+                                     <div class="col-md-5">
+                                      <strong>{% trans %}formulario_encuesta.labels.periodicida{% endtrans %}</strong>
+                                        {{form_widget(form.tipoPeriodicidad)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nombre.vars.errors }%}
+                                    </div>
+
+                                    <!-- Comuna -->
+                                     <div class="col-md-12">
+                                         <label>{% trans %}formulario_encuesta.comuna{% endtrans %}</label>
+                                        {{form_widget(form.comuna)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.comuna.vars.errors }%}
+                                    </div>
+                                    <div class="col-md-2">
+                                      <strong>{% trans %}formulario_encuesta.labels.muestra{% endtrans %}</strong>
+                                        {{form_widget(form.muestraComuna)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.muestraComuna.vars.errors }%}
+                                    </div>
+                                    <!-- /.Comuna -->
+
+                                    <!-- Estrategia -->
+                                     <div class="col-md-12">
+                                       <label>{% trans %}formulario_encuesta.estrategia{% endtrans %}</label>
+                                        {{form_widget(form.estrategia)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.comuna.vars.errors }%}
+                                    </div>
+                                    <div class="col-md-2">
+                                        <strong>{% trans %}formulario_encuesta.labels.muestra{% endtrans %}</strong>
+                                        {{form_widget(form.muestraEstrategia)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.muestraEstrategia.vars.errors }%}
+                                    </div>
+                                    <!-- /.Estrategia -->
+
+                                     <!-- Oferta -->
+                                     <div class="col-md-12">
+                                        <label>{% trans %}formulario_encuesta.oferta{% endtrans %}</label>
+                                        {{form_widget(form.oferta)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.comuna.vars.errors }%}
+                                    </div>
+                                    <div class="col-md-2">
+                                        <strong>{% trans %}formulario_encuesta.labels.muestra{% endtrans %}</strong>
+                                        {{form_widget(form.muestraOferta)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.muestraOferta.vars.errors }%}
+                                    </div>
+                                    <!-- /.Oferta -->
+
+                                    <div class="col-md-12 encuestaPreguntas">
+                                        <section class="col-xs-12 error-mesajes">
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                        </section>                                          
+                                        {%
+                                            form_theme form
+                                                 'jquery.collection.html.twig'
+                                                'AdminBundle:Encuesta:opcion_pregunta.html.twig'
+                                                
+                                        %}
+                                       {{ form_row(form.encuestaPreguntas) }}
+                                    </div>
+                                    
+                                      
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                    <div class="col-md-12 division"></div>
+                                    <div class="col-md-12">
+                                        <span></span>
+                                        <div class="col-md-12">
+                                            <a class="btn btn-cancelar" href="{{ admin.generateUrl('list') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i>{{ 'formulario.accion.cancelar'|trans({}) }}</a>
+                                            
+                                            {{ form_widget(form.saveTwo, { 'id': 'btnguardar2', 'class' : 'btn btnMorado' }) }}
+
+                                            {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+
+                $('.encuestaPreguntas-collection').collection({
+               name_prefix: '{{ form.encuestaPreguntas.vars.full_name }}',
+               drag_drop: '',
+               allow_up: '',
+                add:'<a href="#" class="btn btnVerde btnSize"><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar Pregunta</a>',
+               remove:'<a href="#" class="btn btnRojo btnSize"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar Pregunta</a>',
+                 up: '',
+               down: '',
+               duplicate: '',
+                prefix: 'parent',
+               add_at_the_end: true,
+               children: [{
+                   drag_drop: false,
+                   selector: '.encuestaOpciones-collection',
+                   drag_drop: '',
+                   allow_up: '',
+                   add:'<a href="#" class="btn btnVerde btnSize "><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar opción</a>',
+                   remove:'<a href="#" class="btn btnRojo btnSize "><i class="fa fa-minus-circle" aria-hidden="true"></i></a>',
+                   up: '',
+                   down: '',
+                   duplicate: '',
+                   prefix: 'child',
+                   add_at_the_end: true
+               }]
+            });
+
+            console.log("hola");
+
+            function isNumberKey(evt)
+            {
+                var charCode = (evt.which) ? evt.which : event.keyCode;
+                console.log(charCode);
+                if (charCode != 46 && charCode != 45 && charCode > 31
+                        && (charCode < 48 || charCode > 57))
+                    return false;
+
+                return true;
+            }
+
+            
+            $('#encuesta_duracion').keypress(function(eve) {
+                if ((eve.which != 46 || $(this).val().indexOf('.') != -1) && (eve.which < 48 || eve.which > 57) || (eve.which == 46 && $(this).caret().start == 0) ) {
+                eve.preventDefault();
+            }
+     
+
+            $('#encuesta_duracion').keyup(function(eve) {
+                if($(this).val().indexOf('.') == 0) {    $(this).val($(this).val().substring(1));
+                }
+                });
+            });
+
+    
+            $('#encuesta_muestraComuna').keypress(function(eve) {
+                if ((eve.which != 46 || $(this).val().indexOf('.') != -1) && (eve.which < 48 || eve.which > 57) || (eve.which == 46 && $(this).caret().start == 0) ) {
+                eve.preventDefault();
+            }
+     
+
+            $('#encuesta_muestraComuna').keyup(function(eve) {
+                if($(this).val().indexOf('.') == 0) {    $(this).val($(this).val().substring(1));
+                }
+                });
+            });
+
+
+            $('#encuesta_muestraEstrategia').keypress(function(eve) {
+                if ((eve.which != 46 || $(this).val().indexOf('.') != -1) && (eve.which < 48 || eve.which > 57) || (eve.which == 46 && $(this).caret().start == 0) ) {
+                eve.preventDefault();
+            }
+     
+
+            $('#encuesta_muestraEstrategia').keyup(function(eve) {
+                if($(this).val().indexOf('.') == 0) {    $(this).val($(this).val().substring(1));
+                }
+                });
+            });
+
+            
+            $('#encuesta_muestraOferta').keypress(function(eve) {
+                if ((eve.which != 46 || $(this).val().indexOf('.') != -1) && (eve.which < 48 || eve.which > 57) || (eve.which == 46 && $(this).caret().start == 0) ) {
+                eve.preventDefault();
+            }
+     
+
+            $('#encuesta_muestraOferta').keyup(function(eve) {
+                if($(this).val().indexOf('.') == 0) {    $(this).val($(this).val().substring(1));
+                }
+                });
+            });
+            
+
+        </script>
+        <!-- /.content-wrapper -->
+    {% endblock sonata_admin_content %}
+{% endblock sonata_page_content %}
+

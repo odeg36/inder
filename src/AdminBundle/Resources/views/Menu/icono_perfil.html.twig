@@ -1,0 +1,53 @@
+{% if app.user %}
+    {% block sonata_top_nav_menu_user_block %}
+        <ul class="menu-usuario">
+            <li class="dropdown user-menu menu-usuario-formato">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw" aria-hidden="true"></i> {{app.user.firstname}} <i class="fa fa-caret-down" aria-hidden="true"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    {% include sonata_admin.adminPool.getTemplate('user_block') %}
+                </ul>
+            </li>
+        </ul>
+    {% endblock %}
+    <!--Notificaciones-->                            
+    <div class="dropdown notifications-menu notificaciones">
+        <ul class="dropdown-menu">
+            <li class="header">You have 10 notifications</li>
+            <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                    <li>
+                        <a href="#">
+                            5 new members joined today
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Very long description here that may not fit into the
+                            page and may cause design problems
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            5 new members joined
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            25 sales made
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            You changed your username
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="footer"><a href="#">View all</a></li>
+        </ul>
+    </div>
+    <!--fin notificaciones-->
+{% endif %}

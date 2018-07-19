@@ -1,0 +1,128 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends base_template %}
+
+{% block title %}
+    {{ "title_create"|trans({}, 'SonataAdminBundle') }}
+{% endblock %}
+
+{% block navbar_title %}
+    {{ block('title') }}
+{% endblock %}
+
+{% block form %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper alto-contenido p-top">
+        <!-- formulario -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 titulos">
+                    <h4>{% trans %}formulario_escenario_deportivo.title{% endtrans %}</h4>
+                </div>
+            </div>
+            <!-- Escenarios deportivos -->
+            <div class="row">
+                <div class="col-md-4 iconoText2">
+                    {% include 'AdminBundle:EscenarioDeportivo/Pasos:iconos.html.twig' with {vistaPaso: 5, idescenario: idescenario , 'mostrar4142': validacionTipoEscenario} %}
+                </div>
+                <div class="col-md-8 fondoAzul2">
+                    {{ form_start(form, {'attr': {'id': 'formulario_campo', novalidate: 'true'} } ) }}
+                    <div class="infoBox row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 uno contenedorInfoUno">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="row margenPasos">
+                                    <div class="col-md-12 escenarioCategoriaInfraestructuras">
+                                        <section class="col-xs-12 error-mesajes">
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%} 
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.escenarioCategoriaInfraestructuras.vars.errors }%}
+                                        </section>
+                                        {%
+                                            form_theme form
+                                                'AdminBundle:EscenarioDeportivo:categoriainfraestructura.html.twig'
+                                                'jquery.collection.html.twig'
+                                        %}
+                                        <div class="col-xs-12  col-md-6">
+                                            {{ form_label(form.escenarioCategoriaInfraestructuras) }}
+                                        </div>
+                                        <div class="col-xs-12 col-md-6 variable-general" style="display: none;">
+                                            <div class="col-xs-12 col-md-12">
+                                                <span><b>{{ 'titulo.variable.auxiliar.general' | trans }}:</b></span>&nbsp;
+                                                <span class="variable-auxiliar-general"></span>
+                                            </div>  
+                                        </div>
+                                        {{ form_widget(form.escenarioCategoriaInfraestructuras) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                            <div class="col-md-12 division"></div>
+                            <div class="col-md-12">
+                                <a href="{{ path('admin_logic_escenariodeportivo_addpaso4', {'id':idescenario})}}" class="btn btnVerde">
+                                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                    Anterior
+                                </a>
+                                <span></span>
+                                {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                <div style="display: none;">
+                                    {{ form_rest(form) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+        <div class="campos-dinamicos" data-json="{{ campos|json_encode }}"></div>
+    </div>
+
+    <script type="text/javascript">
+        $('.escenarioCategoriaInfraestructuras-collection').collection({
+            name_prefix: '{{ form.escenarioCategoriaInfraestructuras.vars.full_name }}',
+            drag_drop: '',
+            allow_up: '',
+            add: '<span class="col-md-12 btnCentrar" ><a href="#" class="btn btnVerde btnSize "><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar Categoria</a></span>',
+            remove: '<a href="#" class="btn btnRojo btnSize"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar Categoria</a>',
+            up: '',
+            down: '',
+            duplicate: '',
+            add_at_the_end: true,
+            after_add: function (collection, element) {
+                inder.infraestructura.setSelect2(element.attr('data-id'));
+            },
+            children: [{
+                drag_drop: false,
+                selector: '.escenarioCategoriaSubCategoriaInfraestructuras-collection',
+                drag_drop: '',
+                allow_up: '',
+                add: '<a href="#" class="btn btnVerde btnSize "><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar Subcategoria Infraestructura</a>',
+                remove: '<a href="#" class="btn btnRojo btnSize "><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar Subcategoria Infraestructura</a>',
+                up: '',
+                down: '',
+                duplicate: '',
+                add_at_the_end: true,
+                after_add: function (collection, element) {
+                    idElement = $(element).find('select.tipo_entrada');
+                    idElement = idElement[0];
+                    idElement = $(idElement).attr('id');
+                    var divElement = $(element).parent().parent().parent().parent();
+                    divElement = $(divElement).attr('data-id');
+                    inder.infraestructura.setSelect2ByClass(divElement, idElement);
+                    
+                    $(element).find("select").select2();
+                    inder.infraestructura.calcularCalificacion();
+                }
+            }]
+        });
+    </script>
+{% endblock %}

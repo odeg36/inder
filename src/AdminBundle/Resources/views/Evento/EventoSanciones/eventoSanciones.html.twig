@@ -1,0 +1,231 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+        .white{
+            background : #fff !important;
+        }
+        .red{
+            color : #ff0201 !important;
+        }
+        .mg-top{
+            margin-top : 10px !important;
+        }
+        .mg-bottom{
+            margin-bottom : 10px !important;
+        }
+        .pd-left{ 
+            padding-left : 5px !important;
+        }
+        .pd-right{
+            padding-right : 5px !important;
+        }
+        .center{
+            text-align : center !important;
+        }
+       
+    </style>
+{% endblock %}
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_evento_list') }}">{% trans %}Evento List{% endtrans %}</a></li>        
+        <li class="active">
+        {% if idevento == 0 %}
+            {% trans %}btn.accion.crear{% endtrans %}
+        {% else %}
+            {{ nombreEvento }}
+        {% endif %}
+        </li>
+    </ol>
+{% endblock %}
+
+{% block sonata_page_content %}
+    {% block sonata_admin_content %}
+        <!-- Content Wrapper. Contains page content -->
+        <div class="">
+            <!-- formulario -->
+            <div class="container">
+                <!-- Información general -->
+                <div class="row">
+                    <div class="col-md-12 sombra">
+                        <!-- Custom Tabs -->
+                        <div class="nav-tabs-custom">
+                            {% include 'AdminBundle:Evento/Tabs:tab.html.twig' with {tabActivo: 'sanciones', idevento: idevento} %}
+                            <div class="col-md-12 tab-content padding-total20">
+                                 <!-- formulario -->
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-12 titulos">
+                                            <h4>{% trans %}formulario_escenario_deportivo.title{% endtrans %}</h4>
+                                        </div>
+                                    </div>
+                                    <!-- Escenarios deportivos -->
+                                    <div class="row">
+                                        <div class="col-md-12 fondoAzul2">
+                                            {{ form_start(form, {'attr': {'id': 'formulario_eventos_sanciones', novalidate: 'true'} } ) }}
+                                                <div class="infoBox row">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 contenedorInfoUno">
+                                                        <!-- radio button -->
+                                                        <div class="col-md-12">
+                                                            {{form_label(form.seleccion)}}
+                                                            {{form_widget(form.seleccion)}}
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.seleccion.vars.errors }%}
+                                                        </div>
+                                                        <!-- existente -->
+                                                        <div id="existente" style="display:none;" class="col-md-12">
+                                                            {{form_label(form.sancion)}}
+                                                            {{form_widget(form.sancion)}}
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.sancion.vars.errors }%}
+                                                        </div>
+                                                        <!-- nueva -->
+                                                        <div id="nueva" class="col-md-12">
+                                                            {{form_label(form.nombre)}}
+                                                            {{form_widget(form.nombre)}}
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nombre.vars.errors }%}
+                                                        </div>
+                                                        <!-- tipo falta -->
+                                                        <div id="nueva2" class="col-md-6">
+                                                            {{form_label(form.tipo_falta)}}
+                                                            {{form_widget(form.tipo_falta)}}
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipo_falta.vars.errors }%}
+                                                        </div>
+                                                        <!-- puntaje -->
+                                                        <div class="col-md-6">
+                                                            {{form_label(form.puntaje_juego_limpio)}}
+                                                            {{form_widget(form.puntaje_juego_limpio)}}
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.puntaje_juego_limpio.vars.errors }%}
+                                                        </div>
+                                                        <!-- descripcion -->
+                                                        <div id="nueva3" class="col-md-12">
+                                                            {{form_label(form.descripcion)}}
+                                                            {{form_widget(form.descripcion)}}
+                                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.descripcion.vars.errors }%}
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <br>
+                                                           {{ form_widget(form.agregar, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                                        </div>
+
+                                                    {% if validadorsancionesMostrar != 0  %}
+                                                        <div class="col-md-12">
+                                                            <br><br><br>
+                                                        
+                                                            <table class="table table-bordered table-striped sonata-ba-list tablaPreinscrito">
+                                                                <thead>
+                                                                    <tr class="sonata-ba-list-field-header">
+                                                                        <th class="sonata-ba-list-field-header-integer  sonata-ba-list-field-header-order-asc sonata-ba-list-field-order-active"><a href="/app_dev.php/admin/logic/reserva/list?filter%5B_sort_order%5D=DESC&amp;filter%5B_sort_by%5D=id&amp;filter%5B_page%5D=1&amp;filter%5B_per_page%5D=32"></a></th>
+                                                                        <th class="sonata-ba-list-field-header-integer  sonata-ba-list-field-header-order-asc sonata-ba-list-field-order-active"><a href="/app_dev.php/admin/logic/reserva/list?filter%5B_sort_order%5D=DESC&amp;filter%5B_sort_by%5D=id&amp;filter%5B_page%5D=1&amp;filter%5B_per_page%5D=32">Nombre </a></th>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+                                                                        <th class="sonata-ba-list-field-header-datetime  sonata-ba-list-field-header-order-asc "><a href="/app_dev.php/admin/logic/reserva/list?filter%5B_sort_order%5D=ASC&amp;filter%5B_sort_by%5D=fechaInicio&amp;filter%5B_page%5D=1&amp;filter%5B_per_page%5D=32">Tipo de falta</a></th>                                                                                                                                                 
+                                                                        <th class="sonata-ba-list-field-header-datetime  sonata-ba-list-field-header-order-asc "><a href="/app_dev.php/admin/logic/reserva/list?filter%5B_sort_order%5D=ASC&amp;filter%5B_sort_by%5D=fechaFinal&amp;filter%5B_page%5D=1&amp;filter%5B_per_page%5D=32">Puntaje de juego limpio</a></th>                                                                                                                                           
+                                                                        <th class="sonata-ba-list-field-header-text  sonata-ba-list-field-header-order-asc "><a href="/app_dev.php/admin/logic/reserva/list?filter%5B_sort_order%5D=ASC&amp;filter%5B_sort_by%5D=horaInicial&amp;filter%5B_page%5D=1&amp;filter%5B_per_page%5D=32">Descripción</a></th>
+                                                                        <th class="sonata-ba-list-field-header-text ">
+                                                                            Acciones
+                                                                        </th> 
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {% for sancion in sancionesMostrar %}
+                                                                        <tr>
+                                                                            <td class="sonata-ba-list-field " >
+                                                                                <input class="borrador" type="radio" name="algo" data-idpost="{{sancion.id}}" value="{{sancion.id}}">
+                                                                            </td>
+                                                                            <td class="sonata-ba-list-field " >
+                                                                                {{sancion.sancion.nombre}}
+                                                                            </td>
+                                                                            <td class="sonata-ba-list-field " >
+                                                                                {{sancion.sancion.tipoFalta}}
+                                                                            </td>
+                                                                            <td class="sonata-ba-list-field " >
+                                                                                {{sancion.puntajeJuegoLimpio}}
+                                                                            </td>
+                                                                            <td class="sonata-ba-list-field " >
+                                                                                {{sancion.sancion.descripcion}}
+                                                                            </td>
+                                                                            <td class="sonata-ba-list-field sonata-ba-list-field-text text-center">
+                                                                                <div class="btn-group">
+                                                                                    <a data-idpost="{{sancion.id}}" data-toggle="modal" data-target="#myModal" class="btn btn-sm btn-default view_link" title="Mostrar">
+                                                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                                                        Mostrar
+                                                                                    </a>
+                                                                                    <a  href="{{ path('admin_logic_evento_sanciones',{ 'id': idevento,'editar': sancion.id })}}" class="btn btn-sm btn-default edit_link" title="Editar">
+                                                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                                                        Editar
+                                                                                    </a>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>    
+                                                                {% endfor %}
+                                                            
+                                                                </tbody>
+                                                            </table>
+
+                                                            <div class="col-md-6">
+                                                                <br>
+                                                                <button id="borrarSancion" type="button" class="btn btn-danger">Borrar</button>
+                                                            </div>
+                                                        </div>
+                                                        {% else %}
+
+
+                                                    {% endif %}
+                                                    </div>
+                                                    
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                                        <div class="col-md-12 division"></div>
+                                                        <div class="col-md-12">
+                                                            <span></span>
+                                                            <div style="display: none;">
+                                                                {{ form_rest(form) }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {{ form_end(form) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.Equipos participantes -->
+                        </div>
+                        <!-- /.Box no hay resultado -->
+                    </div>
+                    <!-- Custom Tabs -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{% trans %}formulario_sancion.labels.sancion{% endtrans %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <strong>{% trans %}formulario_sancion.labels.nombre{% endtrans %}: </strong> <span id="modalNombre"></span><br>
+                        <strong>{% trans %}formulario_sancion.labels.tipoFalta{% endtrans %}: </strong> <span id="modalTipo"></span><br>
+                        <strong>{% trans %}formulario_sancion.labels.puntos{% endtrans %}: </strong><span id="modalPuntaje"></span><br><br>
+                        <strong>{% trans %}formulario_sancion.labels.descripcion{% endtrans %}: </strong><br><span id="modalDescripcion"></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}formulario_sancion.labels.cerrar{% endtrans %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+        <script type="text/javascript">
+
+        </script>
+
+    {% endblock sonata_admin_content %}
+{% endblock sonata_page_content %}

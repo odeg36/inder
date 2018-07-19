@@ -1,0 +1,81 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends base_template %}
+
+{% block sonata_wrapper %}
+
+    <div class="content-wrapper ajuste-contenido p-top">
+        <!-- Content Header (Page header) -->
+        <div class="container">                    
+
+            <!-- Main content -->
+            <section class="content">
+
+                <!-- Main row -->
+                <div class="row">
+                    <!-- Left col -->
+                    <section class="col-lg-12 connectedSortable">
+                        <div class="box box-primary">
+                            <div class="login-box-body">
+                                {% block sonata_user_reset_form %}
+                                    <p class="login-box-msg">{{ 'resetting.reset.submit'|trans({}, 'FOSUserBundle') }}</p>
+                                    {{ form_start(form, { 'attr':{
+                                                            'autocomplete' : 'off'
+                                                                }, 
+                                                        'action': path('sonata_user_admin_resetting_reset', 
+                                                        {'token': token}) }) }}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                    <div class="form-group">
+                                        {{ form_widget(form.plainPassword.first, {
+                            'id' : 'clave_uno',
+                            'attr': {
+                                'class': 'form-control',
+                                'placeholder': 'form.new_password'|trans({}, 'FOSUserBundle')
+                                        }}) }}
+                                        <div id="pswd_info">
+                                            <h4>{% trans %}parametrosclave.titulo{% endtrans %}</h4>
+                                            <ul>
+                                                <li id="letter" class="invalid">{{'parametrosclave.unaletra'|trans}}</li>
+                                                <li id="number" class="invalid">{{'parametrosclave.unnumero'|trans}}</li>
+                                                <li id="length" class="invalid">{{'parametrosclave.caracteresminimo'|trans}}</li>
+                                            </ul>
+                                        </div>
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.plainPassword.first.vars.errors }%}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form_widget(form.plainPassword.second, {'attr': {
+                            'class': 'form-control',
+                            'placeholder': 'form.new_password_confirmation'|trans({}, 'FOSUserBundle')
+                                        }}) }}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.plainPassword.second.vars.errors }%}
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <button type="submit" class="btn btn-primary btn-block btn-flat">{{ 'resetting.reset.submit'|trans({}, 'FOSUserBundle') }}</button>
+                                        </div>
+                                    </div>
+                                    {{ form_end(form) }}
+                                    </form>
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </section>
+                    <!-- /.Left col -->
+                </div>
+                <!-- /.row (main row) -->
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+
+{% endblock sonata_wrapper %}

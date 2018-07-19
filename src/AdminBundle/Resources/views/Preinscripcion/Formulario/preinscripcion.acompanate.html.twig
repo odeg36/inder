@@ -1,0 +1,63 @@
+{% extends 'AdminBundle:Preinscripcion/Formulario:preinscripcion.html.twig' %}
+
+{% block formulario_preinscripcion %}
+    {{ parent() }}
+
+    <script>
+        $(document).ready(function () {
+            $("input[type='checkbox']").iCheck({
+                checkboxClass: 'icheckbox_square-blue'
+            });
+            inder.preinscripcion.checkboxMedicamentos();
+            inder.preinscripcion.checkboxEnfermedades();
+            $('select').select2({
+                placeholder: Translator.trans('seleccionar.opcion'),
+                allowClear: true,
+                width: '100%'
+            });
+        });
+
+        var options = {
+            error: showError,
+            beforeSubmit: showRequest, // pre-submit callback 
+            success: showResponse  // post-submit callback
+        };
+
+        function showError(responseText) {
+        }
+        function showRequest(responseText) {
+            $('#div_carga').show();
+        }
+
+        function showResponse(data) {
+            if (typeof data == "object") {
+                $("form").remove();
+                window.location.href = data.url;
+            } else {
+                $("div.formulario_acompanate_" + "{{ uniqId }}").html(data);
+                $("html, body").animate({scrollTop: 0}, 1000);
+            }
+        }
+
+        $('.form_' + "{{ form.vars.id }}").ajaxForm(options);
+        inder.preinscripcion.accionesChecbox();
+    </script>
+{% endblock %}
+
+{% block botones_preinscripcion %}
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h4>{{ 'titulo.que_desea_hacer' | trans }}</h4>
+            <div class="col-md-12">
+                <button type="submit" class="btn btnVerde" name="creado" value="true">
+                    <i class="fa fa-save" aria-hidden="true"></i>
+                    {{ 'admin.botones.guardar' | trans }}
+                </button>
+                <button type="submit" class="btn btn-agregar-nuevo" name="nuevo" value="true">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    {{ 'formulario_registro.guardar.registra.otro' | trans }}
+                </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block title %}AdminBundle:Usuario:registro{% endblock %} 
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li>{% trans %}Reserva List{% endtrans %}</a></li>
+            
+    </ol>                                                         
+{% endblock %}
+
+{% block sonata_page_content %}
+    <section class="content">    
+        {% block sonata_admin_content %}
+            {{ form_start(form, {'attr': {'id': 'formulario_batch_rechazar', novalidate: 'true'} } ) }}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}Motivos Cancelacion{% endtrans %}</h4>
+                    </div>
+                </div>
+                <div class="row">                    
+                    <div class="col-md-12 fondoAzul2">
+                        <div class="infoBox row">                        
+                            <div class="col-md-12">
+                                {{form_label(form.motivoCancelacion)}}
+                                {{form_widget(form.motivoCancelacion)}}
+                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.motivoCancelacion.vars.errors }%}
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                <div class="col-md-12 division"></div>
+                                <div class="col-md-12">
+                                    <span></span>
+                                    <div class="col-md-12">                                        
+                                        {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                    </div>
+                                    <div style="display: none;">
+                                        {{ form_rest(form) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        {% endblock sonata_admin_content %}
+    </section>
+{% endblock sonata_page_content %}

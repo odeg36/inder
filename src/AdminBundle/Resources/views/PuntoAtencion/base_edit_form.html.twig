@@ -1,0 +1,143 @@
+{% block form %}
+    {% import "SonataAdminBundle:CRUD:base_edit_form_macro.html.twig" as form_helper %}
+    {{ sonata_block_render_event('sonata.admin.edit.form.top', { 'admin': admin, 'object': object }) }}
+
+    {% set url = admin.id(object) is not null ? 'edit' : 'create' %}
+
+    {% if not admin.hasRoute(url)%}
+        <div>
+            {{ "form_not_available"|trans({}, "SonataAdminBundle") }}
+        </div>
+    {% else %}
+        <form
+            {% if sonata_admin.adminPool.getOption('form_type') == 'horizontal' %}class="form-horizontal"{% endif %}
+            role="form"
+            action="{% block sonata_form_action_url %}{{ admin.generateUrl(url, {'id': admin.id(object), 'uniqid': admin.uniqid, 'subclass': app.request.get('subclass')}) }}{% endblock %}"
+            {% if form.vars.multipart %} enctype="multipart/form-data"{% endif %}
+            method="POST"
+            {% if not sonata_admin.adminPool.getOption('html5_validate') %}novalidate="novalidate"{% endif %}
+        {% block sonata_form_attributes %}{% endblock %}
+        >
+
+        {{ include('SonataAdminBundle:Helper:render_form_dismissable_errors.html.twig') }}
+
+        {% block sonata_pre_fieldsets %}
+            <div class="row">
+            {% endblock %}
+
+            {% block sonata_tab_content %}
+                {% set has_tab = ((admin.formtabs|length == 1 and admin.formtabs|keys[0] != 'default') or admin.formtabs|length > 1 ) %}
+
+                <div class="col-md-12">
+                    {% if has_tab %}
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs" role="tablist">
+                                {% for name, form_tab in admin.formtabs %}
+                                    <li{% if loop.index == 1 %} class="active"{% endif %}><a href="#tab_{{ admin.uniqid }}_{{ loop.index }}" data-toggle="tab"><i class="fa fa-exclamation-circle has-errors hide" aria-hidden="true"></i> {{ form_tab.label|trans({}, form_tab.translation_domain ?: admin.translationDomain) }}</a></li>
+                                    {% endfor %}
+                            </ul>
+                            <div class="tab-content">
+                                {% for code, form_tab in admin.formtabs %}
+                                    <div class="tab-pane fade{% if loop.first %} in active{% endif %}" id="tab_{{ admin.uniqid }}_{{ loop.index }}">
+                                        <div class="box-body  container-fluid">
+                                            <div class="sonata-ba-collapsed-fields">
+                                                {% if form_tab.description != false %}
+                                                    <p>{{ form_tab.description|raw }}</p>
+                                                {% endif %}
+
+                                                {{ form_helper.render_groups(admin, form, form_tab['groups'], has_tab) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-md-12">
+                            <div class="box box-primary">
+                                <div class="box-body">
+                                    <div class="sonata-ba-collapsed-fields">
+                                        <div class="municipio col-lg-12 col-md-12">
+                                            {{ form_row(form.municipio, { 'id': 'municipio' }) }}
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 direccionOComuna hidden">
+                                            {{ form_row(form.direccionOcomuna) }}
+                                        </div>
+                                        <div class="barrio col-lg-12 col-md-12 hidden">
+                                            {{ form_row(form.barrio) }}
+                                        </div>
+                                        <div class="comuna hidden">
+                                            <div class="col-lg-12 col-md-12" >
+                                                {{ form_row(form.comuna_format) }}
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 fondoDireccion" >
+                                                {{ form_row(form.direccionComuna) }}
+                                            </div>
+                                        </div>
+                                        <div class="direccion hidden">
+                                            <div class="col-lg-12 col-md-12" >
+                                                {{ form_row(form.direccion_creado) }}
+                                            </div>
+                                            <div class="col-sm-12 col-md-12 fondoDireccion">
+                                                {{ form_row(form.direccion) }}
+                                            </div>
+                                        </div>
+                                        <div class="municipio col-lg-12 col-md-12">
+                                            {{ form_row(form.localizacion) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endblock %}
+
+            {% block sonata_post_fieldsets %}
+            </div>
+        {% endblock %}
+
+        {{ form_rest(form) }}
+
+        {% block formactions %}
+            <div class="sonata-ba-form-actions well well-small form-actions">
+                {% block sonata_form_actions %}
+                    {% if app.request.isxmlhttprequest %}
+                        {% if admin.id(object) is not null %}
+                            <button type="submit" class="btn btn-success" name="btn_update"><i class="fa fa-save" aria-hidden="true"></i> {{ 'btn_update'|trans({}, 'SonataAdminBundle') }}</button>
+                        {% else %}
+                            <button type="submit" class="btn btn-success" name="btn_create"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ 'btn_create'|trans({}, 'SonataAdminBundle') }}</button>
+                        {% endif %}
+                    {% else %}
+                        {% if admin.supportsPreviewMode %}
+                            <button class="btn btn-info persist-preview" name="btn_preview" type="submit">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                {{ 'btn_preview'|trans({}, 'SonataAdminBundle') }}
+                            </button>
+                        {% endif %}
+                        {% if admin.id(object) is not null %}
+                            <a class="btn btn-cancelar" href="{{ admin.generateUrl('list') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i>{{ 'formulario.accion.cancelar'|trans({}) }}</a>
+                                {% if admin.hasRoute('list') and admin.hasAccess('list') %}
+                                <button type="submit" class="btn btn-success" name="btn_update_and_list"><i class="fa fa-save"></i> {{ 'formulario.accion.guardar'|trans({}) }}</button>
+                            {% endif %}
+
+                            {#{% if admin.hasRoute('delete') and admin.hasAccess('delete', object) %}
+                                {{ 'delete_or'|trans({}, 'SonataAdminBundle') }}
+                                <a class="btn btn-danger" href="{{ admin.generateObjectUrl('delete', object) }}"><i class="fa fa-minus-circle" aria-hidden="true"></i> {{ 'link_delete'|trans({}, 'SonataAdminBundle') }}</a>
+                            {% endif %}#}
+
+                            {% if admin.isAclEnabled() and admin.hasRoute('acl') and admin.hasAccess('acl', object) %}
+                                <a class="btn btn-info" href="{{ admin.generateObjectUrl('acl', object) }}"><i class="fa fa-users" aria-hidden="true"></i> {{ 'link_edit_acl'|trans({}, 'SonataAdminBundle') }}</a>
+                            {% endif %}
+                        {% else %}
+                            <a class="btn btn-cancelar" href="{{ admin.generateUrl('list') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i>{{ 'formulario.accion.cancelar'|trans({}) }}</a>
+                            <button type="submit" class="btn btn-success" name="btn_update_and_list"><i class="fa fa-save"></i> {{ 'formulario.accion.guardar'|trans({}) }}</button>
+                        {% endif %}
+                    {% endif %}
+                {% endblock %}
+            </div>
+        {% endblock formactions %}
+    </form>
+{% endif%}
+<span id="idFormulario" data-idForm="{{form.vars.id}}_"></span>
+{% endblock %}

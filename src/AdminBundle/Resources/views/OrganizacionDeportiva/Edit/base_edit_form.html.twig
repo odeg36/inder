@@ -1,0 +1,95 @@
+{% block form %}
+    <div class="row">
+        <div class="col-md-4 iconoText2">
+            <div class="iconoInfo2">
+                <div class="linea1"></div>
+                <div class="circulo activoCheck">
+                    <i class="fa fa-check"></i>
+                </div>
+                <div class="linea2"></div>
+                <div class="circulo activoCheck">
+                    <i class="fa fa-check"></i>
+                </div>
+                <div class="linea2" id="linea1"></div>
+                <div class="circulo" id="circulo2"></div>
+            </div>
+            <div class="pasos">
+                <div class="pasosInfo">
+                    <i class="fa fa-exclamation-triangle fa-4x" aria-hidden="true"></i>
+                    <p>{% trans %}formulario_registro.termina_proceso{% endtrans %}</p>
+                </div>
+                <div>
+                    <ol>
+                        <li class="esconderTabletas">{% trans %}formulario_registro.paso_uno{% endtrans %}</li>
+                        <li class="esconderTabletas">{% trans %}formulario_registro.paso_dos{% endtrans %}</li>
+                        <li>{% trans %}formulario_registro.paso_tres{% endtrans %}</li>
+                        <li class="esconderTabletas">{% trans %}formulario_registro.paso_cuatro{% endtrans %}</li>
+                        <li class="esconderTabletas">{% trans %}formulario_registro.paso_cinco{% endtrans %}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 fondoAzul2">
+            {% import "SonataAdminBundle:CRUD:base_edit_form_macro.html.twig" as form_helper %}
+            {{ sonata_block_render_event('sonata.admin.edit.form.top', { 'admin': admin, 'object': object }) }}
+
+            {# NEXT_MAJOR: remove default filter #}
+            {% set url = objectId|default(admin.id(object)) is not null ? 'edit' : 'create' %}
+
+            {% if not admin.hasRoute(url)%}
+                <div>
+                    {{ "form_not_available"|trans({}, "SonataAdminBundle") }}
+                </div>
+            {% else %}
+                <form
+                    {% if sonata_admin.adminPool.getOption('form_type') == 'horizontal' %}class="form-horizontal"{% endif %}
+                    role="form"
+                    {# NEXT_MAJOR: remove default filter #}
+                    action="{% block sonata_form_action_url %}{{ admin.generateUrl(url, {'id': objectId|default(admin.id(object)), 'uniqid': admin.uniqid, 'subclass': app.request.get('subclass')}) }}{% endblock %}"
+                    {% if form.vars.multipart %} enctype="multipart/form-data"{% endif %}
+                    method="POST"
+                    {% if not sonata_admin.adminPool.getOption('html5_validate') %}novalidate="novalidate"{% endif %}
+                {% block sonata_form_attributes %}{% endblock %}
+                >
+
+                {{ include('SonataAdminBundle:Helper:render_form_dismissable_errors.html.twig') }}
+                <div class="infoBox row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 uno contenedorInfoUno">
+                        {% block sonata_pre_fieldsets %}
+                            <div class="row">
+                            {% endblock %}
+
+                            {% block sonata_post_fieldsets %}
+                            </div>
+                        {% endblock %}
+
+                        {{ form_rest(form) }}
+                    </div>
+
+                    {% block formactions %}
+                        <div class="sonata-ba-form-actions col-xs-12">
+                            <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                <div class="col-md-12 division"></div>
+                                <div class="col-md-12">
+                                    <a href="{{ path('info_organigrama') }}">
+                                        <button type="button" class="btn btnVerde">
+                                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                            {% trans %}formulario_registro.atras{% endtrans %}
+                                        </button>
+                                    </a>
+                                    <button type="submit" class="btn btnVerde">
+                                        {% trans %}formulario_registro.guardarcontinuar{% endtrans %}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    {% endblock formactions %}
+                </div>
+            </form>
+        {% endif%}
+
+        {{ sonata_block_render_event('sonata.admin.edit.form.bottom', { 'admin': admin, 'object': object }) }}
+    </div>
+</div>
+
+{% endblock %}

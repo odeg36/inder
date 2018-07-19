@@ -1,0 +1,104 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends base_template %}
+
+{% block title %}
+    {{ "title_create"|trans({}, 'SonataAdminBundle') }}
+{% endblock %}
+
+{% block navbar_title %}
+    {{ block('title') }}
+{% endblock %}
+{% block sonata_breadcrumb %}
+    <div class="hidden-xs">
+        {% if _breadcrumb is not empty or action is defined %}
+            <ol class="nav navbar-top-links breadcrumb">
+                {% if _breadcrumb is empty %}
+                    {% if action is defined %}
+                        {% for menu in breadcrumbs_builder.breadcrumbs(admin, action) %}
+                            {%- set translation_domain = menu.extra('translation_domain', 'messages') -%}
+                            {%- set label = menu.label -%}
+                            {%- if translation_domain is not same as(false) -%}
+                            {%- set label = label|trans(menu.extra('translation_params', {}), translation_domain) -%}
+                            {%- endif -%}
+
+                            {% if not loop.last %}
+                                <li>
+                                    {% if menu.uri is not empty %}
+                                        <a href="{{ menu.uri }}{{'list' in menu.uri?'?filter[oferta][value]='~oferta.id:''}}">
+                                            {% if menu.extra('safe_label', true) %}
+                                                {{- label|raw -}}
+                                            {% else %}
+                                                {{- label -}}
+                                            {% endif %}
+                                        </a>
+                                    {% else %}
+                                        <span>{{ label }}</span>
+                                    {% endif %}
+                                </li>
+                            {% else %}
+                                <li class="active"><span>{{ label }}</span></li>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        {% else %}
+                            {{ _breadcrumb|raw }}
+                        {% endif %}
+            </ol>
+        {% endif %}
+    </div>
+{% endblock sonata_breadcrumb %}
+{% block tab_menu %}{{ knp_menu_render(admin.sidemenu(action), {'currentClass' : 'active', 'template': sonata_admin.adminPool.getTemplate('tab_menu_template')}, 'twig') }}{% endblock %}
+
+{% block form %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 titulos">
+                <h4>{{'titulo.preinscripcion.oferta'|trans}}</h4>
+                <a class="btn btnVerde btnSize" href="{{ admin.generateUrl('list') }}{{'?filter[oferta][value]='~oferta.id }}">
+                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                    {{ 'link_action_list'|trans({}, 'SonataAdminBundle') }}
+                </a>
+            </div>
+        </div>
+        <div class="fondoAzul">
+            <div class="infoBox felicitaciones2">
+                <div class="circuloIcono">
+                    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                </div>
+                <h2>{{'titulo.felicitaciones'|trans}}</h2>
+                <p>{{'titulo.solicitud_guardada'|trans}}</p>
+                {% if acompanantes %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>{{'titulo.que_desea_hacer'|trans}}</h4>
+                            <div class="col-md-12">
+                                {% if preinscripcion.inscriptor is null %}
+                                    <a type="button" class="btn btnVerde" href="{{ admin.generateObjectUrl('preinscripcionAcompanantes', preinscripcion) }}">
+                                        <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                        {{'titulo.registrar_acompanantes'|trans}}
+                                    </a>
+                                {% endif %}
+                                <a type="button" class="btn btnVerde" href="{{ admin.generateUrl('list') }}{{'?filter[oferta][value]='~oferta.id }}">
+                                    <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                                    {{'titulo.volver_oferta'|trans}}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

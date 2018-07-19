@@ -1,0 +1,205 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+        .icheckbox_square-blue{
+            margin-left: 5px;
+            background-color: white;
+        }
+        #divImagenes{
+            border-radius: 15px;
+            border: 1px solid #0099b1;
+            padding: 20px;
+            width: 200px;
+        }
+        #imagenEscenario{
+            height : 150px;
+            width: 150px;
+        }
+    </style>
+{% endblock %}
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_escenariodeportivo_list') }}">{% trans %}Escenario Deportivo List{% endtrans %}</a></li>        
+        <li class="active">
+            {% if idescenario == 0 %}
+                {% trans %}btn.accion.crear{% endtrans %}
+            {% else %}
+                {{ nombreEscenario }}
+            {% endif %}
+        </li>
+    </ol>
+{% endblock %}
+{% block sonata_page_content %}
+    {% block sonata_admin_content %}
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper alto-contenido p-top">
+            <!-- formulario -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_escenario_deportivo.title{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Escenarios deportivos -->
+                <div class="row">
+                    <div class="col-md-4 iconoText2">
+                        {% include 'AdminBundle:EscenarioDeportivo/Pasos:iconos.html.twig' with {vistaPaso: 3, 'idescenario': idescenario, 'mostrar4142': validacionTipoEscenario} %}
+                    </div>
+                    <div class="col-md-8 fondoAzul2">
+                        {{ form_start(form, {'attr': {'id': 'formulario_escenario_deportivo', novalidate: 'true'} } ) }}
+                            <div class="infoBox row">
+                                <!-- Fútbol -->
+                                <div class="col-xs-12 col-sm-12 col-md-12 contenedorInfoUno">
+                                    <div class="col-md-12">
+                                        <label>{% trans %}formulario_escenario_deportivo.labels.paso_tres.informacion_general{% endtrans %}</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>{% trans %}formulario_escenario_deportivo.labels.paso_tres.ancho{% endtrans %}<span>*</span></label>
+                                        {{form_widget(form.ancho)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.ancho.vars.errors }%}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>{% trans %}formulario_escenario_deportivo.labels.paso_tres.largo{% endtrans %}<span>*</span></label>
+                                        {{form_widget(form.largo)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.largo.vars.errors }%}
+                                    </div>
+                                    {% if tieneProfundidad == true %}
+                                        <div class="col-md-4">
+                                            <strong>{% trans %}formulario_escenario_deportivo.labels.paso_tres.profundidad{% endtrans %}</strong>
+                                            {{form_widget(form.profundidad)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.profundidad.vars.errors }%}
+                                        </div>
+                                    {% endif %}
+                                    <div class="col-md-12 form-group">
+                                        <strong>{% trans %}formulario_escenario_deportivo.labels.paso_tres.subir_imagen{% endtrans %}</strong>
+                                        {{form_widget(form.imagenEscenarioDividido)}}
+                                    </div>
+                                    {% if escenarioDividido == null %}
+                                    {% else %}
+                                        <div class="col-md-4" id="divImagen">                        
+                                            <div id="divImagenes">
+                                                <img id="imagenEscenario" src="{{escenarioDividido}}">
+                                            </div>                                            
+                                        </div>
+                                    {% endif %}
+                                    <div class="col-md-12">
+                                        <label>{% trans %}formulario_escenario_deportivo.labels.paso_tres.crear_divisiones{% endtrans %}</label>
+                                    </div>
+                                    <div class="col-md-12" >
+                                        <section class="col-xs-12 error-mesajes">
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.divisiones.vars.errors }%}
+                                        </section>
+                                        {%
+                                            form_theme form
+                                                'AdminBundle:EscenarioDeportivo:divisiones.html.twig'
+                                                'jquery.collection.html.twig'
+                                        %}
+                                        {{ form_row(form.divisiones) }}
+                                    </div>
+
+                                    
+                                </div>
+                                    
+                                <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                    <div class="col-md-12 division"></div>
+                                    <div class="col-md-12">
+                                        <a href="{{ path('admin_logic_escenariodeportivo_addpaso2', { 'id':idescenario } ) }}" class="btn btnVerde">
+                                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                            Anterior
+                                        </a>
+                                        <span></span>
+                                        {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                        <div style="display: none;">
+                                            {{ form_rest(form) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.content-wrapper -->
+    {% endblock sonata_admin_content %}
+    <script type="text/javascript">
+        var $addDivisionLink = $('<div class="col-md-12 btnCentrar" ><a href="#" class="btn btnVerde btnSize add_division_link"><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar división</a></div>');
+        var $deleteDivisionLink = $('<div class="row btnCentrar"><div class="col-md-4 btnCentrar campoGris"><a href=""><button type="button" class="btn btnSize btnRojo"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar división</button></a></div></div>');
+        var $deleteDivisionLink = $('<a href=""><button type="button" class="btn btnSize btnRojo"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar división</button></a>');
+        
+        $('.divisiones-collection').collection({
+            //preserve_names: true,
+            name_prefix: '{{ form.divisiones.vars.full_name }}',
+            drag_drop: '',
+            allow_up: '',
+            add: $addDivisionLink,
+            remove: $deleteDivisionLink,
+            up: '',
+            down: '',
+            duplicate: '',
+            add_at_the_end: true,
+            after_add: function(collection, element) {
+                console.log('Division: ' + element.attr('data-id'));
+                inder.escenarioDeportivo.setSelect2(element.attr('data-id'));
+            },
+            children: [{
+                //preserve_names: true,
+                   drag_drop: false,
+                   selector: '.tiposReserva-collection',
+                   drag_drop: '',
+                   allow_up: '',
+                   add:'<a href="#" class="btn btnVerde btnSize "><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar tipo de reserva</a>',
+                   remove:'<a href="#" class="btn btnRojo btnSize "><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar este tipo de reserva</a>',
+                   up: '',
+                   down: '',
+                   duplicate: '',
+                   add_at_the_end: true,
+                   after_add: function(collection, element) {
+                        console.log('Tipo Reserva: ' + element.attr('data-id'));
+                        inder.escenarioDeportivo.setSelect2(element.attr('data-id'));
+                    },
+               }]
+        });
+    </script>
+    <style>
+        .fileinput-cancel {
+            display: none !important;
+        }
+        .fileinput-remove {
+            display: inline !important;
+        }
+        .btn-default {
+            background-color: #c7daef !important;
+            color: #007385 !important;
+            border-color: #bbb !important;
+            -webkit-transition: background-color 0.3s ease-in-out !important;
+            transition: background-color 0.3s ease-in-out !important;
+        }
+        .btn-default:hover {
+            background-color: #007385 !important;
+            color: #c7daef !important;
+            border-color: #007385 !important;
+            -webkit-transition: background-color 0.3s ease-in-out !important;
+            transition: background-color 0.3s ease-in-out !important;
+        }
+        .btn-outline-secondary i{
+            margin: auto !important;
+        }
+        strong label{
+            color : #000000 !important;
+            margin: 0px !important;
+        }
+        .collection-actions{
+            display:none !important;
+        }
+        .margen-bottom-10{
+            margin-bottom: 15px !important;
+        }
+    </style>
+{% endblock sonata_page_content %}

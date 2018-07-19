@@ -1,0 +1,44 @@
+{% block subcategoria_infraestructura_escenario_type_row %}
+    <div class="light-gray sub data-escenario-subcategoria"
+         data-id="{{ form.vars.name }}" data-escenario-subcategoria="{% if form.vars.value is defined and form.vars.value is not null %}{{ form.vars.value.id }}{% endif %}">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            {{ form_label(form.subcategoriaInfraestructura) }}
+            {{ form_widget(form.subcategoriaInfraestructura, { 'attr': {
+                    'class': 'form-control form-select tipo_entrada subcategoria-select',
+                    'onchange': 'inder.infraestructura.mostrarCamposInfraestructura(this)',
+                    'data-id': form.vars.name
+            } }) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.subcategoriaInfraestructura.vars.errors }%}
+        </div>
+        <div class="col-sm-12 col-md-12">
+            <div class="col-sm-12 col-md-5">
+                {{ form_label(form.importanciaRelativa) }}
+                {{ form_widget(form.importanciaRelativa, { attr: { 
+                    'onchange': 'inder.infraestructura.calcularCalificacion()',
+                    'class': 'importancia-relativa form-control',
+                    'data-id': form.vars.name
+                } }) }}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.importanciaRelativa.vars.errors }%}
+            </div>
+            <div class="col-sm-12 col-md-5">
+                {{ form_label(form.calificacionGeneral) }}
+                {{ form_widget(form.calificacionGeneral, {attr: { 
+                    'onchange': 'inder.infraestructura.calcularCalificacion()',
+                    'class': 'calificacion-general form-control',
+                    'data-id': form.vars.name
+                } }) }}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.calificacionGeneral.vars.errors }%}
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2">
+                <br>
+                <span><b>{{ '%' | trans }}:</b></span> 
+                <span class="calificacion-porcentaje-{{ form.vars.name }}"></span>
+            </div>
+        </div>
+        {{ form_rest(form) }}
+        <div class="contenido_infraestructura col-xs-12 col-sm-12 col-md-12">
+        </div>
+        <div class="campos-dinamicos-subcategoria col-xs-12 col-sm-12 col-md-12">
+        </div>
+    </div>
+{% endblock %}

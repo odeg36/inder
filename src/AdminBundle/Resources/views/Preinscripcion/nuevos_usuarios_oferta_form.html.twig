@@ -1,0 +1,63 @@
+{% block sonata_breadcrumb %}
+    <div class="hidden-xs">
+        {% if _breadcrumb is not empty or action is defined %}
+            <ol class="nav navbar-top-links breadcrumb">
+                {% if _breadcrumb is empty %}
+                    {% if action is defined %}
+                        <li>
+                            <a href="{{path('sonata_admin_dashboard')}}">
+                                <i class="fa fa-home"></i>                                        
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{path('admin_logic_oferta_list')}}">
+                                {{'Oferta List'|trans}}                                        
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{path('admin_logic_preinscripcionoferta_list')}}?filter[oferta][value]={{object.id}}">
+                                {{'Preinscripcion Oferta List'|trans}}                                        
+                            </a>
+                        </li>
+                        {% for menu in breadcrumbs_builder.breadcrumbs(admin, action) %}
+                            {%- set translation_domain = menu.extra('translation_domain', 'messages') -%}
+                            {%- set label = menu.label -%}
+                            {%- if translation_domain is not same as(false) -%}
+                            {%- set label = label|trans(menu.extra('translation_params', {}), translation_domain) -%}
+                            {%- endif -%}
+
+                            {% if loop.last %}
+                                <li class="active">
+                                    <span>{{ label }}</span>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% else %}
+                    {{ _breadcrumb|raw }}
+                {% endif %}
+            </ol>
+        {% endif %}
+    </div>
+{% endblock sonata_breadcrumb %}
+
+{% block form %}
+    {% import "SonataAdminBundle:CRUD:base_edit_form_macro.html.twig" as form_helper %}
+    {{ sonata_block_render_event('sonata.admin.edit.form.top', { 'admin': admin, 'object': object }) }}
+
+    {# NEXT_MAJOR: remove default filter #}
+    {% set url = objectId|default(admin.id(object)) is not null ? 'edit' : 'create' %}
+
+    {{ sonata_block_render_event('sonata.admin.edit.form.bottom', { 'admin': admin, 'object': object }) }}
+    
+    {% include 'AdminBundle:Preinscripcion/Formulario:buscar.usuario.preinscripcion.html.twig' %}
+    
+    <div class="cargando text-center" style="display: none;">
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+        <span class="sr-only">Loading...</span>
+    </div>
+    
+    <div class="form-usuario-preinscripcion"></div>
+    
+    <span id="idFormulario" data-idForm="{{form.vars.id}}_"></span>
+{% endblock %}

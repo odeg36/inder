@@ -1,0 +1,6 @@
+{% if not object.aprobado and object.terminoregistro and (is_granted('ROLE_ADMINISTRAR_ORGANISMOS_DEPORTIVOS') or sonata_user.userAdmin.isGranted('ROLE_ADMINISTRAR_ORGANISMOS_DEPORTIVOS', app.user)) %}
+    <a href="{{  admin.generateObjectUrl('solicitudRegistro', object)  }}" class="btn btn-sm btn-default view_link" title="{% trans %}admin.botones.solicitud{% endtrans %}">
+        <i class="fa fa-pencil-square" aria-hidden="true"></i>
+        {% trans %}admin.botones.solicitud{% endtrans %}
+    </a>
+{% endif %}

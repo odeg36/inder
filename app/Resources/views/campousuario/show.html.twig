@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Campousuario</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ campoUsuario.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ campoUsuario.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Nombremapeado</th>
+                <td>{{ campoUsuario.nombreMapeado }}</td>
+            </tr>
+            <tr>
+                <th>Tipo</th>
+                <td>{{ campoUsuario.tipo }}</td>
+            </tr>
+            <tr>
+                <th>Fechacreacion</th>
+                <td>{% if campoUsuario.fechaCreacion %}{{ campoUsuario.fechaCreacion|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fechaactualizacion</th>
+                <td>{% if campoUsuario.fechaActualizacion %}{{ campoUsuario.fechaActualizacion|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('logicBundleCampo_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('logicBundleCampo_edit', { 'id': campoUsuario.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

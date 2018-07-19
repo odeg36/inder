@@ -1,0 +1,487 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/fullcalendar/fullcalendar.min.css') }}">
+
+    <style>
+        .icheckbox_square-blue{            
+            margin-left: 5px;
+            margin-right: 6px;
+        }
+        .icheckbox_square-blue > label{
+            color: red;
+        }
+        #error3Maximo, #error4Minimo, #errorHorasMaximo, #errorHorasMinimo, #errorDiasReserva, #errorDiasReserva2{
+            margin-left: -7px;
+
+        }
+    </style>
+
+{% endblock %}
+
+{% block title %}AdminBundle:Usuario:registro{% endblock %} 
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_escenariodeportivo_list') }}">{% trans %}formulario_escenario_deportivo.escenarios_deportivos{% endtrans %}</a></li>
+        <li><a href="{{ url('admin_logic_reserva_list') }}">{% trans %}titulo.reservas{% endtrans %}</a></li>
+        <li class="active">{% trans %}formulario_reserva.crear{% endtrans %}</li>
+    </ol>                                                        
+{% endblock %}
+
+{% block sonata_page_content %}
+    <section class="content">
+        {% block sonata_admin_content %}
+            {{ form_start(form, {'attr': {'id': 'formulario_reserva_paso1', novalidate: 'true'} } ) }}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_reserva.solicitudregistro{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Solicitud-registro-pasos -->
+                <div class="row">
+                    <div class="col-md-4 iconoText2">
+                        {% include 'AdminBundle:Reservas/Pasos:iconos.html.twig' with {vistaPaso: 1} %}
+                    </div>
+                    <div class="col-md-8 fondoAzul2">
+                        <div class="infoBox row">                        
+
+                            {% if isGestorEscenario == 'false' %}
+                                <div class="col-xs-12 col-sm-12 col-md-12" id="divSelectUsuarioReserva">
+                                    <div class="col-lg-6 col-md-6">
+                                        {{ form_label(form.tipoIdentificacion) }}
+                                        {{ form_widget(form.tipoIdentificacion, { 'id': 'tipoIdentificacionReservaPaso1' }) }}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoIdentificacion.vars.errors }%}
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        {{ form_label(form.numeroIdentificacion) }}
+                                        {{ form_widget(form.numeroIdentificacion, { 'id': 'numeroIdentificacionReservaPaso1' }) }}                                    
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.numeroIdentificacion.vars.errors }%}
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <div class="col-xs-12 col-sm-12 col-md-12 uno contenedorInfoUno">                                
+                                <div class="col-lg-6 col-md-6 divBarrioEscenarioDeportivoReserva" >
+                                    {{ form_label(form.barrio) }}
+                                    {{ form_widget(form.barrio, { 'id': 'escenario_deportivo_barrio' }) }}                                    
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.barrio.vars.errors }%}
+                                </div>
+
+                                <div class="col-md-6">
+                                    {{form_label(form.escenario_deportivo)}}
+                                    {{form_widget(form.escenario_deportivo, { 'id': 'escenario_deportivo' }) }}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.escenario_deportivo.vars.errors }%}
+                                </div>                                    
+
+                                <div style="display: none;" class ="col-md-12 cajaSeleccionDeporte">
+
+                                    <div class="col-md-12">
+                                        {{form_label(form.seleccion)}}
+                                        {{form_widget(form.seleccion)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.seleccion.vars.errors }%}
+                                    </div>
+
+                                    <div class="col-md-12 disciplinaCaja">
+                                        {{form_label(form.disciplina)}}
+                                        {{form_widget(form.disciplina, { 'id': 'disciplina_escenario_deportivoreserva' })}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.disciplina.vars.errors }%}
+                                    </div>
+
+                                    <div class="col-md-12 tendenciaCaja">
+                                        {{form_label(form.tendenciaEscenarioDeportivo)}}
+                                        {{form_widget(form.tendenciaEscenarioDeportivo, { 'id': 'tendencia_escenario_deportivoreserva' })}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tendenciaEscenarioDeportivo.vars.errors }%}
+                                    </div>
+
+
+                                </div>
+
+                                <div class="col-sm-12 col-md-12 marginT10 marginB10 sombra borde-radio padding" id="show_map">
+
+                                    <div class="col-sm-6 col-md-6 padding">
+                                        <div class="imagen-escenario">
+                                            {% if (mostrarInfoEscenario != 'false') %}                                        
+                                                <img id="img-escenario" src="{{imagen}}">
+                                            {% else %}
+                                                <img id="img-escenario">
+                                            {% endif %}
+
+                                        </div>
+                                        <div class="info-escenario">
+                                            <label id="nombre_escenario_deportivo" >
+                                                {% if (mostrarInfoEscenario != 'false') %}                                        
+                                                    {{mostrarInfoEscenario.nombre}}
+                                                {% endif %}
+                                            </label>
+                                            <p>{% trans %}formulario_reserva.labels.paso_uno.horario{% endtrans %}</p>
+
+                                            <p><span id="labelLunes">{% trans %}Monday{% endtrans %}: </span></p> 
+                                            <span id="horarioMañanaLunes">
+                                                {% if (mostrarInfoEscenario != 'false') %}                                        
+                                                    {{mostrarInfoEscenario.horaInicialLunes}} - {{mostrarInfoEscenario.horaFinalLunes}}
+                                                {% endif %}
+                                            </span>&nbsp/&nbsp<span id="horarioTardeLunes">
+                                                {% if (mostrarInfoEscenario != 'false') %}                                        
+                                                    {{mostrarInfoEscenario.horaInicial2Lunes}} - {{mostrarInfoEscenario.horaFinal2Lunes}}
+                                                {% endif %}
+                                            </span>
+                                            <br>
+                                            <p><span id="labelMartes">{% trans %}Tuesday{% endtrans %}: </span></p> 
+                                            <span id="horarioMañanaMartes">
+                                                {% if (mostrarInfoEscenario != 'false') %}                                        
+                                                    {{mostrarInfoEscenario.horaInicialMartes}} - {{mostrarInfoEscenario.horaFinalMartes}}
+                                                {% endif %}
+                                            </span>&nbsp/&nbsp<span id="horarioTardeMartes">
+                                                {% if (mostrarInfoEscenario != 'false') %}                                        
+                                                    {{mostrarInfoEscenario.horaInicial2Martes}} - {{mostrarInfoEscenario.horaFinal2Martes}}
+                                                {% endif %}
+                                            </span>
+                                            <br>
+                                            <p><span id="labelMiercoles">{% trans %}Wednesday{% endtrans %}: </span></p> 
+                                            <span id="horarioMañanaMiercoles">
+                                                {% if (mostrarInfoEscenario != 'false') %}                                        
+                                                    {{mostrarInfoEscenario.horaInicialMiercoles}} - {{mostrarInfoEscenario.horaFinalMiercoles}}
+                                                {% endif %}
+                                            </span>&nbsp/&nbsp<span id="horarioTardeMiercoles">
+                                                {% if (mostrarInfoEscenario != 'false') %}                                        
+                                                    {{mostrarInfoEscenario.horaInicial2Miercoles}} - {{mostrarInfoEscenario.horaFinal2Miercoles}}
+                                                {% endif %}
+                                            </span>
+                                            <br>
+                                            <p><span id="labelJueves">{% trans %}Thursday{% endtrans %}: </span></p> 
+                                            <span id="horarioMañanaJueves">
+                                                {% if (mostrarInfoEscenario != 'false') %}                                        
+                                                    {{mostrarInfoEscenario.horaInicialJueves}} - {{mostrarInfoEscenario.horaFinalJueves}}
+                                                {% endif %}
+                                            </span>&nbsp/&nbsp<span id="horarioTardeJueves">
+                                                {% if (mostrarInfoEscenario != 'false') %}                                        
+                                                    {{mostrarInfoEscenario.horaInicial2Jueves}} - {{mostrarInfoEscenario.horaFinal2Jueves}}
+                                                {% endif %}
+                                            </span>
+                                            <br>
+                                            <p><span id="labelViernes">{% trans %}Friday{% endtrans %}: </span></p> 
+                                            <span id="horarioMañanaViernes">
+                                                {% if (mostrarInfoEscenario != 'false') %}                                        
+                                                    {{mostrarInfoEscenario.horaInicialViernes}} - {{mostrarInfoEscenario.horaFinalViernes}}
+                                                {% endif %}
+                                            </span>&nbsp/&nbsp<span id="horarioTardeViernes">
+                                                {% if (mostrarInfoEscenario != 'false') %}                                        
+                                                    {{mostrarInfoEscenario.horaInicial2Viernes}} - {{mostrarInfoEscenario.horaFinal2Viernes}}
+                                                {% endif %}
+                                            </span>
+                                            <br>
+                                            <p><span id="labelSabado">{% trans %}Saturday{% endtrans %}: </span></p> 
+                                            <span id="horarioMañanaSabado">
+                                                {% if (mostrarInfoEscenario != 'false') %}                                        
+                                                    {{mostrarInfoEscenario.horaInicialSabado}} - {{mostrarInfoEscenario.horaFinalSabado}}
+                                                {% endif %}
+                                            </span>&nbsp/&nbsp<span id="horarioTardeSabado">
+                                                {% if (mostrarInfoEscenario != 'false') %}                                        
+                                                    {{mostrarInfoEscenario.horaInicial2Sabado}} - {{mostrarInfoEscenario.horaFinal2Sabado}}
+                                                {% endif %}
+                                            </span>
+                                            <br>
+                                            <p><span id="labelDomingo">{% trans %}Sunday{% endtrans %}: </span></p> 
+                                            <span id="horarioMañanaDomingo">
+                                                {% if (mostrarInfoEscenario != 'false') %}                                        
+                                                    {{mostrarInfoEscenario.horaInicialDomingo}} - {{mostrarInfoEscenario.horaFinalDomingo}}
+                                                {% endif %}
+                                            </span>&nbsp/&nbsp<span id="horarioTardeDomingo">
+                                                {% if (mostrarInfoEscenario != 'false') %}                                        
+                                                    {{mostrarInfoEscenario.horaInicial2Domingo}} - {{mostrarInfoEscenario.horaFinal2Domingo}}
+                                                {% endif %}
+                                            </span>
+                                            <br>
+
+                                            <p>{% trans %}formulario_reserva.labels.paso_uno.direccion{% endtrans %} :  
+                                                <span id="direccion_escenario_deportivo">
+                                                    {% if (mostrarInfoEscenario != 'false') %}                                        
+                                                        {{mostrarInfoEscenario.direccion}}
+                                                    {% endif %}
+                                                </span>
+                                            </p>
+                                            <p>{% trans %}formulario_reserva.labels.paso_uno.telefono{% endtrans %} :    
+                                                <span id="telefono_escenario_deportivo">
+                                                    {% if mostrarInfoEscenario != 'false' %}                                        
+                                                        {{mostrarInfoEscenario.telefono}}
+                                                    {% endif %}
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6 col-md-6 padding">
+                                        <span id="map_escenario">
+                                            {% if (mostrarInfoEscenario != 'false') %}                                        
+                                                <iframe class='mapa-escenario' src='https://maps.google.com/maps?q=6.217,-75.567&hl=es;z=14&amp;output=embed'>
+                                                </iframe>
+                                            {% endif %}
+                                        </span>
+                                        <div>
+                                            <label>{% trans %}formulario_escenario_deportivo.labels.paso_uno.informacionReserva{% endtrans %}</label>
+                                            <p>
+                                                <span id="informacionReserva">
+                                                    {% if (mostrarInfoEscenario != 'false') %}                                                    
+                                                        {% if (mostrarInfoEscenario.informacionReserva != null) %}
+                                                            <textarea rows="4" cols="50" name="escenarioInformacionReserva" id="escenarioInformacionReserva" class="hidden">
+                                                                {{mostrarInfoEscenario.informacionReserva}}
+                                                            </textarea>                                                            
+                                                            <script type="text/javascript">
+                                                                $(document).ready(function () {
+                                                                    console.log($('#escenarioInformacionReserva').val())
+                                                                    $("#informacionReserva").html($('#escenarioInformacionReserva').val());
+                                                                });
+                                                            </script>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 uno contenedorInfoUno">
+
+                                    <div class="col-lg-12 col-md-12">
+                                        {{form_label(form.tipoReserva)}}                                        
+                                        {{form_widget(form.tipoReserva, { 'id': 'tipoReservaPaso1' }) }}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoReserva.vars.errors }%}
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>{% trans %}formulario_reserva.labels.paso_uno.seleciona_fecha{% endtrans %}</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        {% if isSuperAdminOrganismoDeportivo == true %}                                    
+                                            <strong>{{form_label(form.fechaInicio)}}</strong>
+                                        {% else %}
+                                            <div class="col-md-12">
+                                                <label>{% trans %}formulario_reserva.labels.paso_uno.fecha{% endtrans %}</label>
+                                            </div>
+                                        {% endif %}
+
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <div >                                                
+                                                {{form_widget(form.fechaInicio, { 'id': 'fechaInicio' }) }}
+                                            </div>
+                                        </div>
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.fechaInicio.vars.errors }%}
+                                    </div>
+
+                                    {% if isSuperAdminOrganismoDeportivo == true %}
+                                        <div class="col-md-6">
+                                            <strong>{{form_label(form.fechaFinal)}}</strong>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                <div >
+                                                    {{form_widget(form.fechaFinal, { 'id': 'fechaFinal' }) }}
+                                                </div>
+                                            </div>
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.fechaFinal.vars.errors }%}
+                                        </div>
+                                    {% else %}
+                                        <div class="col-md-6">
+                                            {{form_label(form.jornada) }}
+                                            {{form_widget(form.jornada) }}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.jornada.vars.errors }%}    
+                                        </div>
+                                    {% endif %}
+                                    <div  class="col-md-12">
+                                        <div style="display: none" id="alerta" class="alert alert-danger">
+                                            <strong>{% trans %}formulario_reserva.labels.paso_uno.atencion{% endtrans %}</strong> {% trans %}formulario_reserva.labels.paso_uno.error_hora_fecha_inicial_mayor{% endtrans %}
+                                        </div>
+                                    </div> 
+                                    <div  class="col-md-12">
+                                        <div class="col-md-4">{{'formulario.dia'|trans}}</div>
+                                        <div class="col-md-2 manana">{{'formulario_reserva.inicio.manana'|trans}}</div>
+                                        <div class="col-md-2 manana">{{'formulario_reserva.fin.manana'|trans}}</div>
+                                        <div class="col-md-2 tarde">{{'formulario_reserva.inicio.tarde'|trans}}</div>
+                                        <div class="col-md-2 tarde">{{'formulario_reserva.fin.tarde'|trans}}</div>
+                                    </div>
+                                    <div  class="col-md-12">
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                    </div>
+                                    {%for programacion in form.programaciones%}
+                                        <div  class="row">
+                                            <div class="col-md-12  {{programacion.dia.vars.value}}">
+                                                <div class="col-md-4">
+                                                    {{form_widget(programacion.dia)}}
+                                                </div>
+                                                <div class="col-md-2 programacion manana">
+                                                    {{form_widget(programacion.inicioManana)}}
+                                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : programacion.inicioManana.vars.errors }%}
+                                                </div>
+                                                <div class="col-md-2 programacion manana">
+                                                    {{form_widget(programacion.finManana)}}
+                                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : programacion.finManana.vars.errors }%}
+                                                </div>
+                                                <div class="col-md-2 programacion tarde">
+                                                    {{form_widget(programacion.inicioTarde)}}
+                                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : programacion.inicioTarde.vars.errors }%}
+                                                </div>
+                                                <div class="col-md-2 programacion tarde">
+                                                    {{form_widget(programacion.finTarde)}}
+                                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : programacion.finTarde.vars.errors }%}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {%endfor%}
+                                    <div  class="col-md-12">
+                                        <div id="alertaTiempo" class="alert alert-danger">
+                                            <strong>{% trans %}formulario_reserva.labels.paso_uno.atencion{% endtrans %}</strong> {% trans %}formulario_reserva.labels.paso_uno.error_hora_fecha_escenario_vacio{% endtrans %}
+                                        </div>
+                                    </div>
+
+                                    <div  class="col-md-12">
+                                        <div id="alertaTiempoMayorMenor" class="alert alert-danger">
+                                            <strong>{% trans %}formulario_reserva.labels.paso_uno.atencion{% endtrans %}</strong> {% trans %}formulario_reserva.labels.paso_uno.error_hora_fecha_reserva_mayor_menor{% endtrans %}
+                                        </div>
+                                    </div>
+
+                                    <div  class="col-md-12">
+                                        <div id="alertaMaximodias" class="alert alert-danger">
+                                            <strong>{% trans %}formulario_reserva.labels.paso_uno.atencion{% endtrans %}</strong> {% trans %}formulario_reserva.labels.paso_uno.error_fecha_maximo_dias{% endtrans %}
+                                        </div>
+                                    </div>
+
+                                    <div  class="col-md-12">
+                                        <div id="alertaTiempoMal" class="alert alert-danger">
+                                            <strong>{% trans %}formulario_reserva.labels.paso_uno.atencion{% endtrans %}</strong> {% trans %}formulario_reserva.labels.paso_uno.error_hora_fecha_inicial_mayor{% endtrans %}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div id="alertaTiempoMaxDiv" class="alert alert-danger">
+                                            <strong>{% trans %}formulario_reserva.labels.paso_uno.atencion{% endtrans %}</strong> {% trans %}formulario_reserva.labels.paso_uno.error_hora_fecha_inicial_mayor{% endtrans %}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12">                                        
+                                        {{form_widget(form.reservaDisponible, { 'id': 'reservaDisponible' }) }}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.reservaDisponible.vars.errors }%}
+                                    </div>
+
+                                    <input type="hidden" name="mostrarInfoEscenario" id="mostrarInfoEscenario" value={{mostrarInfoEscenario}}>
+                                    <input type="hidden" name="idReservaOculto" id="idReservaOculto" value={{idreserva}}>
+                                    <input type="hidden" name="isSuperAdminOrganismoDeportivo" id="isSuperAdminOrganismoDeportivo" value={{isSuperAdminOrganismoDeportivo}}>
+                                    <input type="hidden" name="idEscenarioDeportivoReservaPaso1" id="idEscenarioDeportivoReservaPaso1" value={{idEscenarioDeportivo}}>
+                                    <input type="hidden" name="isGestorEscenario" id="isGestorEscenario" value={{isGestorEscenario}}>
+
+                                    <div class="col-md-12 d-flex">
+                                        <a>
+                                            <button type="button" class="btn btnVerde btnSize btnDispo">
+                                                <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                                {{'formulario_reserva.labels.paso_uno.consultar_disponible'|trans}}
+
+                                            </button>
+                                        </a>
+                                        <strong class="texto-rojo-bold fecha-no-disponilbe">{% trans %}formulario_reserva.labels.paso_uno.fecha_no_disponible{% endtrans %}</strong>
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-12">
+                                        <div class="col-sm-4 col-md-4 d-flex a-items">
+                                            <div class="circulo-verde"></div>
+                                            <p class="maginL10">{% trans %}formulario_reserva.labels.paso_uno.disponible{% endtrans %}</p>
+                                        </div>
+                                        <div class="col-sm-4 col-md-4 d-flex a-items">
+                                            <div class="circulo-rojo"></div>
+                                            <p class="maginL10">{% trans %}formulario_reserva.labels.paso_uno.no_disponible{% endtrans %}</p>
+                                        </div>
+                                        <div class="col-sm-4 col-md-4 d-flex a-items">
+                                            <div class="circulo-amarillo"></div>
+                                            <p class="maginL10">{% trans %}formulario_reserva.labels.paso_uno.mantenimiento{% endtrans %}</p>
+                                        </div>
+                                    </div>
+                                    <link rel="stylesheet" href="">
+
+                                    <script src="{{ asset('bundles/admin/fullcalendar/fullcalendar.min.js') }}"></script>
+                                    <script src="{{ asset('bundles/admin/fullcalendar/locale/es.js') }}"></script>
+
+                                    <!-- Calendario -->
+                                    <div class="col-sm-12 col-md-12">
+                                        <div class="box">
+                                            <div class="box-body no-padding">
+                                                <!-- THE CALENDAR -->
+                                                <div id="calendar" class="sombra borde-radio"></div>
+                                            </div>
+                                            <!-- /.box-body -->
+                                        </div>
+                                        <!-- /. box -->
+                                    </div>                                    
+                                </div>
+                            </div>
+
+
+                            <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                <div class="col-md-12 division"></div>
+                                <div class="col-md-12">
+                                    <span></span>
+                                    <div class="col-md-12">
+                                        <a type="button" class="btn btnNaranja" onclick="inder.reserva.cancelarReserva()">
+                                            <i class="fa fa-chevron-left"></i>
+                                            {{'Cancelar'|trans}}
+                                        </a>
+                                        {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                    </div>
+                                    <div style="display: none;">
+                                        {{ form_rest(form) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span id="alertas" data-tituloalerta="{% trans %}formulario_reserva.alertas.tituloalerta {% endtrans %}" data-yaseleccionada="{% trans %}formulario_registro.alertas.disciplinasyaseleccionada {% endtrans %}" data-revisecampos="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-registrado="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-mensajeerror="{% trans %}formulario_registro.alertas.mensajeerror {% endtrans %}" data-titulook="{% trans %}formulario_registro.alertas.titulo_ok {% endtrans %}"></span>
+            <span id="url" data-infoorganigrama="{{ path("info_organigrama") }}"></span>
+            {{ form_end(form) }}
+
+            <script type="text/javascript">
+
+                                                                $(document).ready(function () {
+
+                                                                    if ($(".seleccion_disciplina").is(':checked')) {
+
+                                                                        $('.disciplinaCaja').show();
+                                                                        $('.tendenciaCaja').hide();
+                                                                    }
+
+                                                                    if ($(".seleccion_tendencia").is(':checked')) {
+
+                                                                        $('.tendenciaCaja').show();
+                                                                        $('.disciplinaCaja').hide();
+                                                                    }
+
+
+                                                                });
+
+
+                                                                $('.seleccion_disciplina').on('ifClicked', function (event) {
+
+                                                                    $('.disciplinaCaja').show();
+                                                                    $('.tendenciaCaja').hide();
+
+                                                                });
+
+                                                                $('.seleccion_tendencia').on('ifClicked', function (event) {
+
+                                                                    $('.tendenciaCaja').show();
+                                                                    $('.disciplinaCaja').hide();
+
+                                                                });
+
+                                                                //
+                                                                //
+            </script>
+        {% endblock sonata_admin_content %}
+    </section>
+{% endblock sonata_page_content %}

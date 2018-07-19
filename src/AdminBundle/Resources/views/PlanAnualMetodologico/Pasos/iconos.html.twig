@@ -1,0 +1,76 @@
+<div class="iconoInfo2">
+    {% if 2 <= vistaPaso %}
+        <div class="linea3" style="width: 4px; height: 122px !important"></div>
+        <div class="circulo activoCheck">
+            <i class="fa fa-check"></i>
+        </div>
+    {% endif %}
+    {% if 3 <= vistaPaso %}
+        <div class="linea2"></div>
+        <div class="circulo activoCheck">
+            <i class="fa fa-check"></i>
+        </div>
+    {% endif %}
+    {% if 4 <= vistaPaso %}
+        <div class="linea2"></div>
+        <div class="circulo activoCheck">
+            <i class="fa fa-check"></i>
+        </div>
+    {% endif %}
+    {% if 41 <= vistaPaso %}
+        <div class="linea2"></div>
+        <div class="circulo activoCheck">
+            <i class="fa fa-check"></i>
+        </div>
+    {% endif %}
+    {% if 42 <= vistaPaso %}
+        <div class="linea2"></div>
+        <div class="circulo activoCheck">
+            <i class="fa fa-check"></i>
+        </div>
+    {% endif %}
+    {% if 5 == vistaPaso %}
+        <div class="linea2" id="linea2"></div>
+        <div class="circulo activoCheck">
+            <i class="fa fa-check"></i>
+        </div>
+    {% elseif 1 == vistaPaso %}
+        <div class="linea3" style="width: 4px; height: 122px !important"></div>
+        <div class="circulo" id="circulo2"></div>
+    {% else %}
+        <div class="linea2" id="linea2"></div>
+        <div class="circulo" id="circulo2"></div>
+    {% endif %}
+</div>
+<div class="pasos">
+    <div>
+        <ol>
+            <li class="">
+                <label style="font-size: 14px">{% trans %}formulario_plan_anual_metodologico.labels.paso_uno.nombre{% endtrans %}</label><br>
+                <div id="mostrarNombre" class="nombrePlanAnual" style="font-size: 12px; padding: 15px; background: #99D1E5; color: black;">
+                    {{ nombre }}
+                </div>
+            </li>
+            <li class="esconderTabletas">
+                <a href="{{ path('admin_logic_plananualmetodologico_addpaso1', { 'id':idplananualmetodologico } ) }}">
+                    {% trans %}formulario_plan_anual_metodologico.paso_uno{% endtrans %}
+                </a>
+            </li>
+            <li class="esconderTabletas">
+                <a href="{{ path('admin_logic_plananualmetodologico_addpaso2', { 'id':idplananualmetodologico } ) }}">
+                    {% trans %}formulario_plan_anual_metodologico.paso_dos{% endtrans %}
+                </a>
+            </li>
+            <li class="esconderTabletas">
+                <a href="{{ path('admin_logic_plananualmetodologico_addpaso3', { 'id':idplananualmetodologico } ) }}">
+                    {% trans %}formulario_plan_anual_metodologico.paso_tres{% endtrans %}
+                </a>
+            </li>
+            <li class="esconderTabletas">
+                <a href="{{ path('admin_logic_plananualmetodologico_addpaso4', { 'id':idplananualmetodologico } ) }}">
+                    {% trans %}formulario_plan_anual_metodologico.paso_cuatro{% endtrans %}
+                </a>
+            </li>
+        </ol>
+    </div>
+</div>

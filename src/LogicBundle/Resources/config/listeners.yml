@@ -1,0 +1,15 @@
+services:
+
+    inder.logic.usuario:
+        class: LogicBundle\EventListener\UsuarioListener
+        arguments: ['@service_container']
+        tags:
+            - { name: "doctrine.event_listener", event: prePersist }
+            - { name: "doctrine.event_listener", event: preUpdate }
+            
+    inder.logic.documento:
+        class: LogicBundle\EventListener\DocumentoListener
+        arguments: ['@service_container', "%kernel.root_dir%/../web/uploads"]
+        tags:
+            - { name: "doctrine.event_listener", event: prePersist }
+            - { name: "doctrine.event_listener", event: preUpdate }

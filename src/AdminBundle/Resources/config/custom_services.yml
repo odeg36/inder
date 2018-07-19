@@ -1,0 +1,43 @@
+services:
+    inder.encoder:
+        class: AdminBundle\Service\InderEncoder
+        
+    inder.canonicalizer:
+        class: AdminBundle\Service\CustomCanonicalizer
+        public: false
+    
+    admin.valid.usuario.unico:
+        class: AdminBundle\Validator\Constraints\ConstraintsUsuarioUnicoValidator
+        tags:
+            - { name: validator.constraint_validator, alias: usuario_unico }
+        arguments: ["@service_container"]
+    
+    admin.valid.email.unico:
+        class: AdminBundle\Validator\Constraints\ConstraintsEmailUnicoValidator
+        tags:
+            - { name: validator.constraint_validator, alias: usuario_unico }
+        arguments: ["@service_container"]
+        
+    inder.handler.session_idle:
+        class: AdminBundle\Handler\SessionIdleHandler
+        arguments: ["@session", "@security.token_storage", "@router", %session_max_idle_time%,"@service_container"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+            
+    form.type.direccion:
+        class: LogicBundle\Form\DireccionType
+        arguments: []
+        tags:
+            - { name: form.type, alias: direccion }   
+            
+    form.type.borrarCampo:
+        class: LogicBundle\Form\BorrarCampoType
+        arguments: []
+        tags:
+            - { name: form.type, alias: borrarCampo }   
+            
+    form.type.comuna:
+        class: LogicBundle\Form\ComunaType
+        tags:
+            - { name: form.type, alias: comuna }
+        arguments: ["@service_container"]

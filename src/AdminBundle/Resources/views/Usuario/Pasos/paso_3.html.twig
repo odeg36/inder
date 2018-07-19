@@ -1,0 +1,115 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+
+{% block title %}{{organizacionId != ""?'Actualización de datos':'Registro'}}{% endblock %}
+{% block sonata_breadcrumb %}
+    {% if organizacionId != ""%}
+        <div class="hidden-xs">
+            <ol class="nav navbar-top-links breadcrumb">
+                <ol class="nav navbar-top-links breadcrumb">
+                    <li>
+                        <a href="{{path('sonata_admin_dashboard')}}">
+                            <i class="fa fa-home"></i>                                        
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{path('admin_logic_organizaciondeportiva_list')}}">
+                            {{'Organizacion Deportiva List'|trans}}                                        
+                        </a>
+                    </li>
+                    <li class="active">
+                        <span>{{'Edición de organismo'|trans}}</span>
+                    </li>
+                </ol>
+            </ol>
+        </div>
+    {% endif %}
+{% endblock sonata_breadcrumb %}
+
+{% block sonata_page_content %}
+    <section class="content">
+        {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+        {% block sonata_admin_content %}
+            <form 
+                name="{{form.vars.id}}" 
+                method="{{form.vars.method}}" 
+                id="formulario_disciplina" 
+                action="{{ path('info_deportistas', {'organismo':organizacionId})}}"
+                novalidate="true">            
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 titulos">
+                            <h4>
+                                {% if organizacionId != "" %}
+                                    {{'Actualización de datos'|trans}}
+                                {% else %}
+                                    {{'formulario_registro.solicitudregistro'|trans}}
+                                {% endif %}
+                            </h4>
+                        </div>
+                    </div>
+                    <!-- Solicitud-registro-pasos -->
+                    <div class="row">
+                        <div class="col-md-4 iconoText2">
+                            {% include 'AdminBundle:Usuario/Pasos:iconos.html.twig' with {vistaPaso: 3} %}
+                        </div>
+                        <div class="col-md-8 fondoAzul2">
+                            <div class="infoBox row">
+                                <!-- Fútbol -->
+                                <div class="col-xs-12 col-sm-12 col-md-12 uno contenedorInfoUno">
+                                    <div class="col-sm-12 col-md-12">
+                                        <label>{{ 'formulario_registro.deportistas' | trans }}</label>
+                                        <p>{{ 'formulario_registro.asociar.deportista' | trans }}</p>
+                                    </div>
+                                    <div class="deportista">
+                                        <div class="col-md-12 padding">
+                                            <section class="col-xs-12 error-mesajes">
+                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                            </section>
+                                            {%
+                                                form_theme form
+                                                    'AdminBundle:Usuario:camposDinamicos/deportistas.html.twig'
+                                                    'jquery.collection.html.twig'
+                                            %}
+                                            {{ form_row(form.disciplinaOrganizaciones) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                    <div class="col-md-12 division"></div>
+                                    <div class="col-md-12">
+                                        <a href="{{ path('info_organigrama', {'organismo':organizacionId}) }}">
+                                            <button type="button" class="btn btnVerde">
+                                                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                                {% trans %}formulario_registro.atras{% endtrans %}
+                                            </button>
+                                        </a>
+                                        {% if organizacion.tipoEntidad.abreviatura == "END" %}
+                                            {{ form_widget(form.save, { 'id': 'btnterminaRegistro', 'class' : 'btn btnVerde' }) }}
+                                        {% else %}
+                                            {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            {% endblock sonata_admin_content %}
+    </section>
+
+    <script type="text/javascript">
+        $('.deportistas').collection({
+            drag_drop: '',
+            allow_up: '',
+            add: '<a href="#"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></a>',
+            remove: '<a href="#"><i class="fa fa-minus-circle fa-2x" aria-hidden="true"></i></a>',
+            up: '',
+            down: '',
+            duplicate: '',
+            add_at_the_end: true,
+            max: 100000
+        });
+    </script>
+{% endblock sonata_page_content %}

@@ -1,0 +1,31 @@
+services:
+    app.logic_twig_extension:
+        class: AdminBundle\Twig\LogicExtension
+        arguments:
+            - '@service_container'
+        tags:
+            - { name: twig.extension }
+            
+    app.twig_extension_getOferta:
+        class: AdminBundle\Twig\ObtenerOFerta
+        arguments:
+            - '@service_container'
+        tags:
+            - { name: twig.extension }
+            
+    app.twig_extension_getBanner:
+        class: AdminBundle\Twig\ObtenerBanner
+        arguments:
+            - '@service_container'
+        tags:
+            - { name: twig.extension }
+
+
+    app.twig_extension_getReserva:
+        class: AdminBundle\Twig\ObtenerReserva
+        arguments:
+            - '@service_container'
+        tags:
+            - { name: twig.extension }
+
+

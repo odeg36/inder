@@ -1,0 +1,195 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+        .breadcrumb {
+            padding: 8px 15px !important;
+            margin-bottom: 20px !important;
+            list-style: none !important;
+            background-color: #f5f5f5 !important;
+            border-radius: 4px !important;
+            float: inherit !important;
+        }
+    </style>
+{% endblock %}
+{% block title %}AdminBundle:Registro:campo{% endblock %}
+{% block sonata_page_content %}
+    {% block sonata_admin_content %}
+        <!-- Content Wrapper. Contains page content -->
+        <div class="">
+
+            <!-- Migas de pan -->
+            <section class="container-fluid">
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                    <li class="active">Resultados</li>
+                </ol>
+            </section>
+            <!-- formulario -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_escenario_deportivo.title{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Categoria Ambiental -->
+                <div class="row">
+                   
+                    <div class="col-md-12 fondoAzul2">
+                        {{ form_start(form, {'attr': {'id': 'formulario_campo', novalidate: 'true'} } ) }}
+                            <div class="infoBox row">
+                                <div class="col-xs-12 col-sm-12 col-md-6 contenedorInfoUno">
+                                    <div>
+                                        <strong>
+                                        {% if nombreJugador1.nombre is defined %}
+                                            {{nombreJugador1.nombre}}
+                                        {% else %}
+                                            {{nombreJugador1}}
+                                        {% endif %}                                            
+                                        </strong>
+                                    </div>
+                                    <div class="col-md-12">
+                                        {{form_label(form.puntosCompetidorUno)}}
+                                        {{form_widget(form.puntosCompetidorUno)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.puntosCompetidorUno.vars.errors }%}
+                                    </div>
+                    
+                                    <div class="col-md-12 faltasEncuentroJugador1" >
+                                        <section class="col-xs-12 error-mesajes">
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.faltasEncuentroJugador1.vars.errors }%}
+                                        </section>
+                                        {%
+                                            form_theme form
+                                                'AdminBundle:Escalera:tipos_faltas.html.twig'
+                                                'jquery.collection.html.twig'
+                                        %}
+                                        {{ form_row(form.faltasEncuentroJugador1) }}
+                                    </div>
+
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 contenedorInfoUno">
+                                    <div>
+                                        <strong>
+                                         {% if nombreJugador1.nombre is defined %}
+                                            {{nombreJugador2.nombre}}
+                                        {% else %}
+                                            {{nombreJugador2}}
+                                        {% endif %}
+                                        </strong>
+                                    </div>
+                                    
+                                    <div class="col-md-12">
+                                        {{form_label(form.puntosCompetidorDos)}}
+                                        {{form_widget(form.puntosCompetidorDos)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.puntosCompetidorDos.vars.errors }%}
+                                    </div>
+                                
+                                    <div class="col-md-12 faltasEncuentroJugador2" >
+                                        <section class="col-xs-12 error-mesajes">
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.faltasEncuentroJugador2.vars.errors }%}
+                                        </section>
+                                        {%
+                                            form_theme form
+                                                'AdminBundle:Escalera:tipos_faltas.html.twig'
+                                                'jquery.collection.html.twig'
+                                        %}
+                                        {{ form_row(form.faltasEncuentroJugador2) }}
+                                    </div>
+                                </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 dos">
+                                    <div class="col-md-12 division"></div>
+                                <div class="col-md-12">
+                                    <span></span>
+
+                                    <div class="col-md-12">
+                                        <a class="btn btn-cancelar" href="{{ admin.generateUrl('list', {id: eventoId , tipo: tipoDeSistemaDeJuego}) }}"><i class="fa fa-chevron-left" aria-hidden="true"></i>{{ 'formulario.accion.cancelar'|trans({}) }}</a>
+                                        {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                    </div>
+                                    <div style="display: none;">
+                                       
+                                    </div>
+                                </div> 
+                            </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.content-wrapper -->
+    {% endblock sonata_admin_content %}
+    <script type="text/javascript">
+
+
+        $('.faltasEncuentroJugador1-collection').collection({
+                name_prefix: '{{ form.faltasEncuentroJugador1.vars.full_name }}',
+                drag_drop: '',
+                allow_up: '',
+                add:'<a href="#" class="btn btnVerde btnSize add_division_link "><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar Falta</a>',
+                remove:'<a href="#" class="btn btnRojo btnSize add_division_link"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar Falta</a>',
+                up: '',
+                down: '',
+                duplicate: '',
+                add_at_the_end: true,
+                after_add: function(collection, element) {
+                    inder.encuentro_tres.setSelect2(element.attr('data-id'));
+                }
+            });
+        $('.faltasEncuentroJugador2-collection').collection({
+                name_prefix: '{{ form.faltasEncuentroJugador2.vars.full_name }}',
+                drag_drop: '',
+                allow_up: '',
+                add:'<a href="#" class="btn btnVerde btnSize add_division_link "><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar Falta</a>',
+                remove:'<a href="#" class="btn btnRojo btnSize add_division_link"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar Falta</a>',
+                up: '',
+                down: '',
+                duplicate: '',
+                add_at_the_end: true,
+                after_add: function(collection, element) {
+                    inder.encuentro_tres.setSelect2(element.attr('data-id'));
+                }
+            });
+
+
+            function isNumberKey(evt)
+            {
+                var charCode = (evt.which) ? evt.which : event.keyCode;
+                console.log(charCode);
+                if (charCode != 46 && charCode != 45 && charCode > 31
+                        && (charCode < 48 || charCode > 57))
+                    return false;
+
+                return true;
+            }
+
+            $('#faltas_encuentro_sistema_tres_puntosCompetidorUno').keypress(function(eve) {
+                if ((eve.which != 46 || $(this).val().indexOf('.') != -1) && (eve.which < 48 || eve.which > 57) || (eve.which == 46 && $(this).caret().start == 0) ) {
+                eve.preventDefault();
+            }
+     
+
+            $('#faltas_encuentro_sistema_tres_puntosCompetidorUno').keyup(function(eve) {
+                if($(this).val().indexOf('.') == 0) {    $(this).val($(this).val().substring(1));
+                }
+                });
+            });
+
+
+            $('#faltas_encuentro_sistema_tres_puntosCompetidorDos').keypress(function(eve) {
+                if ((eve.which != 46 || $(this).val().indexOf('.') != -1) && (eve.which < 48 || eve.which > 57) || (eve.which == 46 && $(this).caret().start == 0) ) {
+                eve.preventDefault();
+            }
+     
+
+            $('#faltas_encuentro_sistema_tres_puntosCompetidorDos').keyup(function(eve) {
+                if($(this).val().indexOf('.') == 0) {    $(this).val($(this).val().substring(1));
+                }
+                });
+            });
+
+            
+    </script>
+{% endblock sonata_page_content %}

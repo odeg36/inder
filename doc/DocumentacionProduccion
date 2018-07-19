@@ -1,0 +1,44 @@
+
+Para hacer fixtures, el comando es:
+
+php bin/console doctrine:fixtures:load --fixtures="src/LogicBundle/DataFixtures/ORM/Produccion" --append
+
+Se hace uso de las sigueintes librerias: 
+1. "willdurand/js-translation-bundle": "^2.6"
+    Permite usar los archivos de traducción desde JS
+    instalacion: 
+        1. app/AppKernel.php
+            new Bazinga\Bundle\JsTranslationBundle\BazingaJsTranslationBundle(),
+        2. app/config/routing.yml
+            _bazinga_jstranslation:
+                resource: "@BazingaJsTranslationBundle/Resources/config/routing/routing.yml"
+        3. bin/console assets:install --symlink web
+        4. <script src="{{ asset('bundles/bazingajstranslation/js/translator.min.js') }}"></script>
+        5. <html lang="{{ app.request.locale|split('_')[0] }}">
+        6. <script src="{{ url('bazinga_jstranslation_js') }}"></script>
+        7. bin/console bazinga:js-translation:dump
+        8. Usar en el JS: Translator.trans('key', {}, 'DOMAIN_NAME');
+
+    Para mas información ingresar a: https://github.com/willdurand/BazingaJsTranslationBundle/blob/master/Resources/doc/index.md
+                
+
+2. "friendsofsymfony/jsrouting-bundle": "^1.6"
+    Permite usar los routings desde JS
+    Instalacion: 
+        1. app/AppKernel.php
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+        2. app/config/routing.yml
+            fos_js_routing:
+                resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+        3. bin/console assets:install --symlink web
+        4. bin/console fos:js-routing:dump 
+        5. <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        6. <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+        7. Usar en el JS: Routing.generate('route_name', /* your params */)
+    
+    Para mas información ingresar a: https://symfony.com/doc/master/bundles/FOSJsRoutingBundle/index.html
+
+3. Ckeditor "egeloen/ckeditor-bundle": "^5.0"
+    Instalar la libreria necesasria para su funcionamiento.
+    php bin/console ckeditor:install
+    php bin/console assets:install web

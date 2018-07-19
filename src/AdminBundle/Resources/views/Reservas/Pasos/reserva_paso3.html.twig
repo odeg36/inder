@@ -1,0 +1,159 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.1/fullcalendar.min.css">
+
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+    <style>
+        .showError {
+            background-color: red;
+        }
+    </style>
+
+{% endblock %}
+
+{% block title %}AdminBundle:Usuario:registro{% endblock %} 
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_escenariodeportivo_list') }}">{% trans %}formulario_escenario_deportivo.escenarios_deportivos{% endtrans %}</a></li>
+        <li><a href="{{ url('admin_logic_reserva_list') }}">{% trans %}titulo.reservas{% endtrans %}</a></li>
+        <li class="active">{% trans %}formulario_reserva.crear{% endtrans %}</li>
+    </ol>                                                        
+{% endblock %}
+
+{% block sonata_page_content %}
+    <section class="content">
+        {% block sonata_admin_content %}
+            {{ form_start(form, {'attr': {'id': 'formulario_reserva_paso1', novalidate: 'true'} } ) }}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_reserva.solicitudregistro{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Solicitud-registro-pasos -->
+                <div class="row">
+                    <div class="col-md-4 iconoText2">
+                        {% include 'AdminBundle:Reservas/Pasos:iconos.html.twig' with {vistaPaso: 3} %}
+                    </div>
+                    <div class="col-md-8 fondoAzul2">
+                        <div class="infoBox row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 contenedorInfoUno">
+                                <div class="col-sm-12 col-md-12">
+                                    <section class="col-xs-12 error-mesajes">
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                    </section>                                        
+                                    <label>{{'formulario_reserva.labels.paso_tres.deportistas'|trans}}</label>
+                                    {%
+                                            form_theme form
+                                                'AdminBundle:Reservas:info_division.html.twig'
+                                                'jquery.collection.html.twig'
+                                    %}
+                                    {{ form_row(form.divisiones) }}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.divisiones.vars.errors }%}
+                                </div>
+                                <div class="col-md-12 OpcionUsuarioReserva opcionesCampo " data-val="{{tipoEntrada}}" >
+                                    {%
+                                            form_theme form
+                                                'AdminBundle:Reservas/Pasos:opcion.html.twig'
+                                                'jquery.collection.html.twig'
+                                    %}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                <div class="col-md-12 division"></div>
+                                <div class="col-md-12">
+                                    <a type="button" class="btn btnNaranja" onclick="inder.reserva.cancelarReserva()">
+                                        <i class="fa fa-chevron-left"></i>
+                                        {{'Cancelar'|trans}}
+                                    </a>
+                                    <a href="{{ path('admin_logic_reserva_paso2', { 'id':idreserva } ) }}" class="btn btnVerde">
+                                        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                        {% trans %}formulario_reserva.labels.paso_tres.anterior{% endtrans %}
+                                    </a>
+                                    <span></span>
+                                    {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                    <div style="display: none;">
+                                        {{ form_rest(form) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span id="alertas" data-tituloalerta="{% trans %}formulario_reserva.alertas.tituloalerta {% endtrans %}" data-yaseleccionada="{% trans %}formulario_registro.alertas.disciplinasyaseleccionada {% endtrans %}" data-revisecampos="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-registrado="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-mensajeerror="{% trans %}formulario_registro.alertas.mensajeerror {% endtrans %}" data-titulook="{% trans %}formulario_registro.alertas.titulo_ok {% endtrans %}"></span>
+            <span id="url" data-infoorganigrama="{{ path("info_organigrama") }}"></span>
+            {{ form_end(form) }}
+        {% endblock sonata_admin_content %}
+    </section>
+
+    <script type="text/javascript">
+        $(function () {
+        {%for k, divisionReserva in divisiones %}
+            {%set minimo = 0%}
+            {%set maximo = 0%}
+            {%set edadMinima = divisionReserva.division.edadMinima %}
+            {%for tipoReserva in divisionReserva.division.tiposReservaEscenarioDeportivo %}
+                {%if tipoReserva.tipoReserva.id == reserva.tipoReserva.id%}
+                    {%for tipo in tipoReserva.tipoReservaEscenarioDeportivoDivisiones %}
+                        {%if divisionReserva.division.id == tipo.divisionTipoReserva.id%}
+                            {% set minimo = tipo.usuariosMinimos%}
+                            {% set maximo = tipo.usuariosMaximos%}
+                        {%endif%}
+                    {%endfor%}
+                {%endif%}
+            {%endfor%}
+            {%set texto = 'formulario_reserva.labels.paso_tres.info_uno'|trans({'%ubicacion%':divisionReserva.division.nombre, '%minimo%': minimo, '%maximo%': maximo}) ~ ' '%}
+            {% set texto = texto ~ 'formulario_reserva.labels.paso_tres.info_tres'|trans({'%edad%': edadMinima}) ~ ' '%}
+            {% set texto = texto ~ 'formulario_reserva.labels.paso_tres.info_cuatro'|trans%}
+                    var hidden = '<input type="hidden" id="elementos_{{k}}" value="{{maximo}}">';
+                    $("#usuarios_division_reserva_type_divisiones_{{k}}").prepend("{{texto}}");
+                    $("#usuarios_division_reserva_type_divisiones_{{k}}").prepend(hidden);
+        {%endfor%} 
+                    $('.coleccionDivisiones').collection({
+                        name_prefix: '{{ form.divisiones.vars.full_name }}',
+                        drag_drop: '', allow_up: '',
+                        add: ' ',
+                        remove: ' ',
+                        up: '', down: '', duplicate: '', add_at_the_end: true,
+                        children: [{
+                                selector: '.coleccionUsuarios',
+                                drag_drop: '', allow_up: '',
+                                add: '<span class="col-xs-12 col-md-12 text-center"><a class="btn btn-success" href="#"><i class="fa fa-plus-circle" aria-hidden="true"> ' + Translator.trans("formulario_evento.labels.jugador_evento.agregar_nuevo") + '</a></span>',
+                                remove: '<a class="btn btn-danger btnSize collection-remove collection-action" href="#"><i class="fa fa-minus-circle" aria-hidden="true"></i></a>',
+                                up: '', down: '', duplicate: '', add_at_the_end: true,
+                                after_add: function (collection, element) {
+                                    var cantidad = parseInt($(element).find('input.elementos-division').val());
+                                    var maximo = parseInt($(element).find('input.maximo-elementos-division').val());
+                                    cantidad++;
+                                    if (cantidad == maximo) {
+                                        var padre = $(element).parents("div.coleccionUsuarios");
+                                        $(padre).find("a.btn-success").addClass("hidden");
+                                    }
+                                },
+                                before_remove: function (collection, element) {
+                                    var cantidad = parseInt($(element).find('input.elementos-division').val());
+                                    var maximo = parseInt($(element).find('input.maximo-elementos-division').val());
+                                    if (cantidad < maximo) {
+                                        var padre = $(element).parents("div.coleccionUsuarios");
+                                        $(padre).find("a.btn-success").removeClass("hidden");
+                                    }
+                                }
+                            }],
+
+                    });
+                });
+
+    </script>
+    <!-- /.content-wrapper -->
+{% endblock sonata_page_content %}

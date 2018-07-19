@@ -1,0 +1,29 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block title %}Error{% endblock %}
+{% block sonata_page_content %}
+    <!-- Error -->
+    <section class="content">
+        <div class="error-page">
+            <div class="centrar">
+                <h2 class="headline"> {{ status_code}}</h2>
+            </div>
+            <div class="centrar">
+                <h3>
+                    <i class="fa fa-warning texto-azul"></i> Oops! 
+                    {% if status_code == '404'%}
+                        {{'error.pagina_error.404'|trans}}
+                    {% elseif status_code == '403'%}
+                        {{'error.pagina_error.403'|trans}}
+                    {% endif %}
+                    <br>
+                    {{'error.pagina_error.otro'|trans}}
+                </h3>
+                <p>
+                    <a href="{{path('sonata_admin_dashboard')}}">{{'titulo.inicio'|trans}}</a>
+                </p>
+            </div>
+            <!-- /.error-content -->
+        </div>
+        <!-- /.error-page -->
+    </section>
+{% endblock sonata_page_content %}

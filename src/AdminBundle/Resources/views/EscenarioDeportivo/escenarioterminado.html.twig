@@ -1,0 +1,47 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends base_template %}
+
+{% block title %}
+    {{ "title_create"|trans({}, 'SonataAdminBundle') }}
+{% endblock %}
+
+{% block navbar_title %}
+    {{ block('title') }}
+{% endblock %}
+
+
+{% block sonata_admin_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 titulos">
+                <h4>{% trans %}formulario_escenario_deportivo.title{% endtrans %}</h4>
+            </div>
+        </div>
+        <!-- Solicitud-registro-pasos -->
+        <div class="row">
+            <div class="col-md-4 iconoText2">
+                {% include 'AdminBundle:EscenarioDeportivo/Pasos:iconos.html.twig' with {vistaPaso: 7, 'idescenario': idescenario, 'mostrar4142': validacionTipoEscenario} %}
+            </div>
+            <div class="col-md-8 fondoAzul2">
+                <div class="infoBox felicitaciones">
+                    <div class="circuloIcono">
+                        <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                    </div>
+                    <p>Escenario registrado con éxito<br>
+                        <span>{% trans %}formulario_registro.felicitaciones_gracias{% endtrans %}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock sonata_admin_content %}

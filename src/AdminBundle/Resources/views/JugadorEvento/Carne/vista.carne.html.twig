@@ -1,0 +1,51 @@
+<div class="modelo-carne padding-total10 borde-radio d-flex">
+    <div class="modal-informacion">
+        <div class="modal-btn-img">
+            <img src="{{ app.request.getSchemeAndHttpHost() }}{%if carne.file != null%}/uploads/{{carne.file}} {%else%}/bundles/admin/img/logos-inder-alcaldia.png{%endif%}">
+        </div>
+        <div class="modal-datos p-right10">
+            {%if carne.mostrarNombre%}<label>{{ jugadorEvento.usuarioJugadorEvento.fullname }}</label>{%endif%}
+                {%if carne.mostrarEvento%}
+                    <p class="margen-p"><label>{{ jugadorEvento.evento.nombre }}</label></p>
+                {%endif%}
+                {% if jugadorEvento.EquipoEvento is defined and jugadorEvento.EquipoEvento is not null and carne.mostrarEquipo %}
+                    <p class="margen-p">{{ 'carne.equipo' | trans }}: {{ jugadorEvento.EquipoEvento.nombre }}</p>
+                {% endif %}
+                {%if carne.mostrarFechaNacimiento%}
+                    <p class="margen-p">{{ 'formulario_registro.pnatural_informacion.fecha_nacimiento' | trans }}: {{ jugadorEvento.usuarioJugadorEvento.dateOfBirth | date("Y-m-d") }}</p>
+                {%endif%}
+                {%if carne.mostrarColegio%}
+                    <p class="margen-p">{{ 'carne.colegio' | trans }}: {{ jugadorEvento.usuarioJugadorEvento.establecimientoEducativo }}</p>
+                {%endif%}
+                {%if carne.mostrarComuna and jugadorEvento.usuarioJugadorEvento.barrio is not null%}
+                    <p class="margen-p">{{ 'carne.comuna' | trans }}: {{ jugadorEvento.usuarioJugadorEvento.barrio.comuna }}</p>
+                {%endif%}
+                {%if carne.mostrarRol%}
+                    <p class="margen-p">{{ 'carne.rol' | trans }}: </p>
+                {%endif%}
+        </div>
+    </div>
+    <div class="modal-foto">
+        <div class="foto-carne">
+            {% set foto = '/bundles/admin/img/foto-perfil-carne.png'%}
+            {% if jugadorEvento.usuarioJugadorEvento.getImagenPerfil is defined and jugadorEvento.usuarioJugadorEvento.getImagenPerfil is not null %}
+                {% set foto = '/uploads/' ~ jugadorEvento.usuarioJugadorEvento.getImagenPerfil %}
+            {% endif %}
+            <img src="{{ app.request.getSchemeAndHttpHost() ~ foto }}">
+        </div>
+        <div class="deporte-rama">
+            {%if carne.mostrarDeporte%}
+                <label>{{ jugadorEvento.evento.disciplina.nombre }}</label>
+            {%endif%}
+            {%if carne.mostrarRama%}
+                <p>
+                    {% if jugadorEvento.usuarioJugadorEvento.gender == 'f' %}
+                        {{ 'gender_female' | trans }}
+                    {% elseif jugadorEvento.usuarioJugadorEvento.gender == 'm' %}
+                        {{ 'gender_male' | trans }}
+                    {% endif %}
+                </p>
+            {%endif%}
+        </div>
+    </div>
+</div>

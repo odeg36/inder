@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <!-- Bootstrap 3.3.7 -->
+        <link rel="stylesheet" href="{{ absolute_url(asset('bundles/sonatacore/vendor/bootstrap/dist/css/bootstrap.min.css')) }}">
+    </head>
+    <body style="background-color: rgba(236, 230, 230, 0.2); padding-top: 60px ">
+        <table class="table" style="width: 600px; margin: auto; text-align: center">
+            <tbody style="-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2); -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2); box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2); border-radius: 0 0 10px 10px">
+                <tr>
+                    <td style="padding: 50px 120px; border: none; background-color: #fff;">
+                        <img src="{{ absolute_url(asset('bundles/admin/img/icono-email-i.png')) }}">
+                        <h2 style="border-bottom: 2px solid #0099b1;">{% trans %}correos.reserva.titulo{% endtrans %}</h2>
+                    </td>
+                </tr>
+                <tr style="background-color: #ecf0f5;">
+                    <td style="padding: 50px 70px; border: none; text-align:left !important;">
+                        <p><strong>{% trans %}formulario_reserva.labels.paso_cinco.fecha{% endtrans %}: </strong> <span>{{objeto.fechaInicio|date('d-m-Y')}} y {{objeto.fechaFinal|date('d-m-Y')}}</span></p>
+                        {% for programacion in objeto.programaciones %}
+                            {%if programacion.inicioManana and programacion.inicioTarde%}
+                                <ul>
+                                    <li>{{programacion.dia}} {{programacion.inicioManana|date("H:i")}} - {{programacion.finTarde|date("H:i")}}</li>
+                                </ul>
+                            {%elseif programacion.inicioManana %}
+                                <ul>
+                                    <li>{{programacion.dia}} {{programacion.inicioManana|date("H:i")}} - {{programacion.finManana|date("H:i")}}</li>
+                                </ul>
+                            {%elseif programacion.inicioTarde %}
+                                <ul>
+                                    <li>{{programacion.dia}} {{programacion.inicioTarde|date("H:i")}} - {{programacion.finTarde|date("H:i")}}</li>
+                                </ul>
+                            {%endif%}
+                        {% endfor %}
+                        {%set divisiones = "" %}
+                        {%for divisionReserva in objeto.divisiones%}
+                            {%set divisiones = divisiones ~ divisionReserva.division.nombre ~ ", "%}
+                        {%endfor%}
+                        <p><strong>{% trans %}formulario_reserva.labels.paso_cinco.division{% endtrans %}: </strong> <span>{{divisiones}}</span></p>
+
+                        {% if objeto.escenarioDeportivo != null %}
+                            {% if objeto.escenarioDeportivo.direccion != null %}
+                                <p><strong>{% trans %}formulario_reserva.labels.paso_cinco.direccion{% endtrans %}: </strong> <span>{{objeto.escenarioDeportivo.direccion}}</span></p>
+                            {% endif %}
+                        {% endif %}
+
+                        <p><strong>{% trans %}formulario_reserva.labels.paso_cinco.telefono{% endtrans %}: </strong> <span>{{objeto.escenarioDeportivo.telefono}}</span></p>
+                        <p><strong>{% trans %}correos.reserva.usuarios{% endtrans %}: </strong> <span>{{objeto.usuariosString | raw}}</span></p>
+                        <p>
+                            {{objeto.escenarioDeportivo.informacionReserva | raw }}
+                        </p>
+                        <p><strong>{% trans %}formulario_reserva.labels.paso_cinco.recuerda{% endtrans %}: </strong><br>
+                            <span>- {% trans %}formulario_reserva.labels.paso_cinco.info{% endtrans %}</span><br>
+                            <span>- {% trans %}formulario_reserva.labels.paso_cinco.info_cero{% endtrans %}</span><br>
+                            <span>- {% trans %}formulario_reserva.labels.paso_cinco.info_uno{% endtrans %}</span><br>
+                        </p>
+                        <a href="{{path('sonata_admin_dashboard')}}">
+                            <img style="cursor: pointer; margin-top: 15px" src="{{ absolute_url(asset('bundles/admin/img/btn-email.png')) }}">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: none; padding: 0">
+                        <img style="width: 600px;" src="{{ absolute_url(asset('bundles/admin/img/barra-verde-email.png')) }}">
+                    </td>
+                </tr>
+                <tr style="background-color: #0099b1; display: flex; align-items: center; justify-content: center; padding: 30px; border-radius: 0 0 10px 10px;">
+                    <td style="border: none;">
+                        <img src="{{ absolute_url(asset('bundles/admin/img/logo-email.png')) }}">
+                        <p><a href="" style="color: #fff; font-size: 16px;">www.inder.gov.co</a></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

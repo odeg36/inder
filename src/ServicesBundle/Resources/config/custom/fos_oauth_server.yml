@@ -1,0 +1,21 @@
+fos_oauth_server:
+    db_driver: orm       # Driver availables: orm, mongodb, or propel
+    client_class:        ITO\OAuthServerBundle\Entity\Client
+    access_token_class:  ITO\OAuthServerBundle\Entity\AccessToken
+    refresh_token_class: ITO\OAuthServerBundle\Entity\RefreshToken
+    auth_code_class:     ITO\OAuthServerBundle\Entity\AuthCode
+    
+    service:
+        user_provider: fos_user.user_provider.username
+        options:
+            supported_scopes: user
+            # Prototype
+            #key:                []
+
+            # Example
+            # supported_scopes: string
+
+            # Changing tokens and authcode lifetime
+            access_token_lifetime: 86400
+            refresh_token_lifetime: 1209600
+            #auth_code_lifetime: 30    

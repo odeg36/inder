@@ -1,0 +1,37 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+
+{% block sonata_wrapper %}
+    <div class="wrapper">
+        <div class="content-wrapper alto-contenido divContenidoProblemasSesion">
+            <!-- formulario -->
+            <div class="container">
+                <!-- Información general -->
+                <div class="row">
+                    <div class="col-md-12 marginB0">
+                        <div class="box-header">
+                            <h3 class="box-title">{{ 'formulario.problema_inicio_sesion.titulo'|trans({}) }}</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-12 campoGris color-azul">
+                        <div class="col-md-6 atencion">
+                            <a target="_blank"
+                               href="http://www.inder.gov.co/es/atencion-al-ciudadano/contacto">
+                                <i class="fa fa-users fa-5x"></i>
+                                <label>{{ 'formulario.problema_inicio_sesion.atencion_ciudadano'|trans({}) }}</label>
+                            </a>
+                        </div>
+                        <div class="col-md-6 pregunta">
+                            <a target="_blank"
+                               href="http://www.inder.gov.co/es/atencion-al-ciudadano/preguntas-frecuentes?field_categoria_pregunta_frecuen_target_id=23&title=&items_per_page=10">
+                                <i class="fa fa-question-circle fa-5x"></i>
+                                <label>{{ 'formulario.problema_inicio_sesion.preguntas_frecuentes'|trans({}) }}</label>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.content-wrapper -->
+{% endblock sonata_wrapper %}
+

@@ -1,0 +1,27 @@
+<div class="modal fade" id="motivoCancelacion2Id" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="background: white;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{ render(controller('AdminBundle:ReservaAdmin:motivoCancelacion', { 'id': object.id, '_sonata_admin': app.request.get('_sonata_admin') })) }}
+            </div>
+            <div class="modal-footer centrar marginT0">
+                <a id="modalCancelarAction" href="{{ admin.generateUrl('cancelarReserva', {id: object.id}) }}" 
+                title="{{ 'btn.accion.crear'|trans }}" style="margin-right:20px;">
+                    <button type="button" id="btnRechazar2" class="btn btnSize btn-danger" data-objeto="{{object.id}}">
+                        <i class="fa fa-times-circle fa-2x" aria-hidden="true"></i>
+                        {{ 'btn.cancelar_reserva'|trans }}
+                    </button>
+                </a>
+                <button type="button" class="btn btnSize btn-cancelar" data-dismiss="modal" id="botonPrueba">
+                    <i class="fa fa-chevron-left"></i>
+                    {{ 'btn.cerrar' | trans }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

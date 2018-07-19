@@ -1,0 +1,5 @@
+imports:
+    - { resource: services.yml }
+    - { resource: custom/nelmio.yml }
+    - { resource: custom/fos_oauth_server.yml }
+    - { resource: custom/fos_rest.yml }

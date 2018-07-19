@@ -1,0 +1,153 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+    </style>
+{% endblock %}
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_plananualmetodologico_list') }}">{% trans %}Plan Anual Metodologico List{% endtrans %}</a></li>        
+        <li class="active">
+        {% if idplananualmetodologico == 0 %}
+            {% trans %}btn.accion.crear{% endtrans %}
+        {% else %}
+            {{ nombre }}
+        {% endif %}
+        </li>
+    </ol>
+{% endblock %}
+{% block sonata_page_content %}
+    {% block sonata_admin_content %}
+       <!-- Content Wrapper. Contains page content -->
+       <div class="">
+            <!-- formulario -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_plan_anual_metodologico.title{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Planes Anuales Metodologicos -->
+                <div class="row">
+                    <div class="col-md-4 iconoText2">
+                        {% include 'AdminBundle:PlanAnualMetodologico/Pasos:iconos.html.twig' with {vistaPaso: 3, 'idplananualmetodologico' : idplananualmetodologico, 'nombre' : nombre} %}
+                    </div>
+                    <div class="col-md-8 fondoAzul2">
+                        {{ form_start(form, {'attr': {'id': 'formulario_plan_anual_metodologico', novalidate: 'true'} } ) }}
+
+                            <div class="infoBox row">
+                            {% if enfoqueId == 1 %}
+                                <div class="col-md-12">
+                                    {{form_widget(form.ponderacionContenidos, { 'id': 'ponderacionContenidos' })}}
+                                    {{form_label(form.ponderacionContenidos)}}
+                                </div>
+                            {% endif %}
+                                <div class="col-xs-12 col-sm-12 col-md-12 contenedorInfoUno">
+                                    <div class="col-md-12">
+                                        <section class="col-xs-12 error-mesajes">
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.contenidos.vars.errors }%}
+                                        </section>
+                                        {% if enfoqueId == 1 %}
+                                            {%
+                                                form_theme form
+                                                    'AdminBundle:PlanAnualMetodologico:contenidos.html.twig'
+                                                    'jquery.collection.html.twig'
+                                            %}
+                                        {% endif %}
+
+                                        {% if enfoqueId == 2 %}
+                                            {%
+                                                form_theme form
+                                                    'AdminBundle:PlanAnualMetodologico:contenidos2.html.twig'
+                                                    'jquery.collection.html.twig'
+                                            %}
+                                        {% endif %}
+                                        {{ form_row(form.contenidos) }}
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                    <div class="col-md-12 componente"></div>
+                                    <div class="col-md-12">
+                                        <a href="{{ path('admin_logic_plananualmetodologico_addpaso2', { 'id':idplananualmetodologico } ) }}" class="btn btnVerde">
+                                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                            Anterior
+                                        </a>
+                                        <span></span>
+                                        {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                        <div style="display: none;">
+                                            {{ form_rest(form) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    {% endblock sonata_admin_content %}
+    <script type="text/javascript">
+        var $addContenidoLink = $('<div class="col-md-12 btnCentrar" ><a href="#" class="btn btnVerde btnSize add_contenido_link"><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar contenido</a></div>');
+        var $deleteContenidoLink = $('<div class="row btnCentrar"><div class="col-md-4 btnCentrar campoGris"><a href=""><button type="button" class="btn btnSize btnRojo"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar este contenido</button></a></div></div>');
+        var $deleteContenidoLink = $('<a href=""><button type="button" class="btn btnSize btnRojo"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar este contenido</button></a>');
+        
+        $('.contenidos-collection').collection({
+            name_prefix: '{{ form.contenidos.vars.full_name }}',
+            drag_drop: '',
+            allow_up: '',
+            add:$addContenidoLink,
+            remove: $deleteContenidoLink,
+            up: '',
+            down: '',
+            duplicate: '',
+            add_at_the_end: true,
+            after_add: function(collection, element) {
+                inder.plan_anual_metodologico.setSelect2(element.attr('data-id'));
+                inder.plan_anual_metodologico.ponderacionCon();
+            },
+            after_remove: function(collection, element) {
+                inder.plan_anual_metodologico.ponderacionCon2();
+            }
+        });
+    </script>
+    <style>
+        .fileinput-cancel {
+            display: none !important;
+        }
+        .fileinput-remove {
+            display: inline !important;
+        }
+        .btn-default {
+            background-color: #c7daef !important;
+            color: #007385 !important;
+            border-color: #bbb !important;
+            -webkit-transition: background-color 0.3s ease-in-out !important;
+            transition: background-color 0.3s ease-in-out !important;
+        }
+        .btn-default:hover {
+            background-color: #007385 !important;
+            color: #c7daef !important;
+            border-color: #007385 !important;
+            -webkit-transition: background-color 0.3s ease-in-out !important;
+            transition: background-color 0.3s ease-in-out !important;
+        }
+        .btn-outline-secondary i{
+            margin: auto !important;
+        }
+        strong label{
+            color : #000000 !important;
+            margin: 0px !important;
+        }
+        .collection-actions{
+            display:none !important;
+        }
+        .margen-bottom-10{
+            margin-bottom: 15px !important;
+        }
+    </style>
+{% endblock sonata_page_content %}

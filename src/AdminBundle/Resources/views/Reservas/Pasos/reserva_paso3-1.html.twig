@@ -1,0 +1,125 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+        .breadcrumb {
+            padding: 8px 15px !important;
+            margin-bottom: 20px !important;
+            list-style: none !important;
+            background-color: #f5f5f5 !important;
+            border-radius: 4px !important;
+            float: inherit !important;
+        }
+
+        .checkboxUsuario{
+            background-color: red;
+
+        }
+        .icheckbox_square-blue{
+            margin-right: 10px;
+        }
+        label{
+            width: 95%; color:black;
+        }
+    </style>
+
+{% endblock %}
+
+{% block title %}AdminBundle:Usuario:registro{% endblock %} 
+
+{% block sonata_page_content %}
+    <section class="content">
+        {% block sonata_admin_content %}
+            {{ form_start(form, {'attr': {'id': 'formulario_reserva_paso3-1', novalidate: 'true'} } ) }}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_reserva.solicitudregistro{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Solicitud-registro-pasos -->
+                <div class="row">
+                    <div class="col-md-4 iconoText2">
+                        {% include 'AdminBundle:Reservas/Pasos:iconos.html.twig' with {vistaPaso: 3} %}
+                    </div>
+                    <div class="col-md-8 fondoAzul2">
+                        <div class="infoBox row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 contenedorInfoUno">
+                                <div class="col-md-12">
+                                    <section class="col-xs-12 error-mesajes">
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                    </section>  
+                                    <label>{% trans %}formulario_reserva.labels.paso_tres.deportistas_asistiran{% endtrans %}</label>
+                                    <div class="col-lg-12 col-md-12">
+                                        {%for k, division in form.divisiones%}
+                                            {%set nombre = division.children.division.vars.data.nombre%}
+                                            {%set texto = ""%}
+                                            {%for divisionReserva in datosDivision %}
+                                                {%set minimo = 0%}
+                                                {%set maximo = 0%}
+                                                {%set edadMinima = divisionReserva.division.edadMinima %}
+                                                {%if nombre == divisionReserva.division.nombre%}
+                                                    {%for tipoReserva in divisionReserva.division.tiposReservaEscenarioDeportivo %}
+                                                        {%if tipoReserva.tipoReserva.id == reserva.tipoReserva.id%}
+                                                            {%for tipo in tipoReserva.tipoReservaEscenarioDeportivoDivisiones %}
+                                                                {%if divisionReserva.division.id == tipo.divisionTipoReserva.id%}
+                                                                    {% set minimo = tipo.usuariosMinimos%}
+                                                                    {% set maximo = tipo.usuariosMaximos%}
+                                                                {%endif%}
+                                                            {%endfor%}
+                                                        {%endif%}
+                                                    {%endfor%}
+                                                    {%set texto = 'formulario_reserva.labels.paso_tres.info_uno'|trans({'%ubicacion%':divisionReserva.division.nombre, '%minimo%': minimo, '%maximo%': maximo}) ~ ' '%}
+                                                    {% set texto = texto ~ 'formulario_reserva.labels.paso_tres.info_tres'|trans({'%edad%': edadMinima}) ~ ' '%}
+                                                    {% set texto = texto ~ 'formulario_reserva.labels.paso_tres.info_cuatro'|trans%}
+                                                {%endif%}
+                                            {%endfor%} 
+                                            <label>{{nombre}}</label>
+                                            <p>{{texto}}</p>
+
+                                            {%for usuario in division.children.usuarios %}
+                                                <div class="col-md-12">
+                                                    <div class="col-md-1">
+                                                        {{form_widget(usuario)}}
+                                                    </div>
+                                                    <div class="col-md-11">
+                                                        {{form_label(usuario)}}
+                                                    </div>
+                                                </div>
+                                            {%endfor%}
+                                        {%endfor%}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.divisiones.vars.errors }%}
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                <div class="col-md-12 division"></div>
+                                <div class="col-md-12">
+                                    <a type="button" class="btn btnNaranja" onclick="inder.reserva.cancelarReserva()">
+                                        <i class="fa fa-chevron-left"></i>
+                                        {{'Cancelar'|trans}}
+                                    </a>
+                                    <a href="{{ path('admin_logic_reserva_paso2', { 'id':idreserva } ) }}" class="btn btnVerde">
+                                        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                        {% trans %}formulario_reserva.labels.paso_tres.anterior{% endtrans %}
+                                    </a>
+                                    <span></span>
+                                    {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                    <div style="display: none;">
+                                        {{ form_rest(form) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            {% endblock sonata_admin_content %}
+    </section>
+{% endblock sonata_page_content %}

@@ -1,0 +1,216 @@
+{% set reserva = obtenerReserva(app.user.getId())%}
+
+<!-- Información -->
+<div class="row">
+    <!-- Información general -->
+    <div class="col-md-4 perfil marginB15">
+        <div class="col-sm-4 col-md-4 imgCirculo">
+            <img src="{{ '/uploads/'~app.user.imagenPerfil }}">
+        </div>
+        <div class="col-sm-8 col-md-8  btnPerfil">
+            <div class="col-md-12">
+                {{'titulo.saludo'|trans({'%nombre%':app.user.firstname})| raw}}
+            </div>
+            <div class="col-md-12">
+                <a type="button" class="btn btnVerde btnSize" href="{{path('admin_sonata_user_user_edit',{'id':app.user.id})}}">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    {{'boton.ver_perfil'|trans}}
+                </a>
+                <a type="button" class="btn btnNaranja btnSize" href="{{path('sonata_user_admin_security_logout')}}">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    {{'boton.salir'|trans}}
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-8 marginB15">
+        <div id="carousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel" data-slide-to="0" class="active"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="{{ asset('bundles/admin/img/carousel1.jpg') }}" alt="...">
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- Oferta en 4 columnas -->
+<div class="row contenedorOfertas">
+    {% if is_granted('ROLE_ADMIN_ADMIN_AREA_LIST') or sonata_user.userAdmin.isGranted('ROLE_ADMIN_ADMIN_AREA_LIST', app.user) %}
+        <div class="col-sm-6 col-md-3 marginB15">
+            <div class="col-md-12 contenedorInfo">
+                <div class="col-md-12 imgOferta">
+                    <div class="borderOferta">
+                        <div class="bordeVerde">
+                            <div class="circuloTitulo">
+                                <h1 class="circuloVerde">{{'titulo.areas'|trans}}</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <img class="img-responsive" src="{{ asset('bundles/admin/img/rugby-responsive.jpg') }}">
+                </div>
+                <div class="col-md-12 infoOferta">
+                    {#                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>#}
+                </div>
+                <div class="col-md-12 infoOferta">
+                    <a type="button" class="btn btnVerde" href="{{path('admin_logic_area_list')}}">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                        {{ 'titulo.entrar'|trans }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if is_granted('ROLE_ADMIN_ADMIN_PROYECTO_LIST') or sonata_user.userAdmin.isGranted('ROLE_ADMIN_ADMIN_PROYECTO_LIST', app.user) %}
+        <div class="col-sm-6 col-md-3 marginB15">
+            <div class="col-md-12 contenedorInfo">
+                <div class="col-md-12 imgOferta">
+                    <div class="borderOferta">
+                        <div class="bordeNaranja">
+                            <div class="circuloTitulo">
+                                <h1 class="circuloNaranja">{{'titulo.proyectos'|trans}}</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <img class="img-responsive" src="{{ asset('bundles/admin/img/baloncesto-responsive.jpg') }}">
+                </div>
+                <div class="col-md-12 infoOferta">
+                    {#                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>#}
+                </div>
+                <div class="col-md-12 infoOferta">
+                    <a type="button" class="btn btnVerde" href="{{path('admin_logic_proyecto_list')}}">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                        {{ 'titulo.entrar'|trans }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if is_granted('ROLE_ADMIN_ADMIN_ESTRATEGIA_LIST') or sonata_user.userAdmin.isGranted('ROLE_ADMIN_ADMIN_ESTRATEGIA_LIST', app.user) %}
+        <div class="col-sm-6 col-md-3 marginB15">
+            <div class="col-md-12 contenedorInfo">
+                <div class="col-md-12 imgOferta">
+                    <div class="borderOferta">
+                        <div class="bordeMorado">
+                            <div class="circuloTitulo">
+                                <h1 class="circuloMorado">{{'titulo.estrategias'|trans}}</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <img class="img-responsive" src="{{ asset('bundles/admin/img/natacion-responsive.jpg') }}">
+                </div>
+                <div class="col-md-12 infoOferta">
+                    {#                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>#}
+                </div>
+                <div class="col-md-12 infoOferta">
+                    <a type="button" class="btn btnVerde" href="{{path('admin_logic_estrategia_list')}}">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                        {{'titulo.entrar'|trans}}
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if is_granted('ROLE_ADMIN_ADMIN_OFERTA_LIST') or sonata_user.userAdmin.isGranted('ROLE_ADMIN_ADMIN_OFERTA_LIST', app.user) %}
+        <div class="col-sm-6 col-md-3 marginB15">
+            <div class="col-md-12 contenedorInfo">
+                <div class="col-md-12 imgOferta">
+                    <div class="borderOferta">
+                        <div class="bordeAzul">
+                            <div class="circuloTitulo">
+                                <h1 class="circuloAzul">{{'titulo.ofertas'|trans}}</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <img class="img-responsive" src="{{ asset('bundles/admin/img/ciclismo-responsive.jpg') }}">
+                </div>
+                <div class="col-md-12 infoOferta">
+                    <p>{{'titulo.oferta_dashboard'|trans}}</p>
+                </div>
+                <div class="col-md-12 infoOferta">
+                    <a type="button" class="btn btnVerde" href="{{path('admin_logic_oferta_list')}}">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                        {{'titulo.entrar'|trans}}
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endif %} 
+    
+    <div class="col-sm-6 col-md-3 marginB15">
+        <a type="button" href="{{path('admin_logic_oferta_list')}}?filter[_sort_order]=ASC&filter[_sort_by]=fecha_inicial&filter[estrategia][value]=122">
+            <div class="col-md-12 contenedorInfo">
+                <div class="col-md-12">
+                    <div class="borderOferta">
+                        <div class="bordeVerde">
+                            <div class="circuloTitulo">
+                            </div>
+                        </div>
+                    </div>
+                    <img class="img-responsive" src="{{ asset('bundles/admin/img/caminando.png') }}">
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+<!-- Información general -->
+<div class="row" id="boxMargen">
+    <div class="col-md-12" id="boxPadding">
+        <div class="box bordeBox">
+            <div class="box-header">
+                <h3 class="box-title">{{'titulo.mis_reservas'|trans}}</h3>
+            </div>
+            {% if reserva|length > 0 %}
+                {% for reserva in reserva %}
+                    <div class="box-info">
+                        {% if reserva.escenarioDeportivo %}
+                            <h5>{{reserva.escenarioDeportivo.nombre}}</h5>
+                            <p>{{reserva.fechaInicio|date('l')|trans}} {{reserva.fechaInicio.date|date('d/m/Y') }}<br>
+                            <a href="{{ path('admin_logic_reserva_show', {id:reserva.id} ) }}">    
+                                <button type="button" class="btn btnVerde btnSize">
+                                    <i class="fa fa-search-plus" aria-hidden="true"></i>
+                                    {{ 'btn.crear.mostrar' | trans }}
+                                </button>
+                            </a>                    
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+       
+            <div class="btnVerTodos">
+                <a href="{{ path('admin_logic_reserva_list') }}">
+                    <button type="button" class="btn btnVerde btnSize">
+                        <i class="fa fa-search-plus" aria-hidden="true"></i>
+                        {{ 'titulo.ver.todos' | trans }}
+                    </button>                    
+                </a>
+                {% if app.user.hasRole("ROLE_ADMIN_ADMIN_RESERVA_CREATE") %}
+                    <a href="{{ path('admin_logic_reserva_create', {id:0}) }}">
+                        <button type="button" class="btn btnVerde btnSize">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            {{ 'titulo.nueva.reserva' | trans }}
+                        </button>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+</div>

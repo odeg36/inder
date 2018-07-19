@@ -1,0 +1,138 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+    </style>
+{% endblock %}
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_evento_list') }}">{% trans %}Evento List{% endtrans %}</a></li>
+        <li class="active">Crear equipo</li>
+    </ol>
+{% endblock %}
+{% block sonata_page_content %}
+    {% block sonata_admin_content %}
+        <!-- Content Wrapper. Contains page content -->
+        <div class="">
+            <!-- formulario -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}Equipo Evento Create{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Equipos Persona Natural -->
+                <div class="row">
+                    <div class="col-md-12 fondoAzul2">
+
+                        {{ form_start(form, {'attr': {'id': 'formulario_equipos_persona_natural', novalidate: 'true'} } ) }}
+                        <div class="infoBox row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 contenedorInfoUno">
+                                <div class="col-md-12">
+                                    {{form_label(form.nombre)}}
+                                    {{form_widget(form.nombre)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nombre.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    <section class="col-xs-12 error-mesajes">
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.jugadorEventos.vars.errors }%}
+                                    </section>
+                                    {%
+                                                form_theme form
+                                                    'AdminBundle:Evento/Jugadores:jugador_persona_natural.html.twig'
+                                                    'jquery.collection.html.twig'
+                                    %}
+                                    {{ form_row(form.jugadorEventos) }}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                <div class="col-md-12 division"></div>
+                                <div class="col-md-12">
+                                    <span></span>
+                                    <div class="col-md-12">
+                                        <a type="button" class="btn btnNaranja" href="{{ path('admin_logic_evento_list') }}">
+                                            <i class="fa fa-chevron-left"></i>
+                                            {{'Cancelar'|trans}}
+                                        </a>
+                                        {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                    </div>
+                                    <div style="display: none;">
+                                        {{ form_rest(form) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.content-wrapper -->
+    {% endblock sonata_admin_content %}
+    <script type="text/javascript">
+        var $addJugadorEventoLink = $('<div class="col-md-12 btnCentrar" ><a href="#" class="btn btnVerde btnSize add_actividades_link"><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar Participante</a></div>');
+        var $deleteJugadorEventoLink = $('<div class="row btnCentrar"><div class="col-md-4 btnCentrar campoGris"><a href=""><button type="button" class="btn btnSize btnRojo"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar este participante</button></a></div></div>');
+        var $deleteJugadorEventoLink = $('<a href=""><button type="button" class="btn btnSize btnRojo"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar este participante</button></a>');
+
+        $('.jugadorEquipoEvento-collection').collection({
+            name_prefix: '{{ form.jugadorEventos.vars.full_name }}',
+            drag_drop: '',
+            allow_up: '',
+            add: $addJugadorEventoLink,
+            remove: $deleteJugadorEventoLink,
+            up: '',
+            down: '',
+            duplicate: '',
+            add_at_the_end: true,
+            after_add: function (collection, element) {
+                inder.evento.setSelect2InscripcionEquipoUsuarioNatural(element.attr('data-id'));
+                inder.evento.ajustarInputFile();
+
+            }
+        });
+        $(function () {
+            inder.evento.ajustarInputFile();
+        })
+
+    </script>
+    <style>
+        .fileinput-cancel {
+            display: none !important;
+        }
+        .fileinput-remove {
+            display: inline !important;
+        }
+        .btn-default {
+            background-color: #c7daef !important;
+            color: #007385 !important;
+            border-color: #bbb !important;
+            -webkit-transition: background-color 0.3s ease-in-out !important;
+            transition: background-color 0.3s ease-in-out !important;
+        }
+        .btn-default:hover {
+            background-color: #007385 !important;
+            color: #c7daef !important;
+            border-color: #007385 !important;
+            -webkit-transition: background-color 0.3s ease-in-out !important;
+            transition: background-color 0.3s ease-in-out !important;
+        }
+        .btn-outline-secondary i{
+            margin: auto !important;
+        }
+        strong label{
+            color : #000000 !important;
+            margin: 0px !important;
+        }
+        .collection-actions{
+            display:none !important;
+        }
+        .margen-bottom-10{
+            margin-bottom: 15px !important;
+        }
+    </style>
+{% endblock sonata_page_content %}

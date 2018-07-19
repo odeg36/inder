@@ -1,0 +1,108 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+        .breadcrumb {
+            padding: 8px 15px !important;
+            margin-bottom: 20px !important;
+            list-style: none !important;
+            background-color: #f5f5f5 !important;
+            border-radius: 4px !important;
+            float: inherit !important;
+        }
+    </style>
+{% endblock %}
+{% block title %}AdminBundle:Registro:campo{% endblock %}
+{% block sonata_page_content %}
+    {% block sonata_admin_content %}
+        <!-- Content Wrapper. Contains page content -->
+        <div class="">
+
+            <!-- Migas de pan -->
+            <section class="container-fluid">
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                    <li class="active">Programar</li>
+                </ol>
+            </section>
+            <!-- formulario -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_escenario_deportivo.title{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Categoria Ambiental -->
+                <div class="row">
+                  
+                    <div class="col-md-12">
+                        {{ form_start(form, {'attr': {'id': 'formulario_campo', novalidate: 'true'} } ) }}
+
+                        <div class="col-md-12">
+                            {{form_label(form.sle)}}
+                            {{form_widget(form.sle)}}
+                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.sle.vars.errors }%}
+                        </div>
+
+                        <div class="col-md-12">
+                            {{form_label(form.puntoAtencion)}}
+                            {{form_widget(form.puntoAtencion)}}
+                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.puntoAtencion.vars.errors }%}
+                        </div>
+
+
+                        <div class="col-md-12">
+                            {{form_label(form.escenarioDeportivo)}}
+                            {{form_widget(form.escenarioDeportivo)}}
+                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.escenarioDeportivo.vars.errors }%}
+                        </div>
+
+                        <div class="col-md-12">
+                            {{form_label(form.division)}}
+                            {{form_widget(form.division)}}
+                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.division.vars.errors }%}
+                        </div>
+                        
+                        <div class="col-md-12">
+                            {{form_label(form.fecha)}}
+                            {{form_widget(form.fecha)}}
+                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.fecha.vars.errors }%}
+                        </div>
+
+                        <div class="col-md-12">
+                            {{form_label(form.hora)}}
+                            {{form_widget(form.hora)}}
+                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora.vars.errors }%}
+                        </div>
+
+
+                        <div class="col-md-12">                                
+                            <a class="btn btn-cancelar" href="{{ admin.generateUrl('list', {id: eventoId , tipo: tipoDeSistemaDeJuego}) }}"><i class="fa fa-chevron-left" aria-hidden="true"></i>{{ 'formulario.accion.cancelar'|trans({}) }}</a>
+                            {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                        </div>
+                        <div style="display: none;">
+                            
+                        {{ form_end(form) }}
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <!-- /.content-wrapper -->
+    {% endblock sonata_admin_content %}
+    <script type="text/javascript">
+
+       
+
+
+        
+   </script>
+
+
+    <script type="text/javascript">
+        
+       
+    </script>
+{% endblock sonata_page_content %}

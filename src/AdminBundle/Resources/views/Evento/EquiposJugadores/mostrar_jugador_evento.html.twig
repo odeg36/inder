@@ -1,0 +1,184 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+        
+    <style>
+        .breadcrumb {
+            padding: 8px 15px !important;
+            margin-bottom: 20px !important;
+            list-style: none !important;
+            background-color: #f5f5f5 !important;
+            border-radius: 4px !important;
+            float: inherit !important;
+        }
+
+        .icheckbox_square-blue{            
+            margin-left: 5px;
+            margin-right: 6px;
+        }
+
+        .icheckbox_square-blue > label{
+            color: red;
+        }
+        
+    </style>
+
+{% endblock %}
+
+
+{% block title %}AdminBundle:Usuario:registro{% endblock %} 
+
+{% block sonata_page_content %}
+
+<section class="content-header tituloFooter">
+
+    <section class="content-header tituloFooter">
+        <div class="sticky-wrapper">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-collapse">
+                        <div class="navbar-left">
+                            <h4>
+                                Detalle
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+         </div>
+    </section>
+
+
+    <div class="sonata-ba-show">
+        <div class="sonata-ba-view">
+            <div class="row">
+
+                <div class="col-md-12 ">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <h4 class="box-title">
+                                Reserva
+                            </h4>
+                        </div>
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table">
+                                <tbody>
+                                    <tr class="sonata-ba-view-container">
+                                        <th>Solicitado por</th>
+                                        <td>                                
+                                            {{reserva.usuario.firstname}} {{reserva.usuario.lastname}}
+                                        </td>                                    
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">
+                                        <th>Escenario</th>
+                                        <td>                                
+                                            {{reserva.escenarioDeportivo.nombre}}
+                                        </td>                                    
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">                                        
+                                        <th>Division</th>
+                                        <td>
+                                            {% if (reserva.division != null) %}                                        
+                                                {{reserva.division.nombre}}
+                                            {% else %}
+                                                No se ha seleccionado una Division
+                                            {% endif %}                                            
+                                        </td>                                    
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">                                        
+                                        <th>Barrio</th>
+                                        <td>                                
+                                            {{reserva.escenarioDeportivo.barrio}}
+                                        </td>                                    
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">                                        
+                                        <th>Disciplina</th>
+                                        <td>           
+                                            {% if (reserva.division != null) %}                                        
+                                                {{reserva.disciplina.nombre}}                     
+                                            {% else %}
+                                                No se ha seleccionado una Disciplina
+                                            {% endif %}                     
+                                            
+                                        </td>                                    
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">                                        
+                                        <th>Tipo Reserva</th>
+                                        <td>
+                                        </td>                                    
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">                                        
+                                        <th>Fecha Inicio</th>
+                                        <td>{{reserva.fechaInicio.date}}</td>                                    
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">                                        
+                                        <th>Fecha Final</th>
+                                        <td>{{reserva.fechaFinal.date}}</td>
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">                                        
+                                        <th>Dia Reserva</th>
+                                        <td>
+                                            {% for diasReserva in diasReserva %}
+                                                {{diasReserva.dia}},
+                                            {% endfor %}
+                                        </td>                
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">                                        
+                                        <th>Hora </th>
+                                        <td>{{reserva.horaInicial}} - {{reserva.horaFinal}} </td>
+                                    </tr>                                    
+                                    <tr class="sonata-ba-view-container">                                        
+                                        <th>Deportistas</th>
+                                        <td>
+                                            {% for usuariosReserva in usuariosReserva %}
+                                                {{usuariosReserva.nombre}},
+                                            {% endfor %}                                            
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="alert alert-success alert-dismissable" id="divMensajeReserva">                
+                <p id="textoAprobarReserva">La</p>
+                
+            </div>
+            
+
+            <div class="row">
+                <div class="col-md-1 col-md-offset-10">                
+                    <a>
+                        <button type="button" id="btnRechazar" class="btn btnSize btn-danger">                                                
+                            Rechazar
+                        </button>
+                    </a>                    
+                </div>
+                <input type="hidden" name="idReserva" id="idReserva" value={{idReserva}}>
+                
+                <div class="col-md-1">
+                    <a>
+                        <button type="button" id="btnAprobar" class="btn btnVerde btnSize">                                                
+                            Aprobar
+                        </button>
+                    </a>                    
+                </div>                
+            </div>
+            
+
+
+        </div>
+
+    </div>
+
+
+</section>
+
+{% endblock sonata_page_content %}

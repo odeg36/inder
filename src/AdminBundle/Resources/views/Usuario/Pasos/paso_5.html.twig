@@ -1,0 +1,94 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+{% endblock %}
+{% block title %}{{organizacionId != ""?'Actualización de datos':'Registro'}}{% endblock %}
+{% block sonata_breadcrumb %}
+    {% if organizacionId != ""%}
+        <div class="hidden-xs">
+            <ol class="nav navbar-top-links breadcrumb">
+                <ol class="nav navbar-top-links breadcrumb">
+                    <li>
+                        <a href="{{path('sonata_admin_dashboard')}}">
+                            <i class="fa fa-home"></i>                                        
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{path('admin_logic_organizaciondeportiva_list')}}">
+                            {{'Organizacion Deportiva List'|trans}}                                        
+                        </a>
+                    </li>
+                    <li class="active">
+                        <span>{{'Edición de organismo'|trans}}</span>
+                    </li>
+                </ol>
+            </ol>
+        </div>
+    {% endif %}
+{% endblock sonata_breadcrumb %}
+{% block sonata_page_content %}
+    <section class="content">
+        {% block sonata_admin_content %}
+
+            <form 
+                name="{{form.vars.id}}" 
+                method="{{form.vars.method}}" 
+                id="formulario_disciplina" 
+                action="{{ path('info_pestatutario', {'organismo':organizacionId})}}"
+                novalidate="true">            <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 titulos">
+                            <h4>
+                                {% if organizacionId != "" %}
+                                    {{'Actualización de datos'|trans}}
+                                {% else %}
+                                    {{'formulario_registro.solicitudregistro'|trans}}
+                                {% endif %}
+                            </h4>
+                        </div>
+                    </div>
+                    <!-- Solicitud-registro-pasos -->
+                    <div class="row">
+                        <div class="col-md-4 iconoText2">
+                            {% include 'AdminBundle:Usuario/Pasos:iconos.html.twig' with {vistaPaso: 5} %}
+                        </div>
+                        <div class="col-md-8 fondoAzul2">
+                            <div class="infoBox row">
+                                <!-- Fútbol -->
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <label>{% trans %}formulario_registro.pasocinco.titulo{% endtrans %}</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 uno contenedorInfoUno">
+                                    <div class="col-sm-12 col-md-4">
+                                        <strong>{% trans %}formulario_registro.pasocinco.intro{% endtrans %}</strong>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-8">
+                                        {{ form_widget(form.periodoestatutario, { 'id': 'periodoestatutario', 'class' : 'periodoestatutario' }) }}
+                                    </div>
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.periodoestatutario.vars.errors }%}
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                    <div class="col-md-12 division"></div>
+                                    <div class="col-md-12">
+                                        <a href="{{ path('info_deportistas', {'organismo':organizacionId}) }}">
+                                            <button type="button" class="btn btnVerde">
+                                                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                                {% trans %}formulario_registro.atras{% endtrans %}
+                                            </button>
+                                        </a>
+                                        {{ form_widget(form.save, { 'id': 'btnterminaRegistro', 'class' : 'btn btnVerde' }) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+                <span id="alertas" data-tituloalerta="{% trans %}formulario_registro.alertas.tituloalerta {% endtrans %}" data-yaseleccionada="{% trans %}formulario_registro.alertas.disciplinasyaseleccionada {% endtrans %}" data-revisecampos="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-registrado="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-mensajeerror="{% trans %}formulario_registro.alertas.mensajeerror {% endtrans %}" data-titulook="{% trans %}formulario_registro.alertas.titulo_ok {% endtrans %}"></span>
+                {{ form_end(form) }}
+            {% endblock sonata_admin_content %}
+    </section>
+{% endblock sonata_page_content %}

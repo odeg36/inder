@@ -1,0 +1,24 @@
+{% block categoria_ambiental_escenario_type_row %}
+    <div class="campoGris row margen-bottom-10 data-id" id="form_division_{{ form.vars.name }}" data-id="{{ form.vars.name }}" data-id="{{ form.vars.name }}">
+
+        <div class="col-md-12">                
+            {{ form_widget(form.categoriaAmbiental, { 'attr': {'data-name': form.vars.name , 'class': 'form-control categoria-ambiental-select' }   }) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.categoriaAmbiental.vars.errors }%}
+        </div>
+
+
+        <div class="col-md-12 subCategoriaAmbiental" id="subcategorias-{{ form.vars.name }}">
+            <section class="col-xs-12 error-mesajes">
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.escenarioSubCategoriaAmbientales.vars.errors }%}
+            </section>
+            {%
+                    form_theme form
+                    'AdminBundle:EscenarioDeportivo/Ambiental:subcategoria.html.twig'
+                    'jquery.collection.html.twig'
+            %}
+            {{ form_row(form.escenarioSubCategoriaAmbientales) }}
+        </div>
+    </div>
+    <br>
+{% endblock %}

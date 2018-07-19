@@ -1,0 +1,22 @@
+{% block categorias_evento_type_row %}
+    <div class=" campoGrisClaro padding-total20 mg-bottom row margen-bottom-10 " id="form_categoriaSubcategorias_{{ form.vars.name }}" data-id="{{ form.vars.name }}">
+        <div class="col-md-12">
+            {{form_label(form.categoria)}}
+            {{ form_widget(form.categoria) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.categoria.vars.errors }%}
+        </div>
+        <div class="col-md-12">
+            {{form_label(form.subcategorias)}}
+            {{ form_widget(form.subcategorias) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.subcategorias.vars.errors }%}
+        </div>
+        {{ form_rest(form) }}   
+        <div class="col-md-12 mg-top">
+            <div class="collection-actions">
+                <a href="#" class="btn btnRojo btnSize collection-remove collection-action">
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar Categoria
+                </a>
+            </div>   
+        </div>   
+    </div>
+{% endblock %}

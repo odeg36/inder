@@ -1,0 +1,350 @@
+{% block sonata_breadcrumb %}
+    <div class="hidden-xs">
+        {% if _breadcrumb is not empty or action is defined %}
+            <ol class="nav navbar-top-links breadcrumb">
+                {% if _breadcrumb is empty %}
+                    {% if action is defined %}
+                        <li>
+                            <a href="{{path('sonata_admin_dashboard')}}">
+                                <i class="fa fa-home"></i>                                        
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{path('admin_logic_oferta_list')}}">
+                                {{'Oferta List'|trans}}                                        
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{path('admin_logic_preinscripcionoferta_list')}}?filter[oferta][value]={{object.oferta.id}}">
+                                {{'Preinscripcion Oferta List'|trans}}                                        
+                            </a>
+                        </li>
+                        {% for menu in breadcrumbs_builder.breadcrumbs(admin, action) %}
+                            {%- set translation_domain = menu.extra('translation_domain', 'messages') -%}
+                            {%- set label = menu.label -%}
+                            {%- if translation_domain is not same as(false) -%}
+                            {%- set label = label|trans(menu.extra('translation_params', {}), translation_domain) -%}
+                            {%- endif -%}
+
+                            {% if loop.last %}
+                                <li class="active">
+                                    <span>{{ label }}</span>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% else %}
+                    {{ _breadcrumb|raw }}
+                {% endif %}
+            </ol>
+        {% endif %}
+    </div>
+{% endblock sonata_breadcrumb %}
+{% block sonata_admin_content_actions_wrappers %}
+    {% if _actions|replace({ '<li>': '', '</li>': '' })|trim is not empty %}
+        <ul class="nav navbar-nav navbar-right">
+            {% set url = 'preinscripcionoferta/list?filter[oferta][value]='~ object.oferta.id%}
+            {{ _actions|replace({'preinscripcionoferta/list':url})|raw}}
+        </ul>
+    {% endif %}
+{% endblock sonata_admin_content_actions_wrappers %}
+{% block form %}
+    {% import "SonataAdminBundle:CRUD:base_edit_form_macro.html.twig" as form_helper %}
+    {{ sonata_block_render_event('sonata.admin.edit.form.top', { 'admin': admin, 'object': object }) }}
+
+    {% set url = admin.id(object) is not null ? 'edit' : 'create' %}
+
+    {% if not admin.hasRoute(url)%}
+        <div>
+            {{ "form_not_available"|trans({}, "SonataAdminBundle") }}
+        </div>
+    {% else %}
+        <form
+            {% if sonata_admin.adminPool.getOption('form_type') == 'horizontal' %}class="form-horizontal"{% endif %}
+            role="form"
+            {% if form.vars.multipart %} enctype="multipart/form-data"{% endif %}
+            method="POST"
+            {% if not sonata_admin.adminPool.getOption('html5_validate') %}novalidate="novalidate"{% endif %}
+        {% block sonata_form_attributes %}{% endblock %}
+        >
+
+        {{ include('SonataAdminBundle:Helper:render_form_dismissable_errors.html.twig') }}
+
+        {% block sonata_pre_fieldsets %}
+            <div class="row">
+            {% endblock %}
+
+            {% block sonata_tab_content %}
+                {% set has_tab = ((admin.formtabs|length == 1 and admin.formtabs|keys[0] != 'default') or admin.formtabs|length > 1 ) %}
+
+                <div class="col-md-12">
+                    {% if has_tab %}
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs" role="tablist">
+                                {% for name, form_tab in admin.formtabs %}
+                                    <li{% if loop.index == 1 %} class="active"{% endif %}><a href="#tab_{{ admin.uniqid }}_{{ loop.index }}" data-toggle="tab"><i class="fa fa-exclamation-circle has-errors hide" aria-hidden="true"></i> {{ form_tab.label|trans({}, form_tab.translation_domain ?: admin.translationDomain) }}</a></li>
+                                    {% endfor %}
+                            </ul>
+                            <div class="tab-content">
+                                {% for code, form_tab in admin.formtabs %}
+                                    <div class="tab-pane fade{% if loop.first %} in active{% endif %}" id="tab_{{ admin.uniqid }}_{{ loop.index }}">
+                                        <div class="box-body  container-fluid">
+                                            <div class="sonata-ba-collapsed-fields">
+                                                {% if form_tab.description != false %}
+                                                    <p>{{ form_tab.description|raw }}</p>
+                                                {% endif %}
+
+                                                {{ form_helper.render_groups(admin, form, form_tab['groups'], has_tab) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="row" id="boxMargen">
+                            <div class="col-md-{{form.informacionExtraUsuario.children|length > 0? '6':'12'}}" style="padding-right: 20px">
+                                <div class="col-md-12 sombra">
+                                    <div class="col-md-12">
+                                        <div class="box-header">
+                                            <h3 class="box-title">{{'titulo.preinscripcion.informacion_general'|trans}}</h3>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 nuevaOferta">
+                                        <div class="col-md-12">
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                        </div>                                            <div class="col-md-12">
+                                            {{form_label(form.tipoidentificacion)}}
+                                            {{form_widget(form.tipoidentificacion)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoidentificacion.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{form_label(form.numeroidentificacion)}}
+                                            {{form_widget(form.numeroidentificacion)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.numeroidentificacion.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{form_label(form.firstname)}}
+                                            {{form_widget(form.firstname)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.firstname.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{form_label(form.lastname)}}
+                                            {{form_widget(form.lastname)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.lastname.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{form_label(form.dateOfBirth)}}
+                                            {{form_widget(form.dateOfBirth)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.dateOfBirth.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{form_label(form.activo)}}
+                                            {{form_widget(form.activo)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.activo.vars.errors }%}
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            {{form_label(form.email)}}
+                                            {{form_widget(form.email)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.email.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{form_label(form.phone)}}
+                                            {{form_widget(form.phone)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.phone.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{form_label(form.orientacionSexual)}}
+                                            {{form_widget(form.orientacionSexual)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.orientacionSexual.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{form_label(form.estrato)}}
+                                            {{form_widget(form.estrato)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.estrato.vars.errors }%}
+                                        </div>
+                                        <div class="sonata-ba-collapsed-fields">
+                                            <div class="municipio col-lg-12 col-md-12">
+                                                {{form_label(form.municipio)}}
+                                                {{form_widget(form.municipio, { 'id': 'municipio' })}}
+                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.municipio.vars.errors }%}
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 direccionOComuna hidden">
+                                                {{form_label(form.direccionOcomuna)}}
+                                                {{form_widget(form.direccionOcomuna)}}
+                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.direccionOcomuna.vars.errors }%}
+                                            </div>
+                                            <div class="barrio col-lg-12 col-md-12 hidden">
+                                                {{form_label(form.barrio)}}
+                                                {{form_widget(form.barrio)}}
+                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.barrio.vars.errors }%}
+                                            </div>
+                                            <div class="comuna hidden">
+                                                <div class="col-lg-12 col-md-12" >
+                                                    {{form_label(form.comuna_format)}}
+                                                    {{form_widget(form.comuna_format)}}
+                                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.comuna_format.vars.errors }%}
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 fondoDireccion" >
+                                                    {{form_label(form.direccionComuna)}}
+                                                    {{form_widget(form.direccionComuna)}}
+                                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.direccionComuna.vars.errors }%}
+                                                </div>
+                                            </div>
+                                            <div class="direccion hidden">
+                                                <div class="col-lg-12 col-md-12" >
+                                                    {{form_label(form.direccion_creado)}}
+                                                    {{form_widget(form.direccion_creado)}}
+                                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.direccion_creado.vars.errors }%}
+                                                </div>
+                                                <div class="col-sm-12 col-md-12 fondoDireccion">
+                                                    {{form_label(form.direccionResidencia)}}
+                                                    {{form_widget(form.direccionResidencia)}}
+                                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.direccionResidencia.vars.errors }%}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{form_label(form.eps)}}
+                                            {{form_widget(form.eps)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.eps.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{form_label(form.gender)}}
+                                            {{form_widget(form.gender)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.gender.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{form_label(form.etnia)}}
+                                            {{form_widget(form.etnia)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.etnia.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{form_label(form.nivelEscolaridad)}}
+                                            {{form_widget(form.nivelEscolaridad)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nivelEscolaridad.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{form_label(form.tipoEstablecimientoEducativo)}}
+                                            {{form_widget(form.tipoEstablecimientoEducativo)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoEstablecimientoEducativo.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{form_label(form.establecimientoEducativo)}}
+                                            {{form_widget(form.establecimientoEducativo)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.establecimientoEducativo.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{form_label(form.ocupacion)}}
+                                            {{form_widget(form.ocupacion)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.ocupacion.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{form_row(form.esDesplazado)}}
+                                        </div>
+                                        <div id="campoDesplazado" class="ocultar">
+                                            <div class="col-md-12">
+                                                {{form_label(form.tipoDesplazado)}}
+                                                {{form_widget(form.tipoDesplazado)}}
+                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoDesplazado.vars.errors }%}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{form_row(form.esDiscapacitado)}}
+                                        </div>
+                                        <div id="campoDiscapacitado" class="ocultar">
+                                            <div class="col-md-12">
+                                                {{form_label(form.discapacidad)}}
+                                                {{form_widget(form.discapacidad)}}
+                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.discapacidad.vars.errors }%}
+                                            </div>
+                                            <div class="col-md-12">
+                                                {{form_label(form.subDiscapacidad)}}
+                                                {{form_widget(form.subDiscapacidad)}}
+                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.subDiscapacidad.vars.errors }%}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{form_label(form.esJefeCabezaHogar)}}
+                                            {{form_widget(form.esJefeCabezaHogar)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.esJefeCabezaHogar.vars.errors }%}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% if form.informacionExtraUsuario.children|length > 0 %}
+                                <div class="col-md-6">
+                                    <div class="col-md-12 sombra">
+                                        <div class="col-md-12">
+                                            <div class="box-header">
+                                                <h3 class="box-title">{{'titulo.preinscripcion.informacion_adicional'|trans}}</h3>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 nuevaOferta">
+                                            {% include 'AdminBundle:Preinscripcion:informacion_adicional.html.twig' with { form : form.informacionExtraUsuario}%}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" id="boxPadding">
+                                    <div class="lineaSolida"></div>
+                                </div>
+                            {% else %}
+                                {% do form.informacionExtraUsuario.setRendered %}
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endblock %}
+
+            {% block sonata_post_fieldsets %}
+            </div>
+        {% endblock %}
+        <input type="hidden"  name='oferta' value="{{oferta}}">
+        {{ form_rest(form) }}
+
+        {% block formactions %}
+            <div class="sonata-ba-form-actions well well-small form-actions">
+                {% block sonata_form_actions %}
+                    {% if app.request.isxmlhttprequest %}
+                        {% if admin.id(object) is not null %}
+                            <button type="submit" class="btn btn-success" name="btn_update"><i class="fa fa-save" aria-hidden="true"></i> {{ 'btn_update'|trans({}, 'SonataAdminBundle') }}</button>
+                        {% else %}
+                            <button type="submit" class="btn btn-success" name="btn_create"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ 'btn_create'|trans({}, 'SonataAdminBundle') }}</button>
+                        {% endif %}
+                    {% else %}
+                        {% if admin.supportsPreviewMode %}
+                            <button class="btn btn-info persist-preview" name="btn_preview" type="submit">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                {{ 'btn_preview'|trans({}, 'SonataAdminBundle') }}
+                            </button>
+                        {% endif %}
+                        {% if admin.id(object) is not null %}
+                            <a class="btn btn-cancelar" href="{{ admin.generateUrl('list') }}?filter[oferta][value]={{oferta}}"><i class="fa fa-chevron-left" aria-hidden="true"></i>{{ 'formulario.accion.cancelar'|trans({}) }}</a>
+                                {% if admin.hasRoute('list') and admin.hasAccess('list') %}
+                                <button type="submit" class="btn btn-success" name="btn_update_and_list">
+                                    <i class="fa fa-save"></i> {{ 'boton.guardar'|trans({}) }}
+                                </button>
+                            {% endif %}
+                            
+                            {#{% if admin.hasRoute('delete') and admin.hasAccess('delete', object) %}
+                                {{ 'delete_or'|trans({}, 'SonataAdminBundle') }}
+                                <a class="btn btn-danger" href="{{ admin.generateObjectUrl('delete', object) }}"><i class="fa fa-minus-circle" aria-hidden="true"></i> {{ 'link_delete'|trans({}, 'SonataAdminBundle') }}</a>
+                            {% endif %}#}
+
+                            {% if admin.isAclEnabled() and admin.hasRoute('acl') and admin.hasAccess('acl', object) %}
+                                <a class="btn btn-info" href="{{ admin.generateObjectUrl('acl', object) }}"><i class="fa fa-users" aria-hidden="true"></i> {{ 'link_edit_acl'|trans({}, 'SonataAdminBundle') }}</a>
+                            {% endif %}
+                        {% else %}
+                            <a class="btn btn-cancelar" href="{{ admin.generateUrl('list') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i>{{ 'formulario.accion.cancelar'|trans({}) }}</a>
+                            <button type="submit" class="btn btn-success" name="btn_update_and_list"><i class="fa fa-save"></i> {{ 'formulario.accion.guardar'|trans({}) }}</button>
+                        {% endif %}
+                    {% endif %}
+                {% endblock %}
+            </div>
+        {% endblock formactions %}
+    </form>
+{% endif%}
+{{ sonata_block_render_event('sonata.admin.edit.form.bottom', { 'admin': admin, 'object': object }) }}
+<span id="idFormulario" data-idForm="{{form.vars.id}}_"></span>
+{% endblock %}

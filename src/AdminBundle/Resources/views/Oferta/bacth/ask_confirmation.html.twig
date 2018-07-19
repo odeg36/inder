@@ -1,0 +1,92 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block title %}AdminBundle:Usuario:registro{% endblock %} 
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_oferta_list') }}">{% trans %}Oferta List{% endtrans %}</a></li>
+        <li>{% trans %}oferta.seleccionar_rango_fecha_reporte_oferta{% endtrans %}</a></li>
+            
+    </ol>                                                         
+{% endblock %}
+
+{% block sonata_page_content %}
+    <section class="content">    
+        {% block sonata_admin_content %}
+            {{ form_start(form, {'attr': {'id': 'formulario_reserva_paso1', novalidate: 'true'} } ) }}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}oferta.seleccionar_rango_fecha_reporte_oferta{% endtrans %}</h4>
+
+                        <div class="navbar-right">
+                            <li class="btn" style="margin-top: 2.5px;">
+                                <a type="button" class="btn-regresar sonata-action-element" href="{{ path('admin_logic_oferta_list') }}" style="padding: 5px 12px 3px 12px;">
+                                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                    {{'Volver'|trans}}
+                                </a>
+                            </li>
+                        </div>
+                    </div>
+                    
+                </div>
+                    
+                <div class="row">                    
+                    <div class="col-md-12 fondoAzul2">
+                        <div class="infoBox row">                        
+
+                            <div class="col-md-12">
+                                {{form_label(form.tipoReporte)}}
+                                {{form_widget(form.tipoReporte)}}
+                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoReporte.vars.errors }%}
+                            </div>
+                           <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="col-md-6">
+                                    <strong>{{form_label(form.fechaInicial)}}</strong>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <div >
+                                            {{form_widget(form.fechaInicial, { 'id': 'fechaInicial' }) }}
+                                        </div>
+                                    </div>
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.fechaInicial.vars.errors }%}
+                                </div>
+
+                                <div class="col-md-6">
+                                    <strong>{{form_label(form.fechaFinal)}}</strong>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <div >
+                                            {{form_widget(form.fechaFinal, { 'id': 'fechaFinal' }) }}
+                                        </div>
+                                    </div>
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.fechaFinal.vars.errors }%}
+                                </div>                                    
+                            </div>
+                            
+                            <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                <div class="col-md-12 division"></div>
+                                <div class="col-md-12">
+                                    <span></span>
+                                    <div class="col-md-12">                                        
+                                        {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                    </div>
+                                    <div style="display: none;">
+                                        {{ form_rest(form) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <span id="url" data-infoorganigrama="{{ path("info_organigrama") }}"></span>
+            {{ form_end(form) }}
+                 
+        {% endblock sonata_admin_content %}
+    </section>
+{% endblock sonata_page_content %}

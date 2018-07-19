@@ -1,0 +1,66 @@
+{% extends "::base.reporte.html.twig" %}
+{% block title %}Reporte asistentes{% endblock %}
+{% block body %}
+    <div class="container-fluid cabecera-contenedor">
+        <div class="row">
+            <div class="col-xs-8 cabecera-logo-simon text-center">
+                <img src="{{ app.request.getSchemeAndHttpHost() }}/bundles/admin/img/logo-simon-header.png" alt="">
+            </div>
+            <div class="col-xs-4 cabecera-logo-alcaldia">
+                <img src="{{ app.request.getSchemeAndHttpHost() }}/bundles/admin/img/logos-inder-alcaldia.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="col-md-12 ">
+            <div class="box box-primary">
+                <strong>{{'titulo.fecha_generacion'|trans}}:</strong> {{ 'now'|date('d-m-Y') }}
+                <div class="box-header">
+                    <h2 class="text-center cuerpo-titulo">
+                        <i class="fa fa-list" aria-hidden="true"></i> 
+                        {{ 'oferta.titulo_reporte' | trans }}
+                    </h2>
+                </div>
+                {% for oferta in ofertas %}
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table">
+                            <tbody>
+                                <tr class="sonata-ba-view-container">
+                                    <th>Oferta</th>
+                                    <td>
+                                        {{oferta.nombre}}
+                                    </td>
+                                </tr>
+                                <tr class="sonata-ba-view-container">
+                                    <th>Formador</th>
+                                    <td>
+                                        {{oferta.formador.firstname}} {{oferta.formador.lastname}}
+                                    </td>
+                                </tr>
+                                <tr class="sonata-ba-view-container">
+                                    <th>Rangos de Asistencia</th>
+                                    <td>                           
+                                        {{fechaInicio}} - {{fechaFin}}
+                                    </td>
+                                </tr>
+                                <tr class="sonata-ba-view-container">
+                                    <th>Cantidad de Asistencias</th>
+                                    <td>
+                                        {{asistencias[oferta.id]}}                                        
+                                    </td>
+                                </tr>
+                                <tr class="sonata-ba-view-container">
+                                    <th>Usuarios Preinscritos Activos</th>
+                                    <td>
+                                        {{preinscripciones[oferta.id]}}                                        
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                {% endfor %}       
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

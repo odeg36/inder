@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <defaults public="false" />
+
+        <service id="security.authentication.listener.abstract" abstract="true">
+            <tag name="monolog.logger" channel="security" />
+            <argument type="service" id="security.token_storage" />
+            <argument type="service" id="security.authentication.manager" />
+            <argument type="service" id="security.authentication.session_strategy" />
+            <argument type="service" id="security.http_utils" />
+            <argument />
+            <argument type="service" id="security.authentication.success_handler" />
+            <argument type="service" id="security.authentication.failure_handler" />
+            <argument type="collection" />
+            <argument type="service" id="logger" on-invalid="null" />
+            <argument type="service" id="event_dispatcher" on-invalid="null" />
+        </service>
+
+        <service id="security.authentication.listener.form"
+                 class="Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener"
+                 parent="security.authentication.listener.abstract"
+                 public="false"
+                 abstract="true" />
+
+        <service id="security.authentication.listener.simple_form"
+                 class="AdminBundle\Security\SimpleFormAuthenticationListener"
+                 parent="security.authentication.listener.abstract"
+                 public="false"
+                 abstract="true">
+        </service>
+    </services>
+</container>

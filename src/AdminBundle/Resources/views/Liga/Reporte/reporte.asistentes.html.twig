@@ -1,0 +1,42 @@
+{% extends "::base.reporte.html.twig" %}
+
+{% block body %}
+    <div class="container-fluid cabecera-contenedor">
+        <div class="row">
+            <div class="col-xs-9 cabecera-logo-simon text-center">
+                <img src="{{ app.request.getSchemeAndHttpHost() }}/bundles/admin/img/logo-simon-header.png" alt="">
+            </div>
+            <div class="col-xs-3 cabecera-logo-alcaldia">
+                <img src="{{ app.request.getSchemeAndHttpHost() }}/bundles/admin/img/logos-inder-alcaldia.png" alt="">
+            </div>
+        </div>
+    </div>
+     <div class="container">
+        
+        <table class="table table-responsive">
+            <caption class="text-center"><b> Encuentros</b></caption>
+            <thead>
+                <tr>
+                    <th> Competidor uno</th>
+                    <th> Competidor dos </th> 
+                    <th> Punto atencion </th>
+                    <th> Punto escenario </th>   
+                    <th> Hora </th> 
+                    <th> Fecha </th>             
+                </tr>
+            </thead>
+            <tbody>
+                {% for encuentro in encuentros %}
+                    <tr>
+                        <td>{{ encuentro.competidorUno }}</td>
+                        <td>{{ encuentro.competidorDos }}</td>
+                        <td>{{ encuentro.PuntoAtencion }}</td>
+                        <td>{{ encuentro.EscenarioDeportivo }}</td>
+                        <td>{{ encuentro.Hora }}</td>
+                        <td>{{ encuentro.fecha|date("Y-m-d") }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+
+    <style>
+    </style>
+
+{% endblock %}
+
+{% block title %}AdminBundle:Usuario:registro{% endblock %} 
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_escenariodeportivo_list') }}">{% trans %}formulario_escenario_deportivo.escenarios_deportivos{% endtrans %}</a></li>
+        <li><a href="{{ url('admin_logic_reserva_list') }}">{% trans %}titulo.reservas{% endtrans %}</a></li>
+        <li class="active">{% trans %}formulario_reserva.crear{% endtrans %}</li>
+    </ol>                                                        
+{% endblock %}
+
+{% block sonata_page_content %}
+    <section class="content">
+        {% block sonata_admin_content %}
+            {{ form_start(form, {'attr': {'id': 'formulario_reserva_paso1', novalidate: 'true'} } ) }}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_reserva.solicitudregistro{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Solicitud-registro-pasos -->
+                <div class="row">
+                    <div class="col-md-4 iconoText2">
+                        {% include 'AdminBundle:Reservas/Pasos:iconos.html.twig' with {vistaPaso: 5} %}
+                    </div>
+
+                    <div class="col-md-8 fondoAzul2">
+                        <div class="infoBox row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 contenedorInfoUno">
+                                <div class="col-sm-12 col-md-12 sombra borde-radio padding">
+                                    <div class="col-sm-6 col-md-6 padding">
+                                        <div class="info-escenario2">
+                                            <label>Información de la reserva</label>
+                                            <div class="linea-gris"></div>
+                                        </div>
+                                        <div class="info-escenario2">
+                                            {%set divisiones = "" %}
+                                            {%for divisionReserva in infoReserva.divisiones%}
+                                                {%set divisiones = divisiones ~ divisionReserva.division.nombre ~ ", "%}
+                                            {%endfor%}
+                                            <strong>{{infoReserva.escenarioDeportivo.nombre}}</strong>
+                                            <br></br>
+                                            <p><strong>{% trans %}formulario_reserva.labels.paso_cinco.fecha{% endtrans %}: </strong> <span>{{fechaInicio}} y {{fechaFinal}}</span></p>
+                                            <div class="col-md-12 text-left">
+                                                <div class="col-md-4"><p><strong>{{'label.reserva.dia'|trans}}</strong></p></div>
+                                                <div class="col-md-4"><p><strong>{{'label.reserva.hora'|trans}}</strong></p></div>
+                                            </div>
+                                            {%for programacion in reserva.programaciones%}
+                                                {%if programacion.inicioManana and programacion.inicioTarde%}
+                                                    <div class="col-md-12 text-left">
+                                                        <div class="col-md-4">{{programacion.dia}}</div>
+                                                        <div class="col-md-4">{{programacion.inicioManana|date("H:i")}} - {{programacion.finTarde|date("H:i")}}</div>
+                                                    </div>
+                                                {%elseif programacion.inicioManana %}
+                                                    <div class="col-md-12 text-left">
+                                                        <div class="col-md-4">{{programacion.dia}}</div>
+                                                        <div class="col-md-4">{{programacion.inicioManana|date("H:i")}} - {{programacion.finManana|date("H:i")}}</div>
+                                                    </div>
+                                                {%elseif programacion.inicioTarde %}
+                                                    <div class="col-md-12 text-left">
+                                                        <div class="col-md-4">{{programacion.dia}}</div>
+                                                        <div class="col-md-4">{{programacion.inicioTarde|date("H:i")}} - {{programacion.finTarde|date("H:i")}}</div>
+                                                    </div>
+                                                {%endif%}
+                                            {%endfor%}
+                                            <p><strong>{% trans %}formulario_reserva.labels.paso_cinco.division{% endtrans %}: </strong> <span>{{divisiones}}</span></p>
+                                            <p><strong>{% trans %}formulario_reserva.labels.paso_cinco.direccion{% endtrans %}: </strong> <span>{{infoReserva.escenarioDeportivo.direccion}}</span></p>
+                                            <p><strong>{% trans %}formulario_reserva.labels.paso_cinco.telefono{% endtrans %}: </strong> <span>{{infoReserva.escenarioDeportivo.telefono}}</span></p>
+                                            <p><strong>{% trans %}formulario_reserva.labels.paso_cinco.recuerda{% endtrans %}: </strong><br>
+                                                <span>- {% trans %}formulario_reserva.labels.paso_cinco.info_uno{% endtrans %}</span><br>
+                                            </p>
+                                        </div>
+                                        <div style="padding-left: 5%">
+                                            <p style="color-:black !important;">
+                                                <span>
+                                                    {{informacionReserva|raw}}
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sd-6 col-md-6 padding">
+                                        <div id="{{id_mapa}}"  style=" width: 100%;  height:400px;"  >
+                                            {{ ivory_google_map(map) }}
+                                            {{ ivory_google_api([map]) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                <div class="col-md-12 division"></div>
+                                <div class="col-md-12">
+                                    <a type="button" class="btn btnNaranja" onclick="inder.reserva.cancelarReserva()">
+                                        <i class="fa fa-chevron-left"></i>
+                                        {{'Cancelar'|trans}}
+                                    </a>
+                                    <a href="{{ path('admin_logic_reserva_paso4', { 'id':idreserva } ) }}" class="btn btnVerde">
+                                        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                        {% trans %}formulario_reserva.labels.paso_cinco.anterior{% endtrans %}
+
+                                    </a>
+                                    <span></span>
+                                    {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                    <div style="display: none;">
+                                        {{ form_rest(form) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <span id="alertas" data-tituloalerta="{% trans %}formulario_reserva.alertas.tituloalerta {% endtrans %}" data-yaseleccionada="{% trans %}formulario_registro.alertas.disciplinasyaseleccionada {% endtrans %}" data-revisecampos="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-registrado="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-mensajeerror="{% trans %}formulario_registro.alertas.mensajeerror {% endtrans %}" data-titulook="{% trans %}formulario_registro.alertas.titulo_ok {% endtrans %}"></span>
+            <span id='disciplinas' class='disciplinas' data-numero="{{ disciplinas|length }}"></span>
+            <span id="url" data-infoorganigrama="{{ path("info_organigrama") }}"></span>
+            {{ form_end(form) }}
+        {% endblock sonata_admin_content %}
+    </section>
+{% endblock sonata_page_content %}

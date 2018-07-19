@@ -1,0 +1,244 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block title %}AdminBundle:Usuario:registro{% endblock %} 
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_escenariodeportivo_list') }}">{% trans %}formulario_escenario_deportivo.escenarios_deportivos{% endtrans %}</a></li>
+        <li><a href="{{ url('admin_logic_reserva_list') }}">{% trans %}titulo.reservas{% endtrans %}</a></li>
+        <li class="active">{% trans %}admin.detallesolicitud.detalle{% endtrans %}</li>
+    </ol>                                                         
+{% endblock %}
+{% block sonata_page_content %}
+    <section class="content-header tituloFooter">
+        <section class="content-header tituloFooter">
+            <div class="sticky-wrapper">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="container-fluid">
+                        <div class="navbar-collapse">
+                            <div class="navbar-left">
+                                <h4>
+                                    Detalle
+                                </h4>
+                            </div>
+
+
+                            <div class="navbar-right">   
+                                <ul class="nav navbar-nav">
+                                    <li class="btn btn-agregar-nuevo">
+                                        <a class="sonata-action-element" href="{{path('reporte_reserva_detalle_exportar', { 'id':idReserva })}}">
+                                            <i class="fa fa-download" aria-hidden="true"></i>
+                                            {% trans %}formulario_escalera.descargar{% endtrans %}
+                                        </a> 
+                                    </li>
+                                </ul>
+                                <li class="btn" style="margin-top: 2.5px;">
+                                    <a type="button" class="btn-regresar sonata-action-element" href="{{ path('admin_logic_reserva_list') }}" style="padding: 5px 12px 3px 12px;">
+                                        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                        {{'Volver'|trans}}
+                                    </a>
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </section>
+
+        <div class="sonata-ba-show">
+            <div class="sonata-ba-view">
+                <div class="row">
+
+                    <div class="col-md-12 ">
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <h4 class="box-title">
+                                    Reserva
+                                </h4>
+                            </div>
+                            <div class="box-body table-responsive no-padding">
+                                <table class="table">
+                                    <tbody>
+                                        {% if reserva.escenarioDeportivo != null %}
+                                            <tr class="sonata-ba-view-container">
+                                                <th>Escenario</th>
+                                                <td>                                
+                                                    {{reserva.escenarioDeportivo.nombre}}
+                                                </td>
+                                            </tr>
+                                        {% endif %}
+                                        <tr class="sonata-ba-view-container">
+                                            <th>Estado</th>
+                                            <td>                                
+                                                {{reserva.estado}}
+                                            </td>                                    
+                                        </tr>
+                                        <tr class="sonata-ba-view-container">                                     
+                                            <th>{% trans %}formulario_reserva.labels.paso_cinco.division{% endtrans %}</th>
+                                            <td>
+                                                {% if (reserva.divisiones != null) %}
+                                                    {% for divisionReserva in reserva.divisiones %}
+                                                        {{divisionReserva.division.nombre}} <br>                                
+                                                        <strong>Deportistas</strong><br>
+                                                        {%for usuarioDivisionReserva in divisionReserva.divisionReservas%}
+                                                            <ul>
+                                                                <li>{{usuarioDivisionReserva.usuario.numeroIdentificacion}} - {{usuarioDivisionReserva.usuario.nombreCompleto}}</li>
+                                                            </ul>
+                                                        {%endfor%} 
+                                                    {% endfor %}
+                                                {% else %}
+                                                    No se han seleccionado una Divisiones
+                                                {% endif %}                                            
+                                            </td>                                    
+                                        </tr>
+                                        {% if reserva.escenarioDeportivo != null %}
+                                            <tr class="sonata-ba-view-container">
+                                                <th>Barrio</th>
+                                                <td>
+                                                    {{reserva.escenarioDeportivo.barrio}}
+                                                </td>
+                                            </tr>
+                                        {% endif %}
+                                        <tr class="sonata-ba-view-container">                                        
+                                            <th>Disciplina</th>
+                                            <td>           
+                                                {% if (reserva.divisiones != null) %}
+                                                    {% if (reserva.disciplina != null) %}                                        
+                                                        {{reserva.disciplina.nombre}}    
+                                                    {% else %}
+                                                        No se ha seleccionado una Disciplina
+                                                    {% endif %}                    
+                                                {% else %}
+                                                    No se ha seleccionado una Disciplina
+                                                {% endif %}                     
+
+                                            </td>                                    
+                                        </tr>
+                                        <tr class="sonata-ba-view-container">                                        
+                                            <th>Tipo Reserva</th>
+                                            <td>
+                                                {{reserva.tipoReserva}}
+                                            </td>                                    
+                                        </tr>
+                                        <tr class="sonata-ba-view-container">                                        
+                                            <th>Fecha Inicio</th>
+                                            <td>{{reserva.fechaInicio.date|date('d/m/Y')}}</td>                                    
+                                        </tr>
+                                        <tr class="sonata-ba-view-container">                                        
+                                            <th>Fecha Final</th>
+                                            <td>{{reserva.fechaFinal.date|date('d/m/Y')}}</td>
+                                        </tr>
+                                        <tr class="sonata-ba-view-container">                                        
+                                            <th>Días Reserva</th>
+                                            <td>
+                                                {% for programacion in reserva.programaciones %}
+                                                    {%if programacion.inicioManana and programacion.inicioTarde%}
+                                                        <ul>
+                                                            <li>{{programacion.dia}} {{programacion.inicioManana|date("H:i")}} - {{programacion.finTarde|date("H:i")}}</li>
+                                                        </ul>
+                                                    {%elseif programacion.inicioManana %}
+                                                        <ul>
+                                                            <li>{{programacion.dia}} {{programacion.inicioManana|date("H:i")}} - {{programacion.finManana|date("H:i")}}</li>
+                                                        </ul>
+                                                    {%elseif programacion.inicioTarde %}
+                                                        <ul>
+                                                            <li>{{programacion.dia}} {{programacion.inicioTarde|date("H:i")}} - {{programacion.finTarde|date("H:i")}}</li>
+                                                        </ul>
+                                                    {%endif%}
+                                                {% endfor %}
+                                            </td>                
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="alert alert-success alert-dismissable" id="divMensajeReserva">                
+                    <p id="textoAprobarReserva"></p>
+                </div>
+                <a href="{{ path('admin_logic_reserva_list') }}" id="listaReserva" > </a>
+                {{ include('AdminBundle:MotivoCancelacionReserva:motivo_cancelacion_reserva.html.twig') }}
+
+                {% if puedeCancelarReserva == true  %}
+                    {% if pendiente == true %}
+
+                        {% if mostrarBtnAprobar == true %}
+                            <div class="row">
+                                <div class="col-md-1 col-md-offset-10">
+                                    <a class="btn btnSize btn-danger" data-toggle="modal" data-target="#motivoCancelacionId">
+                                        <i class="fa fa-times-circle fa-2x" aria-hidden="true"></i>
+                                        {{ 'Rechazar'|trans }}
+                                    </a>
+                                </div>
+
+                                <div class="col-md-1">
+                                    <a href="{{ path('admin_logic_reserva_list') }}" id="listaReservaAprobar">
+                                        <button type="button" id="btnAprobar" class="btn btnVerde btnSize">
+                                            <i class="fa fa-check-circle fa-2x"></i>
+                                            {{'Aprobar'|trans}}                                 
+                                            <!--Aprobar-->
+                                        </button>
+                                    </a>                    
+                                </div>
+                                <input type="hidden" name="idReserva" id="idReserva" value={{idReserva}}>
+                            </div>                    
+                        {% else %}
+                            <div class="row">
+                                <div class="col-md-1 col-md-offset-11">
+                                    <a class="btn btnSize btn-danger" data-toggle="modal" data-target="#motivoCancelacionId">
+                                        <i class="fa fa-times-circle fa-2x" aria-hidden="true"></i>
+                                        {{ 'Rechazar'|trans }}
+                                    </a>
+                                </div>
+                                <input type="hidden" name="idReserva" id="idReserva" value={{idReserva}}>
+                            </div>
+                        {% endif %}
+                    {% else %}
+
+                        {% if mostrarBtnAprobar == true %}                        
+                            {% if reserva.estado == 'Aprobado' %}
+                                <div class="row">
+                                    <div class="col-md-1 col-md-offset-10">
+                                        <a class="btn btnSize btn-danger" data-toggle="modal" data-target="#motivoCancelacionId">
+                                            <i class="fa fa-times-circle fa-2x" aria-hidden="true"></i>
+                                            {{ 'Rechazar'|trans }}
+                                        </a>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="row">
+                                    <div class="col-md-1 col-md-offset-10">
+                                    </div>
+                                    <div class="col-md-1">
+                                        <a href="{{ path('admin_logic_reserva_list') }}" id="listaReservaAprobar">
+                                            <button type="button" id="btnAprobar" class="btn btnVerde btnSize">
+                                                <i class="fa fa-check-circle fa-2x"></i>
+                                                {{'Aprobar'|trans}}                                 
+                                                <!--Aprobar-->
+                                            </button>
+                                        </a>                    
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <input type="hidden" name="idReserva" id="idReserva" value={{idReserva}}>
+                        {% else %}
+                            <div class="row">
+                                <div class="col-md-1 col-md-offset-11">
+                                    <a class="btn btnSize btn-danger" data-toggle="modal" data-target="#motivoCancelacionId">
+                                        <i class="fa fa-times-circle fa-2x" aria-hidden="true"></i>
+                                        {{ 'Rechazar'|trans }}
+                                    </a>
+                                </div>
+                                <input type="hidden" name="idReserva" id="idReserva" value={{idReserva}}>
+                            </div>
+                        {% endif %}
+
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+    </section>
+
+{% endblock sonata_page_content %}

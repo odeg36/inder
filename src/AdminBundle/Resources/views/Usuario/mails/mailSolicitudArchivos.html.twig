@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <!-- Bootstrap 3.3.7 -->
+        <link rel="stylesheet" href="{{ absolute_url(asset('bundles/sonatacore/vendor/bootstrap/dist/css/bootstrap.min.css')) }}">
+    </head>
+    <body style="background-color: rgba(236, 230, 230, 0.2); padding-top: 60px ">
+        <table class="table" style="width: 600px; margin: auto; text-align: center">
+            <tbody style="-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2); -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2); box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2); border-radius: 0 0 10px 10px">
+                <tr>
+                    <td style="padding: 50px 120px; border: none; background-color: #fff;">
+                        <img src="{{ absolute_url(asset('bundles/admin/img/icono-email-i.png')) }}">
+                        <h2 style="border-bottom: 2px solid #0099b1;">{% trans %}correos.usuario.registroUsuarioAsunto{% endtrans %}</h2>
+                    </td>
+                </tr>
+                <tr style="background-color: #ecf0f5;">
+                    <td style="padding: 50px 70px; border: none; text-align:left !important;">
+                        <p><strong>{% trans %}formulario_evento.labels.jugador_evento.informacion_enviar_usuario_correo_organismo{% endtrans %}</strong></p>
+                        
+                        <a href="{{ path('sonata_admin_dashboard') }}">
+                            <img style="cursor: pointer; margin-top: 15px" src="{{ absolute_url(asset('bundles/admin/img/btn-email.png')) }}">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: none; padding: 0">
+                        <img style="width: 600px;" src="{{ absolute_url(asset('bundles/admin/img/barra-verde-email.png')) }}">
+                    </td>
+                </tr>
+                <tr style="background-color: #0099b1; display: flex; align-items: center; justify-content: center; padding: 30px; border-radius: 0 0 10px 10px;">
+                    <td style="border: none;">
+                        <img src="{{ absolute_url(asset('bundles/admin/img/logo-email.png')) }}">
+                        <p><a href="" style="color: #fff; font-size: 16px;">www.inder.gov.co</a></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

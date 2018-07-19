@@ -1,0 +1,42 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+{% endblock %}
+{% block title %}formulario_escenario_deportivo.title{% endblock %}
+{% block sonata_page_content %}
+    <section class="content">
+        {% block sonata_admin_content %}
+            <section class="container-fluid">
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                    <li><a href="#">Escenarios deportivos</a></li>
+                    <li class="active">Crear</li>
+                </ol>
+            </section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_escenario_deportivo.title{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Solicitud-registro-pasos -->
+                <div class="row">
+                    <div class="col-md-4 iconoText2">
+                        {% include 'AdminBundle:EscenarioDeportivo/Pasos:iconos.html.twig' with {vistaPaso: 5, 'idescenario': idescenario} %}
+                    </div>
+                    <div class="col-md-8 fondoAzul2">
+                        <div class="infoBox felicitaciones">
+                            <div class="circuloIcono">
+                                <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                            </div>
+                            <p>Escenario registrado con éxito<br>
+                                <span>{% trans %}formulario_registro.felicitaciones_gracias{% endtrans %}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock sonata_admin_content %}
+    </section>
+{% endblock sonata_page_content %}

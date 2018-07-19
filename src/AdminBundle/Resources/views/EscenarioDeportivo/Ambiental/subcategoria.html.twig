@@ -1,0 +1,21 @@
+{% block subcategoria_ambiental_escenario_type_row %}
+<div class="light-gray sub data-escenario-subcategoria" data-id="{{ form.vars.form.vars.name }}"
+     data-escenario-subcategoria="{% if form.vars.value is defined and form.vars.value is not null %}{{ form.vars.value.id }}{% endif %}">
+    <div class="col-md-12">
+
+    	{{ form_widget(form.subCategoriaAmbiental, { 
+            'attr': {
+                'class': 'form-control form-select tipo_entrada subcategoria-ambiental-select',
+                'data-id': form.vars.name
+            } 
+        }) }}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.subCategoriaAmbiental.vars.errors }%}
+        {{ form_rest(form) }}
+    </div>
+    <div id="campos_subcategoria_{{ form.vars.form.vars.name }}" class="contenido_infraestructura col-md-12 col-xs-12 col-sm-12">    
+    </div>
+    <div class="campos-dinamicos-subcategoria col-xs-12 col-sm-12 col-md-12">
+    </div>
+</div>
+{% endblock %}
+

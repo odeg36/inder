@@ -1,0 +1,27 @@
+{% block componente_type_row %}
+    <div class="campoGris row  margenPasos componente-hijo-eliminar margen-bottom-10 " id="form_componente_{{ form.vars.name }}" data-id="{{ form.vars.name }}">
+        <div class="col-md-12">
+            {{form_label(form.modelo)}}
+            {{form_widget(form.modelo)}}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.modelo.vars.errors }%}
+        </div>
+        <div class="col-md-12">
+            {{form_label(form.nombre)}}
+            {{form_widget(form.nombre)}}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nombre.vars.errors }%}
+        </div>
+        <div class="col-md-12">
+            {{form_label(form.objetivo)}}
+            {{form_widget(form.objetivo)}}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.objetivo.vars.errors }%}
+        </div>
+        {{ form_rest(form) }}        
+        <div class="col-md-12 collection-remove collection-action btnCentrar "  >
+            <div class="col-md-4 btnCentrar campoGris">
+                <button type="button" class="btn btn_remover btnRojo">
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar este componente
+                </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

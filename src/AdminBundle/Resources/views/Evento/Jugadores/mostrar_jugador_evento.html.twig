@@ -1,0 +1,148 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+        .white{
+            background : #fff !important;
+        }
+        .red{
+            color : #ff0201 !important;
+        }
+        .mg-top{
+            margin-top : 10px !important;
+        }
+        .mg-bottom{
+            margin-bottom : 10px !important;
+        }
+        .pd-left{ 
+            padding-left : 5px !important;
+        }
+        .pd-right{
+            padding-right : 5px !important;
+        }
+        .center{
+            text-align : center !important;
+        }
+        #textVistaPrevia{
+            text-align : center !important;   
+        }
+        #divImagen{
+            border-radius: 15px;
+            border: 1px solid #0099b1;
+            padding: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+        #divImagenDocumento{            
+            align-items: center;
+            justify-content: center;
+        }
+        .imageDoc {
+            display: block;
+            margin: 0 auto;
+            width: 581px;
+        }
+        #imagenDocumento, imagenEps{
+            max-height: 697.5px;
+            max-width: 581px;
+        }
+
+    </style>
+{% endblock %}
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_evento_list') }}">{% trans %}Evento List{% endtrans %}</a></li>
+        <li><a href="{{ url('admin_logic_evento_configuracion', {id:idevento}) }}">{{ nombreEvento }}</a></li>
+        <li><a href="{{ url('admin_logic_jugadorevento_list', {id:idevento}) }}">{% trans %}Jugador Evento List{% endtrans %}</a></li>    
+        <li class="active">{% trans %}formulario_evento.labels.jugador_evento.documentacion{% endtrans %}</li>
+    </ol>
+{% endblock %}
+
+{% block sonata_page_content %}
+    {% block sonata_admin_content %}
+        <!-- Content Wrapper. Contains page content -->
+        <div class="alto-contenido">
+            <!-- formulario -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4> {{evento.nombre}}</h4>
+                        <ul class="nav navbar-nav navbar-right" style="padding-right: 12px">
+                            <a type="button" class="btn-regresar sonata-action-element" href="{{path('admin_logic_jugadorevento_list', {id:idevento} )}}" style="padding: 5px 12px 3px 12px">
+                                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                {{ 'admin.detallesolicitud.volver' | trans }}
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Información general -->
+                <div class="row">
+                    <div class="col-md-12 sombra">
+                        <!-- Custom Tabs -->
+                        
+                        <div class="nav-tabs-custom">
+                            {% include 'AdminBundle:Evento/Tabs:tab.html.twig' with {tabActivo: 'equiposparticipantes', idevento: idevento} %}
+                        
+                            <div class="col-md-12 tab-content padding-total20">
+                                <!-- Configuración -->
+                                <div class="col-md-12 tab-pane active " >
+                                    <!-- botones internos evento y inscripción -->
+                                    <div class="nav-tabs-custom">
+                                        <div class="linea-gris"></div>                                        
+                                        <div class="col-md-12">
+                                            <label>{% trans %}formulario_evento.labels.jugador_evento.documentacion{% endtrans %} {{jugador.firstname}} - {{jugador.tipoIdentificacion.abreviatura}}: {{jugador.numeroIdentificacion}}</label>
+                                        </div>
+                                        <br></br>
+                                        <div class="col-md-3">
+                                            <div class="col-md-12">
+                                                <a href="#divImagenDocumento" data-toggle="tab" aria-expanded="false" id="btnMostrarDocumento">
+                                                    <label>{% trans %}formulario_evento.labels.jugador_evento.documento_identidad{% endtrans %}</label>                                                        
+                                                </a>                                                
+                                            </div>
+                                            <div class="col-md-12">
+                                                <a href="#divImagenEPS" data-toggle="tab" aria-expanded="false" id="btnMostrarEps">
+                                                    <label>{% trans %}formulario_evento.labels.jugador_evento.certificaco_eps{% endtrans %}</label>
+                                                </a>                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9"> 
+                                            <p id="textVistaPrevia">{% trans %}formulario_evento.labels.jugador_evento.vista_previa{% endtrans %}</p>
+                                            <div class="col-md-12" id="divImagen">                                                                                        
+                                                <div id="divImagenDocumento">
+                                                    <img id="imagenDocumento" class="imageDoc" src="/uploads/{{jugadorEvento.documentoImagen}}" alt="">
+                                                </div>                                       
+
+                                                <div id="divImagenEPS">
+                                                    <img id="imagenEps" class="imageDoc" src="/uploads/{{jugadorEvento.epsImagen}}" alt="">                                                    
+                                                </div>                                            
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $("#divImagenEPS").hide();
+            $('#btnMostrarDocumento').click(function(evt) {
+                $("#divImagenEPS").hide();
+                $("#divImagenDocumento").show();
+            });
+
+            $('#btnMostrarEps').click(function(evt) {
+                $("#divImagenDocumento").hide();
+                $("#divImagenEPS").show();
+            });
+
+        </script>
+    {% endblock sonata_admin_content %}
+{% endblock sonata_page_content %}

@@ -1,0 +1,39 @@
+{% extends "::base.reporte.html.twig" %}
+
+{% block body %}
+    <div class="container-fluid cabecera-contenedor">
+        <div class="row">
+            <div class="col-xs-8 cabecera-logo-simon text-center">
+                <img src="{{ app.request.getSchemeAndHttpHost() }}/bundles/admin/img/logo-simon-header.png" alt="">
+            </div>
+            <div class="col-xs-4 cabecera-logo-alcaldia">
+                <img src="{{ app.request.getSchemeAndHttpHost() }}/bundles/admin/img/logos-inder-alcaldia.png" alt="">
+            </div>
+        </div>
+    </div>
+     <div class="container">
+        <table class="table table-responsive">
+            <caption class="text-center"><b> Reservas</b></caption>
+            <thead>
+                <tr>
+                    <th> Estado </th>
+                    <th> Observación </th>   
+                    <th> No. Documento </th>   
+                    <th> Participante </th>  
+                    <th> Equipo </th>         
+                </tr>
+            </thead>
+            <tbody>
+                {% for jugador in jugadores %}
+                    <tr>
+                        <td>{{ jugador.estado }}</td>
+                        <td>{{ jugador.observacion }}</td>
+                        <td>{{ jugador.noDocumento }}</td>
+                        <td>{{ jugador.nombreUsuario }}</td>
+                        <td>{{ jugador.nombreEquipo }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

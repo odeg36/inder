@@ -1,0 +1,34 @@
+{% block categoria_infraestructura_escenario_type_row %}
+    <div class="campoGris row margen-bottom-10 data-id categoria-calcular" id="form_categoria_infraestructura_{{ form.vars.name }}" data-id="{{ form.vars.name }}" >
+        <div class="col-md-12 col-xs-12 col-sm-12">
+            <span>{% trans %}formulario_escenario_deportivo.labels.paso_cuatro_uno.categoria{% endtrans %}</span>
+            {{ form_widget(form.categoriaInfraestructura, { 'attr': {'data-name': form.vars.name , 'class': 'form-control categoria-select' }   }) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.categoriaInfraestructura.vars.errors }%}
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-6">
+                <span><b>{{ 'formulario.calificacion.general' | trans }}:</b></span>&nbsp;
+                <span class="calificacion-general">
+                    {{ form.calificacionGeneral.vars.value ? form.calificacionGeneral.vars.value : 0 }}
+                </span>
+            </div>
+        </div>
+        <div>
+            {{ form_row(form.importanciaRelativa) }}
+            {{ form_row(form.calificacionGeneral) }}
+        </div>
+        <div class="col-md-12 col-xs-12 col-sm-12 escenarioCategoriaSubCategoriaInfraestructuras" id="subcategorias-{{ form.vars.name }}">
+            <section class="col-md-12 col-xs-12 col-sm-12 error-mesajes">
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.escenarioCategoriaSubCategoriaInfraestructuras.vars.errors }%}
+            </section>
+            {%
+                form_theme form
+                'AdminBundle:EscenarioDeportivo:subcategoriainfraestructura.html.twig'
+                'jquery.collection.html.twig'
+            %}
+            {{ form_row(form.escenarioCategoriaSubCategoriaInfraestructuras, { attr: { categoriaSumatoria: form.vars.name } }) }}
+        </div>
+    </div>
+    <br>
+{% endblock %}

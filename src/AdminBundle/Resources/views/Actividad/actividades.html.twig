@@ -1,0 +1,96 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+    </style>
+{% endblock %}
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ admin.generateUrl('list', {'pam':idpam}) }}">{% trans %}Actividad List{% endtrans %}</a></li>
+        <li class="active">Crear</li>
+    </ol>
+{% endblock %}
+{% block sonata_page_content %}
+    {% block sonata_admin_content %}
+        <!-- Content Wrapper. Contains page content -->
+        <div class="">
+            <!-- formulario -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_actividades.title{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Actividades -->
+                <div class="row">
+                    <div class="col-md-12 fondoAzul2">
+                    
+                        {{ form_start(form, {'action': path('admin_logic_actividad_crearActividad', { 'id' : actividadId, 'pam': idpam }), 'attr': {'id': 'formulario_actividades', novalidate: 'true'} } ) }}
+                            <div class="infoBox row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 contenedorInfoUno">
+                                    <div class="col-md-12">
+                                        {{form_label(form.componente)}}
+                                        {{form_widget(form.componente)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.componente.vars.errors }%}
+                                    </div>
+                                    <div class="col-md-12">
+                                        {{form_label(form.contenido)}}
+                                        {{form_widget(form.contenido)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.contenido.vars.errors }%}
+                                    </div>
+                                    <div class="col-md-12">
+                                        {{form_label(form.nombre)}}
+                                        {{form_widget(form.nombre)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nombre.vars.errors }%}
+                                    </div>
+                                    <div class="col-md-12">
+                                        {{form_label(form.tipoTiempoEjecucion)}}
+                                        {{form_widget(form.tipoTiempoEjecucion)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoTiempoEjecucion.vars.errors }%}
+                                    </div>
+                                    <div class="col-md-2">
+                                        {{form_label(form.duracion)}}
+                                        {{form_widget(form.duracion)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.duracion.vars.errors }%}
+                                    </div>
+                                    <div class="col-md-1"><label style="margin-top: 30px">Sesión(es)</label></div>
+                                    <div class="col-md-12">
+                                        {{form_label(form.indicador)}}
+                                        {{form_widget(form.indicador)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.indicador.vars.errors }%}
+                                    </div>
+                                    <div class="col-md-12">
+                                        {{form_label(form.metodoEvaluacion)}}
+                                        {{form_widget(form.metodoEvaluacion)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.metodoEvaluacion.vars.errors }%}
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                    <div class="col-md-12 division"></div>
+                                    <div class="col-md-12">
+                                        <span></span>
+                                        <div class="col-md-12">
+                                            <a type="button" class="btn btnNaranja" href="{{ admin.generateUrl('list', {'pam':idpam}) }}">
+                                                <i class="fa fa-chevron-left"></i>
+                                                {{'Cancelar'|trans}}
+                                            </a>
+                                            {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                        </div>
+                                        <div style="display: none;">
+                                            {{ form_rest(form) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.content-wrapper -->
+    {% endblock sonata_admin_content %}
+{% endblock sonata_page_content %}

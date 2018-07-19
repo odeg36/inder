@@ -1,0 +1,100 @@
+{% block direccion_widget %}
+    <div class="col-lg-12 col-md-12" >
+        {#        <label>{% trans %}formulario_registro.contacto.direccion{% endtrans %}</label>#}
+        <p>{% trans %}formulario_registro.contacto.ingresodireccion{% endtrans %}</p>
+    </div>
+    {% set classParent = '' %}
+    {% for key, attr in form.vars.attr %}
+        {% if key == 'clases' %}
+            {% set classParent = attr %}
+        {% endif %}
+    {% endfor %}
+    <div class="col-lg-12 col-md-12 {{ classParent }}" >
+        <div class="row direccion">
+            <div class="col-sm-12 col-md-12 fondoDireccion">
+                <div class="contenedorDireccionTooltip">
+                    <div class="direccionTooltip" >
+                        <p>{{'ayuda.direccion'|trans}}</p>
+                        <img src="{{ asset('bundles/admin/img/ayudaDireccion.gif') }}">
+                    </div>
+                </div>
+                <div class="col-sm-2 col-md-2 margenCampoDireccion {{form.tipo_via.vars.errors|length > 0 ? 'has-error':''}}">
+                    {{ form_widget(form.tipo_via) }}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipo_via.vars.errors }%}
+                </div>
+                <div class="col-sm-1 col-md-1 margenCampoDireccion {{form.numero_via.vars.errors|length > 0 ? 'has-error':''}}">
+                    {{ form_widget(form.numero_via) }}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.numero_via.vars.errors }%}
+                </div>
+                <div class="col-sm-1 col-md-1  {{form.letra_prefijo.vars.errors|length > 0 ? 'has-error':''}}">
+                    {{ form_widget(form.letra_prefijo) }}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.letra_prefijo.vars.errors }%}
+                </div>
+                <div class="col-sm-1 col-md-1 margenCampoDireccion {{form.prefijo.vars.errors|length > 0 ? 'has-error':''}}">
+                    {{ form_widget(form.prefijo) }}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.prefijo.vars.errors }%}
+                </div>
+                <div class="col-sm-2 col-md-2 margenCampoDireccion {{form.cuadrante.vars.errors|length > 0 ? 'has-error':''}}">
+                    {{ form_widget(form.cuadrante) }}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.cuadrante.vars.errors }%}
+                </div>
+                <div class="col-sm-1 col-md-1 margenCampoDireccion {{form.numero_generador.vars.errors|length > 0 ? 'has-error':''}}">
+                    {{ form_widget(form.numero_generador) }}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.numero_generador.vars.errors }%}
+                </div>
+                <div class="col-sm-1 col-md-1 margenCampoDireccion {{form.letra_sufijo.vars.errors|length > 0 ? 'has-error':''}}">
+                    {{ form_widget(form.letra_sufijo) }}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.letra_sufijo.vars.errors }%}
+                </div>
+                <div class="col-sm-1 col-md-1 margenCampoDireccion {{form.sufijo.vars.errors|length > 0 ? 'has-error':''}}">
+                    {{ form_widget(form.sufijo) }}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.sufijo.vars.errors }%}
+                </div>
+                <div class="col-sm-1 col-md-1 margenCampoDireccion {{form.numero_placa.vars.errors|length > 0 ? 'has-error':''}}">
+                    {{ form_widget(form.numero_placa) }}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.numero_placa.vars.errors }%}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block comuna_widget %}
+    <div class="col-lg-12 col-md-12" >
+        <p>{% trans %}formulario_registro.contacto.ingresodireccion{% endtrans %}</p>
+    </div>
+    {% set classParent = '' %}
+    {% for key, attr in form.vars.attr %}
+        {% if key == 'clases' %}
+            {% set classParent = attr %}
+        {% endif %}
+    {% endfor %}
+    <div class="col-lg-12 col-md-12 {{ classParent }}" >
+        <div class="row comuna">
+            <div class="col-sm-12 col-md-12 fondoDireccion">
+                <div class="col-sm-4 col-md-4 {{form.tipo_via.vars.errors|length > 0 ? 'has-error':''}}">
+                    {{ form_widget(form.tipo_via) }}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipo_via.vars.errors }%}
+                </div>
+                <div class="col-sm-3 col-sm-3 col-md-3 {{form.numero_via.vars.errors|length > 0 ? 'has-error':''}} margenCampoDireccion">
+                    {{ form_widget(form.numero_via) }}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.numero_via.vars.errors }%}
+                </div>
+                <div class="col-sm-4 col-md-4 {{form.complemento.vars.errors|length > 0 ? 'has-error':''}} margenCampoDireccion">
+                    {{ form_widget(form.complemento) }}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.complemento.vars.errors }%}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block borrar_campo_widget %}
+    {% spaceless %}
+        <div class="col-sm-1 col-md-1">
+            <button onclick="inder.formulario.eliminarCampo(this)" class="btn btn-danger btnEliminarRegistro" ><i class="fa fa-minus-circle"></i>{{'formulario.accion.borrar'|trans}}</button>
+            <div>
+            {% endspaceless %}
+        {% endblock %}

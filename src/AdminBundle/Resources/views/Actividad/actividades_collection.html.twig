@@ -1,0 +1,38 @@
+{% block actividades_type_row %}
+    <div class="campoGris row  margenPasos actividades-hijo-eliminar margen-bottom-10 " id="form_actividades_{{ form.vars.name }}" data-id="{{ form.vars.name }}">
+        <div class="col-md-12">
+            {{form_label(form.nombre)}}
+            {{form_widget(form.nombre)}}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nombre.vars.errors }%}
+        </div>
+        <div class="col-md-12">
+            {{form_label(form.tipoTiempoEjecucion)}}
+            {{form_widget(form.tipoTiempoEjecucion)}}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoTiempoEjecucion.vars.errors }%}
+        </div>
+        <div class="col-md-2">
+            {{form_label(form.duracion)}}
+            {{form_widget(form.duracion)}}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.duracion.vars.errors }%}
+        </div>
+        <div class="col-md-1"><label style="margin-top: 30px">Sesión(es)</label></div>
+        <div class="col-md-12">
+            {{form_label(form.indicador)}}
+            {{form_widget(form.indicador)}}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.indicador.vars.errors }%}
+        </div>
+        <div class="col-md-12">
+            {{form_label(form.metodoEvaluacion)}}
+            {{form_widget(form.metodoEvaluacion)}}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.metodoEvaluacion.vars.errors }%}
+        </div>
+        {{ form_rest(form) }}        
+        <div class="col-md-12 collection-remove collection-action btnCentrar">
+            <div class="col-md-4 btnCentrar campoGris">
+                <button type="button" class="btn btn_remover btnRojo">
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar esta actividad
+                </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+    </style>
+
+{% endblock %}
+
+{% block title %}AdminBundle:Usuario:registro{% endblock %} 
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_escenariodeportivo_list') }}">{% trans %}formulario_escenario_deportivo.escenarios_deportivos{% endtrans %}</a></li>
+        <li><a href="{{ url('admin_logic_reserva_list') }}">{% trans %}titulo.reservas{% endtrans %}</a></li>
+        <li class="active">{% trans %}formulario_reserva.crear{% endtrans %}</li>
+    </ol>                                                        
+{% endblock %}
+
+{% block sonata_page_content %}
+    <section class="content">
+        {% block sonata_admin_content %}
+            {{ form_start(form, {'attr': {'id': 'formulario_reserva_paso1', novalidate: 'true'} } ) }}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_reserva.solicitudregistro{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Solicitud-registro-pasos -->
+                <div class="row">
+                    <div class="col-md-4 iconoText2">
+                        {#                        {% if usuariosDivision <= 1 %}#}
+                        {#                            {% include 'AdminBundle:Reservas/Pasos:iconos.html.twig' with {vistaPaso: 3} %}#}
+                        {#                        {% else %}#}
+                        {% include 'AdminBundle:Reservas/Pasos:iconos.html.twig' with {vistaPaso: 4} %}
+                        {#                        {% endif %}#}
+                    </div>
+                    <div class="col-md-8 fondoAzul2">
+                        <div class="infoBox row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 contenedorInfoUno">
+                                <div class="col-md-12">
+                                    <label>{% trans %}formulario_reserva.labels.paso_cuatro.terminos{% endtrans %}</label>
+                                    <p>{% trans %}formulario_reserva.labels.paso_cuatro.descripcion_terminos{% endtrans %}</p>
+                                </div>
+
+                                <div class="col-md-12 d-flex">
+                                    <a  data-toggle="modal" data-target="#myModal" class="btn btnBlanco" title="Mostrar">
+                                        <i class="fa fa-book fa-2x" aria-hidden="true"></i>
+                                        <span>{% trans %}formulario_reserva.labels.paso_cuatro.boton_terminos{% endtrans %}</span>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-12">                                                                                
+                                    {{form_widget(form.terminos)}}                                        
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.terminos.vars.errors }%}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                <div class="col-md-12 division"></div>
+                                <div class="col-md-12">
+                                    <a type="button" class="btn btnNaranja" onclick="inder.reserva.cancelarReserva()">
+                                        <i class="fa fa-chevron-left"></i>
+                                        {{'Cancelar'|trans}}
+                                    </a>
+                                    {% if usuariosDivision <= 1 %}
+                                        <a href="{{ path('admin_logic_reserva_paso2', { 'id':idreserva } ) }}" class="btn btnVerde">
+                                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                            {% trans %}formulario_reserva.labels.paso_cuatro.anterior{% endtrans %}
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path('admin_logic_reserva_paso3', { 'id':idreserva } ) }}" class="btn btnVerde">
+                                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                            {% trans %}formulario_reserva.labels.paso_cuatro.anterior{% endtrans %}
+                                        </a>
+                                    {% endif %}
+                                    <span></span>
+                                    {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                    <div style="display: none;">
+                                        {{ form_rest(form) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span id="alertas" data-tituloalerta="{% trans %}formulario_reserva.alertas.tituloalerta {% endtrans %}" data-yaseleccionada="{% trans %}formulario_registro.alertas.disciplinasyaseleccionada {% endtrans %}" data-revisecampos="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-registrado="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-mensajeerror="{% trans %}formulario_registro.alertas.mensajeerror {% endtrans %}" data-titulook="{% trans %}formulario_registro.alertas.titulo_ok {% endtrans %}"></span>
+            <span id='disciplinas' class='disciplinas' data-numero="{{ disciplinas|length }}"></span>
+            <span id="url" data-infoorganigrama="{{ path("info_organigrama") }}"></span>
+            {{ form_end(form) }}
+            <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content" style="background:#fff !important;">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">{% trans %}formulario_reserva.labels.paso_cuatro.boton_terminos{% endtrans %}</h4>
+                        </div>
+                        <div class="modal-body">
+                            {{normas|raw}}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}formulario_reserva.labels.paso_cuatro.cerrar{% endtrans %}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock sonata_admin_content %}
+    </section>
+{% endblock sonata_page_content %}

@@ -1,0 +1,287 @@
+{% if form.licenciaCiclismo is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.licenciaCiclismo)}}
+        {{form_widget(form.licenciaCiclismo)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.licenciaCiclismo.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.perteneceLGBTI is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.perteneceLGBTI)}}
+        {{form_widget(form.perteneceLGBTI)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.perteneceLGBTI.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.estatura is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.estatura)}}
+        {{form_widget(form.estatura)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.estatura.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.peso is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.peso)}}
+        {{form_widget(form.peso)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.peso.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.indiceMasaCorporal is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.indiceMasaCorporal)}}
+        {{form_widget(form.indiceMasaCorporal)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.indiceMasaCorporal.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.consumeBebidasAlcoholicas is defined %}
+    <div class="col-md-12">
+        {{form_label(form.consumeBebidasAlcoholicas)}}
+        {{form_widget(form.consumeBebidasAlcoholicas)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.consumeBebidasAlcoholicas.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.desplazado is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.desplazado)}}
+        {{form_widget(form.desplazado)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.desplazado.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.tipoDesplazado is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.tipoDesplazado)}}
+        {{form_widget(form.tipoDesplazado)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoDesplazado.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.barrio is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.barrio)}}
+        {{form_widget(form.barrio)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.barrio.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.padeceEnfermedadesCronicas is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.padeceEnfermedadesCronicas)}}
+        {{form_widget(form.padeceEnfermedadesCronicas)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.padeceEnfermedadesCronicas.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.consumeMedicamentos is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.consumeMedicamentos)}}
+        {{form_widget(form.consumeMedicamentos)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.consumeMedicamentos.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.tipoSangre is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.tipoSangre)}}
+        {{form_widget(form.tipoSangre)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoSangre.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.medioTransporte is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.medioTransporte)}}
+        {{form_widget(form.medioTransporte)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.medioTransporte.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.puntoRecoleccion is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.puntoRecoleccion)}}
+        {{form_widget(form.puntoRecoleccion)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.puntoRecoleccion.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.establecimientoEducativo is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.establecimientoEducativo)}}
+        {{form_widget(form.establecimientoEducativo)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.establecimientoEducativo.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.nivelEscolaridad is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.nivelEscolaridad)}}
+        {{form_widget(form.nivelEscolaridad)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nivelEscolaridad.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.estrato is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.estrato)}}
+        {{form_widget(form.estrato)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.estrato.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.nombreClubEquipo is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.nombreClubEquipo)}}
+        {{form_widget(form.nombreClubEquipo)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nombreClubEquipo.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.nombreCarro is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.nombreCarro)}}
+        {{form_widget(form.nombreCarro)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nombreCarro.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.rama is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.rama)}}
+        {{form_widget(form.rama)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.rama.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.rol is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.rol)}}
+        {{form_widget(form.rol)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.rol.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.categoria is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.categoria)}}
+        {{form_widget(form.categoria)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.categoria.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.subcategoria is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.subcategoria)}}
+        {{form_widget(form.subcategoria)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.subcategoria.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.ocupacion is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.ocupacion)}}
+        {{form_widget(form.ocupacion)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.ocupacion.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.jefeCabezaHogar is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.jefeCabezaHogar)}}
+        {{form_widget(form.jefeCabezaHogar)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.jefeCabezaHogar.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.telefonoContacto is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.telefonoContacto)}}
+        {{form_widget(form.telefonoContacto)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.telefonoContacto.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.gradoCursa is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.gradoCursa)}}
+        {{form_widget(form.gradoCursa)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.gradoCursa.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.tallaPantalon is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.tallaPantalon)}}
+        {{form_widget(form.tallaPantalon)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tallaPantalon.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.tallaCamisa is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.tallaCamisa)}}
+        {{form_widget(form.tallaCamisa)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tallaCamisa.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.tallaZapatos is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.tallaZapatos)}}
+        {{form_widget(form.tallaZapatos)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tallaZapatos.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.numeroMatricula is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.numeroMatricula)}}
+        {{form_widget(form.numeroMatricula)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.numeroMatricula.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.municipio is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.municipio)}}
+        {{form_widget(form.municipio)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.municipio.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.direccion is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.direccion)}}
+        {{form_widget(form.direccion)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.direccion.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.sexo is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.sexo)}}
+        {{form_widget(form.sexo)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.sexo.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.discapacitado is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.discapacitado)}}
+        {{form_widget(form.discapacitado)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.discapacitado.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.tipoDiscapacidad is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.tipoDiscapacidad)}}
+        {{form_widget(form.tipoDiscapacidad)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoDiscapacidad.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.subDiscapacidad is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.subDiscapacidad)}}
+        {{form_widget(form.subDiscapacidad)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.subDiscapacidad.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.adjuntarDocumentos is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.adjuntarDocumentos)}}
+        {{form_widget(form.adjuntarDocumentos)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.adjuntarDocumentos.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.correoElectronico is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.correoElectronico)}}
+        {{form_widget(form.correoElectronico)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.correoElectronico.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.fechaNacimiento is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.fechaNacimiento)}}
+        {{form_widget(form.fechaNacimiento)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.fechaNacimiento.vars.errors }%}
+    </div>
+{% endif %}
+{% if form.fuma is defined %}
+    <div class="col-md-12" style="margin-bottom: 10px">
+        {{form_label(form.fuma)}}
+        {{form_widget(form.fuma)}}
+        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.fuma.vars.errors }%}
+    </div>
+{% endif %}

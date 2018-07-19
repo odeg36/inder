@@ -1,0 +1,27 @@
+{% block tema_modelo_type_row %}
+    <div class="campoGris row  margenPasos division-hijo-eliminar margen-bottom-10 " id="form_division_{{ form.vars.name }}" data-id="{{ form.vars.name }}">
+        <div class="col-md-12">
+            <strong>
+                {{form_label(form.temaModelo)}}
+            </strong>
+            {{ form_widget(form.temaModelo) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.temaModelo.vars.errors }%}
+        </div>
+        <div class="col-md-12">
+            <strong>
+                {{form_label(form.nivel)}}
+            </strong>
+            {{ form_widget(form.nivel) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nivel.vars.errors }%}
+        </div>
+        
+        {{ form_rest(form) }}        
+        <div class="col-md-12 collection-remove collection-action btnCentrar "  >
+            <div class="col-md-4 btnCentrar campoGris">
+                <button type="button" class="btn btn_remover  btnRojo">
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar este tema
+                </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

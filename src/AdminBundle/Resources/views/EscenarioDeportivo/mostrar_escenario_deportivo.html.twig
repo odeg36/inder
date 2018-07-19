@@ -1,0 +1,232 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_escenariodeportivo_list') }}">{% trans %}Escenario Deportivo List{% endtrans %}</a></li>        
+        <li class="active">{{ nombreEscenario }}</li>
+    </ol>
+{% endblock %}
+
+{% block sonata_page_content %}
+<section class="content-header tituloFooter">
+    <section class="content-header tituloFooter">
+        <div class="sticky-wrapper">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-collapse">
+                        <div class="navbar-left">
+                            <h4>
+                                Detalle
+                            </h4>
+                        </div>
+                        <div class="navbar-right">
+                            <li class="btn" style="margin-top: 2.5px;">
+                                <a type="button" class="btn-regresar sonata-action-element" href="{{ path('admin_logic_escenariodeportivo_list') }}" style="padding: 5px 12px 3px 12px;">
+                                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                    {{'Volver'|trans}}
+                                </a>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+         </div>
+    </section>
+
+    <div class="sonata-ba-show">
+        <div class="sonata-ba-view">
+            <div class="row">
+
+                <div class="col-md-12 ">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <h4 class="box-title">
+                                Escenario Deportivo
+                            </h4>
+                        </div>
+
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table">
+                                <tbody>
+                                    <tr class="sonata-ba-view-container">
+                                        <th>Nombre</th>
+                                        <td>
+                                            {{escenarioDeportivo.nombre}}
+                                        </td>                                    
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">                                        
+                                        <th>Barrio</th>
+                                        <td>
+                                            {% if (escenarioDeportivo.barrio != null) %}                                        
+                                                {{escenarioDeportivo.barrio.nombre}}
+                                            {% else %}
+                                                No se ha seleccionado un barrio
+                                            {% endif %}                                            
+                                        </td>                                    
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">                                        
+                                        <th>Direccion</th>
+                                        <td>                                
+                                            {{escenarioDeportivo.direccion}}
+                                        </td>                                    
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">                                        
+                                        <th>Telefono</th>
+                                        <td>                                
+                                            {{escenarioDeportivo.telefono}}
+                                        </td>                                    
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">                                        
+                                        <th>Email</th>
+                                        <td>                                
+                                            {{escenarioDeportivo.email}}
+                                        </td>                                    
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">                                        
+                                        <th>Unidad Deportiva</th>
+                                        <td>           
+                                            {% if (escenarioDeportivo.unidadDeportiva != null) %}
+                                                {{escenarioDeportivo.unidadDeportiva.nombre}}    
+                                            {% else %}
+                                                No se ha seleccionado una Unidad Deportiva
+                                            {% endif %}                    
+                                        </td>                                    
+                                    </tr>                                   
+                                    <tr class="sonata-ba-view-container">                                        
+                                        <th>Norma Escenario</th>
+                                        <td>{{escenarioDeportivo.normaEscenario|raw}}</td>                                    
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">
+                                        <th>Tipo Escenario</th>
+                                        <td>{{escenarioDeportivo.tipoEscenario}}</td>
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">
+                                        <th>Divisiones</th>                                        
+                                        <td>
+                                            {% set divisiones = escenarioDeportivo.divisiones%}
+                                            {% for divisiones in divisiones %}
+                                                <ul class="sonata-ba-show-one-to-many">
+                                                    <li>{{divisiones.nombre}}</li>
+                                                </ul>
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">
+                                        <th>Tipo Reserva Escenario Deportivos</th>                                        
+                                        <td>                                        
+                                            {% set tipoReservaEscenarioDeportivos = escenarioDeportivo.tipoReservaEscenarioDeportivos%}
+                                            {% for tipoReservaEscenarioDeportivos in tipoReservaEscenarioDeportivos %}
+                                                <ul class="sonata-ba-show-one-to-many">
+                                                    <li>{{tipoReservaEscenarioDeportivos.tipoReserva.nombre}}</li>
+                                                </ul>
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">
+                                        <th>Tendencia Escenario Deportivos</th>
+                                        <td>                                        
+                                            {% set tendenciaEscenarioDeportivos = escenarioDeportivo.tendenciaEscenarioDeportivos%}
+                                            {% for tendenciaEscenarioDeportivos in tendenciaEscenarioDeportivos %}
+                                                <ul class="sonata-ba-show-one-to-many">
+                                                    <li>{{tendenciaEscenarioDeportivos.tendencia.nombre}}</li>
+                                                </ul>
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">
+                                        <th>Disciplinas Escenario Deportivos</th>
+                                        <td>                                        
+                                            {% set disciplinasEscenarioDeportivos = escenarioDeportivo.disciplinasEscenarioDeportivos%}
+                                            {% for disciplinasEscenarioDeportivos in disciplinasEscenarioDeportivos %}
+                                                <ul class="sonata-ba-show-one-to-many">
+                                                    <li>{{disciplinasEscenarioDeportivos.disciplina.nombre}}</li>
+                                                </ul>
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                    <tr class="sonata-ba-view-container">
+                                        <th>Gestor Escenario Deportivo</th>
+                                        <td>                                        
+                                            {% set usuarioEscenarioDeportivos = escenarioDeportivo.usuarioEscenarioDeportivos%}
+                                            {% for usuarioEscenarioDeportivos in usuarioEscenarioDeportivos %}
+                                                <ul class="sonata-ba-show-one-to-many">
+                                                    <li>{{usuarioEscenarioDeportivos.usuario.firstname}} {{usuarioEscenarioDeportivos.usuario.lastname}}</li>
+                                                </ul>
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                    
+                                    {% if (mostrarInfoTecnica == true) %}
+                                        <tr class="sonata-ba-view-container">
+                                            <th>Categoria Infraestructura</th>
+                                            <td>                                        
+                                                {% set escenarioCategoriaInfraestructuras = escenarioDeportivo.escenarioCategoriaInfraestructuras%}
+                                                {% for escenarioCategoriaInfraestructuras in escenarioCategoriaInfraestructuras %}
+                                                    
+                                                    <ul class="sonata-ba-show-one-to-many">
+                                                        <li>{{escenarioCategoriaInfraestructuras.categoriaInfraestructura.nombre}}</li>                                                    
+                                                        {% set escenarioCategoriaSubCategoriaInfraestructuras = escenarioCategoriaInfraestructuras.escenarioCategoriaSubCategoriaInfraestructuras%}
+                                                        {% for escenarioCategoriaSubCategoriaInfraestructura in escenarioCategoriaSubCategoriaInfraestructuras %}
+                                                            <br>
+                                                            <ul class="sonata-ba-show-one-to-many">
+                                                                <li>Subcategoría: {{escenarioCategoriaSubCategoriaInfraestructura.subcategoriaInfraestructura.nombre}}</li>
+                                                                <li>Importancia relativa entre grupos: {{escenarioCategoriaSubCategoriaInfraestructura.importanciaRelativa}}</li>
+                                                                <li>Calificación general: {{escenarioCategoriaSubCategoriaInfraestructura.calificacionGeneral}}</li>
+                                                            </ul>                                                        
+                                                            {% set escenarioSubCategoriaInfraestructuraCampos = escenarioCategoriaSubCategoriaInfraestructura.escenarioSubCategoriaInfraestructuraCampos%}
+                                                            {% for escenarioSubCategoriaInfraestructuraCampo in escenarioSubCategoriaInfraestructuraCampos %}
+                                                                <ul class="sonata-ba-show-one-to-many">                                                                
+                                                                    <li>{{escenarioSubCategoriaInfraestructuraCampo.campoInfraestructura.nombre}}: {{escenarioSubCategoriaInfraestructuraCampo.valor}}</li>
+                                                                </ul>
+                                                            {% endfor %}
+                                                        {% endfor %}
+                                                    </ul>
+                                                {% endfor %}
+                                            </td>
+                                        </tr>
+
+                                        <tr class="sonata-ba-view-container">
+                                            <th>Categoria Ambiental</th>
+                                            <td>                                        
+                                                {% set escenarioCategoriaAmbientales = escenarioDeportivo.escenarioCategoriaAmbientales%}
+                                                {% for escenarioCategoriaAmbientales in escenarioCategoriaAmbientales %}
+                                                    
+                                                    <ul class="sonata-ba-show-one-to-many">
+                                                        <li>{{escenarioCategoriaAmbientales.categoriaAmbiental.nombre}}</li>                                                    
+                                                        
+                                                        {% set escenarioSubCategoriaAmbientales = escenarioCategoriaAmbientales.escenarioSubCategoriaAmbientales%}
+                                                        {% for escenarioSubCategoriaAmbiental in escenarioSubCategoriaAmbientales %}
+                                                            <br>
+                                                            <ul class="sonata-ba-show-one-to-many">
+                                                                <li>Subcategoría: {{escenarioSubCategoriaAmbiental.subcategoriaAmbiental.nombre}}</li>                                                            
+                                                            </ul>                                                        
+                                                            {% set escenarioSubCategoriaAmbientalCampos = escenarioSubCategoriaAmbiental.escenarioSubCategoriaAmbientalCampos%}
+                                                            {% for escenarioSubCategoriaAmbientalCampo in escenarioSubCategoriaAmbientalCampos %}
+                                                                <ul class="sonata-ba-show-one-to-many">                                                                
+                                                                    <li>{{escenarioSubCategoriaAmbientalCampo.campoAmbiental.nombre}}: {{escenarioSubCategoriaAmbientalCampo.valor}}</li>
+                                                                </ul>
+                                                            {% endfor %}
+                                                        {% endfor %}
+                                                    </ul>
+                                                {% endfor %}
+                                            </td>
+                                        </tr>
+                                    {% endif %}
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+{% endblock sonata_page_content %}

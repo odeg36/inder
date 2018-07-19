@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Asistentes Oferta{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ app.request.getSchemeAndHttpHost() }}/bundles/sonatacore/vendor/bootstrap/dist/css/bootstrap.min.css">
+            <link rel="stylesheet" href="{{ app.request.getSchemeAndHttpHost() }}/bundles/sonatacore/vendor/components-font-awesome/css/font-awesome.min.css">
+            <link rel="stylesheet" href="{{ app.request.getSchemeAndHttpHost() }}/bundles/admin/css/main.css">
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block body %}
+            <div class="container-fluid cabecera-contenedor">
+                <div class="row">
+                    <div class="col-xs-9 cabecera-logo-simon text-center">
+                        <img src="{{ app.request.getSchemeAndHttpHost() }}/bundles/admin/img/logo-simon-header.png" alt="">
+                    </div>
+                    <div class="col-xs-3 cabecera-logo-alcaldia">
+                        <img src="{{ app.request.getSchemeAndHttpHost() }}/bundles/admin/img/logos-inder-alcaldia.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <ul class="cuerpo-lista">
+                    <li><span>{{ 'formulario.oferta.title' | trans }}:</span> {{ oferta }}</li>
+                    <li><span>{{ 'admin.organizaciondeportiva.fecharegistro' | trans }}:</span> {{ fecha }}</li>
+                    <li><span>{{ 'titulo.programacion' | trans }}:</span> {{ programacion.getDiaHoras }}</li>
+                </ul>
+                
+                <h2 class="text-center cuerpo-titulo">
+                    <i class="fa fa-list" aria-hidden="true"></i> 
+                    {{ 'reporte.listado.preinscripcion.titulo' | trans }}
+                </h2>
+                
+                <table class="table table-condensed table-striped cuerpo-tabla">
+                    <thead>
+                        <tr>
+                            <th>{{ 'formulario.login.tipo_documento' | trans }}</th>
+                            <th>{{ 'formulario.login.documento' | trans }}</th>
+                            <th>{{ 'formulario.labels.nombre' | trans }}</th>
+                            <th>{{ 'formulario.asistio' | trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for asistente in asistentes %}
+                            <tr>
+                                <td>{{ asistente.usuario.tipoIdentificacion.nombre }}</td>
+                                <td>{{ asistente.usuario.numeroIdentificacion }}</td>
+                                <td>{{ asistente.usuario.fullname }}</td>
+                                <td>{{ valorBoolean(asistente.asistio) }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
+

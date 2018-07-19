@@ -1,0 +1,22 @@
+<div class=" col-md-12"  data-id="{{ form.vars.form.vars.name }}" >
+    {% for children in form.children %}
+        <div class="col-md-12" style="margin-bottom: 10px !important;">
+            {% if children.vars.name == "_token" %}
+            {% else %}
+                {{ form_label(children) }}
+                {{ form_widget(children) }}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : children.vars.errors }%}
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+
+<script type="text/javascript">
+    {% for children in form.children %}
+        {% if children.vars.is_selected is defined and children.vars.is_selected is not null %}
+            try {
+                $({{ children.vars.id }}).select2();
+            } catch (e) {}
+        {% endif %}
+    {% endfor %}   
+</script>

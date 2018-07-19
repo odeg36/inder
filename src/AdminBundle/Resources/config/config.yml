@@ -1,0 +1,7 @@
+imports:
+    - { resource: "@AdminBundle/Resources/config/custom_services.yml" }
+    - { resource: "@AdminBundle/Resources/config/services.yml" }
+    - { resource: "@AdminBundle/Resources/config/sonata.yml" }
+    - { resource: "@AdminBundle/Resources/config/twig_services.yml" }
+    - { resource: "@AdminBundle/Resources/config/google_maps.yml" }
+    - { resource: "@AdminBundle/Resources/config/formValidaciones.yml" }

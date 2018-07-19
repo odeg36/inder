@@ -1,0 +1,25 @@
+{% for key, asistente in asistentes %}
+    <div class="col-xs-12 col-md-4 p-right-left-15 asistencia-hijo-eliminar elemento-hijo-{{ form.vars.name }}">
+        <div class="sombra p10-mb10">
+            <div class="row">
+                <div class="col-xs-8 col-md-8 p-right-left-15">
+                    <input type="hidden" name="asistentes[usuario][{{key}}]" value="{{ asistente.id }}"/>
+                    <div>
+                        {{ asistente.fullname }}
+                    </div>
+                    <div>
+                        <b>
+                            {{ asistente.tipoIdentificacion.abreviatura }}
+                            {{ asistente.numeroIdentificacion }}
+                        </b>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-md-4">
+                    <input type="checkbox" name="asistentes[asistio][{{key}}]" 
+                           {% if asistente.asistio %}checked="checked"{% endif %} class="checkbox-{{ asistente.username }} checkbox-clear"/>
+                    <label>{{ 'formulario.asistio' | trans }}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}

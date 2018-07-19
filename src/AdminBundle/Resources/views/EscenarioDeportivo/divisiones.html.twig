@@ -1,0 +1,333 @@
+    {% block division_type_row %}
+    <div class="campoGris row  margenPasos division-hijo-eliminar margen-bottom-10 " id="form_division_{{ form.vars.name }}" data-id="{{ form.vars.name }}">
+        <div class="col-md-12">
+            <strong>
+                {{form_label(form.categoriaDivision)}}
+            </strong>
+            {{ form_widget(form.categoriaDivision,{ 'class': 'categoriaDivisiones' }) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.categoriaDivision.vars.errors }%}
+        </div>
+        <div class="col-md-12">
+            <strong>
+                {{form_label(form.nombre)}}
+            </strong>
+            {{ form_widget(form.nombre) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nombre.vars.errors }%}
+        </div>
+        <div class="col-md-12">
+            <strong>
+                {{form_label(form.disciplina)}}
+            </strong>
+            {{ form_widget(form.disciplina,{ 'class': 'disciplinasDivisiones' }) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.disciplina.vars.errors }%}
+        </div>
+        <div class="col-md-12">
+            <strong>
+                {{form_label(form.tendencia)}}
+            </strong>
+            {{ form_widget(form.tendencia,{ 'class': 'tendeciasDivisiones' }) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tendencia.vars.errors }%}
+        </div>
+        <div class="col-md-12" >
+            <section class="col-xs-12 error-mesajes">
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoReservaEscenarioDeportivoDivisiones.vars.errors }%}
+            </section>
+            {%
+                form_theme form
+                    'AdminBundle:EscenarioDeportivo:tiposReserva.html.twig'
+                    'jquery.collection.html.twig'
+            %}
+            {{ form_row(form.tipoReservaEscenarioDeportivoDivisiones) }}
+        </div>
+        <div class="col-md-12">
+
+            <div class="col-md-12">
+
+                <div class="col-md-4">
+                    <span style="color: #0099b1;"><b>{% trans %}formulario_escenario_deportivo.labels.paso_dos.horario{% endtrans %}</b></span>
+                </div>
+
+                <div class="col-md-4">
+                    <span style="color: #0099b1;"><b>Horario mañana (Formato 24 horas)</b></span>
+                </div>
+
+                <div class="col-md-4">
+                    <span style="color: #0099b1;"><b>Horario Tarde (Formato 24 horas)</b></span>
+                </div>
+            </div>
+
+                {# lunes #}
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    {{form_widget(form.lunes, {
+                        'attr':{
+                            'disabled':'disabled',
+                            'class': 'form-control',
+                        } 
+                    })}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.lunes.vars.errors }%}
+                </div>
+                <div class="col-md-2">
+                    {{form_widget(form.hora_inicial_lunes)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial_lunes.vars.errors }%}
+                </div>
+
+                <div class="col-md-2">
+                    {{form_widget(form.hora_final_lunes)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final_lunes.vars.errors }%}
+                </div>
+
+                <div class="col-md-2">
+                    {{form_widget(form.hora_inicial2_lunes)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial2_lunes.vars.errors }%}
+                </div>
+
+                <div class="col-md-2">
+                    {{form_widget(form.hora_final2_lunes)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final2_lunes.vars.errors }%}
+                </div> 
+            </div>
+
+            <div class="col-md-12">
+                {# martes #}
+                <div class="col-md-4">
+                    {{form_widget(form.martes, {
+                        'attr':{
+                            'disabled':'disabled',
+                            'class': 'form-control',
+                        } 
+                    })}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.lunes.vars.errors }%}
+                </div>
+                <div class="col-md-2">
+                    {{form_widget(form.hora_inicial_martes)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial_martes.vars.errors }%}
+                </div>
+
+                <div class="col-md-2">
+                    {{form_widget(form.hora_final_martes)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final_martes.vars.errors }%}
+                </div>
+
+
+                    <div class="col-md-2">
+                    {{form_widget(form.hora_inicial2_martes)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial2_martes.vars.errors }%}
+                </div>
+
+                <div class="col-md-2">
+                    {{form_widget(form.hora_final2_martes)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final2_martes.vars.errors }%}
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                {# miercoles #}
+                <div class="col-md-4">
+                    {{form_widget(form.miercoles, {
+                        'attr':{
+                            'disabled':'disabled',
+                            'class': 'form-control',
+                        } 
+                    })}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.lunes.vars.errors }%}
+                </div>
+                <div class="col-md-2">
+                    {{form_widget(form.hora_inicial_miercoles)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial_miercoles.vars.errors }%}
+                </div>
+
+                <div class="col-md-2">
+                    {{form_widget(form.hora_final_miercoles)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final_miercoles.vars.errors }%}
+                </div>
+
+                <div class="col-md-2">
+                    {{form_widget(form.hora_inicial2_miercoles)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial2_miercoles.vars.errors }%}
+                </div>
+
+                <div class="col-md-2">
+                    {{form_widget(form.hora_final2_miercoles)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final2_miercoles.vars.errors }%}
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                {# jueves #}
+                <div class="col-md-4">
+                    {{form_widget(form.jueves, {
+                        'attr':{
+                            'disabled':'disabled',
+                            'class': 'form-control',
+                        } 
+                    })}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.lunes.vars.errors }%}
+                </div>
+                <div class="col-md-2">
+                    {{form_widget(form.hora_inicial_jueves)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial_jueves.vars.errors }%}
+                </div>
+
+                <div class="col-md-2">
+                    {{form_widget(form.hora_final_jueves)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final_jueves.vars.errors }%}
+                </div>
+
+                <div class="col-md-2">
+                    {{form_widget(form.hora_inicial2_jueves)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial2_jueves.vars.errors }%}
+                </div>
+
+                <div class="col-md-2">
+                    {{form_widget(form.hora_final2_jueves)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final2_jueves.vars.errors }%}
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                {# viernes #}
+                <div class="col-md-4">
+                    {{form_widget(form.viernes, {
+                        'attr':{
+                            'disabled':'disabled',
+                            'class': 'form-control',
+                        } 
+                    })}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.lunes.vars.errors }%}
+                </div>
+                <div class="col-md-2">
+                    {{form_widget(form.hora_inicial_viernes)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial_viernes.vars.errors }%}
+                </div>
+
+                <div class="col-md-2">
+                    {{form_widget(form.hora_final_viernes)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final_viernes.vars.errors }%}
+                </div>
+
+                <div class="col-md-2">
+                    {{form_widget(form.hora_inicial2_viernes)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial2_viernes.vars.errors }%}
+                </div>
+
+                <div class="col-md-2">
+                    {{form_widget(form.hora_final2_viernes)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final2_viernes.vars.errors }%}
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                {# sabado #}
+                <div class="col-md-4">
+                    {{form_widget(form.sabado, {
+                        'attr':{
+                            'disabled':'disabled',
+                            'class': 'form-control',
+                        } 
+                    })}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.lunes.vars.errors }%}
+                </div>
+                <div class="col-md-2">
+                    {{form_widget(form.hora_inicial_sabado)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial_sabado.vars.errors }%}
+                </div>
+
+                <div class="col-md-2">
+                    {{form_widget(form.hora_final_sabado)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final_sabado.vars.errors }%}
+                </div>
+
+                <div class="col-md-2">
+                    {{form_widget(form.hora_inicial2_sabado)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial2_sabado.vars.errors }%}
+                </div>
+
+                <div class="col-md-2">
+                    {{form_widget(form.hora_final2_sabado)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final2_sabado.vars.errors }%}
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                {# domingo #}
+                <div class="col-md-4">
+                    {{form_widget(form.domingo, {
+                        'attr':{
+                            'disabled':'disabled',
+                            'class': 'form-control',
+                        } 
+                    })}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.lunes.vars.errors }%}
+                </div>
+                <div class="col-md-2">
+                    {{form_widget(form.hora_inicial_domingo)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial_domingo.vars.errors }%}
+                </div>
+
+                <div class="col-md-2">
+                    {{form_widget(form.hora_final_domingo)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final_domingo.vars.errors }%}
+                </div>
+
+
+                <div class="col-md-2">
+                    {{form_widget(form.hora_inicial2_domingo)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial2_domingo.vars.errors }%}
+                </div>
+
+                <div class="col-md-2">
+                    {{form_widget(form.hora_final2_domingo)}}
+                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final2_domingo.vars.errors }%}
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-12">
+            <strong>
+                {{form_label(form.edad_minima)}}
+            </strong>
+            {{ form_widget(form.edad_minima) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.edad_minima.vars.errors }%}
+        </div>
+
+        <div class="col-md-12">
+            <strong>
+                {{form_label(form.necesitaAprobacion)}}                
+            </strong>
+            {{ form_widget(form.necesitaAprobacion) }}            
+        </div> 
+        {{ form_rest(form) }}        
+
+        <div class="col-md-12 collection-remove collection-action btnCentrar "  >
+            <div class="col-md-4 btnCentrar campoGris">
+                <button type="button" class="btn btn_remover btnRojo">
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar esta división
+                </button>
+            </div>
+        </div>
+
+    </div>
+    {#<script type="text/javascript">
+        var $addTipoReservaLink = $('<div class="col-md-12 btnCentrar" ><a href="#" class="btn btnVerde btnSize add_tipo_reserva_link"><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar tipo de reserva</a></div>');
+        var $deleteTipoReservaLink = $('<div class="row btnCentrar"><div class="col-md-4 btnCentrar campoGris"><a href=""><button type="button" class="btn btnSize btnRojo"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar este tipo de reserva</button></a></div></div>');
+        var $deleteTipoReservaLink = $('<a href=""><button type="button" class="btn btnSize btnRojo"><i class="fa fa-minus-circle" aria-hidden="true"></i>Quitar este tipo de reserva</button></a>');
+        
+        $('.tiposReserva-collection').collection({
+            name_prefix: '{{ form.tipoReservaEscenarioDeportivoDivisiones.vars.full_name }}',
+            drag_drop: '',
+            allow_up: '',
+            add: $addTipoReservaLink,
+            remove: $deleteTipoReservaLink,
+            up: '',
+            down: '',
+            duplicate: '',
+            add_at_the_end: true,
+            after_add: function(collection, element) {                
+                inder.escenarioDeportivo.setSelect2(element.attr('data-id'));
+            }
+        });
+    </script>#}
+{% endblock %}

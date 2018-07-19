@@ -1,0 +1,41 @@
+{% block asistencia_reserva_type_row %}
+    <div class="col-md-12 padding2 asistencia-hijo-eliminar elemento-hijo-{{ form.vars.name }}">
+        <div class="col-sm-12 col-md-3">
+            {{ form_widget(form.tipoidentificacion, {'attr': {'class': 'form-control tipo_identificacion tipo_identificacion_' ~ form.vars.id, 'onchange': 'inder.formulario.paso3.cambiaTipoIdentificacion(this, "'~ form.vars.id ~'")'}, 'id': ''}) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoidentificacion.vars.errors }%}
+        </div>
+        <div class="col-sm-12 col-md-3">
+            {{ form_widget(form.usuario, {attr: {class: 'form-control numero_documento numero_documento_' ~ form.vars.id, 'onchange' : 'inder.asistencia.usuario(this, "'~ form.vars.id ~'")' } }) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.usuario.vars.errors }%}
+        </div>
+        <div class="col-sm-12 col-md-3 nombre_usuario nombre_usuario_{{ form.vars.id }}">
+            <h5 class="campoAzul">{{ form.nombreUsuario.vars.value }}</h5>
+        </div>
+        
+        {{ form_widget(form.nombreUsuario, {attr: {class: 'nombre_usuario_oculto nombre_usuario_oculto_' ~ form.vars.id} }) }}
+        {{ form_widget(form.btnRemover, {attr: {class: 'btn_remover btn_remover_' ~ form.vars.id} }) }}
+            
+        {{ form_rest(form) }}
+        
+        <span class="autocomplete_{{ form.vars.id }}" 
+              data-existe="{{ path('reserva_asistencia', {'tipoDocumento': form.vars.id, 'reserva': form.parent.parent.children.reserva.vars.value}) }}" 
+              data-get="{{ path('get_usuario') }}"></span>
+    
+        <script type="text/javascript">
+            var id = "{{ form.vars.id }}";
+            var uniqId = "select_documento_" + "{{ form.vars.id }}";
+            var opciones = {
+                url_list: $('.autocomplete_' + "{{ form.vars.id }}").attr('data-existe'),
+                url_get: $('.autocomplete_' + "{{ form.vars.id }}").attr('data-get'),
+                otherOptions: {
+                    minimumInputLength: 1,
+                    formatNoMatches: Translator.trans('formulario.autocomplete.no.usuario'),
+                    formatSearching: Translator.trans('formulario.autocomplete.buscando'),
+                    formatInputTooShort: Translator.trans('formulario.autocomplete.caracteres', {cantidad: 1}),
+                    dropdownCssClass: uniqId
+                }
+            };
+            $(".numero_documento_" + "{{ form.vars.id }}").autocompleter(opciones);
+        </script>
+    </div>
+{% endblock %}

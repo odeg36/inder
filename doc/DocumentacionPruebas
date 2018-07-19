@@ -1,0 +1,4 @@
+
+Para hacer fixtures, el comando es:
+
+php bin/console doctrine:fixtures:load --fixtures="src/LogicBundle/DataFixtures/ORM/Pruebas"

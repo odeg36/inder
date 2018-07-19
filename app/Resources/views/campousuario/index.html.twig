@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Campousuarios list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Nombremapeado</th>
+                <th>Tipo</th>
+                <th>Fechacreacion</th>
+                <th>Fechaactualizacion</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for campoUsuario in campoUsuarios %}
+            <tr>
+                <td><a href="{{ path('logicBundleCampo_show', { 'id': campoUsuario.id }) }}">{{ campoUsuario.id }}</a></td>
+                <td>{{ campoUsuario.nombre }}</td>
+                <td>{{ campoUsuario.nombreMapeado }}</td>
+                <td>{{ campoUsuario.tipo }}</td>
+                <td>{% if campoUsuario.fechaCreacion %}{{ campoUsuario.fechaCreacion|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if campoUsuario.fechaActualizacion %}{{ campoUsuario.fechaActualizacion|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('logicBundleCampo_show', { 'id': campoUsuario.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('logicBundleCampo_edit', { 'id': campoUsuario.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('logicBundleCampo_new') }}">Create a new campoUsuario</a>
+        </li>
+    </ul>
+{% endblock %}

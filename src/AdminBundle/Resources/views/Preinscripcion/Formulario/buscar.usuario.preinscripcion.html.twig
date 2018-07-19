@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="row padding-total20">
+            {% for type in sonata_flashmessages_types() %}
+                {% set domain = domain is defined ? domain : null %}
+                {% for message in sonata_flashmessages_get(type, domain) %}
+                    <div class="alert alert-{{ type|sonata_status_class }} alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        {{ message|raw|trans }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            <div class="col-md-12">
+                <div class="row" id="boxMargen">
+                    <div class="col-md-12">
+                        <div class="col-md-12 sombra">
+                            <div class="col-md-12">
+                                <div class="box-header">
+                                    <h3 class="box-title">{{ 'titulo.buscar.usuario' | trans }}</h3>
+                                </div>
+                            </div>
+                            <div class="col-md-12 nuevaOferta">
+                                <br>
+                                {{form_start(form,{ attr: { novalidate:true } } )}}
+                                <div class="row" id="boxMargen">
+                                    <div class="col-md-12" id="boxPadding">
+                                        <div class="col-md-12 nuevaOferta">
+                                            <div class="col-sm-12 col-md-2">
+                                                <label class="required">{{ 'formulario.ingresa.datos.identificaicon' | trans }}</label>
+                                            </div>
+                                            <div class="col-sm-12 col-md-3">
+                                                {{ form_widget(form.tipoidentificacion, {'attr': {'class': 'form-control tipo_identificacion_' ~ form.vars.id, 'onchange': 'inder.formulario.paso3.cambiaTipoIdentificacion(this, "'~ form.vars.id ~'")'}, 'id': ''}) }}
+                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoidentificacion.vars.errors }%}
+                                            </div>
+                                            <div class="col-sm-12 col-md-4">
+                                                {{ form_widget(form.usuario, {attr: {class: 'numero_documento_' ~ form.vars.id, 'onchange' : 'inder.preinscripcion.usuarioRegistro(this, "'~ form.vars.id ~'", '~object.id~')' } }) }}
+                                                {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.usuario.vars.errors }%}
+                                            </div>
+                                            <div class="col-sm-12 col-md-3 nombre_usuario_{{ form.vars.id }}">
+                                                <h5 class="contenedorInfo">&nbsp;</h5>
+                                            </div>
+                                        </div>
+                                    </div>          
+                                </div>
+                                {{ form_end(form) }}
+                                <span class="autocomplete_{{ form.vars.id }}" 
+                                      data-existe="{{ path('verifica_existe_usuario_deportista_acompanante', {'tipoDocumento': form.vars.id, 'rol': rol_persona_natural}) }}" 
+                                      data-get="{{ path('get_usuario') }}" data-registrar="{{ path('registrar_usuario') }}"></span>
+                                <script type="text/javascript">
+                                    $(document).ready(function () {
+                                        var id = "{{ form.vars.id }}";
+                                        var uniqId = "select_documento_" + "{{ form.vars.id }}";
+                                        var opciones = {
+                                            url_list: $('.autocomplete_' + "{{ form.vars.id }}").attr('data-existe'),
+                                            url_get: $('.autocomplete_' + "{{ form.vars.id }}").attr('data-get'),
+                                            otherOptions: {
+                                                minimumInputLength: 1,
+                                                formatNoMatches: Translator.trans('formulario.autocomplete.no.usuario'),
+                                                formatSearching: Translator.trans('formulario.autocomplete.buscando'),
+                                                formatInputTooShort: Translator.trans('formulario.autocomplete.caracteres', {cantidad: 1}),
+                                                dropdownCssClass: uniqId,
+                                                width: '100%'
+                                            }
+                                        };
+                                        $(".numero_documento_" + "{{ form.vars.id }}").autocompleter(opciones);
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

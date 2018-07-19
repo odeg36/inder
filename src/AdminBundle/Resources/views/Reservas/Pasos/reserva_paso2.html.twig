@@ -1,0 +1,123 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+
+    <style>
+        .icheckbox_square-blue{
+            margin: 5px;         
+            margin-left: 0px;
+        }   
+        #divItemDivision{            
+            margin:2px;
+        }
+    </style>
+
+{% endblock %}
+
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_escenariodeportivo_list') }}">{% trans %}formulario_escenario_deportivo.escenarios_deportivos{% endtrans %}</a></li>
+        <li><a href="{{ url('admin_logic_reserva_list') }}">{% trans %}titulo.reservas{% endtrans %}</a></li>
+        <li class="active">{% trans %}formulario_reserva.crear{% endtrans %}</li>
+    </ol>                                                        
+{% endblock %} 
+
+{% block sonata_page_content %}
+    <section class="content">
+        {% block sonata_admin_content %}
+            {{ form_start(form, {'attr': {'id': 'formulario_reserva_paso2', novalidate: 'true'} } ) }}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_reserva.solicitudregistro{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Solicitud-registro-pasos -->
+                <div class="row">
+                    <div class="col-md-4 iconoText2">
+                        {% include 'AdminBundle:Reservas/Pasos:iconos.html.twig' with {vistaPaso: 2} %}
+                    </div>
+                    <div class="col-md-8 fondoAzul2">
+                        <div class="infoBox row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 contenedorInfoUno">
+                                <div class="col-md-6">
+                                    <div class="bordeSolido campoGris">
+                                        <img id="img-escenario-dividido" src="{{imagen}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <input id="identificadorEscenario" type="hidden" value="{{idEscenario}}"> 
+                                    <div class="col-lg-10 col-md-10">
+                                        <strong>{{form_label(form.divisiones)}}</strong>
+                                        {% for child in form.divisiones %}
+                                            <div id="divItemDivision">
+                                                {{ form_widget(child) }}
+                                                {{ form_label(child) }}
+                                            </div>
+                                        {% endfor %}
+                                        <strong>{{form_widget(form.divisiones)}}</strong>
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.divisiones.vars.errors }%}
+
+                                    </div> 
+                                   {# <div class="col-lg-10 col-md-10">
+                                        <div class="col-lg-10 col-md-10">                                                                         
+                                            {% for child in form.divisionesOcupadas %}
+                                                <div id="divItemDivision">
+                                                    <i class="fa fa-lock rojo" aria-hidden="true" disabled></i>
+                                                    {{ form_widget(child) }}
+                                                    {{ form_label(child) }}
+                                                </div>
+                                            {% endfor %}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.divisionesOcupadas.vars.errors }%}
+                                        </div>
+                                    </div>   #}                                          
+                                </div>
+                                {% if form.divisiones.vars.choices | length == 0 %}
+                                    <div class="col-lg-6 col-md-6">
+                                        <i class="fa fa-lock rojo" aria-hidden="true"></i> {% trans %}formulario_reserva.labels.paso_dos.divisiones_noDisponibles{% endtrans %}
+                                    </div>
+                                {% endif %}
+                                {% if form.reservaTodoEscenario is defined and disponibilidadTotal == true  %}
+                                    <div class="col-lg-6 col-md-6">
+                                        {{ form_widget(form.reservaTodoEscenario) }}
+                                        {{ form_label(form.reservaTodoEscenario) }}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                <div class="col-md-12 division"></div>
+                                <div class="col-md-12">
+                                    <a type="button" class="btn btnNaranja" onclick="inder.reserva.cancelarReserva()">
+                                        <i class="fa fa-chevron-left"></i>
+                                        {{'Cancelar'|trans}}
+                                    </a>
+                                    <a href="{{ path('admin_logic_reserva_paso1', { 'id':idreserva } ) }}" class="btn btnVerde">
+                                        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                        Anterior
+                                    </a>
+                                    <span></span>
+                                    {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                    <div style="display: none;">
+                                        {{ form_rest(form) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span id="alertas" data-tituloalerta="{% trans %}formulario_reserva.alertas.tituloalerta {% endtrans %}" data-yaseleccionada="{% trans %}formulario_registro.alertas.disciplinasyaseleccionada {% endtrans %}" data-revisecampos="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-registrado="{% trans %}formulario_registro.alertas.revisecampos {% endtrans %}" data-mensajeerror="{% trans %}formulario_registro.alertas.mensajeerror {% endtrans %}" data-titulook="{% trans %}formulario_registro.alertas.titulo_ok {% endtrans %}"></span>
+            <span id="url" data-infoorganigrama="{{ path("info_organigrama") }}"></span>
+            {{ form_end(form) }}
+        {% endblock sonata_admin_content %}
+    </section>
+{% endblock sonata_page_content %}

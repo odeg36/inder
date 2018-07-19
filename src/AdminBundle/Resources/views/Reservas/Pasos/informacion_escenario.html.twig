@@ -1,0 +1,42 @@
+<div class="col-sm-6 col-md-6 padding">
+    <div class="imagen-escenario">
+        <img id="img-escenario" src="/uploads/icono-escenario.svg">
+
+    </div>
+    <div class="info-escenario">
+        <label id="nombre_escenario_deportivo">{{escenario.nombre}}</label>
+        <p>Horario</p>
+        {%for key, dia in dias%}
+            <p><span>{{dia}}: </span></p> 
+            <span>
+                {{renderizarDiaEscenario(escenario, "getHoraInicial"~key)}} - {{renderizarDiaEscenario(escenario,"getHorafinal"~key)}}
+            </span>
+            &nbsp;/&nbsp;
+
+            <span>
+                {{renderizarDiaEscenario(escenario, "getHoraInicial2"~key)}} - {{renderizarDiaEscenario(escenario,"getHorafinal2"~key)}}
+            </span>
+        {%endfor%}
+        <p>Dirección :  
+            <span id="direccion_escenario_deportivo">{{escenario.direccion}}</span>
+        </p>
+        <p>Teléfono :    
+            <span id="telefono_escenario_deportivo">{{escenario.telefono}}</span>
+        </p>
+    </div>
+</div>
+
+<div class="col-sm-6 col-md-6 padding">
+    <span id="map_escenario">
+        
+        <iframe class="mapa-escenario" src="https://maps.google.com/maps?q={%if escenario.latitud%}{{escenario.latitud}},{{escenario.longitud}}{%else%}6.217,-75.567{%endif%}&amp;z=13&amp;hl=es;z=20&amp;output=embed">
+            &hl=es;z=20&amp;output=embed' width='600' height='450' frameborder='0' style='border:0'>
+        </iframe>
+    </span>
+    <div>
+        <label>Información adicional para reserva</label>
+        <p>
+            <span id="informacionReserva">{{escenario.informacionReserva|raw}}</span>
+        </p>
+    </div>
+</div>

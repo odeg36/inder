@@ -1,0 +1,139 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+    h2 {
+        margin-top:0;
+        font-weight: bold;
+    }
+    </style>
+{% endblock %}
+{% block title %}AdminBundle:Registro:encuesta{% endblock %}
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_encuesta_list') }}">{% trans %}formulario_encuesta.encuestas{% endtrans %}</a></li>
+        <li><a href="{{ url('admin_logic_encuesta_show', {id: encuesta.id}) }}">{{ encuesta }}</a></li>
+        <li class="active">{% trans %}formulario_encuesta.titulo_repuesta{% endtrans %}</li>
+    </ol>                                                         
+{% endblock %}
+{% block sonata_page_content %}
+    {% block sonata_admin_content %}
+        <!-- Content Wrapper. Contains page content -->
+        <div class="">
+            <!-- formulario -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_encuesta.titulo_repuesta{% endtrans %}</h4>
+                        <a type="button" class="btn-regresar sonata-action-element" href="{{ path('admin_logic_encuesta_list') }}" style="padding: 5px 12px 3px 12px;">
+                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                            {{'Volver'|trans}}
+                        </a>
+                    </div>
+                </div>
+                <!-- Respuestas -->
+                <div class="row">
+                    <div class="col-md-12 fondoAzul2">
+                        {{ form_start(form, {'attr': {'id': 'formulario_respuesta', novalidate: 'true'} } ) }}
+                            <div class="infoBox row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 contenedorInfoUno">
+                                    <div class="col-md-12">
+                                        <label><h2>{{ nombreEncuesta }}</h2></label>
+                                    </div>
+                                     <div class="col-md-10">
+                                      <strong>{% trans %}formulario_encuesta.labels.periodo{% endtrans %}</strong>
+                                        {{form_widget(form.periodo)}}
+                                    </div>
+                                    <div class="col-md-2">
+                                        <br>
+                                        {{ form_widget(form.consultar, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                    </div>
+                                    <!--FECHA -->
+                                     <div class="col-md-12">
+                                        <label><h3>{% trans %}formulario_encuesta.respuesta.fecha{% endtrans %} {{perido}}</h3></label>
+                                    </div>
+                                         <div class="col-md-4">
+                                        <strong>{% trans %}formulario_encuesta.respuesta.perido_fecha_inicial{% endtrans %}: {{fechaIncial}} </strong>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <strong>{% trans %}formulario_encuesta.respuesta.periodo_fecha_final{% endtrans %}: {{fechaFinal}} </strong>
+                                    </div>
+                                    <!--/FECHA -->
+                                    
+                                     <!--MUESTRA -->
+                                    <div class="col-md-12">
+                                        <label><h3>{% trans %}formulario_encuesta.respuesta.muestra{% endtrans %}</h3></label>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <strong>{% trans %}formulario_encuesta.respuesta.muestra_comuna{% endtrans %} ({{muestraComuna}}) </strong>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <strong>{% trans %}formulario_encuesta.respuesta.muestra_estrategia{% endtrans %} ({{muestraEstrategia}}) </strong>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <strong>{% trans %}formulario_encuesta.respuesta.muestra_ofera{% endtrans %} ({{muestraOferta}})</strong>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>{% trans %}formulario_encuesta.respuesta.muestra_alcanzada{% endtrans %} : {{cantidadEncuestado}}</label>
+                                    </div>
+                                    <!--/MUESTRA -->
+
+                             {% if isData %}
+                                {% for pregunta in preguntas %}  
+                                <!-- Pregunta -->
+                                <div class="col-md-12 tab-pane active">
+                                    <div class="col-md-12 titulos">
+                                        <div class="col-md-12 btnTitulos justify-content-end marginB0">
+                                            <h4>{{pregunta.nombre}}</h4>      
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <table class="table tablaPreinscrito">
+                                            <tbody>
+                                                <tr>
+                                                    <th>{% trans %}formulario_encuesta.respuesta.tabla_opcion{% endtrans %}</th>
+                                                    <th>{% trans %}formulario_encuesta.respuesta.tabla_porcentaje{% endtrans %}</th>
+                                                    <th>{% trans %}formulario_encuesta.respuesta.tabla_cantidad_user{% endtrans %}</th>                                                  
+                                                </tr>
+                                                {% for opcion in pregunta.encuestaOpciones %}  
+                                                <tr>
+                                                    <td>{{opcion.nombre}}</td>
+                                                    <td>{{  ((opcion.encuestaRespuestas|length * 100) / cantidadEncuestado)|number_format(2, '.', ',') }}%</td>
+                                                    <td>{{opcion.encuestaRespuestas|length}}</td>
+                                                </tr>
+                                                {% endfor %}
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>  
+                                </div>
+                                 <!-- Pregunta -->
+                                {% endfor %}
+                            {% else %}
+                               <div class="col-md-12 titulos">
+                                        <div class="col-md-12 btnTitulos justify-content-end marginB0">
+                                            <h4>{% trans %}formulario_encuesta.vacio{% endtrans %}</h4>      
+                                        </div>
+                                </div>
+                            {% endif %}    
+                            </div>
+                            
+                            
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            
+          
+            
+        </script>
+        <!-- /.content-wrapper -->
+    {% endblock sonata_admin_content %}
+{% endblock sonata_page_content %}
+

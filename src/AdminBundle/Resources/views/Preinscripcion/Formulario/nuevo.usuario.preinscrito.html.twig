@@ -1,0 +1,298 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="row padding-total20">
+            {% for type in sonata_flashmessages_types() %}
+                {% set domain = domain is defined ? domain : null %}
+                {% for message in sonata_flashmessages_get(type, domain) %}
+                    <div class="alert alert-{{ type|sonata_status_class }} alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        {{ message|raw|trans }}
+                    </div>
+                {% endfor %}
+            {% endfor %}  
+            <div class="col-md-12">
+                {{form_start(form,{ attr: { class: 'form_' ~ form.vars.id, novalidate:true } } )}}
+                <div class="row" id="boxMargen">
+                    <div class="col-md-{{form.informacionExtraUsuario.children|length > 0? '6':'12'}}" style="padding-right: 20px">
+                        <div class="col-md-12 sombra">
+                            <div class="col-md-12">
+                                <div class="box-header">
+                                    <h3 class="box-title">{{'titulo.preinscripcion.informacion_general'|trans}}</h3>
+                                </div>
+                            </div>
+                            <div class="col-md-12 nuevaOferta">
+                                <div class="col-md-12">
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.vars.errors }%}
+                                </div>                                            <div class="col-md-12">
+                                    {{form_label(form.tipoidentificacion)}}
+                                    {{form_widget(form.tipoidentificacion)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoidentificacion.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.numeroidentificacion)}}
+                                    {{form_widget(form.numeroidentificacion)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.numeroidentificacion.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.firstname)}}
+                                    {{form_widget(form.firstname)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.firstname.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.lastname)}}
+                                    {{form_widget(form.lastname)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.lastname.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.dateOfBirth)}}
+                                    {{form_widget(form.dateOfBirth)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.dateOfBirth.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.activo)}}
+                                    {{form_widget(form.activo)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.activo.vars.errors }%}
+                                </div>
+
+                                <div class="col-md-12">
+                                    {{form_label(form.email)}}
+                                    {{form_widget(form.email)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.email.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.phone)}}
+                                    {{form_widget(form.phone)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.phone.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.orientacionSexual)}}
+                                    {{form_widget(form.orientacionSexual)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.orientacionSexual.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.estrato)}}
+                                    {{form_widget(form.estrato)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.estrato.vars.errors }%}
+                                </div>
+                                <div class="sonata-ba-collapsed-fields">
+                                    <div class="municipio col-lg-12 col-md-12">
+                                        {{form_label(form.municipio)}}
+                                        {{form_widget(form.municipio, { 'id': 'municipio' })}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.municipio.vars.errors }%}
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 direccionOComuna hidden">
+                                        {{form_label(form.direccionOcomuna)}}
+                                        {{form_widget(form.direccionOcomuna)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.direccionOcomuna.vars.errors }%}
+                                    </div>
+                                    <div class="barrio col-lg-12 col-md-12 hidden">
+                                        {{form_label(form.barrio)}}
+                                        {{form_widget(form.barrio)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.barrio.vars.errors }%}
+                                    </div>
+                                    <div class="comuna hidden">
+                                        <div class="col-lg-12 col-md-12" >
+                                            {{form_label(form.comuna_format)}}
+                                            {{form_widget(form.comuna_format)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.comuna_format.vars.errors }%}
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 fondoDireccion" >
+                                            {{form_label(form.direccionComuna)}}
+                                            {{form_widget(form.direccionComuna)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.direccionComuna.vars.errors }%}
+                                        </div>
+                                    </div>
+                                    <div class="direccion hidden">
+                                        <div class="col-lg-12 col-md-12" >
+                                            {{form_label(form.direccion_creado)}}
+                                            {{form_widget(form.direccion_creado)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.direccion_creado.vars.errors }%}
+                                        </div>
+                                        <div class="col-sm-12 col-md-12 fondoDireccion">
+                                            {{form_label(form.direccionResidencia)}}
+                                            {{form_widget(form.direccionResidencia)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.direccionResidencia.vars.errors }%}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.eps)}}
+                                    {{form_widget(form.eps)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.eps.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.gender)}}
+                                    {{form_widget(form.gender)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.gender.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.etnia)}}
+                                    {{form_widget(form.etnia)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.etnia.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.nivelEscolaridad)}}
+                                    {{form_widget(form.nivelEscolaridad)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.nivelEscolaridad.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.tipoEstablecimientoEducativo)}}
+                                    {{form_widget(form.tipoEstablecimientoEducativo)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoEstablecimientoEducativo.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.establecimientoEducativo)}}
+                                    {{form_widget(form.establecimientoEducativo)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.establecimientoEducativo.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.ocupacion)}}
+                                    {{form_widget(form.ocupacion)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.ocupacion.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_row(form.esDesplazado)}}
+                                </div>
+                                <div id="campoDesplazado" class="ocultar">
+                                    <div class="col-md-12">
+                                        {{form_label(form.tipoDesplazado)}}
+                                        {{form_widget(form.tipoDesplazado)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoDesplazado.vars.errors }%}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_row(form.esDiscapacitado)}}
+                                </div>
+                                <div id="campoDiscapacitado" class="ocultar">
+                                    <div class="col-md-12">
+                                        {{form_label(form.discapacidad)}}
+                                        {{form_widget(form.discapacidad)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.discapacidad.vars.errors }%}
+                                    </div>
+                                    <div class="col-md-12">
+                                        {{form_label(form.subDiscapacidad)}}
+                                        {{form_widget(form.subDiscapacidad)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.subDiscapacidad.vars.errors }%}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.esJefeCabezaHogar)}}
+                                    {{form_widget(form.esJefeCabezaHogar)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.esJefeCabezaHogar.vars.errors }%}
+                                </div>
+                                {% block botones_preinscripcion %}
+                                    <div class="col-md-12 botones">
+                                        <a type="button" class="btn btn-cancelar" href="{{ admin.generateUrl('list') }}{{'?filter[oferta][value]='~object.id }}">
+                                            <i class="fa fa-chevron-left"></i>
+                                            {{'cancelar'|trans}}
+                                        </a>
+                                        <button type="submit" class="btn btnVerde">
+                                            <i class="fa fa-floppy-o"></i>
+                                            {{'guardar'|trans}}
+                                        </button>
+                                    </div>
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                    {% if form.informacionExtraUsuario.children|length > 0 %}
+                        <div class="col-md-6">
+                            <div class="col-md-12 sombra">
+                                <div class="col-md-12">
+                                    <div class="box-header">
+                                        <h3 class="box-title">{{'titulo.preinscripcion.informacion_adicional'|trans}}</h3>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 nuevaOferta">
+                                    {% include 'AdminBundle:Preinscripcion:informacion_adicional.html.twig' with { form : form.informacionExtraUsuario}%}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" id="boxPadding">
+                            <div class="lineaSolida"></div>
+                        </div>
+                    {% else %}
+                        {% do form.informacionExtraUsuario.setRendered %}
+                    {% endif %}
+                </div>
+                {{form_rest(form)}}
+                {{form_end(form)}}
+            </div>
+        </div>
+    </div>
+    <span id="idFormulario" data-idForm="{{form.vars.id}}_"></span>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('input.choice-direcion-type').iCheck({checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue'});
+        $('input.choice-direcion-type').on('ifChecked', function (event) {
+            inder.formulario.registro.direccionTipo(event.target, true);
+        });
+        var check_1 = $('[id*="direccionOcomuna_0"]');
+        var check_2 = $('[id*="direccionOcomuna_1"]');
+        $("input[type='checkbox']").iCheck({
+            checkboxClass: 'icheckbox_square-blue'
+        });
+        inder.preinscripcion.checkboxMedicamentos();
+        inder.preinscripcion.checkboxEnfermedades();
+
+        $('select').select2({
+            placeholder: Translator.trans('seleccionar.opcion'),
+            allowClear: true,
+            width: '100%'
+        });
+        inder.oferta.crearSeccionPuntoAtencion($('.checkNuevoPuntoAtencion').prop('checked'));
+        var municipio = $('#municipio');
+        if (municipio.val() != "") {
+            if (check_1.length > 0 || check_2.length > 0) {
+                if (check_1.iCheck('update')[0].checked || check_2.iCheck('update')[0].checked) {
+                    $("div.direccionOComuna").removeClass("hidden");
+                    var opcion = "";
+                    if (check_1.iCheck('update')[0].checked) {
+                        opcion = check_1.attr("choice-key");
+                    } else {
+                        opcion = check_2.attr("choice-key");
+                    }
+                    if (inder.formulario.registro.direccion == opcion) {
+                        $("div." + inder.formulario.registro.barrio).find('label').html(inder.formulario.registro.barrio_titulo);
+                    } else if (inder.formulario.registro.comuna == opcion) {
+                        $("div." + inder.formulario.registro.barrio).find('label').html(inder.formulario.registro.vereda_titulo);
+                    }
+                    $("div." + opcion).removeClass("hidden");
+                    $("div.puntoAtencion").removeClass("hidden");
+                } else {
+                    $("div." + inder.formulario.registro.direccion).removeClass("hidden");
+                    $("div.puntoAtencion").removeClass("hidden");
+                }
+                $("div." + inder.formulario.registro.barrio).removeClass("hidden");
+            }
+        }
+    });
+
+    var options = {
+        error: showError,
+        beforeSubmit: showRequest, // pre-submit callback 
+        success: showResponse  // post-submit callback
+    };
+
+    function showError(responseText) {
+    }
+    function showRequest(responseText) {
+        $('#div_carga').show();
+    }
+
+    function showResponse(data) {
+        if (typeof data == "object") {
+            $("form").remove();
+            window.location.href = data.url;
+        } else {
+            $("div.form-usuario-preinscripcion").html(data);
+            $("html, body").animate({scrollTop: 0}, 1000);
+        }
+    }
+
+    $('.form_' + "{{ form.vars.id }}").ajaxForm(options);
+    inder.preinscripcion.accionesChecbox();
+</script>

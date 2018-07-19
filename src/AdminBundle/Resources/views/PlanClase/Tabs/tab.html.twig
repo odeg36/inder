@@ -1,0 +1,22 @@
+<ul class="nav nav-tabs" style="padding-left: 0">
+    <!--Técnico -->
+    {% if 'tecnico' == tabActivo %}
+    <li class="active">
+    {% else %}
+    <li class="">
+    {% endif %}
+        <a href="#tecnico" data-toggle="tab" aria-expanded="true" id="pestaña-tecnico">
+            {% trans %}formulario_plan_clases.labels.tecnico{% endtrans %}
+        </a>
+    </li>
+    <!--Social -->
+    {% if 'social' == tabActivo %}
+    <li class="active">
+    {% else %}
+    <li class="">
+    {% endif %}
+        <a href="#social" data-toggle="tab" aria-expanded="false" id="pestaña-social">
+            {% trans %}formulario_plan_clases.labels.social{% endtrans %}
+        </a>
+    </li>
+</ul>

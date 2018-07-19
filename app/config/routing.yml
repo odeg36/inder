@@ -1,0 +1,41 @@
+homepage:
+    path:   /admin
+    defaults:  { _controller: AdminBundle:Default:index}
+
+inder_admin:
+    resource: "@AdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+logic:
+    resource: "@LogicBundle/Controller/"
+    type:     annotation
+    prefix:   /
+    
+services:
+    resource: "@ServicesBundle/Controller/"
+    type:     annotation
+    prefix:   /api
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+    
+# FOSAuthServerBundle
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+
+fos_oauth_server_authorize:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
+    
+ito_oauth_server:
+    resource: "@ITOOAuthServerBundle/Resources/config/routing.yml"
+        
+nelmio_api_doc:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
+    
+_bazinga_jstranslation:
+    resource: "@BazingaJsTranslationBundle/Resources/config/routing/routing.yml"
+
+oneup_uploader:
+    resource: .
+    type: uploader

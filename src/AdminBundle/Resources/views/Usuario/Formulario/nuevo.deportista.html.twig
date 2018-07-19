@@ -1,0 +1,102 @@
+<div class="campoAzul row" id="nuevoDeporstista-{{uniqId}}">
+    {% block form_errors %}
+        {% spaceless %}
+            {% if form.vars.errors|length > 0 %}
+                <ul>
+                    {% for error in form.vars.errors %}
+                        <li>{{ error.message }}</li>
+                        {% endfor %}
+                </ul>
+            {% endif %}
+        {% endspaceless %}
+    {% endblock form_errors %}
+
+    <div class="col-md-11">
+        <label>{{ 'titulo.crear.usuario' | trans }}</label>
+    </div>
+    <div class="col-md-1">
+        <span class="pull-right" onclick="inder.formulario.paso3.borrarNuevoDeportista('{{uniqId}}');" ><i class="fa fa-times error_campo_mensaje"></i></span>
+    </div>
+    {{ form_start(form, {attr: { class: 'form_' ~ uniqId, action: path('nuevo_deportista', { uniqId: uniqId }), method: 'POST', novalidate: true } }) }}
+    <div class="col-sm-12">
+        <div class="col-sm-12 col-md-4">
+            {{ form_label(form.tipoIdentificacion) }}
+            {{ form_widget(form.tipoIdentificacion, {attr: {class: 'form-control nuevo_tipo_documento_' ~ uniqId } }) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipoIdentificacion.vars.errors }%}
+        </div>
+        <div class="col-sm-12 col-md-8">
+            {{ form_label(form.numeroIdentificacion) }}
+            {{ form_widget(form.numeroIdentificacion, {attr: {class: 'form-control nuevo_numero_documento_' ~ uniqId } }) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.numeroIdentificacion.vars.errors }%}
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="col-sm-12 col-md-6">
+            {{ form_label(form.firstname) }}
+            {{ form_widget(form.firstname) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.firstname.vars.errors }%}
+        </div>
+        <div class="col-sm-12 col-md-6">
+            {{ form_label(form.lastname) }}
+            {{ form_widget(form.lastname) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.lastname.vars.errors }%}
+        </div>
+        <div class="col-sm-12 col-md-6">
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.email.vars.errors }%}
+        </div>
+        <div class="col-sm-12 col-md-6">
+            {{ form_label(form.phone) }}
+            {{ form_widget(form.phone) }}
+            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.phone.vars.errors }%}
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <button type="submit" class="btn btnVerde btnRegistroUsuario">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+            {{ 'formulario.login.registrar' | trans }}
+        </button>
+    </div>
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+</div>
+<script>
+    $(document).ready(function () {
+        inder.formulario.paso3.setForm("{{ uniqId }}");
+    });
+
+    var options = {
+        error: showError,
+        beforeSubmit: showRequest, // pre-submit callback 
+        success: showResponse  // post-submit callback
+    };
+
+    function showError(responseText) {
+    }
+    function showRequest(responseText) {
+        $('#div_carga').show();
+    }
+
+    function showResponse(html) {
+        if (typeof html == "object") {
+            $("div.registro_usuario_" + "{{ uniqId }}").html("");
+            $("div.mensaje_registro_usuario_" + "{{ uniqId }}").html("");
+            $("div.mensaje_registro_usuario_" + "{{ uniqId }}").append(html.template.content);
+            
+            $("input.numero_documento_" + "{{ uniqId }}").val(html.usuario.id);
+            $("input.numero_documento_" + "{{ uniqId }}").select2('data', {id: html.usuario.id, text: html.usuario.numero_identificacion});
+            $("div.nombre_deportista_" + "{{ uniqId }}").find("h5").text(html.usuario.nombre_completo);
+
+            setTimeout(function () {
+                $("div.mensaje_registro_usuario_" + "{{ uniqId }}").fadeOut(500);
+            }, 5000);
+        } else {
+            $("div.registro_usuario_" + "{{ uniqId }}").html("");
+            $("div.registro_usuario_" + "{{ uniqId }}").append(html);
+        }
+    }
+
+    $('.form_' + "{{ uniqId }}").ajaxForm(options);
+</script>

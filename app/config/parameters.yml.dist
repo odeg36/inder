@@ -1,0 +1,28 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+parameters:
+    database_driver: pdo_pgsql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: inder_sim
+    database_user: postgres
+    database_password: xxxxxxxx
+    mailer_transport: smtp
+    mailer_port: ~
+    mailer_host: smtp.gmail.com
+    mailer_user: oscar.estupinan@ito-software.com
+    mailer_password: 1t0s0ftw4r3*
+    mailer_encryption: ssl
+    mailer_auth_mode: null
+    mailer_spool_type: memory
+    mailer_spool_path: null
+    mailer_from_email: oscar.estupinan@ito-software.com
+    mailer_from_name: SIMON - INDER Alcaldía de Medellín
+    secret: ThisTokenIsNotSoSecretChangeIt
+    locale: es
+    configuracion:
+        remitente: noreply@inder.gov.co
+        organizacionesdeportivas:
+            destinatario: carlos.tafur@ito-software.com
+            vigenciasolicitudes: 5

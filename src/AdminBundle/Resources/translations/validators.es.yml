@@ -1,0 +1,37 @@
+formulario:
+    validar:
+        asistencia:
+            unico: El usuario "%usuario%", se encuentra duplicado.
+        disciplina:
+            unica: La disciplina "%disciplina%", no puede estar repetida.
+            o.tendencia: Se debe seleccionar una disciplina o tendencia mímimo.
+        email:
+            unico: El correo electrónico ingresado ya se encuentra en uso.
+        limite:
+            minimo: El campo necesita un mínimo de {{ limit }} caracteres
+            maximo: El campo no puede tener más de {{ limit }} caracteres
+        usuario:
+            unico: Los datos de identificacón del usuario ya han sido usados.
+            sin_email: Su usuario no tiene un correo electrónico asociado. Por favor comuniquese con el área administrativa de Inder. 
+            no_existe: Verifique los datos ingresados. Ningún usuario usuario cumple con los datos suministrados.
+        perfiles:
+            validos: 
+                minimo: El número de perfiles para el organo "%organo%", no cumple con el mínimo necesario (%limite%).
+                maximo: El número de perfiles para el organo "%organo%", no cumple con el máximo necesario (%limite%).
+
+formulario_registro:
+    claves_deben_coincidir: Las claves deben coincidir
+    no_vacio: El campo no puede estar vacío.
+    tamano_contrasena: La contraseña debe tener mínimo 8 caracteres.
+    
+error:
+    disciplina:
+        no_seleccionado: El campo disciplina se encuentra vacio
+    escenario:
+        no_seleccionado: El campo Escenario se encuentra vacio
+    tendencia:
+        no_seleccionado: El campo tendencia se encuentra vacio
+    puntoAtencion:
+        no_seleccionado: El campo punto de atención se encuentra vacio
+    estrategia:
+        valor_max: Se ha superado el valor maximo permitido

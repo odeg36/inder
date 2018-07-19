@@ -1,0 +1,7 @@
+<td class="sonata-ba-list-field" objectid="{{object.id}}">
+    {% if object.puntoAtencion %}
+        {{object.puntoAtencion.direccion}}
+    {% elseif object.escenarioDeportivo%}
+        {{object.escenarioDeportivo.direccion}}
+    {% endif %}
+</td>

@@ -1,0 +1,341 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/jquery-confirm.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/registro.css') }}">
+    <style>
+    </style>
+{% endblock %}
+{% block title %}AdminBundle:Usuario:registro{% endblock %}
+{% block breadcrumb %}
+    <ol class="breadcrumb">  
+        <li><a href="{{ url('sonata_admin_dashboard') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ url('admin_logic_escenariodeportivo_list') }}">{% trans %}Escenario Deportivo List{% endtrans %}</a></li>        
+        <li class="active">
+            {% if idescenario == 0 %}
+                {% trans %}btn.accion.crear{% endtrans %}
+            {% else %}
+                {{ nombreEscenario }}
+            {% endif %}
+        </li>
+    </ol>
+{% endblock %}
+{% block sonata_page_content %}
+    {% block sonata_admin_content %}
+        <div class="content-wrapper alto-contenido p-top">
+            <!-- formulario -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 titulos">
+                        <h4>{% trans %}formulario_escenario_deportivo.title{% endtrans %}</h4>
+                    </div>
+                </div>
+                <!-- Escenarios deportivos -->
+                <div class="row">
+                    <div class="col-md-4 iconoText2">
+                        {% include 'AdminBundle:EscenarioDeportivo/Pasos:iconos.html.twig' with {vistaPaso: 2, idescenario: idescenario, 'mostrar4142': validacionTipoEscenario} %}
+                    </div>
+                    <div class="col-md-8 fondoAzul2">
+                        {{ form_start(form, {'attr': {'id': 'formulario_escenario_deportivo', novalidate: 'true'} } ) }}
+
+                        <div class="infoBox row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 contenedorInfoUno">
+                                <div class="col-md-12">
+                                    {{form_label(form.tiene_restricciones)}}
+                                    {{form_widget(form.tiene_restricciones,{ 'id': 'escenariosRestricciones' })}}
+                                </div>
+                                <div id="restricciones_escenario">
+                                    <div class="col-md-12">
+                                        {{form_label(form.tipo_reserva)}}
+                                        {{form_widget(form.tipo_reserva)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tipo_reserva.vars.errors }%}
+                                    </div>
+                                    <div class="col-md-12">
+                                        {{form_label(form.disciplina)}}
+                                        {{form_widget(form.disciplina)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.disciplina.vars.errors }%}
+                                    </div>
+                                    <div class="col-md-12">
+                                        {{form_label(form.tendencia)}}
+                                        {{form_widget(form.tendencia)}}
+                                        {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.tendencia.vars.errors }%}
+                                    </div> 
+                                </div>
+
+                                <div class="col-md-12">
+
+                                    <div class="col-md-12">
+
+                                        <div class="col-md-4">
+                                            <span style="color: #0099b1;"><b>{% trans %}formulario_escenario_deportivo.labels.paso_dos.horario{% endtrans %}</b></span>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <span style="color: #0099b1;"><b>Horario mañana (Formato 24 horas)</b></span>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <span style="color: #0099b1;"><b>Horario Tarde (Formato 24 horas)</b></span>
+                                        </div>
+                                    </div>
+
+                                    {# lunes #}
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            {{form_widget(form.lunes, { 'attr':{'disabled':'disabled'} })}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.lunes.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_inicial_lunes)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial_lunes.vars.errors }%}
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_final_lunes)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final_lunes.vars.errors }%}
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_inicial2_lunes)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial2_lunes.vars.errors }%}
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_final2_lunes)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final2_lunes.vars.errors }%}
+                                        </div> 
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        {# martes #}
+                                        <div class="col-md-4">
+                                            {{form_widget(form.martes, { 'attr':{'disabled':'disabled'} })}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.lunes.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_inicial_martes)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial_martes.vars.errors }%}
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_final_martes)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final_martes.vars.errors }%}
+                                        </div>
+
+
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_inicial2_martes)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial2_martes.vars.errors }%}
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_final2_martes)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final2_martes.vars.errors }%}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        {# miercoles #}
+                                        <div class="col-md-4">
+                                            {{form_widget(form.miercoles, { 'attr':{'disabled':'disabled'} })}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.lunes.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_inicial_miercoles)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial_miercoles.vars.errors }%}
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_final_miercoles)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final_miercoles.vars.errors }%}
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_inicial2_miercoles)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial2_miercoles.vars.errors }%}
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_final2_miercoles)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final2_miercoles.vars.errors }%}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        {# jueves #}
+                                        <div class="col-md-4">
+                                            {{form_widget(form.jueves, { 'attr':{'disabled':'disabled'} })}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.lunes.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_inicial_jueves)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial_jueves.vars.errors }%}
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_final_jueves)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final_jueves.vars.errors }%}
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_inicial2_jueves)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial2_jueves.vars.errors }%}
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_final2_jueves)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final2_jueves.vars.errors }%}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        {# viernes #}
+                                        <div class="col-md-4">
+                                            {{form_widget(form.viernes, { 'attr':{'disabled':'disabled'} })}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.lunes.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_inicial_viernes)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial_viernes.vars.errors }%}
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_final_viernes)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final_viernes.vars.errors }%}
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_inicial2_viernes)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial2_viernes.vars.errors }%}
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_final2_viernes)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final2_viernes.vars.errors }%}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        {# sabado #}
+                                        <div class="col-md-4">
+                                            {{form_widget(form.sabado, { 'attr':{'disabled':'disabled'} })}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.lunes.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_inicial_sabado)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial_sabado.vars.errors }%}
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_final_sabado)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final_sabado.vars.errors }%}
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_inicial2_sabado)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial2_sabado.vars.errors }%}
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_final2_sabado)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final2_sabado.vars.errors }%}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        {# domingo #}
+                                        <div class="col-md-4">
+                                            {{form_widget(form.domingo, { 'attr':{'disabled':'disabled'} })}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.lunes.vars.errors }%}
+                                        </div>
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_inicial_domingo)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial_domingo.vars.errors }%}
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_final_domingo)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final_domingo.vars.errors }%}
+                                        </div>
+
+
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_inicial2_domingo)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_inicial2_domingo.vars.errors }%}
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            {{form_widget(form.hora_final2_domingo)}}
+                                            {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.hora_final2_domingo.vars.errors }%}
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12">
+                                    {{form_label(form.horarioDivision)}}
+                                    {{form_widget(form.horarioDivision,{ 'id': 'divisionHorarioIgual' })}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.horarioDivision.vars.errors }%}
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label>Gestores <span>*</span></label>
+                                </div>
+                                <div class="col-md-12">
+                                    <b>{% trans %}formulario_escenario_deportivo.labels.paso_dos.principal{% endtrans %}<span> *</span></b>
+                                    {{form_widget(form.usuario_principal)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.usuario_principal.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    <b>{% trans %}formulario_escenario_deportivo.labels.paso_dos.secundarios{% endtrans %}</b>
+                                    {{form_widget(form.usuario_secundario)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.usuario_secundario.vars.errors }%}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_label(form.normaEscenario)}}
+                                    {{form_widget(form.normaEscenario)}}
+                                    {% include 'AdminBundle:CRUD:errores_campos.html.twig' with { errors : form.normaEscenario.vars.errors }%}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 dos">
+                                <div class="col-md-12 division"></div>
+                                <div class="col-md-12">
+                                    <a href="{{ path('admin_logic_escenariodeportivo_addpaso1', { 'id':idescenario } ) }}" class="btn btnVerde">
+                                        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                        Anterior
+                                    </a>
+                                    <span></span>
+                                    {{ form_widget(form.save, { 'id': 'btnguardar', 'class' : 'btn btnVerde' }) }}
+                                    <div style="display: none;">
+                                        {{ form_rest(form) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+        <span class="autocomplete_{{ form.vars.id }}" 
+              data-get="{{ path('get_usuario_nombre') }}"
+              data-existe="{{ path('ajax_usuarios_rol',{'rol': 'ROLE_GESTOR_ESCENARIO'}) }}">
+        </span>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var opciones = {
+                    url_list: $('.autocomplete_' + "{{ form.vars.id }}").attr('data-existe'),
+                    url_get: $('.autocomplete_' + "{{ form.vars.id }}").attr('data-get'),
+                    otherOptions: {
+                        minimumInputLength: 1,
+                        formatNoMatches: Translator.trans('formulario.autocomplete.no.usuario'),
+                        formatSearching: Translator.trans('formulario.autocomplete.buscando'),
+                        formatInputTooShort: Translator.trans('formulario.autocomplete.caracteres', {cantidad: 1}),
+                        width: '100%',
+                    }
+                };
+                $(".gestor_principal").autocompleter(opciones);
+            });
+        </script>
+    {% endblock sonata_admin_content %}
+{% endblock sonata_page_content %}
